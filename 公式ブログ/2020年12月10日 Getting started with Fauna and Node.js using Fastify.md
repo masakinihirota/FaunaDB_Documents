@@ -3,16 +3,33 @@
 Fastify を使用して Fauna と Node.js を使い始める
 
 Pier Bover|Dec 10th, 2020
+2020 年 12 月 10 日
 
 Today we'll be building a small API to see a quick overview on how to use Fauna in Node.js.
 
+今日は、Node.js で Fauna を使用する方法の概要を確認するために、小さな API を構築します。
+
 For reference, here's a Github repository with the finished project that you can use to follow along: [https://github.com/PierBover/getting-started-fauna-nodejs](https://github.com/PierBover/getting-started-fauna-nodejs)
+
+参考までに、完成したプロジェクトを含む Github リポジトリを次に示します。これを使用してフォローできます。
 
 Any recent version of Node will do. If you don't have it installed already, I recommend downloading the LTS installer from the [official website](https://github.com/PierBover/getting-started-fauna-nodejs). This will also install NPM which you need to manage your dependencies.
 
+Node の最近のバージョンならどれでもかまいません。まだインストールしていない場合は、公式 Web サイトから LTS インストーラーをダウンロードすることをお勧めします。これにより、依存関係を管理するために必要な NPM もインストールされます。
+
 For our server we'll be using [Fastify](https://www.fastify.io/) which is easy to use and offers a great developer experience. Also, as its name implies, it's very fast.
 
+implies
+意味する
+
+サーバーには、使いやすく、優れた開発者エクスペリエンスを提供する Fastify を使用します。また、その名前が示すように、それは非常に高速です。
+
 One last thing. If you've never used Fauna or FQL before, it would be a good idea to at least take a quick look at this [introductory article](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-1).
+
+最後に一つだけ
+これまでにFaunaまたはFQLを使用したことがない場合は、少なくともこの紹介記事をざっと見てみるとよいでしょう。
+
+
 
 ### In this article:
 
