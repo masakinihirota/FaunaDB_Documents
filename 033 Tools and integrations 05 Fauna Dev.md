@@ -106,25 +106,44 @@ ensure that your client programs use the ports that you specify.
 invocations
 起動
 
+ensure
+確認する
+
+specify
+指定する
+
 別のポートを使用するように Docker 呼び出しを調整する場合は、
 クライアントプログラムが指定したポートを使用していることを確認してください。
 
-The `docker` command’s `-p` option lets you specify a mapping from your host computer’s to the container’s ports, using the syntax `hostPort:containerPort`. `hostPort` and `containerPort` can be a single port number, or a range expressed as `low-high`.
-docker コマンドの-p オプションは、構文を使用して、コンテナのポートにホストコンピュータのからのマッピングを指定することができます hostPort:containerPort。hostPort そして containerPort1 つのポート番号、またはのように表す範囲とすることができます low-high。
+The `docker` command’s `-p` option lets you specify a mapping from your host computer’s to the container’s ports, using the syntax `hostPort:containerPort`.
+
+docker コマンドの-p オプションは、構文を使用して、コンテナのポートにホストコンピュータのからのマッピングを指定することができます hostPort:containerPort。
+
+`hostPort` and `containerPort` can be a single port number, or a range expressed as `low-high`.
+
+hostPort そして containerPort1 つのポート番号、またはのように表す範囲とすることができます low-high。
 
 For example, to connect your host computer’s port 1234 to the container’s port 6789, you would use `-p 1234:6789`.
-たとえば、ホスト コンピューターのポート 1234 をコンテナーのポート 6789 に接続するには、-p 1234:6789.
+たとえば、ホスト コンピューターのポート 1234 をコンテナーのポート 6789 に接続するには、
+
+`-p 1234:6789`
 
 See the [Docker docs](https://docs.docker.com/engine/reference/run/#expose-incoming-ports) for more information.
+
 詳細については、Docker のドキュメントを参照して ください。
 
 ## [](#run)Run
 
 There are several approaches to running Fauna Dev with Docker:
+
 Docker で Fauna Dev を実行するには、いくつかのアプローチがあります。
 
 1.  As a single developer node, with ephemeral data:
+
     一時データを使用する単一の開発者ノードとして:
+
+ephemeral
+一時的
 
 terminal
 
@@ -133,22 +152,26 @@ docker run --rm --name faunadb -p 8443:8443 -p 8084:8084 fauna/faunadb
 ```
 
 This command starts a Fauna Dev node and initializes the single-node cluster.
+
 このコマンドは、Fauna Dev ノードを開始し、単一ノード クラスターを初期化します。
 
 重要
 Using this invocation,
 when the Docker container is stopped/killed,
 all of the data it contains is lost.
-This can be very useful for testing,
-where the database starts with a known state.
 
 この呼び出しを使用すると、
 Docker コンテナーが停止または強制終了されると、
 そこに含まれるすべてのデータが失われます。
+
+This can be very useful for testing,
+where the database starts with a known state.
+
 これは、
 データベースが既知の状態で開始されるテストに非常に役立ちます。
 
 2.  As a single developer node, with persisted data:
+
     単一の開発者ノードとして、永続化されたデータを使用する場合:
 
 terminal
@@ -159,11 +182,20 @@ docker run --rm --name faunadb -p 8443:8443 -p 8084:8084 \
 fauna/faunadb
 ```
 
-This command starts Fauna Dev with a specified folder or volume bound to the Docker container data folder. When the Docker container is stopped/killed, all of your data is maintained in the specified folder/volume.
-このコマンドは、指定されたフォルダーまたはボリュームを Docker コンテナー データ フォルダーにバインドして Fauna Dev を起動します。Docker コンテナが停止/強制終了されると、すべてのデータは指定されたフォルダー/ボリュームに保持されます。
+This command starts Fauna Dev with a specified folder or volume bound to the Docker container data folder.
+
+このコマンドは、指定されたフォルダーまたはボリュームを Docker コンテナー データ フォルダーにバインドして Fauna Dev を起動します。
+
+When the Docker container is stopped/killed, all of your data is maintained in the specified folder/volume.
+
+Docker コンテナが停止/強制終了されると、
+すべてのデータは指定されたフォルダー/ボリュームに保持されます。
 
 3.  As a single developer node, with persisted data and logs:
     永続化されたデータとログを備えた単一の開発者ノードとして:
+
+persisted
+永続
 
 terminal
 
@@ -177,13 +209,16 @@ fauna/faunadb
 This command starts Fauna Dev,
 binding a local folder/volume to the Docker container’s data folder,
 and another local folder/volume to the Docker container’s log folder.
-When the Docker container is stopped/killed,
-all of your data and logs are maintained in the specified folders/volumes.
+
 このコマンドは FaunaDev を開始し、
 ローカルフォルダー/ボリュームを
 Docker コンテナーのデータフォルダーにバインドし、
 別のローカルフォルダー/ボリュームを
 Docker コンテナーのログフォルダーにバインドします。
+
+When the Docker container is stopped/killed,
+all of your data and logs are maintained in the specified folders/volumes.
+
 Docker コンテナーが停止または強制終了されると、
 すべてのデータとログが指定されたフォルダー/ボリュームに保持されます。
 
@@ -202,16 +237,16 @@ fauna/faunadb
 ```
 
 This command starts Fauna Dev with path binds for the data,
-log,
-and configuration file,
+log, and configuration file,
 as well as specifying that the non-default configuration should be used.
-このコマンドは、
-データ、
-ログ、
+
+このコマンドは、データ、ログ、
 および構成ファイルのパスバインドを使用して FaunaDev を開始し、
 デフォルト以外の構成を使用するように指定します。
 
-Here is an example configuration file. Adjust the configuration as appropriate:
+Here is an example configuration file.
+Adjust the configuration as appropriate:
+
 構成ファイルの例を次に示します。必要に応じて構成を調整します。
 
 ```yaml
@@ -227,7 +262,12 @@ network_admin_http_address: 172.17.0.2
 network_coordinator_http_address: 172.17.0.2
 ```
 
-We do not provide documentation for the configuration because we do not license Fauna for on-premise production use.
+We do not provide documentation for the configuration
+because we do not license Fauna for on-premise production use.
+
+on-premise
+業務用の、店舗用の
+
 Fauna はオンプレミスの本番環境で使用するライセンスを取得していないため、構成に関するドキュメントは提供していません。
 
 Was this article helpful?
