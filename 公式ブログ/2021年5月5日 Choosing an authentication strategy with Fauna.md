@@ -1,6 +1,7 @@
 # Choosing an authentication strategy with Fauna
 
 Rob Sutter|May 5th, 2021|
+2021年5月5日
 
 Categories:
 
@@ -8,13 +9,22 @@ Categories:
 
 Nearly every app you create requires some level of authentication to identify valid users. The most basic form of authentication requires users to provide credentials such as a username and password to access your application. However, authentication and identity requirements can quickly expand beyond username and password verification. Fauna provides constructs to support basic, Fauna-native authentication. Fauna also offers integration with third-party Identity as a Service (IDaaS) providers like [Okta](https://www.okta.com) that satisfy a broader range of identity requirements for your applications. How you address your identity-related requirements depends on the complexity of those requirements and the resources you have to implement your chosen strategy.
 
+作成するほぼすべてのアプリでは、有効なユーザーを識別するためにある程度の認証が必要です。最も基本的な認証形式では、ユーザーがアプリケーションにアクセスするためにユーザー名やパスワードなどの資格情報を提供する必要があります。ただし、認証とIDの要件は、ユーザー名とパスワードの検証を超えて急速に拡大する可能性があります。Faunaは、基本的なFaunaネイティブ認証をサポートするための構造を提供します。動植物も同様サービス（IDaaS）プロバイダーとして、サードパーティのアイデンティティとの統合を提供していますOktaアプリケーションのID要件の広い範囲を満たします。ID関連の要件にどのように対処するかは、それらの要件の複雑さと、選択した戦略を実装するために必要なリソースによって異なります。
+
 This post explores the pros and cons of each strategy for authenticating with Fauna and guides you in selecting an overall identity strategy for your Fauna applications. You learn how to implement basic Fauna authentication using [blueprints](https://github.com/fauna-labs/fauna-blueprints), Fauna Query Language (FQL) code that you can import and use in your applications. Finally, you review a sample application skeleton for building applications with an IDaaS provider.
 
+この投稿では、Faunaで認証するための各戦略の長所と短所を探り、Faunaアプリケーションの全体的なID戦略を選択する方法を説明します。ブループリント、アプリケーションでインポートして使用できる動物相クエリ言語（FQL）コードを使用して、基本的な動物相認証を実装する方法を学習します。最後に、IDaaSプロバイダーを使用してアプリケーションを構築するためのサンプルアプリケーションスケルトンを確認します。
+
 ## Authentication with Fauna
+認証
 
 Using Fauna’s built-in authentication allows you to build your application quickly without signing up for additional services, especially if your application has simpler authentication requirements. Start with the FQL [Login](https://docs.fauna.com/fauna/current/api/fql/functions/login) function, then add customized functionality with FQL [user-defined functions (UDFs)](https://docs.fauna.com/fauna/current/api/fql/user_defined_functions). Fauna’s built-in authentication allows you to place metadata on the tokens that you create, providing you with full control over the authentication information you store. Tokens are documents, so you can update them with the same ACID transaction benefits that Fauna provides the rest of your data.
 
+Faunaの組み込み認証を使用すると、特にアプリケーションの認証要件が単純な場合に、追加のサービスにサインアップすることなく、アプリケーションをすばやく構築できます。FQLログイン関数から始めて、FQLユーザー定義関数（UDF）でカスタマイズされた機能を追加します。Faunaの組み込み認証を使用すると、作成したトークンにメタデータを配置して、保存する認証情報を完全に制御できます。トークンはドキュメントであるため、Faunaが残りのデータを提供するのと同じACIDトランザクションの利点でトークンを更新できます。
+
 Implementing authentication with Fauna can reduce ongoing subscription expenses by avoiding the cost of an additional service, but does not offer a broader set of identity capabilities if your requirements are more complex. Fauna authentication is also available on all plans, which can save you money on Fauna as well. Finally, authentication using Fauna can be more performant. There are no round-trips to the IdP to verify claims, and requests do not have to include the [JWTs](https://jwt.io/) used by third-party providers.
+
+Faunaで認証を実装すると、追加サービスのコストを回避することで継続的なサブスクリプション費用を削減できますが、要件がより複雑な場合は、より広範なID機能のセットを提供しません。動物相認証はすべてのプランで利用可能であり、動物相の費用も節約できます。最後に、Faunaを使用した認証はよりパフォーマンスが高くなります。クレームを検証するためのIdPへのラウンドトリップはなく、リクエストにサードパーティプロバイダーが使用するJWTを含める必要はありません。
 
 ## Authentication with identity providers
 
