@@ -30,37 +30,58 @@ Faunaで認証を実装すると、追加サービスのコストを回避する
 
 IDaaS providers offer advanced functionality like sophisticated account recovery flows, multi-factor authentication, complex authentication policies, and [OAuth2](https://oauth.net/2/) support. They also provide user-friendly dashboards that enable you to manage roles and users without writing additional code. Building and maintaining this functionality yourself can be expensive and requires specialized domain knowledge. Using an IDaaS provider can be a good choice when you have complex identity requirements beyond basic username and password authentication and you don’t want to build these capabilities on your own.
 
+IDaaSプロバイダーは、高度なアカウント回復フロー、多要素認証、複雑な認証ポリシー、OAuth2サポートなどの高度な機能を提供します。また、追加のコードを記述せずに役割とユーザーを管理できるユーザーフレンドリーなダッシュボードも提供します。この機能を自分で構築して維持するには、費用がかかる可能性があり、専門的なドメイン知識が必要です。IDaaSプロバイダーの使用は、基本的なユーザー名とパスワードの認証以外に複雑なID要件があり、これらの機能を独自に構築したくない場合に適しています。
+
 If you already use Auth0 or Okta as your IDaaS provider, you can authenticate your existing users to Fauna by creating an _AccessProvider_. This allows you to add functionality to your existing applications without requiring your users to create new accounts or change their passwords. IdPs also simplify single sign-on (SSO) or social login workflows, reducing signup friction for new users.
 
+IDaaSプロバイダーは、高度なアカウント回復フロー、多要素認証、複雑な認証ポリシー、OAuth2サポートなどの高度な機能を提供します。また、追加のコードを記述せずに役割とユーザーを管理できるユーザーフレンドリーなダッシュボードも提供します。この機能を自分で構築して維持するには、費用がかかる可能性があり、専門的なドメイン知識が必要です。IDaaSプロバイダーの使用は、基本的なユーザー名とパスワードの認証以外に複雑なID要件があり、これらの機能を独自に構築したくない場合に適しています。
+
 Total cost of ownership (TCO), including development and maintenance costs, can be lower over time with IDaaS providers. Writing your own code for authentication can be complicated and consume a lot of development time. This time is spent on functionality that is not differentiated and could be used to create customer value.
+
+IDaaSプロバイダーを使用すると、開発および保守コストを含む総所有コスト（TCO）を時間の経過とともに低くすることができます。認証用の独自のコードを書くことは複雑で、多くの開発時間を消費する可能性があります。この時間は、差別化されておらず、顧客価値の創造に使用できる機能に費やされています。
 
 ## Choosing between Fauna and identity providers
 
 Each authentication strategy has its strengths, but how should you choose a strategy that is best for _your_ application?
 
+どちらも強みを持っています、あなたのアプリケーションにとってベストなのは？
+
 ### Complexity of your authentication requirements
 
 If you are implementing a system and require the advanced features that an IDaaS platform provides, including a robust user interface, choose an IDaaS provider. If your authentication requirements are simpler or you intend to build your own functionality to satisfy the more advanced identity requirements, you can start by implementing authentication with Fauna using [authentication blueprints](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth) and expand as your requirements grow.
+
+システムを実装していて、堅牢なユーザーインターフェイスなど、IDaaSプラットフォームが提供する高度な機能が必要な場合は、IDaaSプロバイダーを選択してください。認証要件がより単純な場合、またはより高度なID要件を満たすために独自の機能を構築する場合は、認証ブループリントを使用してFaunaで認証を実装することから始めて、要件の拡大に応じて拡張できます。
 
 ### Existing relationship with an identity provider
 
 If you already use Auth0 or Okta as an IdP for your applications, you should continue to use them with Fauna. You benefit from a familiar experience, and any customization you have done with the provider becomes available to you in Fauna.
 
+アプリケーションのIdPとしてAuth0またはOktaをすでに使用している場合は、引き続きFaunaで使用する必要があります。慣れ親しんだ経験から恩恵を受け、プロバイダーで行ったカスタマイズはすべて、Faunaで利用できるようになります。
+
 ### Speed to first delivery
 
 If your authentication requirements are basic, you want to ship the first version of your product as quickly as possible, and you are not already using an IDaaS provider, you should implement authentication in Fauna. Minimizing the amount of new information you need to learn helps you deliver your first version quickly and begin iterating on customer feedback.
+
+認証要件が基本的であり、製品の最初のバージョンをできるだけ早く出荷したいが、まだIDaaSプロバイダーを使用していない場合は、Faunaで認証を実装する必要があります。学習する必要のある新しい情報の量を最小限に抑えることで、最初のバージョンを迅速に提供し、顧客からのフィードバックを繰り返し始めることができます。
 
 ### Total cost of ownership versus additional subscriptions
 
 If you have development expertise around identity and want to minimize your number of service subscriptions then you should choose Fauna for authentication. You can implement Fauna authentication on any plan, including the free tier, and you do not need to provide any additional information to a third-party IDaaS provider. Note that if you have a small number of users, you may fall within your IDaaS provider’s free tier. See their pricing for more information.
 
+IDに関する開発の専門知識があり、サービスサブスクリプションの数を最小限に抑えたい場合は、認証に動物相を選択する必要があります。動物相認証は、無料枠を含む任意のプランに実装でき、サードパーティのIDaaSプロバイダーに追加情報を提供する必要はありません。ユーザー数が少ない場合は、IDaaSプロバイダーの無料枠に含まれる可能性があることに注意してください。詳細については、価格をご覧ください。
+
 If TCO concerns are more important, the choice is more nuanced. In this case, you should perform an analysis of the cost to develop and maintain the features you require and compare that cost to the subscription cost of a third-party IDaaS provider.
 
+TCOの懸念がより重要である場合、選択はより微妙です。この場合、必要な機能を開発および保守するためのコストの分析を実行し、そのコストをサードパーティのIDaaSプロバイダーのサブスクリプションコストと比較する必要があります。
+
 ## Implementing authentication with Fauna blueprints
+ブループリントを使って認証を実装する。
 
 Blueprints are opinionated FQL implementations of common tasks. You can include blueprints in your application and create resources like UDFs in your database with minimal effort. To learn more about blueprints, including how to include them in your database, see the [GitHub repo](https://github.com/fauna-labs/fauna-blueprints).
 
 Fauna provides blueprints for implementing the following authentication tasks in FQL:
+
+ブループリントは、一般的なタスクのFQL実装であると考えられています。アプリケーションにブループリントを含め、最小限の労力でデータベースにUDFなどのリソースを作成できます。ブループリントをデータベースに含める方法など、ブループリントの詳細については、GitHubリポジトリを参照してください。
 
 -   [Register, login, and logout](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/register-login-logout)
 -   [Email verification with password change](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/email-verification)
@@ -68,15 +89,28 @@ Fauna provides blueprints for implementing the following authentication tasks in
 -   [A simple refresh token workflow](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/refresh-tokens-simple)
 -   [An advanced refresh token workflow](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/refresh-tokens-advanced)
 
+登録、ログイン、およびログアウト
+パスワード変更を伴う電子メール検証
+パスワードのリセット
+シンプルな更新トークンワークフロー
+高度な更新トークンワークフロー
+
 ## Implementing third-party authentication
 
 [This blog post](https://fauna.com/blog/setting-up-sso-authentication-in-fauna-with-auth0) walks you through the process of setting up SSO authentication with Auth0 and Fauna. You implement authentication using Auth0’s React SDK, providing integration with social login out of the box.
 
+このブログ投稿では、Auth0とFaunaを使用してSSO認証を設定するプロセスについて説明します。Auth0のReactSDKを使用して認証を実装し、すぐに使用できるソーシャルログインとの統合を提供します。
+
 You can also browse and implement a login flow with Auth0 and React using [this skeleton application](https://github.com/fauna-labs/faunadb-auth-skeleton-with-auth0). The application retrieves the user and access token from Auth0 and directly accesses Fauna with the JWT. For additional details, including setup instructions, see the [GitHub repo](https://github.com/fauna-labs/faunadb-auth-skeleton-with-auth0).
 
+このスケルトンアプリケーションを使用して、Auth0とReactでログインフローを参照して実装することもできます。アプリケーションはAuth0からユーザーとアクセストークンを取得し、JWTを使用してFaunaに直接アクセスします。セットアップ手順などの詳細については、GitHubリポジトリを参照してください。
+
 ## Conclusion
+結論
 
 Regardless of which approach you choose, authentication is a critical component of any application, and identity needs regularly expand beyond basic authentication. In this post, you compared authenticating with Fauna and a third-party IDaaS provider. You learned how to select an authentication strategy for your Fauna applications and how to implement your chosen strategy with sample code.
+
+選択するアプローチに関係なく、認証はあらゆるアプリケーションの重要なコンポーネントであり、IDのニーズは基本認証を超えて定期的に拡大します。この投稿では、FaunaおよびサードパーティのIDaaSプロバイダーとの認証を比較しました。動物相アプリケーションの認証戦略を選択する方法と、選択した戦略をサンプルコードで実装する方法を学びました。
 
 [Sign up for a free Fauna account](https://fauna.link/register) and start building your next application today!
 
