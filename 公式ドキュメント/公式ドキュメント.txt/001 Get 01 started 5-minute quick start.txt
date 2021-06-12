@@ -1,0 +1,957 @@
+
+Welcome to the Fauna documentation! | Fauna Documentation
+https://docs.fauna.com/fauna/current/start/
+
+Welcome to the Fauna documentation!
+Fauna ドキュメンテーションにようこそ
+
+Fauna is a general purpose, distributed database supporting 
+multiple data models and strong global consistency, 
+for modern app developers in the serverless era.
+
+Faunaは、
+サーバーレス時代の最新のアプリ開発者向けの、
+複数のデータモデルと強力なグローバル整合性を
+サポートする汎用分散データベースです。
+
+To start querying Fauna from your application code, choose your language:
+アプリケーション コードから Fauna のクエリを開始するには
+言語を選択してください。
+
+クエリ
+データベースに対する命令文
+検索エンジンに入力する検索キーワード
+
+GraphQL
+JavaScript
+JS/Node
+Java
+C#
+Go
+Python
+Scala
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+5-minute quick start
+5分のクイックスタート
+
+Fauna has two main APIs:
+GraphQL and FQL (Fauna Query Language).
+This quick start provides a brief intro to both
+since you can use them together.
+Faunaには、GraphQLとFQL(Faunaクエリ言語)
+という2つの主要なAPIがあります。
+このクイックスタートでは、
+両方を一緒に使用できるため、
+両方について簡単に紹介します。
+
+2 つの主要な API 
+GraphQL
+FQL 
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+1.
+Sign up for a free account
+無料アカウントにサインアップする
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+2.
+Create a database
+データベースを作成する
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+3
+Browse your database
+データベースを参照する
+
+The Overview page for the my_db database is displayed. 
+The database has been populated 
+with some collections, 
+indexes, 
+and the corresponding GraphQL schema
+for a grocery delivery app.
+my_dbデータベースの概要ページが表示されます。
+データベースには、
+いくつかのコレクション、
+インデックス、
+および食料品配達アプリの対応する
+GraphQLスキーマが設定されています。
+
+
+
+
+
+a
+コレクション
+Click COLLECTIONS in the left sidebar to browse your collections.
+左側のサイドバーで[コレクション]をクリックして、
+コレクションを参照します。
+
+You’ll see the documents for each collection on the right.
+右側に各コレクションのドキュメントが表示されます。
+
+If you are familiar with SQL,
+collections are like tables and documents are like rows in a table,
+SQLに精通している場合、
+コレクションはテーブルに似ており、
+ドキュメントはテーブル内の行に似ていますが、
+
+except that each document can contain its own, distinct fields.
+ただし、各ドキュメントには独自の異なるフィールドを含めることができます。
+
+
+
+
+
+b
+索引
+Click the INDEXES tab in the left sidebar.
+左サイドバーの[INDEXES]タブをクリックします。
+
+If you are familiar with SQL,
+Fauna’s indexes are like SQL views.
+SQLに精通している場合、
+FaunaのインデックスはSQLビューのようなものです。
+
+Most Fauna queries require
+a companion index
+to help avoid performing full scans of collections
+ほとんどのFaunaクエリでは、コレクションのフルスキャン
+の実行を回避するためにコンパニオンインデックスが必要ですが、
+
+(which could get expensive),
+(コストがかかる可能性があります)
+
+but you can have hundreds of indexes
+without affecting overall performance.
+が、全体のパフォーマンスに影響を与えることなく、
+何百ものインデックスを持つことができます。
+
+
+
+a companion index
+？？？
+
+
+
+
+
+index
+all customers
+all orders
+all products
+all stores
+inventory by product
+products by customer
+products by price high to low
+products by price low to high
+products by store
+
+すべてのお客様
+すべての注文
+すべての商品
+すべての店舗
+製品別在庫
+顧客別商品
+価格が高いものから低いものまで
+低価格帯から高価格帯までの商品
+店舗別商品
+
+
+
+
+
+c
+関数
+Click the FUNCTIONS tab in the left sidebar.
+左サイドバーの「FUNCTIONS」タブをクリックします。
+
+User-defined functions (UDFs) 
+contain custom business logic
+that runs on the server, similar to "stored procedures".
+ユーザー定義関数（UDF）には、
+「ストアドプロシージャ」と同様に、
+サーバー上で実行されるカスタムビジネスロジックが含まれています。
+
+
+UDFs
+User-defined functions
+ユーザー定義関数
+
+ストアドプロシージャ
+stored procedures
+SQLによって書かれたいくつかの命令を1つにまとめて部品化したもの
+
+プロシージャ
+複数の命令をまとめたもの
+戻り値のない関数
+
+
+
+
+This UDF might look weird
+if it’s your first time seeing FQL,
+the Fauna Query Language,
+このUDFは、初めてFQL（Fauna Query Language）を見た人には
+奇妙に見えるかもしれませんが、
+
+but FQL is actually pretty easy and tons of fun to learn.
+FQLは実際にはとても簡単で、
+学ぶのがとても楽しいものです。
+
+FQL is also unique
+in how much power and precision it gives you
+また、FQLの特徴は
+どれだけのパワーと精度を与えてくれるか
+
+with respect to predictable cost and performance as you scale.
+予測可能なコストとパフォーマンスを提供します。
+
+
+
+might
+かもしれない
+
+weird
+奇妙
+
+precision
+【＠】プレシジョン,《形》精密な,明確さ,《名》精度,正確さ,精密,細心,几帳面さ,絶対精度
+
+predictable
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+4
+FQL を試す
+
+Now that we know some basic concepts, let’s query our data.
+基本的な概念を理解したところで、データを照会してみましょう。
+
+
+a
+Shellを開く
+	Click on SHELL in the left sidebar to open the web shell.
+
+b
+	Copy the following FQL query:
+	次の FQL クエリをコピーします。
+
+Get(Ref(Collection("products"),"202"))
+
+c
+	Replace the queries in the bottom panel
+	of the shell by selecting them
+	and then and pasting the copied query.
+	ボトムパネルのクエリを交換
+	シェルの下部パネルのクエリを選択してを選択して、
+	コピーしたクエリを貼り付けます。
+
+	pasting
+	paste
+
+
+d
+[クエリを実行] をクリックします。
+
+This query simply gets a document identified by its Reference.
+このクエリは、単純にReferenceで識別されるドキュメントを取得します。
+
+A document Reference contains a reference
+to the document’s collection
+ドキュメントのリファレンスには、ドキュメントのコレクション
+ドキュメントのコレクションへの参照と
+
+(in this case, "products")
+(ここでは「products」)
+
+and a unique ID for the document in that collection
+と、そのコレクション内のドキュメントのユニークなID
+
+(in this case, "202").
+(この場合は「202」)。
+
+Fauna’s auto-generated Reference IDs are
+18-digits long — you can set your own during document creation,
+as we have done with the pre-populated demo data to ease copy/pasting.
+Faunaの自動生成されたリファレンスIDは以下の通りです。
+18桁の長さですが、ドキュメント作成時に独自に設定できます。
+コピー／ペーストを容易にするために、
+事前に入力されたデモデータで行ったように、
+ドキュメント作成時に独自に設定することができます。
+
+The upper panel contains the result of the query:
+上部パネルには、クエリの結果が表示されます。
+
+
+
+
+
+e
+Hover your pointer over the [i] icon to the left 
+of "Time elapsed" to see the query execution metrics.
+For example, here we can learn 
+that this query resulted in one read operation.
+経過時間」の左にある[i]アイコンにポインタを合わせると 
+クエリの実行状況が表示されます。
+例えば、ここでは 
+このクエリでは、1回の読み取り操作が行われたことがわかります。
+
+
+
+
+
+You can reduce read operations by leveraging indexes
+and using them as views.
+インデックスを活用し、それをビューとして使用することで、
+読み取り操作を減らすことができます。
+
+Expand the following block to learn more.
+詳しくは次のブロックを展開してください。
+
+
+
+
+
+ビューとしてのインデックスの使用
+
+Indexes can be configured 
+to provide any number of document fields.
+任意の数のドキュメントフィールドを
+提供するように
+インデックスは、構成することができます。
+
+Using indexes,
+インデックスの使用
+
+you can often avoid using the Get function
+to retrieve the values 
+必要な値を取得するためにGet関数を使わずに済むこともあります。
+
+that you need,
+which reduces the number of read operations required.
+を使用せずに、必要な値を取得することができます。
+これにより、必要な読み取り操作の回数を減らすことができます。
+
+
+While Get is used to a retrieve a single document,
+Paginate is required when you want to retrieve details about multiple documents.
+Getは1つのドキュメントを取得するために使用されますが。
+Paginateは、複数のドキュメントの詳細を取得したい場合に必要です。
+
+
+retrieve
+【＠】リトリーブ,【変化】《動》retrieves | retrieving | retrieved,
+《他動-1》取り出す,取り戻す,回収する,
+《他動-2》（情報を）検索する,《他動-3》～を挽回する,回復する,償う,救う
+
+
+
+
+Try the following:
+以下をお試しください。
+
+
+Paginate(Documents(Collection("products")))
+
+
+When an index does not have terms and values defined, it only returns ref:ref[]s.
+インデックスに用語や値が定義されていない場合は、ref:ref[]のみを返します。
+
+ref:ref[]s
+？？？
+
+terms
+用語
+
+
+
+What if you want the whole document?
+ドキュメント全体を見たい場合は？
+
+The most flexible option is the combination of the Map and Get functions.
+最も柔軟な方法は、「Map」と「Get」機能を組み合わせることです。
+
+The following query takes the array of References from the previous query,
+次のクエリは、前のクエリで取得した References の配列を受け取ります。
+
+then uses the Map function to repeatedly apply an anonymous function
+for each Reference in the result.
+その後、Map関数を使用して、結果の各Referenceに対して無名関数
+を繰り返し適用します。
+
+
+
+
+
+The anonymous function (or Lambda) assigns each Reference
+in the array to the variable product_ref,
+無名関数（またはラムダ）は、配列内の各Reference
+を変数 product_ref に割り当てます。
+
+then uses the Get function to retrieve the referenced document.
+そして、Get関数を使用して、参照されたドキュメントを取得します。
+
+retrieve
+取り出す
+
+
+
+Map(
+  Paginate(Documents(Collection("products"))),
+  Lambda('product_ref', Get(Var('product_ref')))
+)
+
+
+
+Now, hover over the [i] icon to see that this costs 17 read operations.
+ここで、iアイコンにカーソルを合わせると、
+17回の読み取り操作が行われていることがわかります。
+
+During development, 
+開発段階では、
+
+you might use many Map/Get queries,
+多くのMap/Getクエリを使用することがあります。
+
+so the number of read operations can climb quickly.
+そのため、読み取り操作の数はすぐに増えてしまいます。
+
+At some point,
+ある時点で、
+you might want to leverage an index for cost-efficiency.
+コスト効率を上げるためにインデックスを活用したいと思うかもしれません。
+Let’s leverage an index to do this.
+そのために、インデックスを活用してみましょう。
+
+hover over
+覆い被さる
+
+leverage
+《名》（目的を達成するための）
+力,
+てこの作用,
+てこ装置,
+影響力,
+財務てこ率,
+手段,
+武器,
+勢力,
+行動力,
+《自他動-1》借入金で投機する,
+てこ入れする,
+《自他動-2》利用する,
+活用する,
+【同】utilize,
+技術文書でよく使われる動詞
+
+
+
+Create an index defining which fields from the document that you want to return:
+ドキュメントの どのフィールドを返したいかを 定義するインデックスを 作成します。
+リピートok
+
+
+
+CreateIndex(
+  {
+    name: 'product_details',
+    source: Collection('products'),
+    values: [
+      { field: ['data', 'name'] },
+      { field: ['data', 'description'] },
+      { field: ['data', 'price'] }
+    ],
+  },
+)
+
+
+
+Now, paginate using the index:
+さて、インデックスを使ってページネーションを行います。
+
+
+
+Paginate(Match(Index("product_details")))
+
+
+
+If you hover over the [i] icon,
+[i]のアイコンにカーソルを合わせると、
+
+you can see that using the Index and Match functions together
+costs only eight read operations!
+IndexとMatchの機能を一緒に使うと、
+8回の読み取り操作で済むことがわかります。
+
+Combining Map with Get might be inexpensive during development,
+but you should leverage indexes as your usage scales.
+MapとGetの組み合わせは、
+開発中は安価かもしれませんが、
+使用量が増えてきたらインデックスを活用すべきです。
+
+
+
+シェル
+--------------------------------------------
+１行（下側）実行される。１行目にセミコロンがついていない。
+Paginate(Documents(Collection("products")))
+Get(Ref(Collection("products"),"202"))
+
+2行実行される。１行目にセミコロンがついている
+Paginate(Documents(Collection("products")));
+Get(Ref(Collection("products"),"202"))
+--------------------------------------------
+
+
+結果
+```
+Paginate(Documents(Collection("products")))
+
+{
+  data: [
+    Ref(Collection("products"), "201"),
+    Ref(Collection("products"), "202"),
+    Ref(Collection("products"), "203"),
+    Ref(Collection("products"), "204"),
+    Ref(Collection("products"), "205"),
+    Ref(Collection("products"), "206"),
+    Ref(Collection("products"), "207"),
+    Ref(Collection("products"), "208"),
+    Ref(Collection("products"), "209")
+  ]
+}
+
+>> Time elapsed: 32ms
+```
+
+Paginate
+《他動》ページ番号をつける
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+5
+GraphQL を試してみる
+
+Click GraphQL in the left sidebar to access the GraphQL Playground.
+左側のサイドバーで [GraphQL] をクリックして、
+GraphQL Playground にアクセスします。
+
+Next, copy/paste the following query into the left panel of the editor, 
+then click the "play" button in the middle.
+次に、以下のクエリをエディタの左パネルにコピー＆ペーストします。
+中央の "play "ボタンをクリックします。
+
+
+
+query {
+  findProductByID(id: "202") {
+    name
+    description
+    price
+  }
+}
+
+
+
+This query fetches a single document based on its Reference ID,
+ just like the FQL example in Step #4:
+このクエリは、ステップ 4 の FQL の例と同じように、
+参照 ID に基づいて単一のドキュメントを取得します。
+
+Each GraphQL query is translated into a single FQL query,
+which means that the GraphQL API has completely
+solved the n+1 problem behind the scenes for you.
+各 GraphQL クエリは単一の FQL クエリに変換されます。
+これは、GraphQL API が舞台裏で n+1 問題を
+完全に解決したことを意味します。
+
+
+
+ブロック1
+How Fauna Solved n+1, or why FQL + GraphQL
+While GraphQL famously solves the over-fetching 
+and under-fetching of traditional REST APIs,
+it sometimes causes another serious problem:
+too many round trips to the server,
+AKA the notorious "​n+1 problem".
+Typically, there are two approaches to solve this:
+GraphQLは、従来のREST APIのオーバーフェッチや
+アンダーフェッチを解決してくれることで有名ですが、
+時として別の深刻な問題を引き起こすことがあります。
+それは、サーバーへのラウンドトリップが多すぎること、
+別名、悪名高い「n+1問題」です。
+一般的に、これを解決するには2つのアプローチがあります。
+
+The first is query batching/caching with a data loader,
+but such tools introduce complexity and don’t solve the entire problem.
+You still end up with more than one round trip to the server.
+1つ目は、データローダを使ったクエリのバッチ処理/キャッシュですが、
+このようなツールは複雑さをもたらし、
+問題全体を解決するものではありません。
+結局、サーバーへのラウンドトリップは1回以上になってしまいます。
+
+The second is to generate one query from each GraphQL query,
+but this sometimes results in a monster join 
+that can choke traditional SQL databases.
+Instead of relying on joins, Fauna uses a strategy more akin
+to what graph databases call index-free adjacency.
+By nesting Map/Get queries, FQL maps perfectly 
+on the execution plan of a GraphQL query,
+efficiently walking down the GraphQL tree and retrieving nested documents.
+2つ目の方法は、
+各GraphQLクエリから1つのクエリを生成することですが、
+これでは従来のSQLデータベースを窒息させるような
+モンスタージョインになってしまうことがあります。
+Faunaでは結合に頼らず、
+グラフデータベースの「インデックスフリーの隣接」
+に近い戦略を採用している。
+Map/Getクエリを入れ子にすることで、
+FQLはGraphQLクエリの実行プランに完全にマッピングし、
+効率的にGraphQLツリーを歩き、
+入れ子になったドキュメントを取得します。
+
+
+In other words,
+言い換えれば、
+
+any given query you send to the GraphQL API
+always incurs only one single request to the database,
+and does so efficiently.
+GraphQLAPIに送信されたクエリは、
+常にデータベースへの1回のリクエストしか発生せず、
+しかもそれが効率的に行われるということです。
+
+For a more in-depth explanation,
+with examples, see our blog post.
+例を挙げての詳しい説明は、
+ブログ記事をご覧ください。
+
+incurs
+【＠】インカー,
+【変化】《動》incurs|incurring|incurred,
+《他動》～にぶつかる,
+受ける,被る,
+（好ましくないことを）
+招く,負う
+
+
+
+ブロック2
+Practice more GraphQL queries and their FQL equivalents
+もっと練習するGraphQLとそれに相当するFQLを練習する
+
+製品を作成する
+
+GraphQL
+mutation {
+  createProduct(data: {
+    name: "Lemon",
+    description: "Organic, per each",
+    price: 0.35,
+    quantity: 100,
+    store: { connect: "301" },
+    backorderLimit: 10,
+    backordered: false,
+  }) {
+    _id
+  }
+}
+
+結果
+300156312289804808
+
+同じFQL
+
+Create(
+  Collection("products"),
+  {
+    data: {
+      "name": "Apple",
+      "description": "Gala, per each",
+      "price": 0.89,
+      "quantity": 1000,
+      "storeId": Ref(Collection("stores"), "301"),
+      "backorderLimit": 10,
+      "backordered": false,
+    }
+  }
+)
+
+結果（一部）
+300156339133350408
+
+結果
+{
+  ref: Ref(Collection("products"), "300156339133350408"),
+  ts: 1622510241610000,
+  data: {
+    name: "Apple",
+    description: "Gala, per each",
+    price: 0.89,
+    quantity: 1000,
+    storeId: Ref(Collection("stores"), "301"),
+    backorderLimit: 10,
+    backordered: false
+  }
+}
+
+
+
+
+
+すべての製品を読む
+
+GraphQL
+
+query {
+  allProducts {
+    data {
+      _id
+      name
+      description
+      price
+      quantity
+      backorderLimit
+      backordered
+    }
+  }
+}
+
+
+
+
+
+
+結果
+
+同じFQL
+Map(
+  Paginate(
+    Documents(Collection("products"))
+  ),
+  Lambda("each_ref", Get(Var("each_ref")))
+)
+結果
+
+
+
+
+ストアを更新する
+
+GraphQL
+mutation {
+  updateStore(
+    id: "301",
+    data: {
+      name: "DC Fruits R Us"
+    }
+  ){
+    _id
+  }
+}
+結果
+
+同じFQL
+Update(
+  Ref(Collection("stores"), "301"),
+  {
+    data: {
+      "name": "DC Fruits FTW"
+    }
+  }
+)
+結果
+
+
+
+
+
+店舗を読む
+
+GraphQL
+query {
+  findStoreByID(id: "301") {
+    _id
+    name
+    address {
+      street
+      city
+      state
+      zipCode
+    }
+  }
+}
+
+結果
+
+同じFQL
+Get(Ref(Collection("stores"), "301"))
+
+結果
+
+
+
+
+
+商品を削除する
+
+GraphQL
+mutation {
+  deleteProduct(id: "203") {
+    _id
+  }
+}
+
+結果
+
+同じFQL
+Delete(Ref(Collection("products"), "208"))
+
+結果
+
+
+
+
+UDF を呼び出して注文を送信する
+
+GraphQL
+mutation {
+  submitOrder(
+    customerId: "101",
+    products: [
+      {
+        productId: "201",
+        quantity: 1
+      }
+    ]
+  ){
+    _id
+  }
+}
+
+結果
+
+同じFQL
+Call(
+  Function("submit_order"),
+  "101",
+  [
+    {
+      productId: "204",
+      quantity: 1
+    },
+    {
+      productId: "205",
+      quantity: 1
+    }
+  ]
+)
+結果
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+6.
+Next steps: Query Fauna from an app
+次のステップ アプリからFaunaに問い合わせる
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
