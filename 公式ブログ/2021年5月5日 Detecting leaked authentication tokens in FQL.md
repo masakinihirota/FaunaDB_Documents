@@ -10,9 +10,14 @@ Categories:
 
 ## Introduction
 
+前書き
+
 The [previous post in this series](https://fauna.com/blog/refreshing-authentication-tokens-in-fql) showed you how to implement refresh tokens with a [simple blueprint](https://github.com/fauna-labs/fauna-blueprints/tree/master/official/auth/refresh-tokens-simple). 
 
 このシリーズの前回の投稿では、簡単なブループリントを使用して更新トークンを実装する方法を示しました。
+
+前回の投稿ファイル
+2021年5月5日 Refreshing authentication tokens in FQL.md
 
 This post shows you how to implement an [advanced refresh token](https://github.com/fauna-labs/fauna-blueprints/tree/master/official/auth/refresh-tokens-advanced) workflow in FQL. 
 
