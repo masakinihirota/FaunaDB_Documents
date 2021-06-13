@@ -10,22 +10,22 @@ Fauna is a serverless global database designed for low latency and developer pro
 
 In this five-part series of articles, we’ll go through the basics of FQL with no need of prior knowledge. If you are skimming and don’t understand something, you probably only need to go back to a previous section.
 
--   Part 1: a look at FQL and fundamental Fauna concepts
--   [Part 2: a deep dive into indexes with Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-2)
--   [Part 3: a look into the principles of modeling data with Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-3)
--   [Part 4: a look at how to create custom functions that run straight in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-4)
--   [Part 5: a look at authentication and authorization in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-5)
+- Part 1: a look at FQL and fundamental Fauna concepts
+- [Part 2: a deep dive into indexes with Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-2)
+- [Part 3: a look into the principles of modeling data with Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-3)
+- [Part 4: a look at how to create custom functions that run straight in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-4)
+- [Part 5: a look at authentication and authorization in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-5)
 
 In this article:
 
--   Should you learn FQL if you're already using GraphQL?
--   Getting started
--   About documents and collections
--   Your first collections
--   Basic CRUD operations
--   Your first index
--   Using Lambda() to retrieve a list of documents
--   Using Let() and Select() to return custom results
+- Should you learn FQL if you're already using GraphQL?
+- Getting started
+- About documents and collections
+- Your first collections
+- Basic CRUD operations
+- Your first index
+- Using Lambda() to retrieve a list of documents
+- Using Let() and Select() to return custom results
 
 ## Should you learn FQL if you're already using GraphQL?
 
@@ -63,9 +63,9 @@ This is what a simple document looks like:
 }
 ```
 
--   **ref** is a reference that uniquely identifies the document inside a **Planets** collection with the id **264471980339626516**. We’ll go over references and the special [Ref type](https://docs.fauna.com/fauna/current/api/fql/functions/ref) in more detail later.
--   **ts** is a timestamp of the document's last event (e.g., create, read, update, delete) in microseconds.
--   **data** is the actual data of the document. You can create any structure you need and use any of the JSON and Fauna types. Strings, numbers, references to other documents, nested objects, arrays, etc.
+- **ref** is a reference that uniquely identifies the document inside a **Planets** collection with the id **264471980339626516**. We’ll go over references and the special [Ref type](https://docs.fauna.com/fauna/current/api/fql/functions/ref) in more detail later.
+- **ts** is a timestamp of the document's last event (e.g., create, read, update, delete) in microseconds.
+- **data** is the actual data of the document. You can create any structure you need and use any of the JSON and Fauna types. Strings, numbers, references to other documents, nested objects, arrays, etc.
 
 At creation, a document cannot exceed 1MB since that is the limit of a Fauna request. You can append more data to a document afterwards.
 
@@ -93,7 +93,7 @@ As you can see, the result looks very similar to a document. Pretty much all dat
 Let’s create another a collection for our pilots:
 
 ```javascript
-CreateCollection({name: "Pilots"})
+CreateCollection({ name: "Pilots" });
 ```
 
 We're ready now to start creating our first documents.
@@ -127,27 +127,24 @@ Create(
 
 Let's break this down:
 
--   Create is used to create new documents in Fauna.
--   **Collection("Pilots")** is a reference to the **Pilots** collection.
--   **{data: {name: "Flash Gordon"}}** is the actual data of the document.
+- Create is used to create new documents in Fauna.
+- **Collection("Pilots")** is a reference to the **Pilots** collection.
+- **{data: {name: "Flash Gordon"}}** is the actual data of the document.
 
 So now that we’ve created a pilot, we can create a new spaceship:
 
 ```javascript
-Create(
-  Collection("Spaceships"),
-  {
-    data: {
-      name: "Millennium Hawk",
-      pilot: Ref(Collection("Pilots"), "266350546751848978")
-    }
-  }
-)
+Create(Collection("Spaceships"), {
+  data: {
+    name: "Millennium Hawk",
+    pilot: Ref(Collection("Pilots"), "266350546751848978"),
+  },
+});
 ```
 
 As you can see, we're now storing a reference to another document in the pilot property. I will cover references and relationships in much more detail in part three of this series.
 
-**Quick tip:** SQL users might be tempted to store the actual id in a pilot\_id property of the JSON instead of a reference. This would be totally valid but it's recommended to use native Fauna references. This will make your FQL queries much simpler as we’ll see later on.
+**Quick tip:** SQL users might be tempted to store the actual id in a pilot_id property of the JSON instead of a reference. This would be totally valid but it's recommended to use native Fauna references. This will make your FQL queries much simpler as we’ll see later on.
 
 ### **Read**
 
@@ -224,15 +221,12 @@ Delete (
 Let’s create a new spaceship again to continue with our adventure:
 
 ```javascript
-Create(
-  Collection("Spaceships"),
-  {
-    data: {
-      name: "Voyager",
-      pilot: Ref(Collection("Pilots"), "266350546751848978")
-    }
-  }
-)
+Create(Collection("Spaceships"), {
+  data: {
+    name: "Voyager",
+    pilot: Ref(Collection("Pilots"), "266350546751848978"),
+  },
+});
 ```
 
 ## Your first index
@@ -289,9 +283,9 @@ Paginate(
 
 Let’s break this down:
 
--   [Index](https://docs.fauna.com/fauna/current/api/fql/functions/iindex) returns a reference to an index
--   [Match](https://docs.fauna.com/fauna/current/api/fql/functions/match) accepts that reference and constructs a set, which is sort of like an abstract representation of the data. At this point, no data has been fetched from Fauna yet.
--   [Paginate](https://docs.fauna.com/fauna/current/api/fql/functions/paginate) takes the output from Match, fetches data from Fauna, and returns a [Page](https://docs.fauna.com/fauna/current/api/fql/functions/paginate#page) of results. In this case, this is simply an array of references.
+- [Index](https://docs.fauna.com/fauna/current/api/fql/functions/iindex) returns a reference to an index
+- [Match](https://docs.fauna.com/fauna/current/api/fql/functions/match) accepts that reference and constructs a set, which is sort of like an abstract representation of the data. At this point, no data has been fetched from Fauna yet.
+- [Paginate](https://docs.fauna.com/fauna/current/api/fql/functions/paginate) takes the output from Match, fetches data from Fauna, and returns a [Page](https://docs.fauna.com/fauna/current/api/fql/functions/paginate#page) of results. In this case, this is simply an array of references.
 
 ### **Using the Documents function to get all the documents of a collection**
 
@@ -408,7 +402,7 @@ You’ve probably already used a map function in your programming language of ch
 Consider this JavaScript example:
 
 ```javascript
-const anotherArray = myArray.map(item => doSomething(item));
+const anotherArray = myArray.map((item) => doSomething(item));
 
 // which is equivalent to:
 
@@ -423,29 +417,28 @@ With this in mind, let’s break down this part of our FQL query:
 Map(
   Paginate(Match(Index("all_Pilots"))),
   Lambda("pilotRef", Get(Var("pilotRef")))
-)
+);
 ```
 
--   Paginate returns an array of references.
--   [Map](https://docs.fauna.com/fauna/current/api/fql/functions/map) accepts an array (from Paginate or other sources), performs an action on each item of this array, and returns a new array with the new items. In this case, the action is performed using [Lambda](https://docs.fauna.com/fauna/current/api/fql/functions/lambda), which is the Fauna equivalent of what you'd call a simple anonymous function in JavaScript. It's all very similar to the previous JavaScript example.
--   **Lambda('pilotRef'** defines a parameter called pilotRef for the anonymous function. You can name this parameter anything that makes sense for you. Fauna doesn’t care. In this example, the parameter will receive a reference which is why I named it pilotRef.
--   [Var](https://docs.fauna.com/fauna/current/api/fql/functions/var) is used to evaluate variables. In this case, it evaluates **"pilotRef"** and returns the document reference.
--   Finally, Get will receive the reference and return the actual document.
+- Paginate returns an array of references.
+- [Map](https://docs.fauna.com/fauna/current/api/fql/functions/map) accepts an array (from Paginate or other sources), performs an action on each item of this array, and returns a new array with the new items. In this case, the action is performed using [Lambda](https://docs.fauna.com/fauna/current/api/fql/functions/lambda), which is the Fauna equivalent of what you'd call a simple anonymous function in JavaScript. It's all very similar to the previous JavaScript example.
+- **Lambda('pilotRef'** defines a parameter called pilotRef for the anonymous function. You can name this parameter anything that makes sense for you. Fauna doesn’t care. In this example, the parameter will receive a reference which is why I named it pilotRef.
+- [Var](https://docs.fauna.com/fauna/current/api/fql/functions/var) is used to evaluate variables. In this case, it evaluates **"pilotRef"** and returns the document reference.
+- Finally, Get will receive the reference and return the actual document.
 
 If we were to rewrite the previous FQL query with the JavaScript Fauna driver, we could do something like this:
 
 ```javascript
-q.Map(
-   q.Paginate(q.Match(q.Index("all_Pilots"))),
-  (pilotRef) => q.Get(pilotRef)
-)
+q.Map(q.Paginate(q.Match(q.Index("all_Pilots"))), (pilotRef) =>
+  q.Get(pilotRef)
+);
 
 // Or:
 
 q.Map(
-   q.Paginate(q.Match(q.Index("all_Pilots"))),
-   q.Lambda("pilotRef", q.Get(q.Var("pilotRef")))
-)
+  q.Paginate(q.Match(q.Index("all_Pilots"))),
+  q.Lambda("pilotRef", q.Get(q.Var("pilotRef")))
+);
 ```
 
 **Quick tip:** you can paste JavaScript queries into the Fauna shell as well as FQL queries.
@@ -510,8 +503,8 @@ First, we'd need to create an index:
 ```javascript
 CreateIndex({
   name: "all_Spaceships",
-  source: Collection("Spaceships")
-})
+  source: Collection("Spaceships"),
+});
 ```
 
 Ok, now we just use Paginate, Map, and Lambda like we saw earlier to get all the documents. So we do that but... Oh no!
@@ -575,14 +568,14 @@ Since we already know how Paginate, Map, and Lambda work together, this is the n
 ```javascript
 Let(
   {
-    shipDoc: Get(Var("shipRef"))
+    shipDoc: Get(Var("shipRef")),
   },
   {
     id: Select(["ref", "id"], Var("shipDoc")),
     name: Select(["data", "name"], Var("shipDoc")),
-    position: Select(["data", "position"], Var("shipDoc"))
+    position: Select(["data", "position"], Var("shipDoc")),
   }
-)
+);
 ```
 
 ### **Let**
@@ -595,7 +588,7 @@ Here we define a **shipDoc** variable which will store the document returned fro
 
 ```javascript
 {
-  shipDoc: Get(Var("shipRef"))
+  shipDoc: Get(Var("shipRef"));
 }
 ```
 
@@ -614,7 +607,7 @@ The second part is the actual object that will be returned by Let:
 [Select](https://docs.fauna.com/fauna/current/api/fql/functions/select) is used to select data from objects or arrays.
 
 ```javascript
-Select(["data", "name"], Var("shipDoc"))
+Select(["data", "name"], Var("shipDoc"));
 ```
 
 Here, we're telling Fauna to select the **name** property from the **data** property of the document stored in the **shipDoc** binding.

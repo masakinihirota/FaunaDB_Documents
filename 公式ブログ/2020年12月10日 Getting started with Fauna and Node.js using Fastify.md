@@ -27,9 +27,7 @@ implies
 One last thing. If you've never used Fauna or FQL before, it would be a good idea to at least take a quick look at this [introductory article](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-1).
 
 最後に一つだけ
-これまでにFaunaまたはFQLを使用したことがない場合は、少なくともこの紹介記事をざっと見てみるとよいでしょう。
-
-
+これまでに Fauna または FQL を使用したことがない場合は、少なくともこの紹介記事をざっと見てみるとよいでしょう。
 
 ### In this article:
 
