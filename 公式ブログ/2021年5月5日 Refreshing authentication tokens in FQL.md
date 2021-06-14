@@ -1,3 +1,6 @@
+Refreshing authentication tokens in FQL
+https://fauna.com/blog/refreshing-authentication-tokens-in-fql
+
 解説
 Blueprint を利用して FaunaDB の認証を勉強する。
 

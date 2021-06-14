@@ -1,3 +1,6 @@
+Our Core Principles
+https://fauna.com/blog/our-core-principles
+
 # Our Core Principles
 
 Eric Berg|Mar 3rd, 2021|

@@ -1,3 +1,6 @@
+Product updates - May 2021
+https://fauna.com/blog/product-updates-may-2021
+
 # Product updates - May 2021
 
 製品の更新

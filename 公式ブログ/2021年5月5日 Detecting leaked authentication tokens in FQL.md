@@ -1,3 +1,6 @@
+Detecting leaked authentication tokens in FQL
+https://fauna.com/blog/detecting-leaked-authentication-tokens-in-fql#introduction
+
 # Detecting leaked authentication tokens in FQL
 
 Brecht De Rooms|May 5th, 2021|
