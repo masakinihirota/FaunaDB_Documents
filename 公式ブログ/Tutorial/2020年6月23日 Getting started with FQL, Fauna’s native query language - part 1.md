@@ -1,3 +1,6 @@
+Getting started with FQL, Fauna’s native query language - part 1
+https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-1
+
 # Getting started with FQL, Fauna’s native query language - part 1
 
 Pier Bover|Jun 23rd, 2020|

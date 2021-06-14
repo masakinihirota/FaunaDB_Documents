@@ -1,3 +1,6 @@
+Getting started with Fauna and Node.js using Fastify | by Fauna Inc | Fauna | Medium
+https://medium.com/fauna/fauna-getting-started-with-fauna-and-node-js-using-fastify-36aa51bee782
+
 # Getting started with Fauna and Node.js using Fastify
 
 Fastify を使用して Fauna と Node.js を使い始める

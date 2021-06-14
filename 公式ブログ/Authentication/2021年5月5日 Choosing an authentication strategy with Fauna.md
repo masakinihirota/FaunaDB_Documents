@@ -1,3 +1,6 @@
+Choosing an authentication strategy with Fauna
+https://fauna.com/blog/choosing-an-authentication-strategy-with-fauna
+
 # Choosing an authentication strategy with Fauna
 
 Rob Sutter|May 5th, 2021|
