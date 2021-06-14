@@ -1,3 +1,17 @@
+解説
+Blueprint を利用して FaunaDB の認証を勉強する。
+
+Blueprint は青写真、基礎的な設計書という意味。
+
+FQL
+Fauna の SQL のようなもの、サーバレス専用のデータベース操作言語
+
+詳しく知るにはドキュメントのチュートリアルに FQL の項目があり
+FQL basics に学習手順がある。
+
+Fundamental concepts | Fauna Documentation
+https://docs.fauna.com/fauna/current/tutorials/basics/
+
 # Refreshing authentication tokens in FQL
 
 FQL の認証トークンを更新する

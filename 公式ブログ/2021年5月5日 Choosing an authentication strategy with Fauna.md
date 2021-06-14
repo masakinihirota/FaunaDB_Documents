@@ -7,13 +7,44 @@ Categories:
 
 [Authentication](https://fauna.com/blog?category=authentication)
 
-Nearly every app you create requires some level of authentication to identify valid users. The most basic form of authentication requires users to provide credentials such as a username and password to access your application. However, authentication and identity requirements can quickly expand beyond username and password verification. Fauna provides constructs to support basic, Fauna-native authentication. Fauna also offers integration with third-party Identity as a Service (IDaaS) providers like [Okta](https://www.okta.com) that satisfy a broader range of identity requirements for your applications. How you address your identity-related requirements depends on the complexity of those requirements and the resources you have to implement your chosen strategy.
+Nearly every app you create requires some level of authentication to identify valid users.
 
-作成するほぼすべてのアプリでは、有効なユーザーを識別するためにある程度の認証が必要です。最も基本的な認証形式では、ユーザーがアプリケーションにアクセスするためにユーザー名やパスワードなどの資格情報を提供する必要があります。ただし、認証と ID の要件は、ユーザー名とパスワードの検証を超えて急速に拡大する可能性があります。Fauna は、基本的な Fauna ネイティブ認証をサポートするための構造を提供します。動植物も同様サービス（IDaaS）プロバイダーとして、サードパーティのアイデンティティとの統合を提供しています Okta アプリケーションの ID 要件の広い範囲を満たします。ID 関連の要件にどのように対処するかは、それらの要件の複雑さと、選択した戦略を実装するために必要なリソースによって異なります。
+Nearly
+ほとんど
 
-This post explores the pros and cons of each strategy for authenticating with Fauna and guides you in selecting an overall identity strategy for your Fauna applications. You learn how to implement basic Fauna authentication using [blueprints](https://github.com/fauna-labs/fauna-blueprints), Fauna Query Language (FQL) code that you can import and use in your applications. Finally, you review a sample application skeleton for building applications with an IDaaS provider.
+作成するほぼすべてのアプリでは、有効なユーザーを識別するためにある程度の認証が必要です。
 
-この投稿では、Fauna で認証するための各戦略の長所と短所を探り、Fauna アプリケーションの全体的な ID 戦略を選択する方法を説明します。ブループリント、アプリケーションでインポートして使用できる動物相クエリ言語（FQL）コードを使用して、基本的な動物相認証を実装する方法を学習します。最後に、IDaaS プロバイダーを使用してアプリケーションを構築するためのサンプルアプリケーションスケルトンを確認します。
+The most basic form of authentication requires users to provide credentials such as a username and password to access your application.
+
+最も基本的な認証形式では、ユーザーがアプリケーションにアクセスするためにユーザー名やパスワードなどの資格情報を提供する必要があります。
+
+However, authentication and identity requirements can quickly expand beyond username and password verification.
+
+ただし、認証と ID の要件は、ユーザー名とパスワードの検証を超えて急速に拡大する可能性があります。
+
+Fauna provides constructs to support basic, Fauna-native authentication.
+
+Fauna は、基本的な Fauna ネイティブ認証をサポートするための構造を提供します。
+
+Fauna also offers integration with third-party Identity as a Service (IDaaS) providers like [Okta](https://www.okta.com) that satisfy a broader range of identity requirements for your applications. 
+
+動植物も同様サービス（IDaaS）プロバイダーとして、サードパーティのアイデンティティとの統合を提供しています Okta アプリケーションの ID 要件の広い範囲を満たします。
+
+How you address your identity-related requirements depends on the complexity of those requirements and the resources you have to implement your chosen strategy.
+
+ID 関連の要件にどのように対処するかは、それらの要件の複雑さと、選択した戦略を実装するために必要なリソースによって異なります。
+
+This post explores the pros and cons of each strategy for authenticating with Fauna and guides you in selecting an overall identity strategy for your Fauna applications.
+
+この投稿では、Fauna で認証するための各戦略の長所と短所を探り、Fauna アプリケーションの全体的な ID 戦略を選択する方法を説明します。
+
+You learn how to implement basic Fauna authentication using [blueprints](https://github.com/fauna-labs/fauna-blueprints), Fauna Query Language (FQL) code that you can import and use in your applications. 
+
+ブループリント、アプリケーションでインポートして使用できる動物相クエリ言語（FQL）コードを使用して、基本的な動物相認証を実装する方法を学習します。
+
+Finally, you review a sample application skeleton for building applications with an IDaaS provider.
+
+最後に、IDaaS プロバイダーを使用してアプリケーションを構築するためのサンプルアプリケーションスケルトンを確認します。
 
 ## Authentication with Fauna
 
