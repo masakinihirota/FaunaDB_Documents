@@ -195,11 +195,7 @@ When using a **values** object, Fauna will always sort the results in ascending 
 ```javascript
 Paginate(Match(Index("all_Pilots_sorted_by_name")))
 
-
-
 // Results:
-
-
 
 {
   "data": [
@@ -386,11 +382,7 @@ Map(
   Lambda("planetRef", Get(Var("planetRef")))
 )
 
-
-
 // Result:
-
-
 
 {
   "data": [
@@ -597,11 +589,7 @@ Map(
   Lambda("planetResult", Get(Select([1], Var("planetResult"))))
 )
 
-
-
 // Result:
-
-
 
 {
   "data": [
@@ -678,11 +666,7 @@ Create(
   }
 )
 
-
-
 // Result:
-
-
 
 {
   "ref": Ref(Collection("Spaceships"), "267072793181422099"),
@@ -709,11 +693,7 @@ Create(
   }
 )
 
-
-
 // Result:
-
-
 
 error: instance not unique
 document is not unique.
@@ -731,11 +711,7 @@ As expected, Fauna throws an error since there is already a ship with the **ROCI
 ```javascript
 Get(Match(Index("all_Spaceships_by_code"), 'ROCINANTE'))
 
-
-
 // Result:
-
-
 
 {
   "ref": Ref(Collection("Spaceships"), "267072793181422099"),
@@ -818,11 +794,7 @@ Map(
   Lambda("planetRef", Get(Var("planetRef")))
 )
 
-
-
 // Result:
-
-
 
 {
   "data": [
@@ -875,11 +847,7 @@ Map(
   Lambda("planetRef", Get(Var("planetRef")))
 )
 
-
-
 // Result:
-
-
 
 {
   "data": [
@@ -920,11 +888,7 @@ Map(
   Lambda("planetRef", Get(Var("planetRef")))
 )
 
-
-
 // Result:
-
-
 
 {
   "data": [
@@ -1050,11 +1014,7 @@ So let's query our new index:
 ```javascript
 Paginate(Match(Index("all_Spaceships_by_pendingFuelTons")))
 
-
-
 // Result:
-
-
 
 {
   "data": [
@@ -1131,11 +1091,7 @@ Map(
   Lambda("planetDoc", Get(Var("planetDoc")))
 )
 
-
-
 // Result:
-
-
 
 {
   "data": [
@@ -1326,11 +1282,7 @@ Create(
   }
 )
 
-
-
 // Result:
-
-
 
 error: instance not unique
 document is not unique.
