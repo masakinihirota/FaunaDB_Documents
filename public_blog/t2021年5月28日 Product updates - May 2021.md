@@ -40,23 +40,31 @@ Fauna is now part of Cloudflare Workers' official data strategy for customers wh
 
 ## Other updates to explore
 
+その他のアップデートについて
+
 ![Other updates to explore](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/47yUHBp9qFs49l6qB89hdv/ab62c37ab73284190f064c25114cf5ae/other-updates-to-explore.png)
 
 We've made a lot of other changes recently as well. For example:
 
+最近、他にも多くの変更を加えました。例えば：
+
 - Our [docs quickstart](https://www2.fauna.com/e/517431/fauna-current-start-index-html/77xm74/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs) has been revamped to help illustrate how GraphQL and FQL can be used together as different interfaces for the same data.
+
+私たちのクイックスタートドキュメントヘルプに刷新されましたがGraphQLとFQLは、同じデータに対して異なるインターフェイスとして一緒に使用することができる方法を示しています。
+
 - New blogs show you how to [pick the right authentication strategy](https://www2.fauna.com/e/517431/entication-strategy-with-fauna/77xm5z/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs), build with [AWS SAM](https://www2.fauna.com/e/517431/est-api-with-aws-sam-and-fauna/77xm62/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs), and get started with [AWS App Runner](https://www2.fauna.com/e/517431/-with-aws-app-runner-and-fauna/77xm64/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs).
+
+新しいブログはどのようにするかを示し、右認証戦略選ぶ、とビルドAWS SAMを、そしてを始めるAWSのAppランナー。
+
 - The new [Fauna Labs](https://www2.fauna.com/e/517431/fauna-labs/77xm66/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs) GitHub organization is a place for you to find sample code, tooling, proofs of concept, and other experiments.
+
+新しいFaunaLabs GitHub組織は、サンプルコード、ツール、概念実証、およびその他の実験を見つけるための場所です。
+
 - Support for [document streaming](https://www2.fauna.com/e/517431/current-drivers-streaming-html/77xm68/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs) and third-party authentication providers have been added to the [Go driver](https://www2.fauna.com/e/517431/fauna-faunadb-go/77xm6b/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs), and a [preview version of the C# driver](https://www2.fauna.com/e/517431/faunadb-csharp-discussions-146/77xm6d/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs)**,** so these features are now available in all of our supported driver [languages](https://www2.fauna.com/e/517431/fauna-current-drivers-/77xm6g/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs).
+
+サポートストリーミング文書およびサードパーティの認証プロバイダが追加されました囲碁ドライバ、およびC＃のドライバのプレビュー版、これらの機能は、当社のサポートドライバーのすべてで利用できるようになりましたので、言語。
+
 - A new [Community Code of Conduct](https://www2.fauna.com/e/517431/guidelines/77xm6j/1015284883?h=1N4LvB7kSdQijWdMpenH5V7jSsdEFRMMRbR29TSRxTs) has been published to help ensure a positive experience for everyone.
-
-私たちのクイックスタートドキュメントヘルプに刷新されましたが GraphQL と FQL は、同じデータに対して異なるインターフェイスとして一緒に使用することができる方法を示しています。
-
-新しいブログはどのようにするかを示し、右認証戦略選ぶ、とビルド AWS SAM を、そしてを始める AWS の App ランナー。
-
-新しい FaunaLabs GitHub 組織は、サンプルコード、ツール、概念実証、およびその他の実験を見つけるための場所です。
-
-サポートストリーミング文書およびサードパーティの認証プロバイダが追加されました囲碁ドライバ、および C＃のドライバのプレビュー版、これらの機能は、当社のサポートドライバーのすべてで利用できるようになりましたので、言語。
 
 新しいコミュニティ行動規範が公開され、すべての人に前向きな体験を提供できるようになりました。
 
@@ -64,6 +72,12 @@ We've made a lot of other changes recently as well. For example:
 
 Let us know what you think of these features and content via [email](mailto:product@fauna.com), or our [Comment Box](https://forms.gle/wpzYQtZhAcse7Rp56).
 
+これらの機能やコンテンツについてのご意見は、メールやコメント欄でお聞かせください。
+
 Even more importantly, help us figure out what's next!
 
+さらに言えば、私たちが次のことを考えるきっかけにもなります。
+
 We plan our product roadmap based on user requests and feedback. So, if there is anything else you'd like to see prioritized in our product roadmap, please vote for it in the Fauna Forums' [Feature Requests](https://forums.fauna.com/c/feature-requests/2) category, or create a new topic and vote for it!
+
+私たちは、ユーザーの要望やフィードバックに基づいて製品ロードマップを計画しています。そのため、製品ロードマップで優先してほしいことがあれば、Fauna Forumsの「機能リクエスト」カテゴリで投票するか、新しいトピックを作成して投票してください。

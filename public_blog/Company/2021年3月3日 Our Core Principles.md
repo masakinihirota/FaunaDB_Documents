@@ -11,6 +11,8 @@ Categories:
 
 Culture Matters.
 
+文化の問題。
+
 I have been fortunate in my career to have had the opportunity to work at, and help build, several successful and industry defining companies before joining Fauna. I started off in the early 90s at Intel in the era of Andy Grove, author of [High Output Management](https://www.amazon.com/High-Output-Management-Andrew-Grove/dp/0679762884/ref=cm_cr_arp_d_product_top?ie=UTF8), when they were a dominant force in technology. In the early 2000’s I had the opportunity to help build and scale a new enterprise software business for Microsoft and I spent the better part of the last decade helping build and scale Okta.
 
 One thing that all of these companies have in common is a strong culture that is deeply ingrained in the way they operate. Foundational to that culture is a set of well-defined and clearly articulated values or principles. Principles that define the “how” behind the way employees work together, treat customers, engage with partners, and conduct themselves. Principles that also help candidates and the company decide whether there is a mutual fit and that the company uses to develop and grow employees once they start.
