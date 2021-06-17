@@ -17,3 +17,5 @@ FQL：動物相クエリ言語-動物相をクエリするためのネイティ�
 GraphQL-スキーマを定義し、Fauna内でデータのクエリとミューテーションを実行するためのデータベースに依存しないAPI。
 
 See [Limits](https://docs.fauna.com/fauna/current/api/limits) for document size, transaction size, and concurrent index builds limits.
+
+ドキュメントサイズ、トランザクションサイズ、および同時インデックスビルドの制限 については、「制限」を参照してください。
