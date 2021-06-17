@@ -1,3 +1,13 @@
+このリポジトリのルール
+
+ファイル名の先頭に
+t（Translation）
+翻訳の頭文字で翻訳作業完了したファイル。
+
+ファイル名に挿入してある日付はブログの投稿日時。
+
+---
+
 # FaunaDB Documents
 
 https://docs.fauna.com/fauna/current/start/
@@ -22,14 +32,7 @@ https://fauna.com/blog
 
 ---
 
-このリポジトリのルール
 
-ファイル名の先頭に
-t
-（Translation）
-翻訳の頭文字で翻訳作業完了したファイル。
-
----
 
 軽く翻訳 and md 化
 
