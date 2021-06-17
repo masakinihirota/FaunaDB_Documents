@@ -2,25 +2,23 @@
 
 https://docs.fauna.com/fauna/current/start/
 
-|番号|タイトル|
-|:----|:----|
-|0100|Get started|
-|0200|API references|
-|0300|Cookbook|
-|0400|Drivers|
-|0500|Tutorials|
-|0600|Security|
-|0700|Concepts|
-|0800|Comparisons|
-|0900|Tools and integrations|
-|1000|Glossary|
-|1100|Release Notes|
-
+| 番号 | タイトル               |
+| :--- | :--------------------- |
+| 0100 | Get started            |
+| 0200 | API references         |
+| 0300 | Cookbook               |
+| 0400 | Drivers                |
+| 0500 | Tutorials              |
+| 0600 | Security               |
+| 0700 | Concepts               |
+| 0800 | Comparisons            |
+| 0900 | Tools and integrations |
+| 1000 | Glossary               |
+| 1100 | Release Notes          |
 
 # FaunaDB Blog
 
 https://fauna.com/blog
-
 
 ---
 
