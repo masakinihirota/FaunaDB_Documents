@@ -1,13 +1,7 @@
 
-
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
-
 User authentication
 ユーザ認証
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
 
 This tutorial assumes 
 that you have completed the Quick Start with Fauna tutorial.
@@ -28,8 +22,7 @@ and manage their sessions.
 セッションを管理する方法について説明します。
 
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
+---
 
 VScodeのターミナルから利用するために
 
@@ -68,8 +61,7 @@ fauna shell --secret=fnAEKw9b_yACCFAO5uhr7i5oZOwloNns5DrJ3ZNb
 
 
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
+---
 
 This tutorial is divided into several sections:
 このチュートリアルは、いくつかのセクションに分かれています。
@@ -91,8 +83,7 @@ Third-party delegation
 サードパーティの委任
 
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
+---
 
 
 Setup
@@ -489,8 +480,7 @@ SHELL
 At this point, the setup is complete!
 
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
+---
 
 Create users
 When a new user signs up, we can create a new user document that contains their email address and password. More specifically, a BCrypt hash of the user’s password is stored; Fauna does not store credentials in plain text.
@@ -516,8 +506,7 @@ SHELL
   ts: 1576019864330000,
   data: { email: 'alice@site.example' } }
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
+---
 
 
 User login
@@ -610,8 +599,7 @@ If your application is using one of the native Drivers, you should create a new 
 
 Multiple tokens can be created per user, which allows a user to log in from multiple sources.
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
+---
 
 
 User logout
@@ -624,8 +612,7 @@ You should only call Logout when connecting to Fauna with a token received from 
 client.query(q.Logout(true))
 When you execute this query, a response of true indicates that log out was successful, and false indicates that log out failed.
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
+---
 
 
 Change a user’s password
@@ -735,8 +722,7 @@ SHELL
   }
 }
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
+---
 
 
 Check credentials
@@ -762,8 +748,7 @@ SHELL
 
 [ false, true ]
 
-●●●●●●●●●●●●●●●●●●●●●●●
-●●●●●●●●●●●●●●●●●●●●●●●
+---
 
 Third-party delegation
 Third-party delegation is the scenario where a third party uses our APIs to provide services to our users.
