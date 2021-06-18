@@ -3,7 +3,7 @@ https://fauna.com/blog/announcing-fauna-labs
 
 # Announcing Fauna Labs
 
-動物相実験室の発表
+Fauna Labsの発表
 
 Rob Sutter|Jun 17th, 2021|
 
