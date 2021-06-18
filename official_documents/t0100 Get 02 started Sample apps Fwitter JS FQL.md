@@ -1,3 +1,6 @@
+Rethinking Twitter as a Serverless App | Fauna Documentation
+https://docs.fauna.com/fauna/current/start/apps/fwitter
+
 # Rethinking Twitter as a Serverless App
 
 Twitterをサーバーレスアプリとして再考する

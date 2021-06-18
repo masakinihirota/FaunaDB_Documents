@@ -1,3 +1,6 @@
+Welcome to the Fauna documentation! | Fauna Documentation
+https://docs.fauna.com/fauna/current/start/
+
 # Welcome to the Fauna documentation!
 
 動物相のドキュメントへようこそ！
