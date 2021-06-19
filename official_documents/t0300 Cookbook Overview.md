@@ -1016,6 +1016,7 @@ client.query(
 
 ### [](#index-delete)Delete an index
 
+インデックスを削除する
 
 ```javascript
 client.query(
