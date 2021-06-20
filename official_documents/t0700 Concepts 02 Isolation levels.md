@@ -83,7 +83,7 @@ Strict serializability adds a simple extra constraint on top of serializability.
 ---
 
 1. 最終的な状態は、トランザクションを連続した順序で処理することと同等である。
-2.  最終的な状態は、シリアルな順序でトランザクションを処理した場合と同等である。
+2. 最終的な状態は、シリアルな順序でトランザクションを処理した場合と同等である。
 
 For an application that applies transactions serially, these guarantees would seem obvious: when Y comes after X, X is before Y. However, strict serializability is particularly difficult to attain in distributed databases. In a typical distributed database, the factors influencing whether strict serializability can be maintained, or is even possible, include: replication strategy, clock drift, network jitter, variable CPU workloads, etc.
 
