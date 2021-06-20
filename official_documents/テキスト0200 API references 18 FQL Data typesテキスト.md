@@ -1,3 +1,6 @@
+Data types | Fauna Documentation
+https://docs.fauna.com/fauna/current/api/fql/types?lang=javascript
+
 JSONのすべてのスカラー型がサポートされています。
 
 ブール値

@@ -7,6 +7,20 @@
 
 ---
 
+関数
+0200 API references 28 FQL Built-in functions
+203個
+
+コマンド
+0900 Tools and integrations 04 fauna-shell 03 Commands
+17個
+
+この2つはフォルダに分ける。
+（理由：大量にあるため）
+
+---
+
+
 # FaunaDB Documents
 
 https://docs.fauna.com/fauna/current/start/

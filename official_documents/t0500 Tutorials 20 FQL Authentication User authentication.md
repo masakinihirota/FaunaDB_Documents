@@ -1234,4 +1234,852 @@ shell
 { data: [ 'Desktop App', 'Mobile App', 'Web Service' ] }
 ```
 
+---
+
+これより下は個人メモ
+
+
+User authentication
+ユーザ認証
+
+
+This tutorial assumes 
+that you have completed the Quick Start with Fauna tutorial.
+このチュートリアルは、
+Faunaチュートリアルのクイックスタートを完了していることを前提としています。
+
+Fauna offers built-in identity,
+authentication,
+and password management.
+Fauna は、組み込みの ID、認証、およびパスワード管理を提供します。
+
+This tutorial walks you through how to create user identities,
+authenticate them,
+and manage their sessions.
+このチュートリアルでは、
+ユーザーIDを作成し、
+認証し、
+セッションを管理する方法について説明します。
+
+
+---
+
+VScodeのターミナルから利用するために
+
+TERMINALから利用するための準備
+
+----------------------------------------
+
+ターミナル
+fauna-shell reference | Fauna Documentation
+https://docs.fauna.com/fauna/current/integrations/shell/
+
+npm i -g fauna-shell
+
+----------------------------------------
+
+fauna-shellインストール後
+
+例：公式の例
+fauna shell --secret=fnADfSwPQoACAFAfWX9f6NFrBumWqIMsL8Qkt3wY
+
+Be sure to replace fnADfSwPQoACAFAfWX9f6NFrBumWqIMsL8Qkt3wY with the secret that you acquired for the server key.
+サーバーキーとして取得したシークレットに置き換えてください。
+
+ターミナルでシェルを開く
+
+```
+fauna shell --secret=fnAEKw9b_yACCFAO5uhr7i5oZOwloNns5DrJ3ZNb
+```
+
+
+
+
+
+
+
+
+
+
+---
+
+This tutorial is divided into several sections:
+このチュートリアルは、いくつかのセクションに分かれています。
+
+Setup
+Create users
+User login
+User logout
+Change a user’s password
+Check credentials
+Third-party delegation
+
+セットアップ
+ユーザーを作成する
+ユーザーログイン
+ユーザーログアウト
+ユーザーのパスワードを変更する
+資格情報を確認する
+サードパーティの委任
+
+
+---
+
+
+Setup
+This setup section describes all of the preparatory work
+we need to do to prepare for authenticating our users.
+このセットアップセクションでは、
+ユーザーの認証を準備するために
+必要なすべての準備作業について説明します。
+
+preparatory
+【形-1】予備の、準備の、予備となる
+【形-2】進学準備の、入学準備の
+【形-3】前置きの
+
+prepare
+【自動】用意する、準備する、覚悟する
+【他動-1】～を準備する、用意する、支度する、作成する、
+～に用意［準備］させる、下処理をする
+【他動-2】～を覚悟させる、薬品を調合する
+【他動-3】～整備する
+
+
+
+It includes:
+以下が含まれます:
+
+Create a database
+Create a server key
+Create a client key
+Create a collection to store user documents
+Create a public index for our users
+
+データベースを作成する
+サーバー キーを作成する
+クライアント キーを作成する
+ユーザー ドキュメントを格納するコレクションを作成する
+ユーザー向けの公開インデックスを作成する
+
+
+
+Create a database
+データベースを作成する
+
+When we want to authenticate users,
+ユーザーを認証する場合、
+
+it is typically in the context of a specific application.
+通常は特定のアプリケーションのコンテキストで行います。
+
+With that in mind,
+それを念頭に置いて、
+
+let’s create an application-specific database called "app1".
+Copy the following query,
+paste it into the Shell,
+and run it:
+「app1」というアプリケーション固有のデータベースを作成しましょう。
+次のクエリをコピーしてシェルに貼り付け、
+実行します。
+
+コンテキスト
+利用者の意図や状況、
+環境などの総体を表したり、
+同じ処理や記述でも状況に応じて動作などが異なる場合に、
+その選択基準となる判断材料や条件などを指す場合が多い。
+同じコード記述やプログラム上の要素が、
+その置かれているプログラム内での位置や、
+実行される際の内部状態などによって異なる振る舞いをしたり、
+異なる制約を受けたりすることを指してコンテキストということがある。
+
+
+
+SHELL
+ブラウザから
+https://dashboard.fauna.com/webshell/@db/global/my_db
+左のメニューの
+Shellを選択する
+
+下側の部分にコピー
+
+CreateDatabase({
+  name: "app1"
+})
+
+RUN QUERYボタンを押す。
+
+----------------------------------------
+
+Databaseは2種類ある
+
+Faunaがダッシュボードで管理するデータベースと
+例
+Home/my_db
+my_dbは5分チュートリアルで作ったデータベース
+
+Faunaがダッシュボードで管理するデータベースの中で作るデータベース
+例
+Home/my_db/app1
+いまShellから新規作成したもの
+
+
+
+----------------------------------------
+
+
+When you run this query, the result should be similar to:
+このクエリを実行すると、結果は以下のようになるはずです。
+
+SHELL
+
+{ ref: Database("app1"), ts: 1576008456740000, name: 'app1' }
+
+```
+CreateDatabase({
+  name: "app1"
+})
+
+{
+  ref: Database("app1"),
+  ts: 1622691101120000,
+  name: "app1",
+  global_id: "yoiosfgp4ydyo"
+}
+```
+
+ts
+タイムスタンプ
+
+----------------------------------------
+
+Create a server key
+サーバー キーを作成する
+
+Our application is going to need access to our new database.
+このアプリケーションは、新しいデータベースにアクセスする必要があります。
+
+We don’t want to give it permission to every database,
+so let’s create a "server" key,
+すべてのデータベースへのアクセスを許可したくはありません。
+そこで、「server」キーを作りましょう。
+
+which provides full access to a specific database.
+これは特定のデータベースへのフルアクセスを提供します。
+
+Copy the following query,
+paste it into the Shell,
+and run it:
+以下のクエリをコピーします。
+シェルに貼り付けます。
+して実行します。
+
+
+
+
+SHELL
+
+CreateKey({
+  name: "Server key for app1",
+  database: Database("app1"),
+  role: "server",
+})
+
+When you run this query, the result should be similar to:
+このクエリを実行すると、結果は以下のようになるはずです。
+
+SHELL
+
+{ ref: Ref(Keys(), "251405600267698688"),
+  ts: 1576017914170000,
+  name: 'Server key for app1',
+  database: Database("app1"),
+  role: 'server',
+  secret: 'fnADfSwPQoACAFAfWX9f6NFrBumWqIMsL8Qkt3wY',
+  hashed_secret:
+   '$2a$05$pC8bzQqEw3EM4TbsPJ6tjOzqnTV2rRZEQhT7sxI1SsdkCfk14n9qq' }
+
+
+When you run the query,
+you will see different values.
+クエリを実行すると、さまざまな値が表示されます。
+
+Make sure that you copy the value for the secret field;
+secretフィールドの値を必ずコピーしてください。
+
+it is a key that authorizes access to Fauna,
+specifically to the associated database.
+これは、Faunaへのアクセスを許可するキーです。
+特に、関連するデータベースへのアクセスを許可するキーです。
+
+It is only ever displayed once.
+これは一度だけ表示されます。
+
+If you lose it,
+a new key would have to be generated.
+紛失した場合は、
+新しいキーを生成する必要があります。
+
+specifically
+【副-1】特に、明確に、はっきりと、具体的に
+【副-2】厳密に言えば、具体的に言うと
+
+実際にスクリプトを実行する
+```
+CreateKey({
+  name: "Server key for app1",
+  database: Database("app1"),
+  role: "server",
+})
+
+{
+  ref: Key("300350687946998280"),
+  ts: 1622695587030000,
+  database: Database("app1"),
+  role: "server",
+  secret: "fnAEKw9b_yACCFAO5uhr7i5oZOwloNns5DrJ3ZNb",
+  hashed_secret: "$2a$05$C4SYKvVFcOafXtNxYHQbY.qVENoslWbh6WQlQl0hjoqSRJ9D86k3K"
+}
+
+>> Time elapsed: 119ms
+
+```
+
+
+----------------------------------------
+
+Create a client key
+クライアント キーを作成する
+
+We need to allow our application’s public clients,
+アプリケーションの公開クライアントを許可する必要があります。
+
+typically a web browser,
+to access our "app1" database,
+一般的にはWebブラウザです。
+app1 "データベースへのアクセスを許可する必要があります。
+
+and we need to embed a key into the public client to permit that access.
+そして、
+そのアクセスを許可するために、
+パブリック・クライアントに鍵を埋め込む必要があります。
+
+
+So,let’s create a "client" key.
+Copy the following query,
+paste it into the Shell,
+and run it:
+そこでクライアントキーを作成してみましょう。
+以下のクエリをコピーします。
+シェルにペーストします。
+そして実行します。
+
+
+
+SHELL
+
+CreateKey({
+  name: "Client key for app1",
+  database: Database("app1"),
+  role: "client",
+})
+
+When you run this query, the result should be similar to:
+
+SHELL
+
+{ ref: Ref(Keys(), "251406008027447808"),
+  ts: 1576018302900000,
+  name: 'Client key for app1',
+  database: Database("app1"),
+  role: 'client',
+  secret: 'fnADfSxuQuAQAe6JBbRY58Fm37ZA-0HhFtVm64T0',
+  hashed_secret:
+   '$2a$05$qKd8N/LsdLQ9kQKGmtYa/OjgNCQNlzG5sNO9xT1jWSiBuPMNGREJW' }
+
+
+
+実際にスクリプトを実行する
+```
+CreateKey({
+  name: "Client key for app1",
+  database: Database("app1"),
+  role: "client",
+})
+
+CreateKey({
+  name: "Client key for app1",
+  database: Database("app1"),
+  role: "client",
+})
+
+{
+  ref: Key("300352351751897608"),
+  ts: 1622697173765000,
+  database: Database("app1"),
+  role: "client",
+  secret: "fnAEKxDfYaACCC8YV0_NFphlIJC8PiAVPeYSxRx1",
+  hashed_secret: "$2a$05$8oftRIL2pIcYbwrWFhY7L.i5K6Wc4Hxa38dDo8v5a38VgHL6JouCi"
+}
+
+>> Time elapsed: 135ms
+
+```
+
+
+
+
+When you run the query, 
+you will see different values.
+クエリを実行すると、
+さまざまな値が表示されます。
+
+Make sure that you copy the value for the secret field;
+it is a key that authorizes access to Fauna,
+specifically to the associated database.
+It is only ever displayed once.
+
+secretフィールドの値を必ずコピーしてください。
+これはFaunaへのアクセス、
+特に関連するデータベースへのアクセスを許可するキーです。
+これは一度だけ表示されます。
+
+If you lose it,
+a new key would have to be generated.
+紛失した場合は、
+新しいキーを生成する必要があります。
+
+
+----------------------------------------
+
+Create a collection to store user documents
+ユーザー ドキュメントを格納するコレクションを作成する
+
+Now that we have our app-specific database,and keys to access it,
+アプリ固有のデータベースとそれにアクセスするためのキーができたので、
+
+now we can create a collection where we can store user documents.
+ユーザードキュメントを保存できるコレクションを作成できます。
+
+Let’s use our server key to access the new database.
+サーバーキーを使用して新しいデータベースにアクセスしましょう。
+
+First,type .exit into the Shell and press Return.
+まず、.exitシェルに入力してを押しReturnます。
+
+
+
+Then start the shell using the secret for the server key:
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+
+Now, let’s create the collection to store users. Copy the following query, paste it into the Shell, and run it:
+では、ユーザーを格納するコレクションを作成しましょう。次のクエリをコピーしてシェルに貼り付け、実行してください。
+
+
+
+SHELL
+
+CreateCollection({ name: "users" })
+When you run this query, the result should be similar to:
+
+SHELL
+
+{ ref: Collection("users"),
+  ts: 1576019188350000,
+  history_days: 30,
+  name: 'users' }
+Create a public index for our users
+We need an index to make it possible to lookup our users by their email address. We need this index to be public, since unauthenticated users would be using the client key when they attempt to login. So, let’s create the index. Copy the following query, paste it into the Shell, and run it:
+
+SHELL
+
+CreateIndex({
+  name: "users_by_email",
+  permissions: { read: "public"},
+  source: Collection("users"),
+  terms: [{field: ["data", "email"]}],
+  unique: true,
+})
+When you run this query, the result should be similar to:
+
+SHELL
+
+{ ref: Index("users_by_email"),
+  ts: 1576019648660000,
+  active: false,
+  serialized: true,
+  name: 'users_by_email',
+  permissions: { read: 'public' },
+  source: Collection("users"),
+  terms: [ { field: [ 'data', 'email' ] } ],
+  unique: true,
+  partitions: 1 }
+At this point, the setup is complete!
+
+
+---
+
+Create users
+When a new user signs up, we can create a new user document that contains their email address and password. More specifically, a BCrypt hash of the user’s password is stored; Fauna does not store credentials in plain text.
+
+Let’s create our first user. Copy the following query, paste it into the Shell, and run it:
+
+SHELL
+
+Create(
+  Collection("users"),
+  {
+    credentials: { password: "secret password" },
+    data: {
+      email: "alice@site.example",
+    },
+  }
+)
+When you run this query, the result should be similar to:
+
+SHELL
+
+{ ref: Ref(Collection("users"), "251407645221585408"),
+  ts: 1576019864330000,
+  data: { email: 'alice@site.example' } }
+
+---
+
+
+User login
+When a user wants to login, they would provide their email address and password. Then we use the Login function to authenticate their access, and if valid, provide them with a token that they can use to access resources.
+
+A token only provides access according to the privileges granted by an attribute-based access control (ABAC) role. These differ from keys, which are used to provide coarser, database-level access.
+The following query calls Login on the result of looking up the user via the users_by_email index, with the password that they provided. Copy the query, paste it into the Shell, and run it:
+
+SHELL
+
+Login(
+  Match(Index("users_by_email"), "alice@site.example"),
+  { password: "secret password" },
+)
+When you run this query, the result should be similar to:
+
+SHELL
+
+{ ref: Ref(Tokens(), "251407817091580416"),
+  ts: 1576020028130000,
+  instance: Ref(Collection("users"), "251407645221585408"),
+  secret: 'fnEDfS4T34ACAAN9IwrU8aQA5SxTgyqYaUfiAqLqzQjQH9Qcr94' }
+When you run the query, you will see different values. Make sure that you copy the value for the secret field; it is a token that authorizes access to Fauna, specifically to the associated database. It is only ever displayed once. If you lose it, a new token would have to be generated.
+If the user cannot be found, or if their credentials are invalid, an error would be returned:
+
+SHELL
+
+Login(
+  Match(Index("users_by_email"), "bob@not.a.member"),
+  { password: "secret password" },
+)
+SHELL
+
+[ { position: [],
+    code: 'authentication failed',
+    description:
+     'The document was not found or provided password was incorrect.' } ]
+The token provided for a successful login is all that is required to perform authenticated queries; it represents both the identity and authorization for the user. The token can now be used in any subsequent queries for resources.
+
+Your app should use the value in the secret field to create another client instance, which should be used to perform queries as that user.
+
+If your application is using HTTP requests to interact with Fauna, you can use the token as a username+password via the Basic-Auth header, for every query made by that specific user. For example, you could use curl:
+
+TERMINAL
+
+curl https://db.fauna.com/tokens/self \
+  -u fnEDfS4T34ACAAN9IwrU8aQA5SxTgyqYaUfiAqLqzQjQH9Qcr94:
+HTTP Basic Auth wants credentials in the form "username:password". Since we’re using a secret that represents both, we just add a colon (:) to the end of the secret.
+Running that command should show output similar to:
+
+SHELL
+
+{
+  "resource": {
+    "ref": {
+      "@ref": {
+        "id": "251407817091580416",
+        "class": { "@ref": { "id": "tokens" } }
+      }
+    },
+    "ts": 1576020028130000,
+    "instance": {
+      "@ref": {
+        "id": "251407645221585408",
+        "class": {
+          "@ref": {
+            "id": "users",
+            "class": { "@ref": { "id": "classes" } }
+          }
+        }
+      }
+    },
+    "hashed_secret": "$2a$05$hljpg/MZ7FsbTv.5kIJP7umPKeuPr8Xwd0uWQ63KY/7ZPdUUwy1SO"
+  }
+}
+If the secret that you use is invalid:
+
+TERMINAL
+
+curl https://db.fauna.com/tokens/self \
+  -u not_a_valid_secret:
+You would see the following error:
+
+SHELL
+
+{
+  "errors": [ { "code": "unauthorized", "description": "Unauthorized" } ]
+}
+If your application is using one of the native Drivers, you should create a new client instance using the user’s token as the secret. Some drivers can create session clients in which the underlying HTTP connection is shared, so that you can intermingle queries using different tokens easily.
+
+Multiple tokens can be created per user, which allows a user to log in from multiple sources.
+
+---
+
+
+User logout
+When you call Logout, the token associated with the current session is invalidated, effectively logging out the user. A new token would need to be created for any future access.
+
+Logout takes a single parameter all_tokens. When all_tokens is true, all tokens associated with the current user are invalidated, logging the user out completely. When all_tokens is false, only the current token is invalidated; any other active tokens are still valid.
+
+You should only call Logout when connecting to Fauna with a token received from calling Login. In your client application code, that query would look similar to this JavaScript code:
+
+client.query(q.Logout(true))
+When you execute this query, a response of true indicates that log out was successful, and false indicates that log out failed.
+
+---
+
+
+Change a user’s password
+You can change a user’s password by calling the Update or Replace functions with a new password in the credentials field.
+
+When a password is updated, any existing tokens remain valid. If required, invalidate any previous session by calling Logout as described above.
+
+Let’s change our user’s password. We are using the user ref, displayed when the user document was created. Copy the following query, paste it into the Shell, and run it:
+
+SHELL
+
+Update(
+  Ref(Collection("users"), "251407645221585408"),
+  {
+    credentials: { password: "new password" },
+  }
+)
+You need to use the ref for the user that you created. The numerical portion of the ref that you see here differs from the value received from your query.
+When you run this query, the result should be similar to:
+
+SHELL
+
+{ ref: Ref(Collection("users"), "251407645221585408"),
+  ts: 1576023407790000,
+  data: { email: 'alice@site.example' } }
+Let’s see if the original token still works:
+
+TERMINAL
+
+curl https://db.fauna.com/tokens/self \
+  -u fnEDfS4T34ACAAN9IwrU8aQA5SxTgyqYaUfiAqLqzQjQH9Qcr94:
+And it does:
+
+SHELL
+
+{
+  "resource": {
+    "ref": {
+      "@ref": {
+        "id": "251407817091580416",
+        "class": { "@ref": { "id": "tokens" } }
+      }
+    },
+    "ts": 1576020028130000,
+    "instance": {
+      "@ref": {
+        "id": "251407645221585408",
+        "class": {
+          "@ref": {
+            "id": "users",
+            "class": { "@ref": { "id": "classes" } }
+          }
+        }
+      }
+    },
+    "hashed_secret": "$2a$05$hljpg/MZ7FsbTv.5kIJP7umPKeuPr8Xwd0uWQ63KY/7ZPdUUwy1SO"
+  }
+}
+Let’s get a new token based on the new password. Copy the following query, paste it into the Shell, and run it:
+
+SHELL
+
+Login(
+  Match(Index("users_by_email"), "alice@site.example"),
+  { password: "new password" },
+)
+When you run this query, the result should be similar to:
+
+SHELL
+
+{ ref: Ref(Tokens(), "251411540589150720"),
+  ts: 1576023579110000,
+  instance: Ref(Collection("users"), "251407645221585408"),
+  secret: 'fnEDfTF20UACaan9IwQU8AIQiYcTZyxXaK9j91QCnhXc27TXoPQ' }
+When you run the query, you will see different values. Make sure that you copy the value for the secret field; it is a token that authorizes access to Fauna, specifically to the associated database. It is only ever displayed once. If you lose it, a new token would have to be generated.
+Let’s verify that the new token works:
+
+TERMINAL
+
+curl https://db.fauna.com/tokens/self \
+  -u fnEDfTF20UACaan9IwQU8AIQiYcTZyxXaK9j91QCnhXc27TXoPQ:
+And it does:
+
+SHELL
+
+{
+  "resource": {
+    "ref": {
+      "@ref": {
+        "id": "251411540589150720",
+        "class": { "@ref": { "id": "tokens" } }
+      }
+    },
+    "ts": 1576023579110000,
+    "instance": {
+      "@ref": {
+        "id": "251407645221585408",
+        "class": {
+          "@ref": {
+            "id": "users",
+            "class": { "@ref": { "id": "classes" } }
+          }
+        }
+      }
+    },
+    "hashed_secret": "$2a$05$l/WOFu6h9V3/vflDp6yGWOf/XDgCEJVG/G3JQmn6M9hzftYwivi0m"
+  }
+}
+
+---
+
+
+Check credentials
+You can verify whether a user’s credentials are valid, without creating a token, by calling the Identify function.
+
+Let’s test whether the old and new credentials for our user are valid. Copy the following query, paste it into the Shell, and run it:
+
+SHELL
+
+[
+  Identify(
+    Ref(Collection("users"), "251407645221585408"),
+    "secret password",
+  ),
+  Identify(
+    Ref(Collection("users"), "251407645221585408"),
+    "new password",
+  ),
+]
+When you run this query, the result should be:
+
+SHELL
+
+[ false, true ]
+
+---
+
+Third-party delegation
+Third-party delegation is the scenario where a third party uses our APIs to provide services to our users.
+
+Using the authentication features of Fauna, we can provide unique tokens for each third-party client that allow the third party to access resources on behalf of our users, while providing a way for the user to revoke the third-party client’s access.
+
+First, we create an index that allows us to list all of a user’s tokens. Login allows us to attach data to a token by adding extra fields. We’ll use this capability to identify our tokens with the name of the third-party service that will use the tokens. Copy the following query, paste it into the Shell, and run it:
+
+SHELL
+
+CreateIndex({
+  name: "tokens_by_instance",
+  permissions: { read: "public" },
+  source: Tokens(),
+  terms: [{ field: "instance" }],
+  values: [{field: ["data", "name"]}]
+})
+When you run this query, the result should be similar to:
+
+SHELL
+
+{ ref: Index("tokens_by_instance"),
+  ts: 1576024400110000,
+  active: false,
+  serialized: true,
+  name: 'tokens_by_instance',
+  permissions: { read: 'public' },
+  source: Tokens(),
+  terms: [ { field: 'instance' } ],
+  values: [ { field: [ 'data', 'name' ] } ],
+  partitions: 1 }
+Now we can create a token for each third-party service that our user uses. And we can do it all in a single query. Copy the following query, paste it into the Shell, and run it:
+
+SHELL
+
+Map(
+  [
+    "Desktop App",
+    "Mobile App",
+    "Web Service"
+  ],
+  Lambda(
+    "service",
+    Login(
+      Match(Index("users_by_email"), "alice@site.example"),
+      {
+        password: "new password",
+        data: { name: Var("service") }
+      }
+    )
+  )
+)
+When you run this query, the result should be similar to:
+
+SHELL
+
+[ { ref: Ref(Tokens(), "251412696160797184"),
+    ts: 1576024681170000,
+    data: { name: 'Desktop App' },
+    instance: Ref(Collection("users"), "251407645221585408"),
+    secret: 'fnEDfTKD3rACAAN9IwrU8AIAa-IOXEqSP5rSkGjdQ_0eG9rBet0' },
+  { ref: Ref(Tokens(), "251412696160799232"),
+    ts: 1576024681170000,
+    data: { name: 'Mobile App' },
+    instance: Ref(Collection("users"), "251407645221585408"),
+    secret: 'fnEDfTKD3rAKAAN9IwrU8AIA0su3H1YuSdUlgG5EQPRsqRcVyzQ' },
+  { ref: Ref(Tokens(), "251412696160798208"),
+    ts: 1576024681170000,
+    data: { name: 'Web Service' },
+    instance: Ref(Collection("users"), "251407645221585408"),
+    secret: 'fnEDfTKD3rAGAAN9IwrU8AIAWe9UYsSvsOHgw0LHSnXj5CErYuo' } ]
+Finally, in client application code, we can list all of the currently logged-in user’s tokens by querying the index that we built, when connecting to Fauna using the user’s token. The following code is written in JavaScript:
+
+client.query(
+  q.Paginate(
+    q.Match(
+      q.Index("tokens_by_instance"),
+      q.Select("instance", q.Identity())
+      )
+    )
+  )
+)
+.then((ret) => console.log(ret))
+.catch((err) => console.log("Error:", err))
+When you execute this query in your client application code, after the user has logged in successfully, the output should be:
+
+SHELL
+
+{ data: [ 'Desktop App', 'Mobile App', 'Web Service' ] }
 Was this article helpful?
+
+
+
+
