@@ -1,11 +1,6 @@
 GraphQL tutorials | Fauna Documentation
 https://docs.fauna.com/fauna/current/tutorials/graphql/
 
-
-
-
-
-
 # GraphQL tutorials
 
 GraphQL チュートリアル

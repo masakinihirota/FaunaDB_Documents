@@ -369,7 +369,6 @@ Definition
 |`database`|[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)|Optional - A reference for the database associated with this key. When not provided, the key is associated with the database in which it was created (the current database).|
 |`data`|[Object](https://docs.fauna.com/fauna/current/api/fql/types#object)|Optional - User-defined metadata for the key.|
 
-
 ---
 
 |フィールド名|値のタイプ|説明|
@@ -383,8 +382,6 @@ Definition
 |`priority`<br>**非推奨**|[Number](https://docs.fauna.com/fauna/current/api/fql/types#number) |1～500の間で指定します。デフォルトでは1に設定されています。<br>**重要** priority`オプションはリリース2.10.0で非推奨となりました。priority` の指定は避けるべきです。将来の Fauna リリースでは、`priority` は削除される予定です。詳しくは [Deprecations](https://docs.fauna.com/fauna/current/api/fql/deprecations#priority)を参照してください。|
 |`database`|[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref) |オプション - このキーに関連付けられているデータベースの参照です。提供されない場合、キーは作成されたデータベース（現在のデータベース）に関連付けられます。|
 |`data`|[Object](https://docs.fauna.com/fauna/current/api/fql/types#object) |オプション - キーに関するユーザー定義のメタデータです。|
-
-
 
 ## [](#operations)Operations on keys
 

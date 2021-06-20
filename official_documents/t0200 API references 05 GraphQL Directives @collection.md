@@ -26,12 +26,6 @@ Types.
 |--|--|--|--|
 |`name`|String|Yes|このGraphQLタイプに使用するデータベースコレクションの名前です。|
 
-
-
-
-
-
-
 ## [](#description)Description
 
 説明
@@ -64,5 +58,4 @@ shell
 Paginate(Collections())
 { data: [ Collection("users") ] }
 ```
-
 

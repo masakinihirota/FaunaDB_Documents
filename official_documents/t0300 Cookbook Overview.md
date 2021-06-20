@@ -1,8 +1,6 @@
 Overview | Fauna Documentation
 https://docs.fauna.com/fauna/current/cookbook/?lang=javascript
 
-
-
 # Overview
 
 This is a cookbook of examples that demonstrate various Fauna queries, including [Databases](#database), [Keys](#key), [Collections](#collection), [User-defined functions](#udf), and [Indexes](#index).
@@ -252,7 +250,6 @@ adminClient.query(
 }
 ```
 
-
 ## [](#collection)Collections
 
 Reading or writing collections requires a server key.
@@ -260,7 +257,6 @@ Reading or writing collections requires a server key.
 コレクションの読み取りまたは書き込みには、サーバーキーが必要です。
 
 ### [](#collection-create)Create a collection
-
 
 ```javascript
 client.query(
@@ -279,10 +275,7 @@ client.query(
 }
 ```
 
-
-
 ### [](#collection-paginate)Paginate all collections
-
 
 ```javascript
 client.query(
@@ -313,10 +306,7 @@ client.query(
 }
 ```
 
-
-
 ### [](#collection-get)Get a collection
-
 
 ```javascript
 client.query(
@@ -335,9 +325,7 @@ client.query(
 }
 ```
 
-
 ### [](#collection-rename)Rename a collection
-
 
 ```javascript
 client.query(
@@ -358,7 +346,6 @@ client.query(
   name: 'dilapidated_huts'
 }
 ```
-
 
 ### [](#collection-create-document)Create a document in a collection
 
@@ -381,7 +368,6 @@ client.query(
 }
 ```
 
-
 ### [](#collection-delete)Delete a collection
 
 ```javascript
@@ -400,8 +386,6 @@ client.query(
   name: 'dilapidated_huts'
 }
 ```
-
-
 
 ## [](#udf)User-defined functions
 
@@ -456,10 +440,7 @@ client.query(
 }
 ```
 
-
-
 ### [](#udf-paginate)Paginate all functions
-
 
 ```javascript
 client.query(
@@ -480,10 +461,7 @@ client.query(
 }
 ```
 
-
-
 ### [](#udf-get)Get a function
-
 
 ```javascript
 client.query(
@@ -502,9 +480,7 @@ client.query(
 }
 ```
 
-
 ### [](#udf-call)Call a function
-
 
 ```javascript
 client.query(
@@ -525,10 +501,7 @@ client.query(
 }
 ```
 
-
-
 ### [](#udf-update)Update a function
-
 
 ```javascript
 client.query(
@@ -566,7 +539,6 @@ client.query(
 }
 ```
 
-
 ### [](#udf-delete)Delete a function
 
 ```javascript
@@ -586,7 +558,6 @@ client.query(
 }
 ```
 
-
 ## [](#index)Indexes
 
 Creating and updating an index requires a server key.
@@ -598,7 +569,6 @@ Creating and updating an index requires a server key.
 Let’s create an index to list all spells' names:
 
 すべての呪文の名前を一覧表示するインデックスを作成しましょう。
-
 
 ```javascript
 client.query(
@@ -662,17 +632,14 @@ client.query(
 }
 ```
 
-
 Indexes can also cover multiple values, which affect the order of their results. See the [ordering](#index-order-transform) section for more information.
 
 インデックスは、結果の順序に影響を与える複数の値をカバーすることもできます。詳細については、注文のセクションを参照してください。
-
 
 The length of the field values specified for the `terms` or `values` fields must not exceed 32k bytes. The maximum size of an index entry, which is comprised of the `terms` and `values` content (and some overhead to distinguish multiple fields), must not exceed 64k bytes. If an index entry is too large, the query that created/updated the index entry fails.
 
 警告
 termsまたは valuesフィールドに 指定されたフィールド値の長さは、32kバイトを超えてはなりません。termsとvalues コンテンツ（および複数のフィールドを区別するためのオーバーヘッド）で構成されるインデックスエントリの最大サイズは、64kバイトを超えてはなりません。インデックスエントリが大きすぎると、インデックスエントリを作成/更新したクエリは失敗します。
-
 
 Here is an example of an index that allows you to search for a spell by its element and get back both the spell name and [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref):
 
@@ -710,9 +677,7 @@ client.query(
 }
 ```
 
-
 ### [](#index-paginate)Paginate all indexes
-
 
 ```javascript
 client.query(
@@ -750,9 +715,7 @@ client.query(
 }
 ```
 
-
 ### [](#index-get)Get an index
-
 
 ```javascript
 client.query(
@@ -775,8 +738,6 @@ client.query(
   partitions: 1
 }
 ```
-
-
 
 ### [](#index-query)Query an index
 
@@ -803,8 +764,6 @@ client.query(
 }
 ```
 
-
-
 For indexes where the `terms` field was defined, entries are located using the indexed terms.
 
 termsフィールドが定義されたインデックスの場合、エントリはインデックス付きの用語を使用して検索されます。
@@ -826,12 +785,9 @@ client.query(
 { data: [ 'Fire Beak', "Water Dragon's Claw" ] }
 ```
 
-
-
 Indexes return all their values field values. Here we’re searching for all of the spells with element `fire`, using an index that returns both the spell name and its [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref):
 
 インデックスは、すべての値フィールド値を返します。ここではfire、呪文名とその参照の両方を返すインデックスを使用して、要素を持つすべての呪文を検索しています。
-
 
 ```javascript
 client.query(
@@ -857,8 +813,6 @@ client.query(
   ]
 }
 ```
-
-
 
 ### [](#index-order-transform)Indexes with ordering and transformations
 
@@ -907,11 +861,9 @@ client.query(
 }
 ```
 
-
 When querying the index, you can use the `casefold` function to convert the query terms to lowercase. Using `casefold` in a query to an index configured with `casefold` essentially makes a case-insensitive query.
 
 インデックスをクエリするときは、このcasefold関数を使用してクエリ用語を小文字に変換できます。でcasefold構成されたインデックスへのクエリで使用すると、casefold基本的に大文字と小文字を区別しないクエリが作成されます。
-
 
 ```javascript
 client.query(
@@ -942,8 +894,6 @@ client.query(
   ]
 }
 ```
-
-
 
 Since the document’s timestamp was added to the index to facilitate sorting, it might not be required for the query to return timestamp values to the application layer. In that case, it’s possible to use the `map` function to extract only the desired fields.
 
@@ -980,13 +930,11 @@ client.query(
 }
 ```
 
-
 ### [](#update-an-index)Update an index
 
 It is disallowed to update an index in a way that changes its shape. This means no changing the source or the terms. You can, however, change the name of an index or its uniqueness. If you update the `unique` field, it does not remove existing duplicated items from the index.
 
 インデックスの形状を変更する方法でインデックスを更新することは許可されていません。これは、ソースや用語を変更しないことを意味します。ただし、インデックスの名前またはその一意性は変更できます。unique フィールドを更新しても、既存の重複アイテムはインデックスから削除されません。
-
 
 ```javascript
 client.query(
@@ -1012,7 +960,6 @@ client.query(
   partitions: 1
 }
 ```
-
 
 ### [](#index-delete)Delete an index
 

@@ -7,8 +7,6 @@ the [Quick Start with Fauna](https://docs.fauna.com/fauna/current/start/) tutori
 
 このチュートリアルは、Faunaチュートリアルのクイック スタートを完了していることを前提としています 。
 
-
-
 Attribute-based access control (ABAC) is an alternative
 to an all-or-nothing security model,
 and is commonly used in applications to restrict access
@@ -36,8 +34,6 @@ ABACの利点は、
 (たとえば、時刻など)
 に基づいて特権を動的に決定できることです。
 
-
-
 In this tutorial,
 we introduce Fauna’s
 Attribute-Based Access Control (ABAC)
@@ -52,15 +48,9 @@ Faunaの属性ベースのアクセス制御(ABAC)
 機能を紹介します。
 それは彼らに報告します。
 
-
-
 For more information on ABAC,
 see [Attribute-based access control (ABAC)](https://docs.fauna.com/fauna/current/security/abac).
 ABAC の詳細については、「属性ベースのアクセス制御 (ABAC)」を参照してください。
-
-
-
-
 
 1.  **Create a new database**
 新しいデータベースを作成する
@@ -81,8 +71,6 @@ ABAC の詳細については、「属性ベースのアクセス制御 (ABAC)�
     fauna create-key 'abac'
     ```
 
-
-
 データベースの作成
 fauna create-database abac
 
@@ -92,15 +80,11 @@ fauna shell abac
 キーの作成
 fauna create-key abac
 
-
-
 2.  **Connect to the new database using Fauna Shell**
 Fauna Shell を使用して新しいデータベースに接続する
 
     Start a Fauna Shell session:
 Fauna Shell セッションを開始します。
-
-
 
     terminal
 
@@ -114,8 +98,6 @@ Fauna Shell セッションを開始します。
 
 fauna shell abac
 
-
-
 3.  **Create three separate collections (classes)**
 3 つの個別のコレクション (クラス) を作成する
 
@@ -126,10 +108,6 @@ fauna shell abac
     CreateCollection({ name: "salary" })
     CreateCollection({ name: "user_subordinate" })
     ```
-
-
-
-
 
 fauna shell abac
 Starting shell for database abac
@@ -158,8 +136,6 @@ abac> CreateCollection({ name: "user_subordinate" })
 }
 abac>
 
-
-
 subordinate
 【＠】サボーディネイト,
 【変化】《動》subordinates|subordinating|subordinated,
@@ -173,10 +149,6 @@ subordinate
 副次的な,
 《名》部下,
 《他動》～を従属させる
-
-
-
-
 
 The `users` collection is used to store the user details,
 while the `salary` collection is used to collect the salary information.
@@ -192,15 +164,8 @@ salaryコレクションは
 user_subordinateコレクションは、
 経営者とその部下の情報を格納するために使用されます。
 
-
-
-
-
-
 4.  **Create three indexes**
 3 つのインデックスを作成する
-
-
 
 In Fauna,
 indexes are required for pagination or searching.
@@ -214,9 +179,6 @@ Faunaでは、
 コレクションインデックスを作成し、
 特定のインデックスを作成してユーザーを名前で取得します。
 
-
-
-
     shell
 
     ```shell
@@ -225,7 +187,6 @@ Faunaでは、
       source: Collection("users"),
     })
     ```
-
 
 結果
 {
@@ -238,8 +199,6 @@ Faunaでは、
   partitions: 8
 }
 
-
-
     shell
 
     ```shell
@@ -249,8 +208,6 @@ Faunaでは、
       terms: [{ field: ["data", "name"] }],
     })
     ```
-
-
 
 結果
 {
@@ -264,8 +221,6 @@ Faunaでは、
   partitions: 1
 }
 
-
-
     shell
 
     ```shell
@@ -274,8 +229,6 @@ Faunaでは、
       source: Collection("salary"),
     })
     ```
-
-
 
 結果
 {
@@ -288,17 +241,8 @@ Faunaでは、
   partitions: 8
 }
 
-
-
-
-
-
-
-
 5.  **Create user and salary data**
 ユーザーおよび給与データの作成
-
-
 
 Here,
 we create some `users` and `salary` data.
@@ -314,12 +258,8 @@ salaryコレクションは、
 これは、
 このチュートリアルでは単なるパスワードです。
 
-
 Mary はマネージャークラスで自分と、働いている人の給料が見れるようにする。
 Bobは自分しか見ることはできない。
-
-
-
 
     shell
 
@@ -345,10 +285,6 @@ Bobは自分しか見ることはできない。
         }})
     )))
     ```
-
-
-
-
 
 結果
 [
@@ -402,10 +338,6 @@ Bobは自分しか見ることはできない。
   }
 ]
 
-
-
-
-
 6.  **Verify that the data is correct**
 データが正しいことを確認する
 
@@ -414,7 +346,6 @@ let us query the two collections to check out the usernames and salaries.
 データが作成されたので、
 2つのコレクションにクエリを実行して、
 ユーザー名と給与を確認してみましょう。
-
 
     shell
 
@@ -435,8 +366,6 @@ let us query the two collections to check out the usernames and salaries.
     )
     ```
 
-
-
 結果
 {
   data: [
@@ -449,19 +378,10 @@ let us query the two collections to check out the usernames and salaries.
   ]
 }
 
-
-
-
-
-
 The above query should display the users and their salaries (the order of the results can vary):
 上記のクエリは、
 ユーザーとその給与を表示する必要があります
 (結果の順序は異なる場合があります)。
-
-
-
-
 
     ```javascript
     { data:
@@ -473,23 +393,13 @@ The above query should display the users and their salaries (the order of the re
          { user: 'John', salary: 70000 } ] }
     ```
 
-
-
-
-
 7.  **Create manager→user relationship data**
 マネージャー作成→ユーザー関係データ
-
-
 
 Now that the basic data is created,
 we create a similar sample data associating managers and their subordinates
 基本データができたので、
 上司と部下を関連付けた同様のサンプルデータを作成します
-
-
-
-
 
     shell
 
@@ -509,10 +419,6 @@ we create a similar sample data associating managers and their subordinates
       }})
     )))
     ```
-
-
-
-
 
 結果
 [
@@ -542,10 +448,6 @@ we create a similar sample data associating managers and their subordinates
   }
 ]
 
-
-
-
-
 Here,
 we see that Bob and John work for Mary,
 while Peter works for Joe.
@@ -559,11 +461,6 @@ PeterはJoeのために働いています。
 Bobは自分の給与しか見ることができなくなりますが、
 Maryは自分の給与だけでなく、
 BobとJohnの給与も見ることができるはずです。
-
-
-
-
-
 
 8.  **Create an index for the `user_subordinate` collection**
 user_subordinateコレクションのインデックスを作成する
@@ -581,8 +478,6 @@ user_subordinateコレクションのインデックスを作成する
     })
     ```
 
-
-
 結果
 {
   ref: Index("is_subordinate"),
@@ -598,14 +493,8 @@ user_subordinateコレクションのインデックスを作成する
   partitions: 1
 }
 
-
-
-
-
 9.  **Create a role that provides the appropriate privileges**
 適切な権限を提供するロールを作成します
-
-
 
     shell
 
@@ -642,10 +531,6 @@ user_subordinateコレクションのインデックスを作成する
     })
     ```
 
-
-
-
-
 結果
 (node:820) DeprecationWarning: Identity() is deprecated, use CurrentIdentity() instead
 (Use `node --trace-deprecation ...` to show where the warning was created)
@@ -668,10 +553,6 @@ user_subordinateコレクションのインデックスを作成する
   ]
 }
 
-
-
-
-
 This query defines the role that assigns privileges to members of the "users" collection.
 This is the critical part of this tutorial and the query is rather complex,
 so it deserves close inspection.
@@ -681,9 +562,6 @@ so it deserves close inspection.
 これはこのチュートリアルの重要な部分であり、
 クエリはかなり複雑であるため、
 綿密に調査する必要があります。
-
-
-
 
 The role’s `membership` is simple: any document
 in the "users" collection that has been successfully 
@@ -697,21 +575,12 @@ Login関数を使用して正常に認証された
 指定された特権を取得し、
 "認証されたユーザー"と呼ばれます。
 
-
-
-
-
-
     The `privileges` definition says, starting from the top, that:
 privileges定義は、上から順にすることを、こう述べています。
-
-
 
 -   Read access to the "users" collection is granted.
 Authenticated users can access documents describing other users.
 「users」コレクションへの読み取りアクセスが許可されます。認証されたユーザーは、他のユーザーを説明するドキュメントにアクセスできます。
-
-
 
 -   Read access to the "all\_users" index is granted.
 Authenticated users can use the "all\_users" index to list all existing users.
@@ -722,8 +591,6 @@ Authenticated users can use the "all\_users" index to list all existing users.
 インデックスを使用して、
 既存のすべてのユーザーを一覧表示できます。
 
-
-
 -   Read access to the "all\_salaries" index is granted.
 Authenticated users can use the "all\_salaries" index to list all salaried users.
 「all_salaries」
@@ -731,9 +598,6 @@ Authenticated users can use the "all\_salaries" index to list all salaried users
 認証されたユーザーは、
 「all_salaries」
 インデックスを使用してすべての給与ユーザーをリストできます。
-
-
-
 
 -   A predicate [`Lambda`](https://docs.fauna.com/fauna/current/api/fql/functions/lambda) function dynamically determines the read access to the "salary" collection.
 When read access is not granted,
@@ -744,31 +608,21 @@ the salary documents are not readable.
 読み取りアクセスが許可されていない場合、
 給与文書は読み取れません。
 
-
-
-
         The predicate function grants read access when one of the following conditions is met:
 述語関数は、次の条件のいずれかが満たされた場合に読み取りアクセスを許可します。
-
-
 
 1.
 The user reference in the "salary" document matches
 the [`Identity`](https://docs.fauna.com/fauna/current/api/fql/functions/identity) of the authenticated user.
 「給与」ドキュメントのユーザー参照は、 Identity 認証されたユーザーの。
 
-
-
 2.
 The user reference in the "salary" document 
 is a subordinate of the authenticated user.
 「給与」ドキュメントのユーザー参照は、認証されたユーザーの下位です。
 
-
     Here is a detailed description of the predicate function:
 述語関数の詳細な説明は次のとおりです。
-
-
 
 predicate
 【＠】プレディケイト,
@@ -781,8 +635,6 @@ predicate
 意味する,
 叙述する
 
-
-
 Because the privilege defining the predicate function has its `resource` defined as the "salary" collection,
 each time a "salary" document is to be read,
 the predicate function is called with the `salaryRef` parameter,
@@ -794,9 +646,6 @@ which is a reference to the "salary" document being evaluated for access.
 salaryRef評価されている「給与」
 ドキュメントへの参照であるパラメーターを使用して述語関数が呼び出されます。
 アクセス用。
-
-
-
 
 The function first calls [`Let`](https://docs.fauna.com/fauna/current/api/fql/functions/let) to define variables that can be used later on.
 The `salary` variable is defined with the associated "salary" document,
@@ -811,10 +660,6 @@ salary変数を呼び出すことによって取得関連した「給与」
 と定義されているGetとsalaryRef。
 userRef変数を呼び出すことによって取得される関連する「ユーザ」
 文書を参照して定義されているSelectの値にsalary変数。
-
-
-
-
 
 Then,
 the predicate function implicitly returns the value of calling the [`Or`](https://docs.fauna.com/fauna/current/api/fql/functions/or) function,
@@ -835,10 +680,6 @@ userRefおよびIdentity「is_subordinate」
 そうでない場合falseは(読み取りアクセスを拒否する)
 が返されます。
 
-
-
-
-
 Finally,
 if the predicate function fails for any reason,
 read access is not granted.
@@ -846,15 +687,8 @@ read access is not granted.
 何らかの理由で述語関数が失敗した場合、
 読み取りアクセスは許可されません。
 
-
-
-
-
-
 10.  **Verify salary access for a user**
 ユーザーの給与へのアクセスを確認する
-
-
 
 Now we can log in to the database as Bob and run the salary listing query.
 First we have to create a token for Bob:
@@ -864,15 +698,11 @@ Bobとしてデータベースにログインし、
 まず、
 Bobのトークンを作成する必要があります。
 
-
-
     shell
 
     ```shell
     Login(Match(Index("user_by_name"), "Bob"), { password: "123" })
     ```
-
-
 
 結果
 
@@ -882,8 +712,6 @@ Bobのトークンを作成する必要があります。
   instance: Ref(Collection("users"), "300592452250636810"),
   secret: 'fnEEK-vyT6ACCAQr6p_yYAYIgMlQxQrs-Yw1XubDChdkqXTnXnk'      
 }
-
-
 
     The output should look similar to:
 出力は次のようになります。
@@ -907,9 +735,6 @@ and be sure to copy the value of the `secret` field as the value of the `--secre
 新しいFaunaShellセッションを開始し、
 secretフィールドの値を--secret次のコマンドの引数の値としてコピーしてください。
 
-
-
-
     terminal
 
     ```bash
@@ -923,10 +748,7 @@ secretフィールドの値を--secret次のコマンドの引数の値として
 キーを書き換えた
 fauna shell --secret="fnEEK-vyT6ACCAQr6p_yYAYIgMlQxQrs-Yw1XubDChdkqXTnXnk"
 
-
 新しいターミナルで実行する
-
-
 
     Then run this query:
 次に、このクエリを実行します。
@@ -946,14 +768,8 @@ fauna shell --secret="fnEEK-vyT6ACCAQr6p_yYAYIgMlQxQrs-Yw1XubDChdkqXTnXnk"
     ))
     ```
 
-
-
 実行結果
 { data: [ { user: 'Bob', salary: 95000 } ] }
-
-
-
-
 
     You should see the following output:
 次の出力が表示されます。
@@ -965,17 +781,11 @@ fauna shell --secret="fnEEK-vyT6ACCAQr6p_yYAYIgMlQxQrs-Yw1XubDChdkqXTnXnk"
     So, we can see that Bob can only query his own salary.
 したがって、ボブは自分の給与しかクエリできないことがわかります。
 
-
-
 11.  **Verify salary access for a manager**
 マネージャーの給与へのアクセスを確認する
 
-
-
     In the original Fauna Shell session, create a login token for Mary:
 元の Fauna Shell セッションで、Mary のログイン トークンを作成します。
-
-
 
     shell
 
@@ -983,13 +793,10 @@ fauna shell --secret="fnEEK-vyT6ACCAQr6p_yYAYIgMlQxQrs-Yw1XubDChdkqXTnXnk"
     Login(Match(Index("user_by_name"), "Mary"), { password: "123" })
     ```
 
-
 ※
 abac>    Login(Match(Index("user_by_name"), "Mary"), { password: "123" })
 で実行すること。
 これは何かというとabacでログインしたターミナルに戻るということ。
-
-
 
 結果
 {
@@ -1000,7 +807,6 @@ abac>    Login(Match(Index("user_by_name"), "Mary"), { password: "123" })
 }
 
 これでトークンが作成できた。
-
 
     You should see output similar to the following:
 次のような出力が表示されます。
@@ -1015,8 +821,6 @@ abac>    Login(Match(Index("user_by_name"), "Mary"), { password: "123" })
     In a new terminal, start a new Fauna Shell session, and be sure to copy the value of the `secret` field as the value of the `--secret` argument in the following command:
 新しいターミナルで、新しい Fauna Shell セッションを開始し、secretフィールドの値を--secret 次のコマンドの引数の値としてコピーしてください。
 
-
-
     terminal
 
     ```bash
@@ -1027,7 +831,6 @@ abac>    Login(Match(Index("user_by_name"), "Mary"), { password: "123" })
 
     ```
 
-
 fauna shell --secret=fnEEK-xkoMACCQQr6p_yYAYIyEGxhhSo5k5uLgtvm3jn5Fyji7U
 
 実行結果
@@ -1036,14 +839,8 @@ Connected to https://db.fauna.com
 Type Ctrl+D or .exit to exit the shell
 >
 
-
-
-
-
     Then run the salary lookup query:
 次に、給与検索クエリを実行します。
-
-
 
     shell
 
@@ -1061,8 +858,6 @@ Type Ctrl+D or .exit to exit the shell
     ))
     ```
 
-
-
 実行結果
 {
   data: [
@@ -1071,8 +866,6 @@ Type Ctrl+D or .exit to exit the shell
     { user: 'Bob', salary: 95000 }   
   ]
 }
-
-
 
     You should see the following output (the order may vary):
 次の出力が表示されます (順序は異なる場合があります)。
@@ -1087,13 +880,8 @@ Type Ctrl+D or .exit to exit the shell
     Mary can see the salaries for herself, Bob, and John.
 Mary は、自分、Bob、および John の給与を確認できます。
 
-
-
-
-
 ## [](#next-steps)Next steps
 次のステップ
-
 
 -   [Attribute-based access control (ABAC)](https://docs.fauna.com/fauna/current/security/abac)
 属性ベースのアクセス制御 (ABAC)
@@ -1101,16 +889,5 @@ Mary は、自分、Bob、および John の給与を確認できます。
 -   [Fauna security overview](https://docs.fauna.com/fauna/current/security/)
 動物相のセキュリティの概要
 
-
-
-
 Was this article helpful?
-
-
-
-
-
-
-
-
 

@@ -9,7 +9,6 @@ Directives are extensions to standard GraphQL syntax that can enhance GraphQL qu
 
 ディレクティブは標準の拡張です GraphQL 強化できる構文 GraphQLクエリ。すべてのディレクティブ名の前には「アットマーク」（@）が付いています。このセクションでは、動物相によって提供される指令について説明しますGraphQL API。
 
-
 [`@collection`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_collection)
 Specifies the name of the underlying collection for this type.
 
@@ -27,7 +26,6 @@ Specifies a user-defined function for resolving this field.
 
 [`@unique`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_unique)
 Specifies the name of an index to enforce a uniqueness constraint.
-
 
 @collection	
 このタイプの基になるコレクションの名前を指定します。
@@ -47,7 +45,6 @@ Specifies the name of an index to enforce a uniqueness constraint.
 @unique	
 一意性制約を適用するためのインデックスの名前を指定します。
 
-
 ## [](#next-steps)Next steps
 
 -   [Endpoints](https://docs.fauna.com/fauna/current/api/graphql/endpoints)
@@ -55,5 +52,4 @@ Specifies the name of an index to enforce a uniqueness constraint.
 -   [Relations](https://docs.fauna.com/fauna/current/api/graphql/relations)
     
 -   [User-defined functions](https://docs.fauna.com/fauna/current/api/graphql/functions)
-
 

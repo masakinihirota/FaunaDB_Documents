@@ -4,8 +4,6 @@ This tutorial assumes that you have completed
 the [Quick Start with Fauna](https://docs.fauna.com/fauna/current/start/) tutorial.
 このチュートリアルは、Faunaチュートリアルのクイック スタートを完了していることを前提としています 。
 
-
-
 Fauna offers built-in identity,
 authentication,
 and password management.
@@ -20,8 +18,6 @@ Faunaは、
 ユーザーIDを作成し、
 認証し、
 セッションを管理する方法について説明します。
-
-
 
 This tutorial is divided into several sections:
 このチュートリアルは、いくつかのセクションに分かれています。
@@ -50,8 +46,6 @@ It includes:
 ユーザーの認証を準備するために必要なすべての準備作業について説明します。
 以下が含まれます:
 
-
-
 - [Create a database](#setup-database)
 - [Create a server key](#setup-server-key)
 - [Create a client key](#setup-client-key)
@@ -63,7 +57,6 @@ It includes:
 クライアント キーを作成する
 ユーザー ドキュメントを格納するコレクションを作成する
 ユーザー向けの公開インデックスを作成する
-
 
 ### [](#setup-database)Create a database
 
@@ -101,8 +94,6 @@ CreateDatabase({ name: "app1"})
 作ってしまうと混乱の元なので
 名前をしっかり決める必要がある。
 
-
-
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
 
@@ -130,7 +121,6 @@ and run it:
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
 
-
 shell
 
 ```shell
@@ -141,7 +131,6 @@ CreateKey({
 })
 ```
 
-
 作成されたもの
 {
   ref: Ref(Keys(), "300547004926263821"),
@@ -151,9 +140,6 @@ CreateKey({
   secret: 'fnAEK8HomvACDTx7E038c6MsMv7Tx9Amvz827cX4',
   hashed_secret: '$2a$05$hysnc6UkfLqPHtJKTCfTFu.ajPRIcZfax3ltW7qBc32hBA22RxFAC'
 }
-
-
-
 
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
@@ -190,11 +176,6 @@ secretフィールドの値を必ずコピーしてください。
 紛失した場合は、
 新しいキーを生成する必要があります。
 
-
-
-
-
-
 ### [](#setup-client-key)Create a client key
 クライアント キーを作成する
 通常はブラウザがアクセスするためのキー
@@ -217,8 +198,6 @@ and run it:
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
 
-
-
 shell
 
 ```shell
@@ -228,7 +207,6 @@ CreateKey({
   role: "client",
 })
 ```
-
 
 作成されたもの
 
@@ -240,10 +218,6 @@ CreateKey({
   secret: 'fnAEK8INulACCsHxEm6c4WBXOD9uyzeApY9FZWia',
   hashed_secret: '$2a$05$tCQjiunxGUZ1dYmXc3gfMup1y3f64PQ5tU67Bn3JWEZYCWwxTWZ3.'
 }
-
-
-
-
 
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
@@ -280,8 +254,6 @@ secretフィールドの値を必ずコピーしてください。
 紛失した場合は、
 新しいキーを生成する必要があります。	
 
-
-
 ### [](#create-user-collection)Create a collection to store user documents
 ユーザー ドキュメントを格納するコレクションを作成する
 
@@ -291,14 +263,12 @@ now we can create a collection where we can store user documents.
 アプリ固有のデータベースとそれにアクセスするためのキーができたので、
 ユーザードキュメントを保存できるコレクションを作成できます。
 
-
 Let’s use our server key to access the new database.
 First,
 type `.exit` into the Shell and press Return.
 サーバーキーを使用して新しいデータベースにアクセスしましょう。
 まず、
 .exitシェルに入力してを押しReturnます。
-
 
 Then start the shell using the secret for the server key:
 次に、サーバー キーのシークレットを使用してシェルを起動します。
@@ -312,14 +282,10 @@ fauna shell --secret=fnADfSwPQoACAFAfWX9f6NFrBumWqIMsL8Qkt3wY
 シェル起動
 fauna shell --secret=fnAEK8HomvACDTx7E038c6MsMv7Tx9Amvz827cX4
 
-
-
 重要
 Be sure to replace `fnADfSwPQoACAFAfWX9f6NFrBumWqIMsL8Qkt3wY` with the `secret` that you acquired for the server key.
 
 書き換えてください
-
-
 
 Now,
 let’s create the collection to store users.
@@ -330,7 +296,6 @@ and run it:
 ユーザーを格納するコレクションを作成しましょう。
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
-
 
 shell
 
@@ -345,10 +310,6 @@ CreateCollection({ name: "users" })
   history_days: 30,
   name: 'users'
 }
-
-
-
-
 
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
@@ -382,9 +343,6 @@ and run it:
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
 
-
-
-
 shell
 
 ```shell
@@ -411,10 +369,6 @@ CreateIndex({
   partitions: 1
 }
 
-
-
-
-
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
 
@@ -436,14 +390,8 @@ shell
 At this point, the setup is complete!
 これで設定は完了です！
 
-
-
-
-
 ## [](#create)Create users
 ユーザーを作成する
-
-
 
 When a new user signs up,
 we can create a new user document that contains their email address and password.
@@ -456,10 +404,6 @@ Fauna does not store credentials in plain text.
 ユーザーのパスワードのBCryptハッシュが保存されます。
 Faunaは資格情報をプレーンテキストで保存しません。
 
-
-
-
-
 Let’s create our first user.
 Copy the following query,
 paste it into the Shell,
@@ -467,11 +411,6 @@ and run it:
 最初のユーザーを作成しましょう。
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
-
-
-
-
-
 
 shell
 
@@ -487,7 +426,6 @@ Create(
 )
 ```
 
-
 結果
 
 {
@@ -495,10 +433,6 @@ Create(
   ts: 1622887209935000,
   data: { email: 'alice@site.example' }
 }
-
-
-
-
 
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
@@ -510,10 +444,6 @@ shell
   ts: 1576019864330000,
   data: { email: 'alice@site.example' } }
 ```
-
-
-
-
 
 ## [](#login)User login
 ユーザーログイン
@@ -529,9 +459,6 @@ provide them with a token that they can use to access resources.
 Login関数を使用してアクセスを認証し、
 有効な場合は、
 リソースへのアクセスに使用できるトークンを提供します。
-
-
-
 
 A token only provides access according 
 to the privileges granted by
@@ -549,9 +476,6 @@ database-level access.
 より粗いデータベースレベルのアクセスを
 提供するために使用されるキーとは異なります。
 
-
-
-
 The following query calls `Login` on the result of looking up the user via the `users_by_email` index,
 with the password that they provided.
 Copy the query,
@@ -562,9 +486,6 @@ and run it:
 インデックスを介してユーザーを検索した結果を呼び出します。
 クエリをコピーしてシェルに貼り付け、
 実行します。
-
-
-
 
 shell
 
@@ -582,10 +503,6 @@ Login(
   instance: Ref(Collection("users"), "300551619029762568"),
   secret: 'fnEEK8bAd9ACCgQrweId8AYJCoMQ5WvH-FHg2RfPVdB387X7jB4'      
 }
-
-
-
-
 
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
@@ -617,11 +534,6 @@ secretフィールドの値を必ずコピーしてください。
 紛失した場合は、
 新しいトークンを生成する必要があります。
 
-
-
-
-
-
 If the user cannot be found,
 or if their credentials are invalid,
 an error would be returned:
@@ -635,7 +547,6 @@ Login(
   { password: "secret password" },
 )
 ```
-
 
 結果
 Error: authentication failed
@@ -651,10 +562,6 @@ Error: authentication failed
 ↑
 ログインを失敗している。
 
-
-
-
-
 shell
 
 ```shell
@@ -663,10 +570,6 @@ shell
     description:
      'The document was not found or provided password was incorrect.' } ]
 ```
-
-
-
-
 
 The token provided for a successful login is all that is required to perform authenticated queries;
 it represents both the identity and authorization for the user.
@@ -678,17 +581,11 @@ The token can now be used in any subsequent queries for resources.
 トークンは、
 リソースに対する後続のクエリで使用できるようになりました。
 
-
-
-
 Your app should use the value in the `secret` field to create another client instance,
 which should be used to perform queries as that user.
 アプリはsecretフィールドの値を使用して、
 そのユーザーとしてクエリを実行するために
 使用する必要がある別のクライアントインスタンスを作成する必要があります。
-
-
-
 
 If your application is using HTTP requests to interact with Fauna,
 you can use the token as a username+password via the `Basic-Auth` header,
@@ -702,24 +599,17 @@ HTTPリクエストを使用しているBasic-Auth場合、
 たとえば、
 次を使用できますcurl。
 
-
-
-
 terminal
 
 ```bash
 curl https://db.fauna.com/tokens/self -u fnEDfS4T34ACAAN9IwrU8aQA5SxTgyqYaUfiAqLqzQjQH9Qcr94:
 ```
 
-
-
 curl https://db.fauna.com/tokens/self -u fnEEK8bAd9ACCgQrweId8AYJCoMQ5WvH-FHg2RfPVdB387X7jB4:
 
 最後にコロンが必要
 最後にコロンが必要
 最後にコロンが必要
-
-
 
 結果
 06-05 19:55:17> curl https://db.fauna.com/tokens/self -u fnEEK8bAd9ACCgQrweId8AYJCoMQ5WvH-FHg2RfPVdB387X7jB4:
@@ -747,10 +637,6 @@ curl https://db.fauna.com/tokens/self -u fnEEK8bAd9ACCgQrweId8AYJCoMQ5WvH-FHg2Rf
   }
 }
 
-
-
-
-
 注意
 HTTP Basic Auth wants credentials in the form "username:password".
 Since we’re using a secret that represents both,
@@ -762,8 +648,6 @@ HTTP基本認証では、
 両方を表すシークレットを使用しているため、
 シークレット:の最後にコロン()
 を追加するだけです。
-
-
 
 Running that command should show output similar to:
 そのコマンドを実行すると、次のような出力が表示されます。
@@ -828,21 +712,13 @@ so that you can intermingle queries using different tokens easily.
 基になるHTTP接続が共有されるセッションクライアントを作成できるため、
 さまざまなトークンを使用してクエリを簡単に混在させることができます。
 
-
-
-
 Multiple tokens can be created per user,
 which allows a user to log in from multiple sources.
 ユーザーごとに複数のトークンを作成できるため、
 ユーザーは複数のソースからログインできます。
 
-
-
-
 ## [](#logout)User logout
 ユーザーログアウト
-
-
 
 When you call
 [`Logout`](https://docs.fauna.com/fauna/current/api/fql/functions/logout),
@@ -850,8 +726,6 @@ the token associated with the current session is invalidated,
 effectively logging out the user.
 A new token would need to be created for any future access.
 を呼び出すLogoutと、現在のセッションに関連付けられているトークンが無効になり、ユーザーが実質的にログアウトされます。今後のアクセスには、新しいトークンを作成する必要があります。
-
-
 
 `Logout` takes a single parameter `all_tokens`.
 When `all_tokens` is `true`,
@@ -869,10 +743,6 @@ Logout単一のパラメータを取りますall_tokens。
 唯一の現在のトークンは無効化されます。
 他のアクティブなトークンは引き続き有効です。
 
-
-
-
-
 You should only call `Logout` when connecting
 to Fauna with a token received from calling `Login`.
 In your client application code,
@@ -881,9 +751,6 @@ that query would look similar to this JavaScript code:
 Faunaに接続する場合にのみ呼び出す必要がありますLogin。
 クライアントアプリケーションコードでは、
 そのクエリは次のJavaScriptコードのようになります。
-
-
-
 
 ```javascript
 client.query(q.Logout(true));
@@ -895,10 +762,6 @@ and `false` indicates that log out failed.
 このクエリを実行すると、
 の応答はtrueログアウトが成功したfalseことを示し、
 ログアウトに失敗したことを示します。
-
-
-
-
 
 ## [](#change_password)Change a user’s password
 ユーザーのパスワードを変更する
@@ -912,10 +775,6 @@ functions with a new password in the `credentials` field.
 フィールドに新しいパスワードを指定してUpdateまたは
 Replace関数を呼び出しcredentialsます。
 
-
-
-
-
 When a password is updated,
 **any existing tokens remain valid**.
 If required,
@@ -925,10 +784,6 @@ invalidate any previous session by calling `Logout` as [described above](#logout
 必要に応じて、
 上記のように呼び出しLogoutて、
 以前のセッションを無効にします。
-
-
-
-
 
 Let’s change our user’s password.
 We are using the user ref,
@@ -941,11 +796,6 @@ and run it:
 ユーザーリファレンスを使用しています。
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
-
-
-
-
-
 
 shell
 
@@ -965,31 +815,12 @@ Update(
   }
 )
 
-
 結果
 ... {
   ref: Ref(Collection("users"), "300551619029762568"),
   ts: 1622890971540000,
   data: { email: 'alice@site.example' }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 注意
 You need to use the ref for the user that you created.
@@ -1000,15 +831,8 @@ from the value received from your query.
 ここに表示される参照の数値部分は、
 クエリから受け取った値とは異なります。
 
-
-
-
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
-
-
-
-
 
 shell
 
@@ -1017,11 +841,6 @@ shell
   ts: 1576023407790000,
   data: { email: 'alice@site.example' } }
 ```
-
-
-
-
-
 
 Let’s see if the original token still works:
 
@@ -1032,22 +851,10 @@ curl https://db.fauna.com/tokens/self \
   -u fnEDfS4T34ACAAN9IwrU8aQA5SxTgyqYaUfiAqLqzQjQH9Qcr94:
 ```
 
-
-
-
 curl https://db.fauna.com/tokens/self -u fnEEK8bAd9ACCgQrweId8AYJCoMQ5WvH-FHg2RfPVdB387X7jB4:
-
-
-
-
-
 
 And it does:
 そして、それはします：
-
-
-
-
 
 shell
 
@@ -1085,11 +892,6 @@ and run it:
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
 
-
-
-
-
-
 shell
 
 ```shell
@@ -1099,8 +901,6 @@ Login(
 )
 ```
 
-
-
 結果
 {
   ref: Ref(Tokens(), "300555855793750538"),
@@ -1109,14 +909,8 @@ Login(
   secret: 'fnEEK8n1W8ACCgQrweId8AYJtAdNb-KBLgOB4O8n1PvcXUEEEiU'      
 }
 
-
-
-
-
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
-
-
 
 shell
 
@@ -1145,9 +939,6 @@ secretフィールドの値を必ずコピーしてください。
 紛失した場合は、
 新しいトークンを生成する必要があります。
 
-
-
-
 Let’s verify that the new token works:
 
 terminal
@@ -1156,17 +947,10 @@ terminal
 curl https://db.fauna.com/tokens/self -u fnEDfTF20UACaan9IwQU8AIQiYcTZyxXaK9j91QCnhXc27TXoPQ:
 ```
 
-
 curl https://db.fauna.com/tokens/self -u fnEEK8n1W8ACCgQrweId8AYJtAdNb-KBLgOB4O8n1PvcXUEEEiU:
-
-
-
-
 
 And it does:
 そして、それはします：
-
-
 
 shell
 
@@ -1199,16 +983,11 @@ shell
 ## [](#check)Check credentials
 資格情報を確認する
 
-
-
 You can verify whether a user’s credentials are valid,
 without creating a token,
 by calling the [`Identify`](https://docs.fauna.com/fauna/current/api/fql/functions/identify) function.
 Identify関数を呼び出すことで、
 トークンを作成せずにユーザーの資格情報が有効かどうかを確認できます。
-
-
-
 
 Let’s test whether the old and new credentials for our user are valid.
 Copy the following query,
@@ -1217,11 +996,6 @@ and run it:
 ユーザーの古い資格情報と新しい資格情報が有効かどうかをテストしましょう。
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
-
-
-
-
-
 
 shell
 
@@ -1252,9 +1026,6 @@ shell
 結果
 [ false, true ]
 
-
-
-
 When you run this query, the result should be:
 このクエリを実行すると、結果は次のようになります。
 
@@ -1264,10 +1035,6 @@ shell
 [ false, true ]
 ```
 
-
-
-
-
 ## [](#delegation)Third-party delegation
 サードパーティの委任
 
@@ -1276,9 +1043,6 @@ where a third party uses our APIs to provide services to our users.
 サードパーティの委任は、
 サードパーティがAPIを使用してユーザーにサービスを提供するシナリオです。
 
-
-
-
 Using the authentication features of Fauna,
 we can provide unique tokens for each third-party client that allow the third party to access resources on behalf of our users,
 while providing a way for the user to revoke the third-party client’s access.
@@ -1286,9 +1050,6 @@ Faunaの認証機能を使用して、
 サードパーティクライアントごとに固有のトークンを提供し、
 サードパーティがユーザーに代わってリソースにアクセスできるようにすると同時に、
 ユーザーがサードパーティクライアントのアクセスを取り消す方法を提供できます。
-
-
-
 
 First,
 we create an index that allows us to list all of a user’s tokens.
@@ -1306,8 +1067,6 @@ Login余分なフィールドを追加することで、
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
 
-
-
 shell
 
 ```shell
@@ -1319,8 +1078,6 @@ CreateIndex({
   values: [{field: ["data", "name"]}]
 })
 ```
-
-
 
 実行結果
 {
@@ -1335,8 +1092,6 @@ CreateIndex({
   values: [ { field: [ 'data', 'name' ] } ],
   partitions: 1
 }
-
-
 
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
@@ -1368,7 +1123,6 @@ and run it:
 次のクエリをコピーしてシェルに貼り付け、
 実行します。
 
-
 shell
 
 ```shell
@@ -1390,8 +1144,6 @@ Map(
   )
 )
 ```
-
-
 
 実行結果
 
@@ -1418,10 +1170,6 @@ Map(
     secret: 'fnEEK-lWR4AGDQQrweId8AYJu9bIfJ2PTqcRJcsF68P56RWlPS4'    
   }
 ]
-
-
-
-
 
 When you run this query, the result should be similar to:
 このクエリを実行すると、結果は次のようになります。
@@ -1458,9 +1206,6 @@ The following code is written in JavaScript:
 作成したインデックスをクエリすることにより、
 現在ログインしているユーザーのすべてのトークンを一覧表示できます。
 次のコードはJavaScriptで記述されています。
-
-
-
 
 ```javascript
 client.query(
