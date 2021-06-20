@@ -1,3 +1,528 @@
+Vercel integration | Fauna Documentation
+https://docs.fauna.com/fauna/current/integrations/vercel
+
+# Vercel integration
+
+Vercelインテグレーション
+
+
+
+
+
+
+
+The Fauna integration for Vercel makes it easy to use Fauna as the database for your Vercel sites and serverless functions.
+
+
+
+Vercel 用 Fauna インテグレーションは、Vercel サイトやサーバーレス機能のデータベースとして Fauna を簡単に使用できるようにします。
+
+
+
+
+
+
+
+When you add the integration to your Vercel projects, the integration guides you through the process of connecting your project to a specific Fauna database. Once that is complete, your project can access your Fauna database using FQL or GraphQL to create, retrieve, update, and delete documents.
+
+
+
+このインテグレーションを Vercel プロジェクトに追加すると、プロジェクトを特定の Fauna データベースに接続するプロセスが案内されます。接続が完了すると、プロジェクトは FQL や GraphQL を使って Fauna データベースにアクセスし、ドキュメントの作成、取得、更新、削除を行うことができます。
+
+
+
+
+
+## [](#how-to-add-fauna-to-your-vercel-projects)How to add Fauna to your Vercel projects
+
+VercelプロジェクトにFaunaを追加する方法
+
+
+
+
+
+
+
+It only take a few minutes to get setup:
+
+
+
+
+セットアップには数分しかかかりません。
+
+
+
+
+
+
+1.  **Sign in to your Fauna account**
+
+**Fauna アカウントにサインインしてください。
+
+
+
+
+
+
+
+
+    Visit: [https://dashboard.fauna.com/](https://dashboard.fauna.com/)
+
+
+
+訪問します。
+
+
+    If you do not already have a Fauna account, sign up. It’s free!
+
+
+
+
+    まだFaunaアカウントをお持ちでない方は、ぜひご登録ください。無料でご利用いただけます。
+
+
+
+
+
+
+
+2.  **Sign in to your Vercel account**
+
+**Vercelアカウントにサインインしてください**。
+
+
+
+
+
+
+    Visit: [https://vercel.com/](https://vercel.com/)
+
+
+   訪問してください。[https://vercel.com/](https://vercel.com/)
+
+
+
+
+
+
+
+    If you do not already have a Vercel account, sign up. It’s free!
+
+
+
+    まだVercelアカウントをお持ちでない方は、サインアップしてください。無料でご利用いただけます。
+
+
+
+
+
+
+
+3.  **Create a Vercel project**
+
+**Vercelプロジェクトの作成**。
+
+
+
+
+
+
+
+    Skip this step if you already have a project started that should use Fauna.
+
+
+
+
+    すでにFaunaを使用するプロジェクトを開始している場合は、このステップをスキップしてください。
+
+
+
+
+
+
+
+    Use one of the template applications, or start from scratch.
+
+
+
+    テンプレートアプリケーションのいずれかを使用するか、最初から作成してください。
+
+
+
+
+
+
+
+4.  **Visit the Fauna integration page**
+
+
+**Fauna 統合ページを見る**。
+
+
+
+
+
+
+    Visit: [https://vercel.com/integrations/fauna](https://vercel.com/integrations/fauna)
+
+
+
+
+    訪問する。[https://vercel.com/integrations/fauna](https://vercel.com/integrations/fauna)
+
+
+
+
+
+
+    You can also find the Fauna integration by searching the Integration Marketplace:  
+    [https://vercel.com/integrations?category=databases](https://vercel.com/integrations?category=databases)  
+    Then click on the `Fauna` integration.
+
+
+
+
+
+
+
+    また、Integration Marketplace(統合マーケットプレイス)を検索して、Fauna 統合を見つけることもできます。 
+    [https://vercel.com/integrations?category=databases](https://vercel.com/integrations?category=databases)  
+    次に、`Fauna`インテグレーションをクリックします。
+
+
+
+5.  **Add the Fauna integration to your project**
+
+**Fauna 統合をプロジェクトに追加します**。
+
+
+
+
+
+
+
+    1.  Click the **Add** button.
+
+
+**Add** ボタンをクリックします。
+
+
+
+
+
+
+
+        The **Install Fauna** dialog appears:
+
+
+
+
+        **Install Fauna** ダイアログが表示されます。
+
+
+
+
+
+
+        ![The Install Fauna dialog on the Vercel site](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-add_fauna.png)
+
+
+
+        ![Vercel サイトの Install Fauna ダイアログ](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-add_fauna.png)
+
+
+
+
+
+
+    2.  Click the **Select a Vercel Scope** dropdown, and select the scope to use. The lists shows all of your project scopes.
+
+
+
+  **Select a Vercel Scope** ドロップダウンをクリックし、使用するスコープを選択します。リストにはプロジェクトの全スコープが表示されます。
+
+
+
+
+
+
+
+    3.  Click the **Continue** button.
+
+
+**Continue**ボタンをクリックします。
+
+
+
+
+
+
+        The dialog updates to show the selected scope, and to ask you to choose which project(s) should include the Fauna integration. You can choose **All Projects** or **Specific Projects** by clicking on the respective radio buttons.
+
+
+
+        ダイアログが更新され、選択したスコープが表示されます。また、Fauna の統合を行うプロジェクトを選択するよう求められます。すべてのプロジェクト**または**特定のプロジェクト**を選択するには、それぞれのラジオボタンをクリックします。
+
+
+
+
+
+        ![The Install Fauna dialog with project selection, on the Vercel site](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-add_fauna-choose_projects.png)
+
+
+
+
+        ![プロジェクトを選択したInstall Faunaダイアログ(Vercelサイト)](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-add_fauna-choose_projects.png)
+
+
+
+
+
+
+
+
+        If you choose **Specific Projects**, a new dropdown field appears. You can search for matching projects by typing into the dropdown’s field. When you click a project, it is added to a list that appears below the dropdown:
+
+
+
+        **特定のプロジェクト**を選択した場合、新しいドロップダウンフィールドが表示されます。ドロップダウンのフィールドに入力することで、一致するプロジェクトを検索することができます。プロジェクトをクリックすると、ドロップダウンの下に表示されるリストにプロジェクトが追加されます。
+
+
+
+
+
+
+
+        ![The Install Fauna dialog with a project selected, on the Vercel site](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-add_fauna-project_selected.png)
+
+
+
+
+
+        プロジェクトを選択した状態のInstall Faunaダイアログ（Vercelサイト）](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-add_fauna-project_selected.png)
+
+
+
+
+
+        You can add additional projects that should use the Fauna integration by clicking the dropdown and searching and selecting additional project names. You can click the **X** button beside a project to remove it from the list.
+
+
+
+        ドロップダウンをクリックして、プロジェクト名を検索して選択すると、Fauna インテグレーションを使用するプロジェクトを追加することができます。プロジェクトの横にある**X**ボタンをクリックすると、リストから削除することができます。
+
+
+
+
+
+
+
+    4.  Once your project selection is complete, click the **Install** button. A popup window appears:
+
+
+
+
+    4.  プロジェクトの選択が完了したら、**Install**ボタンをクリックします。ポップアップ画面が表示されます。
+
+
+
+
+
+
+        -   If you are not logged in, the Fauna login screen appears. Log in.
+
+
+
+
+
+        - ログインしていない場合は、Faunaのログイン画面が表示されます。ログインします。
+
+
+
+
+
+
+        -   When you are logged in to Fauna, the **Install Vercel/Fauna Connector** screen appears:
+
+
+
+
+
+        - Fauna にログインすると、**Install Vercel/Sauna Connector** 画面が表示されます。
+
+
+
+
+
+
+
+            ![The Install Vercel/Fauna Connector screen](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-install_connector.png)
+
+
+
+
+
+            ![Install Vercel/Fauna Connector 画面](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-install_connector.png)
+
+
+
+
+
+
+            Each project that you have selected appears on this screen asking for permission to access a specific database.
+
+
+
+
+
+            選択した各プロジェクトがこの画面に表示され、特定のデータベースへのアクセス許可を求められます。
+
+
+
+
+
+
+
+    5.  Use the dropdown beside your Vercel project name to choose which database should be connected to your Vercel project, or select **Create a New Database** which creates a new database named after your Vercel project.
+
+Vercelプロジェクト名の横にあるドロップダウンを使用して、お客様のVercelプロジェクトに接続するデータベースを選択するか、または**Create a New Database**を選択して、お客様のVercelプロジェクトにちなんだ新しいデータベースを作成します。
+
+
+
+
+
+
+
+    6.  Click the **Install** button. It takes a few moments for the Fauna integration to complete its configuration, and then the popup window closes. The integration configuration screen appears:
+
+**Install**ボタンをクリックします。Fauna インテグレーションの設定が完了し、ポップアップウィンドウが閉じます。統合設定画面が表示されます。
+
+
+
+
+
+
+
+
+        ![The Integration configuration screen, on the Vercel site](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-integration_configuration.png)
+
+
+
+
+        ![統合設定画面（Vercel サイト上）](https://docs.fauna.com/fauna/current/integrations/vercel_images/screen-vercel-integration_configuration.png)
+
+
+
+
+
+
+        You can rename the configuration, manage its access, or remove the configuration from here.
+
+
+
+
+        ここから、設定の名前変更、アクセス管理、設定の削除ができます。
+
+
+
+
+
+
+
+    7.  To confirm that the configuration has been installed, click the **Projects** button at the top of the page, click the name of one of the projects that you authorized, click the **Settings** button at the top of the page, then click the **Environment Variables** button in the left sidebar. When you scroll to the bottom, you should find an environment variable entry labeled `FAUNA_ADMIN_KEY`. This is the secret for an admin key that can access the database associated with your project.
+
+
+設定がインストールされたことを確認するために、ページ上部の**プロジェクト**ボタンをクリックし、認証したプロジェクトの名前をクリックし、ページ上部の**設定**ボタンをクリックし、左サイドバーの**環境変数**ボタンをクリックします。一番下までスクロールすると，「FAUNA_ADMIN_KEY」と書かれた環境変数の項目があります。これは、プロジェクトに関連するデータベースにアクセスするための管理者キーの秘密です。
+
+
+
+
+
+
+
+
+
+
+
+
+## [](#thats-it)That’s it!
+
+以上で設定は完了です。
+
+
+
+
+
+
+
+You’re all done setting up the Fauna integration for Vercel!
+
+
+
+
+VercelでのFaunaインテグレーションの設定が完了しました!
+
+
+
+
+
+
+The next step is to build your web application or microservice and include FQL queries using the [JavaScript driver](https://docs.fauna.com/fauna/current/drivers/javascript).
+
+
+
+次のステップは、ウェブアプリケーションまたはマイクロサービスを構築し、[JavaScript ドライバ](https://docs.fauna.com/fauna/current/drivers/javascript)を使用して FQL クエリを組み込むことです。
+
+
+
+
+
+
+
+See [the Vercel documentation](https://vercel.com/docs) for help there. Check out the rest of the Fauna documentation for help writing queries and managing your data.
+
+
+
+Vercelのドキュメント](https://vercel.com/docs)を参照してください。クエリの書き方やデータの管理については、Fauna の他のドキュメントを参照してください。
+
+
+
+
+
+
+
+The admin key created by the integration is directly usable _only_ during Vercel builds, or in serverless functions.
+
+
+
+
+
+統合によって作成された管理者キーは、Vercel のビルド時、またはサーバーレス機能でのみ直接使用できます。
+
+
+
+
+
+
+
+If you need to use a Fauna secret in browser-executed code, we recommend that you create a serverless function that can call [`Login`](https://docs.fauna.com/fauna/current/api/fql/functions/login) to generate a token. You can then use the token’s secret in client code. You should also consider applying [Attribute-based access control (ABAC)](https://docs.fauna.com/fauna/current/security/abac) roles so that queries executed with the token secret have user-specific privileges.
+
+
+
+
+
+ブラウザで実行されるコードで Fauna のシークレットを使用する必要がある場合は、[`Login`](https://docs.fauna.com/fauna/current/api/fql/functions/login)を呼び出してトークンを生成するサーバーレス関数を作成することをお勧めします。その後、クライアントコードでトークンのシークレットを使用することができます。また、[Attribute-based access control (ABAC)](https://docs.fauna.com/fauna/current/security/abac)ロールを適用して、トークンシークレットを使って実行されるクエリがユーザー固有の権限を持つようにすることも検討すべきです。
+
+
+
+
+
+---
+
+old
+これより下は昔の翻訳
+個人メモ
+
 # Fauna Integration for Vercel
 Vercel の Fauna 統合
 
@@ -238,4 +763,6 @@ Vercelのドキュメントを参照してください。
 Faunaの残りのドキュメントを確認してください。
 
 Was this article helpful?
+
+
 
