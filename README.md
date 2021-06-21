@@ -53,3 +53,20 @@ https://fauna.com/blog
 （でも真面目に使いたい。）
 
 ---
+
+リポジトリの構成
+
+documentsで練習 練習用（official_doumentsのコピー）。練習した成果をドキュメントに書き込んで残すためのフォルダ。
+mindmap FaunaDBの体系を図としてまとめる用 未完成
+official_blog ブログをDeepL翻訳したもの(もしくはグーグル翻訳)
+official_douments ドキュメントをDeepLで翻訳したもの(もしくはグーグル翻訳)
+README.md
+非公式（個人） FAQ.md よくある質問（個人で想定したもの）
+文書編集のための正規表現.txt 翻訳時によく使った正規表現集
+用語.md FaunaDBでの用語集
+
+---
+
+
+
+
