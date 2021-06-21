@@ -1,23 +1,39 @@
-list-databases | Fauna Documentation
-https://docs.fauna.com/fauna/current/integrations/shell/list-databases
+delete-key | Fauna Documentation
+https://docs.fauna.com/fauna/current/integrations/shell/delete-key
 
-# `list-databases`
+# `delete-key`
 
-Lists child databases in the current database.
+Deletes a key.
 
-現在のデータベースの子データベースを一覧表示します。
+キーを削除します。
 
 terminal
 
 ```bash
-fauna list-databases
+fauna delete-key KEYNAME
 ```
 
 ## [](#description)Description
 
-The `list-databases` command lists child databases. If you don’t pass any options at the command line, Fauna uses the default options specified in the `fauna-shell` [configuration file](https://docs.fauna.com/fauna/current/integrations/shell/config).
+The `delete-key` command deletes a key.
 
-list-databases` コマンドは、子データベースを一覧表示します。コマンドラインでオプションを指定しない場合、Fauna は `fauna-shell` [設定ファイル](https://docs.fauna.com/fauna/current/integrations/shell/config)で指定されたデフォルトのオプションを使用します。
+delete-key` コマンドは、キーを削除します。
+
+If you don’t pass any options at the command line, Fauna uses the default options specified in the [`fauna-shell` configuration file](https://docs.fauna.com/fauna/current/integrations/shell/config).
+
+コマンドラインで何もオプションを渡さない場合、Fauna は [`fauna-shell` 設定ファイル](https://docs.fauna.com/fauna/current/integrations/shell/config) で指定されたデフォルトのオプションを使用します。
+
+## [](#arguments)Arguments
+
+|Argument|Description|
+|--|--|
+|_KEYNAME_|The name of the key to delete.|
+
+---
+
+|引数|説明|
+|--|--|
+|_KEYNAME_|削除するキーの名前です。|
 
 ## [](#options)Options
 
@@ -41,32 +57,53 @@ list-databases` コマンドは、子データベースを一覧表示します�
 |`--secret=<secret>`|Optional - 使用するシークレットです。秘密は、Fauna への接続を [認証](https://docs.fauna.com/fauna/current/security/) し、特定のデータベースに接続します。|
 |`--timeout=<timeout>`|Optional - 接続のタイムアウトをミリ秒単位の整数で指定します。デフォルトは 0 で、`fauna-shell` は応答があるまで待機します。|
 
-## [](#examples)Examples
+## [](#example)Example
+
+For this example, we already have 4 keys:
+
+この例では、すでに4つのキーがあります。
 
 shell
 
 ```shell
-fauna list-databases
-listing databases
-my_test_db
+fauna list-keys
+listing keys
+Key ID               Database             Role
+259718958404338186   app1                 server
+259719743570706945   app1                 client
+265528117038154259   my-test-db           admin
+265437820880945683   my_test_db           admin
 ```
 
-To verify this, run `fauna shell` and query for a list of databases; you see that the child database `my_test_db` is listed:
+Now, delete the first key in the list:
 
-これを確認するには、`fauna shell`を実行してデータベースのリストを照会してみてください。
+では、リストの最初のキーを削除します。
 
 shell
 
 ```shell
-fauna shell
-Connected to https://db.fauna.com
-Type Ctrl+D or .exit to exit the shell
-Paginate(Databases())
-{ data: [ Database("my_test_db") ] }
+fauna delete-key 259718958404338186
+deleting key 259718958404338186
+key 259718958404338186 deleted
+```
+
+When you list the keys again, you see that the key you deleted is now gone:
+
+再びキーをリストアップすると、削除したキーがなくなっていることがわかります。
+
+shell
+
+```shell
+fauna list-keys
+listing keys
+Key ID               Database             Role
+259719743570706945   app1                 client
+265528117038154259   my-test-db           admin
+265437820880945683   my_test_db           admin
 ```
 
 ## [](#related)Related
 
--   [`create-database`](https://docs.fauna.com/fauna/current/integrations/shell/list-databases)
--   [`delete-database`](https://docs.fauna.com/fauna/current/integrations/shell/delete-database)
+-   [`list-keys`](https://docs.fauna.com/fauna/current/integrations/shell/list-keys)
+-   [`create-key`](https://docs.fauna.com/fauna/current/integrations/shell/create-key)
 -   [`Configuration`](https://docs.fauna.com/fauna/current/integrations/shell/config)
