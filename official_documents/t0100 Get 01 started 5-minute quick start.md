@@ -579,8 +579,6 @@ UDFに電話して注文を送信する
 
     For more sample apps, visit the [awesome-faunadb](https://github.com/n400/awesome-faunadb) list on GitHub.
 
-
-
    ---
 
    これより下は個人メモ
@@ -617,8 +615,6 @@ C#
 Go
 Python
 Scala
-
-
 
 ---
 
@@ -670,10 +666,6 @@ my_dbデータベースの概要ページが表示されます。
 および食料品配達アプリの対応する
 GraphQLスキーマが設定されています。
 
-
-
-
-
 a
 コレクション
 Click COLLECTIONS in the left sidebar to browse your collections.
@@ -691,10 +683,6 @@ SQLに精通している場合、
 
 except that each document can contain its own, distinct fields.
 ただし、各ドキュメントには独自の異なるフィールドを含めることができます。
-
-
-
-
 
 b
 索引
@@ -720,14 +708,8 @@ without affecting overall performance.
 が、全体のパフォーマンスに影響を与えることなく、
 何百ものインデックスを持つことができます。
 
-
-
 a companion index
 ？？？
-
-
-
-
 
 index
 all customers
@@ -750,10 +732,6 @@ products by store
 低価格帯から高価格帯までの商品
 店舗別商品
 
-
-
-
-
 c
 関数
 Click the FUNCTIONS tab in the left sidebar.
@@ -766,7 +744,6 @@ that runs on the server, similar to "stored procedures".
 「ストアドプロシージャ」と同様に、
 サーバー上で実行されるカスタムビジネスロジックが含まれています。
 
-
 UDFs
 User-defined functions
 ユーザー定義関数
@@ -778,9 +755,6 @@ SQLによって書かれたいくつかの命令を1つにまとめて部品化�
 プロシージャ
 複数の命令をまとめたもの
 戻り値のない関数
-
-
-
 
 This UDF might look weird
 if it’s your first time seeing FQL,
@@ -800,8 +774,6 @@ in how much power and precision it gives you
 with respect to predictable cost and performance as you scale.
 予測可能なコストとパフォーマンスを提供します。
 
-
-
 might
 かもしれない
 
@@ -813,8 +785,6 @@ precision
 
 predictable
 
-
-
 ---
 
 4
@@ -822,7 +792,6 @@ FQL を試す
 
 Now that we know some basic concepts, let’s query our data.
 基本的な概念を理解したところで、データを照会してみましょう。
-
 
 a
 Shellを開く
@@ -844,7 +813,6 @@ c
 
 	pasting
 	paste
-
 
 d
 [クエリを実行] をクリックします。
@@ -878,10 +846,6 @@ Faunaの自動生成されたリファレンスIDは以下の通りです。
 The upper panel contains the result of the query:
 上部パネルには、クエリの結果が表示されます。
 
-
-
-
-
 e
 Hover your pointer over the [i] icon to the left 
 of "Time elapsed" to see the query execution metrics.
@@ -892,10 +856,6 @@ that this query resulted in one read operation.
 例えば、ここでは 
 このクエリでは、1回の読み取り操作が行われたことがわかります。
 
-
-
-
-
 You can reduce read operations by leveraging indexes
 and using them as views.
 インデックスを活用し、それをビューとして使用することで、
@@ -903,10 +863,6 @@ and using them as views.
 
 Expand the following block to learn more.
 詳しくは次のブロックを展開してください。
-
-
-
-
 
 ビューとしてのインデックスの使用
 
@@ -928,27 +884,20 @@ which reduces the number of read operations required.
 を使用せずに、必要な値を取得することができます。
 これにより、必要な読み取り操作の回数を減らすことができます。
 
-
 While Get is used to a retrieve a single document,
 Paginate is required when you want to retrieve details about multiple documents.
 Getは1つのドキュメントを取得するために使用されますが。
 Paginateは、複数のドキュメントの詳細を取得したい場合に必要です。
-
 
 retrieve
 【＠】リトリーブ,【変化】《動》retrieves | retrieving | retrieved,
 《他動-1》取り出す,取り戻す,回収する,
 《他動-2》（情報を）検索する,《他動-3》～を挽回する,回復する,償う,救う
 
-
-
-
 Try the following:
 以下をお試しください。
 
-
 Paginate(Documents(Collection("products")))
-
 
 When an index does not have terms and values defined, it only returns ref:ref[]s.
 インデックスに用語や値が定義されていない場合は、ref:ref[]のみを返します。
@@ -958,8 +907,6 @@ ref:ref[]s
 
 terms
 用語
-
-
 
 What if you want the whole document?
 ドキュメント全体を見たい場合は？
@@ -975,10 +922,6 @@ for each Reference in the result.
 その後、Map関数を使用して、結果の各Referenceに対して無名関数
 を繰り返し適用します。
 
-
-
-
-
 The anonymous function (or Lambda) assigns each Reference
 in the array to the variable product_ref,
 無名関数（またはラムダ）は、配列内の各Reference
@@ -990,14 +933,10 @@ then uses the Get function to retrieve the referenced document.
 retrieve
 取り出す
 
-
-
 Map(
   Paginate(Documents(Collection("products"))),
   Lambda('product_ref', Get(Var('product_ref')))
 )
-
-
 
 Now, hover over the [i] icon to see that this costs 17 read operations.
 ここで、iアイコンにカーソルを合わせると、
@@ -1040,13 +979,9 @@ leverage
 【同】utilize,
 技術文書でよく使われる動詞
 
-
-
 Create an index defining which fields from the document that you want to return:
 ドキュメントの どのフィールドを返したいかを 定義するインデックスを 作成します。
 リピートok
-
-
 
 CreateIndex(
   {
@@ -1060,16 +995,10 @@ CreateIndex(
   },
 )
 
-
-
 Now, paginate using the index:
 さて、インデックスを使ってページネーションを行います。
 
-
-
 Paginate(Match(Index("product_details")))
-
-
 
 If you hover over the [i] icon,
 [i]のアイコンにカーソルを合わせると、
@@ -1085,8 +1014,6 @@ MapとGetの組み合わせは、
 開発中は安価かもしれませんが、
 使用量が増えてきたらインデックスを活用すべきです。
 
-
-
 シェル
 --------------------------------------------
 １行（下側）実行される。１行目にセミコロンがついていない。
@@ -1097,7 +1024,6 @@ Get(Ref(Collection("products"),"202"))
 Paginate(Documents(Collection("products")));
 Get(Ref(Collection("products"),"202"))
 --------------------------------------------
-
 
 結果
 ```
@@ -1123,8 +1049,6 @@ Paginate(Documents(Collection("products")))
 Paginate
 《他動》ページ番号をつける
 
-
-
 ---
 
 5
@@ -1139,8 +1063,6 @@ then click the "play" button in the middle.
 次に、以下のクエリをエディタの左パネルにコピー＆ペーストします。
 中央の "play "ボタンをクリックします。
 
-
-
 query {
   findProductByID(id: "202") {
     name
@@ -1148,8 +1070,6 @@ query {
     price
   }
 }
-
-
 
 This query fetches a single document based on its Reference ID,
  just like the FQL example in Step #4:
@@ -1162,8 +1082,6 @@ solved the n+1 problem behind the scenes for you.
 各 GraphQL クエリは単一の FQL クエリに変換されます。
 これは、GraphQL API が舞台裏で n+1 問題を
 完全に解決したことを意味します。
-
-
 
 ブロック1
 How Fauna Solved n+1, or why FQL + GraphQL
@@ -1208,7 +1126,6 @@ FQLはGraphQLクエリの実行プランに完全にマッピングし、
 効率的にGraphQLツリーを歩き、
 入れ子になったドキュメントを取得します。
 
-
 In other words,
 言い換えれば、
 
@@ -1231,8 +1148,6 @@ incurs
 受ける,被る,
 （好ましくないことを）
 招く,負う
-
-
 
 ブロック2
 Practice more GraphQL queries and their FQL equivalents
@@ -1293,10 +1208,6 @@ Create(
   }
 }
 
-
-
-
-
 すべての製品を読む
 
 GraphQL
@@ -1315,11 +1226,6 @@ query {
   }
 }
 
-
-
-
-
-
 結果
 
 同じFQL
@@ -1330,9 +1236,6 @@ Map(
   Lambda("each_ref", Get(Var("each_ref")))
 )
 結果
-
-
-
 
 ストアを更新する
 
@@ -1360,10 +1263,6 @@ Update(
 )
 結果
 
-
-
-
-
 店舗を読む
 
 GraphQL
@@ -1387,10 +1286,6 @@ Get(Ref(Collection("stores"), "301"))
 
 結果
 
-
-
-
-
 商品を削除する
 
 GraphQL
@@ -1406,9 +1301,6 @@ mutation {
 Delete(Ref(Collection("products"), "208"))
 
 結果
-
-
-
 
 UDF を呼び出して注文を送信する
 
@@ -1446,12 +1338,9 @@ Call(
 )
 結果
 
-
-
 ---
 
 6.
 Next steps: Query Fauna from an app
 次のステップ アプリからFaunaに問い合わせる
-
 
