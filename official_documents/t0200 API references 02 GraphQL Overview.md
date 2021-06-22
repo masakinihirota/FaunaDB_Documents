@@ -12,7 +12,7 @@ GraphQL リファレンス
 
 This section provides reference information for the Fauna GraphQL API.
 
-このセクションでは、動物相の参照情報を提供します GraphQL API。
+このセクションでは、Faunaの参照情報を提供します GraphQL API。
 
 -   [Endpoints](https://docs.fauna.com/fauna/current/api/graphql/endpoints)
 -   [Directives](https://docs.fauna.com/fauna/current/api/graphql/directives/)
@@ -66,7 +66,7 @@ ID：総称識別子を表す文字列。Stringタイプと比較して 、anID�
 
     Fauna provides a unique identifier for a document via the `_id` field, which represents the document’s [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref). You would typically use the `ID` type for documents that have an externally-created identifier, such as documents imported from another database).
 
-動物相は_id 、ドキュメントの参照を表すフィールドを介してドキュメントの一意の識別子を提供します。通常ID、別のデータベースからインポートされたドキュメントなど、外部で作成された識別子を持つドキュメントのタイプを使用します。
+Faunaは_id 、ドキュメントの参照を表すフィールドを介してドキュメントの一意の識別子を提供します。通常ID、別のデータベースからインポートされたドキュメントなど、外部で作成された識別子を持つドキュメントのタイプを使用します。
 
 -   `Int`: A 32-bit signed decimal integer number.
 -   `Long`: A 64-bit signed decimal integer number.
@@ -80,7 +80,7 @@ Time：タイムスタンプ値。GraphQL APIは、これらを通信してフ�
 
     Fauna provides a document’s most recent modification timestamp via the `_ts` field, which has microsecond resolution.
 
-動物相は、_tsマイクロ秒の解像度を持つフィールドを介して、ドキュメントの最新の変更タイムスタンプを提供します。
+Faunaは、_tsマイクロ秒の解像度を持つフィールドを介して、ドキュメントの最新の変更タイムスタンプを提供します。
 
 ## [](#resources)Resources
 
@@ -98,11 +98,11 @@ https://github.com/graphql/graphql-spec
 
 There are a few online, interactive GraphQL interfaces. The one we recommend is [GraphQL Playground](https://graphqlbin.com/v2/). It is embedded into the [Fauna Dashboard](https://dashboard.fauna.com/).
 
-オンラインでインタラクティブなものがいくつかあります GraphQLインターフェイス。私たちがお勧めするのはGraphQLPlaygroundです。動物相ダッシュボードに埋め込まれています。
+オンラインでインタラクティブなものがいくつかあります GraphQLインターフェイス。私たちがお勧めするのはGraphQLPlaygroundです。Faunaダッシュボードに埋め込まれています。
 
 For developers, the Fauna GraphQL API should work with most GraphQL libraries. See the next section for known limitations.
 
-開発者にとって、動物相 GraphQL APIはほとんどで動作するはずです GraphQL ライブラリ。既知の制限については、次のセクションを参照してください。
+開発者にとって、Fauna GraphQL APIはほとんどで動作するはずです GraphQL ライブラリ。既知の制限については、次のセクションを参照してください。
 
 ## [](#limitations)Limitations
 
@@ -110,7 +110,7 @@ For developers, the Fauna GraphQL API should work with most GraphQL libraries. S
 
 The Fauna GraphQL API is in its initial release. It is functional, and can handle most GraphQL workloads. However, there are some GraphQL features that are currently not supported:
 
-動物相 GraphQLAPIは最初のリリースです。それは機能的であり、ほとんどを処理することができますGraphQLワークロード。ただし、いくつかありますGraphQL 現在サポートされていない機能：
+Fauna GraphQLAPIは最初のリリースです。それは機能的であり、ほとんどを処理することができますGraphQLワークロード。ただし、いくつかありますGraphQL 現在サポートされていない機能：
 
 -   Schemas do not support:
 
@@ -136,5 +136,5 @@ The Fauna GraphQL API is in its initial release. It is functional, and can handl
 
 Also, Fauna GraphQL API can only work with the defined schema. Any existing collections, indexes, or functions that may exist in a database, that are not referenced in the GraphQL schema, are unavailable to GraphQL queries.
 
-また、動物相 GraphQL APIは、定義されたスキーマでのみ機能します。データベースに存在する可能性があり、データベースで参照されていない既存のコレクション、インデックス、または関数GraphQL スキーマ、利用できません GraphQL クエリ。
+また、Fauna GraphQL APIは、定義されたスキーマでのみ機能します。データベースに存在する可能性があり、データベースで参照されていない既存のコレクション、インデックス、または関数GraphQL スキーマ、利用できません GraphQL クエリ。
 

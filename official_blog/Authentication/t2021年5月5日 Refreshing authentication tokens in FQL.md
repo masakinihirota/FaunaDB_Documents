@@ -33,7 +33,7 @@ Categories:
 
 Authenticated users access Fauna using [tokens](https://docs.fauna.com/fauna/current/api/fql/functions/tokens?lang=javascript). [Refresh tokens](https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/) reduce the risk of providing long-term access to your users. In this post, you learn how to implement refresh tokens in FQL using a [simple refresh flow blueprint](https://github.com/fauna-labs/fauna-blueprints/tree/master/official/auth/refresh-tokens-simple).
 
-認証されたユーザーは、トークンを使用して動物相にアクセスします。更新トークンは、ユーザーに長期アクセスを提供するリスクを軽減します。この投稿では、単純なリフレッシュフローブループリントを使用して FQL にリフレッシュトークンを実装する方法を学習します。
+認証されたユーザーは、トークンを使用してFaunaにアクセスします。更新トークンは、ユーザーに長期アクセスを提供するリスクを軽減します。この投稿では、単純なリフレッシュフローブループリントを使用して FQL にリフレッシュトークンを実装する方法を学習します。
 
 User-defined functions (UDFs) are the key to this implementation. When you create a UDF, you encapsulate an FQL query and store it in the database. Encapsulating your logic in functions has [many advantages](https://docs.fauna.com/fauna/current/tutorials/basics/functions#why), including reusability. Once you define these functions in your database, your FQL queries can reuse the login, logout, refresh, and register logic.
 
@@ -60,7 +60,7 @@ This article assumes basic familiarity with FQL. To learn more about FQL, visit 
 
 The blueprint format allows you to set up or tear down the provided resources with the experimental [fauna-schema-migrate](https://github.com/fauna-labs/fauna-schema-migrate) tool. To deploy the blueprint to your own Fauna account, follow the [“Set up a blueprint” instructions](https://github.com/fauna-labs/fauna-blueprints#set-up-a-blueprint) in the repository README.
 
-ブループリント形式では、実験的な動物相-スキーマ-移行ツールを使用して、提供されたリソースを設定または破棄できます。ブループリントを自分の Fauna アカウントに展開するには、リポジトリ README の「ブループリントの設定」の手順に従います。
+ブループリント形式では、実験的なFauna-スキーマ-移行ツールを使用して、提供されたリソースを設定または破棄できます。ブループリントを自分の Fauna アカウントに展開するには、リポジトリ README の「ブループリントの設定」の手順に従います。
 
 ## Implementation
 
@@ -68,7 +68,7 @@ The blueprint format allows you to set up or tear down the provided resources wi
 
 To register a user, you must create a collection for users or accounts. Fauna does not provide a default user collection. Instead, you can use any document to log in and receive a token with privileges to access other documents. In this post, you create an /accounts/ collection and grant login and data access permissions via /accounts/ documents.
 
-ユーザーを登録するには、ユーザーまたはアカウントのコレクションを作成する必要があります。動物相はデフォルトのユーザーコレクションを提供しません。代わりに、任意のドキュメントを使用してログインし、他のドキュメントにアクセスする権限を持つトークンを受け取ることができます。この投稿では、/ accounts /コレクションを作成し、/ accounts /ドキュメントを介してログインとデータアクセスのアクセス許可を付与します。
+ユーザーを登録するには、ユーザーまたはアカウントのコレクションを作成する必要があります。Faunaはデフォルトのユーザーコレクションを提供しません。代わりに、任意のドキュメントを使用してログインし、他のドキュメントにアクセスする権限を持つトークンを受け取ることができます。この投稿では、/ accounts /コレクションを作成し、/ accounts /ドキュメントを介してログインとデータアクセスのアクセス許可を付与します。
 
 ### Register
 
@@ -108,7 +108,7 @@ Since passwords are sensitive, Fauna provides a safe ‘credentials.password’ 
 
 Fauna stores [credentials](https://docs.fauna.com/fauna/current/security/credentials.html) separately from the rest of the document.
 
-動物相は、ドキュメントの他の部分とは別にクレデンシャルを保存します。
+Faunaは、ドキュメントの他の部分とは別にクレデンシャルを保存します。
 
 To store a password when you create the user, use the following FQL.
 
@@ -125,7 +125,7 @@ Create(Collection(‘accounts’), {
 
 Fauna hashes the password before storage and never returns it to a client. You verify a password with the [Identify](https://docs.fauna.com/fauna/current/api/fql/functions/identify?lang=javascript) or [Login](https://docs.fauna.com/fauna/current/api/fql/functions/login) functions. You learn how to use these functions in the [login section](https://docs.google.com/document/d/1R3s1ju2y8OHy8bazHUdXzr7IHyCTBNBZeHPM5sQO1k0/edit#heading=h.twozxdzuliu).
 
-動物相は保存前にパスワードをハッシュし、クライアントにパスワードを返すことはありません。パスワードは、識別機能またはログイン機能を使用して確認します。ログインセクションでこれらの機能の使用方法を学びます。
+Faunaは保存前にパスワードをハッシュし、クライアントにパスワードを返すことはありません。パスワードは、識別機能またはログイン機能を使用して確認します。ログインセクションでこれらの機能の使用方法を学びます。
 
 To run the query, paste the following FQL into the shell in the [Fauna dashboard](https://dashboard.fauna.com/).
 
@@ -180,7 +180,7 @@ When a user logs in, they receive access to their application data.
 
 In Fauna, you grant a user identity-based access by providing a token.
 
-動物相では、トークンを提供することにより、ユーザー ID ベースのアクセスを許可します。
+Faunaでは、トークンを提供することにより、ユーザー ID ベースのアクセスを許可します。
 
 To implement refresh tokens, use [Create](https://docs.fauna.com/fauna/current/api/fql/functions/create?lang=javascript) to generate a token document in the Tokens collection manually. When you create tokens manually, you have fine-grained control over these tokens.
 
@@ -670,7 +670,7 @@ function LogoutAccessTokensForRefreshToken (refreshTokenRef) {
 
 The Fauna [simple refresh tokens blueprint](https://github.com/fauna-labs/fauna-blueprints/tree/master/official/auth/refresh-tokens-simple) provides an example implementation that you can learn from, customize or use in your application.
 
-動物相の単純な更新トークンのブループリントは、アプリケーションから学習、カスタマイズ、または使用できる実装例を提供します。
+Faunaの単純な更新トークンのブループリントは、アプリケーションから学習、カスタマイズ、または使用できる実装例を提供します。
 
 In this post, you learned how to implement and use the blueprint.
 
@@ -682,11 +682,11 @@ For a more advanced refresh workflow, see [detecting leaked authentication token
 
 Deploy this blueprint to your own Fauna database today by [following the instructions in the README](https://github.com/fauna-brecht/fauna-blueprints#set-up-a-blueprint).
 
-README の指示に従って、このブループリントを自分の動物相データベースに今すぐ展開してください。
+README の指示に従って、このブループリントを自分のFaunaデータベースに今すぐ展開してください。
 
 Share your thoughts in the [Fauna forums](https://forums.fauna.com/) and let us know which blueprints you would like to see next!
 
-動物相フォーラムであなたの考えを共有し、次に見たい青写真を教えてください！
+Faunaフォーラムであなたの考えを共有し、次に見たい青写真を教えてください！
 
 ※
 この投稿のシリーズの次のファイル

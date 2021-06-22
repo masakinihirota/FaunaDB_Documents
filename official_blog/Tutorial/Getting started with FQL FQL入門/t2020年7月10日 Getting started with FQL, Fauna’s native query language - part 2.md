@@ -3,7 +3,7 @@ https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-p
 
 # Getting started with FQL, Fauna’s native query language - part 2
 
-動物相のネイティブクエリ言語である FQL の使用を開始する-パート 2
+Faunaのネイティブクエリ言語である FQL の使用を開始する-パート 2
 
 Pier Bover|Jul 10th, 2020|
 
@@ -23,15 +23,15 @@ Welcome back, fellow space developer! In [part 1](https://fauna.com/blog/getting
 - [Part 4: a look at how to create custom functions that run straight in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-4)
 - [Part 5: a look at authentication and authorization in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-5)
 
-パート 1：FQL と基本的な動物相の概念を見る
-パート 2：動物相を使ったインデックスの詳細
-パート 3：動物相を使用したデータのモデリングの原則の調査
-パート 4：動物相で直接実行されるカスタム関数を作成する方法を見てみましょう
-パート 5：動物相の認証と承認について
+パート 1：FQL と基本的なFaunaの概念を見る
+パート 2：Faunaを使ったインデックスの詳細
+パート 3：Faunaを使用したデータのモデリングの原則の調査
+パート 4：Faunaで直接実行されるカスタム関数を作成する方法を見てみましょう
+パート 5：Faunaの認証と承認について
 
 Today we're going to take a more in-depth look into Fauna's indexes.
 
-今日は、動物相のインデックスをさらに詳しく見ていきます。
+今日は、Faunaのインデックスをさらに詳しく見ていきます。
 
 ## In this article:
 
@@ -412,7 +412,7 @@ Map(
 
 If we wanted to match an item inside an array instead of filtering on a single string, we would only need to pass the term Fauna needs to search inside the array.
 
-単一の文字列でフィルタリングするのではなく、配列内のアイテムを照合する場合は、動物相が配列内で検索する必要があるという用語を渡すだけで済みます。
+単一の文字列でフィルタリングするのではなく、配列内のアイテムを照合する場合は、Faunaが配列内で検索する必要があるという用語を渡すだけで済みます。
 
 To test this, let's add some colors to our ships:
 
@@ -483,7 +483,7 @@ Map(
 
 Fauna is smart enough to understand that if the field used in the **terms** object is an array, then it should search for an item inside that array instead of an exact match on the full array.
 
-動物相は、用語オブジェクトで使用されるフィールドが配列である場合、完全な配列で完全に一致するのではなく、その配列内のアイテムを検索する必要があることを理解するのに十分賢いです。
+Faunaは、用語オブジェクトで使用されるフィールドが配列である場合、完全な配列で完全に一致するのではなく、その配列内のアイテムを検索する必要があることを理解するのに十分賢いです。
 
 #### **About full text search**
 
@@ -781,7 +781,7 @@ Union は、各インデックスが返す結果をすべて結合します。�
 
 _"Hey Fauna, get me the planets that are of type_ **_GAS_** _or are_ **_YELLOW_**_"_
 
-「ねえ動物相、 ガス 型または 黄色の惑星を私にくれ」
+「ねえFauna、 ガス 型または 黄色の惑星を私にくれ」
 
 ```javascript
 Map(
@@ -1299,7 +1299,7 @@ So that's it for today. Hopefully you learned something valuable!
 
 In part 3 of this series, we will continue our space adventure by learning how to model data in Fauna.
 
-このシリーズのパート 3 では、動物相でデータをモデル化する方法を学び、宇宙の冒険を続けます。
+このシリーズのパート 3 では、Faunaでデータをモデル化する方法を学び、宇宙の冒険を続けます。
 
 If you have any questions don't hesitate to hit me up on Twitter: [@pierb](https://twitter.com/PierB)
 
@@ -1307,4 +1307,4 @@ If you have any questions don't hesitate to hit me up on Twitter: [@pierb](https
 
 **Next up: [Part 3 - a look into the principles of modeling data with Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-3)**
 
-次のステップ：パート 3-動物相を使用したデータのモデリングの原則の調査
+次のステップ：パート 3-Faunaを使用したデータのモデリングの原則の調査

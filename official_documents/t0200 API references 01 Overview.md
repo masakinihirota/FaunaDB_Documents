@@ -10,7 +10,7 @@ that you can use to interact with Fauna:
 
 - [FQL: The Fauna Query Language](https://docs.fauna.com/fauna/current/api/fql/) - the native API for querying Fauna.
 
-FQL：動物相クエリ言語-動物相をクエリするためのネイティブAPI。
+FQL：Faunaクエリ言語-FaunaをクエリするためのネイティブAPI。
 
 - [GraphQL](https://docs.fauna.com/fauna/current/api/graphql/) - a database-agnostic API for defining schemas and executing queries and mutations of data within Fauna.
 

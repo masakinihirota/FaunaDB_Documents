@@ -7,7 +7,7 @@ FQLチートシート
 
 The page provides a quick reference to all of the Fauna Query Language functions, group by their major functionality:
 
-このページでは、主な機能ごとにグループ化された、すべての動物相クエリ言語機能へのクイックリファレンスを提供しています。
+このページでは、主な機能ごとにグループ化された、すべてのFaunaクエリ言語機能へのクイックリファレンスを提供しています。
 
 Array
 

@@ -7,7 +7,7 @@ https://docs.fauna.com/fauna/current/api/graphql/input
 
 As of release 1.1.0, the Fauna GraphQL API supports [user-defined input types](https://graphql.org/graphql-js/mutations-and-input-types/). For example:
 
-リリース1.1.0の時点で、動物相 GraphQLAPIは、ユーザー定義の入力タイプをサポートし ます。例えば：
+リリース1.1.0の時点で、Fauna GraphQLAPIは、ユーザー定義の入力タイプをサポートし ます。例えば：
 
 graphql
 
@@ -28,7 +28,7 @@ Input types are used to convey complex arguments to queries or field resolvers, 
 
 The Fauna GraphQL API automatically creates input types for user-defined types. For example, when you create a `User` type:
 
-動物相 GraphQLAPIは、ユーザー定義型の入力型を自動的に作成します。たとえば、Userタイプを作成する場合：
+Fauna GraphQLAPIは、ユーザー定義型の入力型を自動的に作成します。たとえば、Userタイプを作成する場合：
 
 graphql
 
@@ -52,7 +52,7 @@ input UserInput {
 
 The Fauna GraphQL API also automatically creates the mutations `createUser` and `updateUser`, both of this use the auto-created `UserInput` input type.
 
-動物相 GraphQLAPIは自動的にミューテーションcreateUserを作成しupdateUser、どちらも自動作成 された UserInput入力型を使用します。
+Fauna GraphQLAPIは自動的にミューテーションcreateUserを作成しupdateUser、どちらも自動作成 された UserInput入力型を使用します。
 
 Typically, you would not need to create input types yourself. If you define your own `UserInput` type, which does not include the `username` field, that could prevent the `createUser` and `updateUser` mutations from working correctly.
 

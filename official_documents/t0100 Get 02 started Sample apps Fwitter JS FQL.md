@@ -40,7 +40,7 @@ rundown
 
 We build these features without having to configure operations or set up servers for your database. Since Fauna is scalable and distributed out-of-the-box, all of the operational concerns for running a geographically-distributed, always-consistent database are already taken care of.
 
-これらの機能は、データベースの操作を構成したりサーバーを設定したりすることなく構築されます。動物相はスケーラブルですぐに配布できるため、地理的に分散し、常に一貫性のあるデータベースを実行するための運用上の懸念はすべてすでに処理されています。
+これらの機能は、データベースの操作を構成したりサーバーを設定したりすることなく構築されます。Faunaはスケーラブルですぐに配布できるため、地理的に分散し、常に一貫性のあるデータベースを実行するための運用上の懸念はすべてすでに処理されています。
 
 Let’s dive in!
 
@@ -59,7 +59,7 @@ Let’s dive in!
 データのモデリング
 プロジェクトをセットアップする
 フロントエンドの作成
-動物相JavaScriptドライバー
+FaunaJavaScriptドライバー
 データの作成
 UDFとABACの役割でデータを保護する
 認証を実装する方法
@@ -72,11 +72,11 @@ UDFとABACの役割でデータを保護する
 
 Before we can show how Fauna excels at relations, we need to cover the types of relations in our application’s data model.
 
-動物相がどのように関係に優れているかを示す前に、アプリケーションのデータモデルで関係のタイプをカバーする必要があります。
+Faunaがどのように関係に優れているかを示す前に、アプリケーションのデータモデルで関係のタイプをカバーする必要があります。
 
 Fauna’s data entities are stored in documents, which are then stored in collections — like rows in tables. For example, each user’s details are represented by a User document stored in a Users collection. And we eventually plan to support both single sign-on and password-based login methods for a single user, each of which would be represented as an Account document in an Accounts collection.
 
-動物相のデータエンティティはドキュメントに保存され、ドキュメントはテーブルの行のようにコレクションに保存されます。たとえば、各ユーザーの詳細は、Usersコレクションに格納されているUserドキュメントによって表されます。そして、最終的には、シングルサインオンとパスワードベースのログイン方法の両方を単一のユーザーに対してサポートすることを計画しています。これらの方法はそれぞれ、AccountsコレクションのAccountドキュメントとして表されます。
+Faunaのデータエンティティはドキュメントに保存され、ドキュメントはテーブルの行のようにコレクションに保存されます。たとえば、各ユーザーの詳細は、Usersコレクションに格納されているUserドキュメントによって表されます。そして、最終的には、シングルサインオンとパスワードベースのログイン方法の両方を単一のユーザーに対してサポートすることを計画しています。これらの方法はそれぞれ、AccountsコレクションのAccountドキュメントとして表されます。
 
 At this point, one user has one account, so it doesn’t matter which entity stores the reference (i.e., the user ID). We could have stored the user ID in either the Account or the User document in a one-to-one relation:
 
@@ -125,7 +125,7 @@ The final model for the application looks like this:
 
 Fweets are at the center of the model, because they contain the most important data of the Fweet, such as the information about the message, the number of likes, refweets, and comments. Fauna stores this data in a JSON format that looks like this:
 
-Fweetは、メッセージに関する情報、いいねの数、refweets、コメントなど、Fweetの最も重要なデータが含まれているため、モデルの中心にあります。動物相はこのデータをJSON 次のような形式：
+Fweetは、メッセージに関する情報、いいねの数、refweets、コメントなど、Fweetの最も重要なデータが含まれているため、モデルの中心にあります。FaunaはこのデータをJSON 次のような形式：
 
 ![Screenshot: example fweet document](https://docs.fauna.com/fauna/current/start/apps/fwitter../_images/fwitter/example_fweet.png)
 
@@ -157,7 +157,7 @@ Now, if you haven’t already done so from the [Fwitter repository](https://gith
 
 To set up the project, go to the [Fauna Dashboard](https://dashboard.fauna.com/) and sign up. Once you are in the Dashboard, click **New Database**, fill in a name, and click **Save**. You should now be on the "Overview" page of your new database.
 
-プロジェクトを設定するには、動物相ダッシュボードに移動してサインアップします。ダッシュボードが表示されたら、[新しいデータベース]をクリックし、名前を入力して、[保存]をクリックします。これで、新しいデータベースの「概要」ページが表示されます。
+プロジェクトを設定するには、Faunaダッシュボードに移動してサインアップします。ダッシュボードが表示されたら、[新しいデータベース]をクリックし、名前を入力して、[保存]をクリックします。これで、新しいデータベースの「概要」ページが表示されます。
 
 Next, we need a key that we can be used in our setup scripts. Click **Security** in the left sidebar, then click the **New key** button.
 
@@ -254,11 +254,11 @@ Take a quick look at the home page [\`src/pages/home.js\`](https://github.com/fa
 
 All calls to the database originate from the frontend, then pass through the query-manager. We can secure the sensitive parts with Fauna’s ABAC security rules and User Defined Functions (UDF). Since Fauna behaves as a token-secured API, we do not have to worry about a limit on the number of connections as we would in traditional databases.
 
-データベースへのすべての呼び出しはフロントエンドから発信され、クエリマネージャーを通過します。動物相のABACセキュリティルールとユーザー定義関数（UDF）を使用して、機密性の高い部分を保護できます。Faunaはトークンで保護されたAPIとして動作するため、従来のデータベースのように接続数の制限について心配する必要はありません。
+データベースへのすべての呼び出しはフロントエンドから発信され、クエリマネージャーを通過します。FaunaのABACセキュリティルールとユーザー定義関数（UDF）を使用して、機密性の高い部分を保護できます。Faunaはトークンで保護されたAPIとして動作するため、従来のデータベースのように接続数の制限について心配する必要はありません。
 
 ## [](#drivers)The Fauna JavaScript driver
 
-動物相JavaScriptドライバー
+FaunaJavaScriptドライバー
 
 Next, take a look at the [\`src/fauna/query-manager.js\`](https://github.com/fauna-brecht/fwitter/blob/master/src/fauna/query-manager.js) file to see how we connect Fauna to our application using Fauna’s JavaScript driver, which is just a Node.js module that we installed with `npm install`. As with any Node.js module, we import it into our application like so:
 
@@ -288,7 +288,7 @@ We cover tokens a little more in the [How to implement authentication](#authenti
 
 The logic to create a new Fweet document can be found in the [\`src/fauna/queries/fweets.js\`](https://github.com/fauna-brecht/fwitter/blob/master/src/fauna/queries/fweets.js) file. Fauna documents are just like JSON, and each Fweet follows the same basic structure:
 
-新しいFweetドキュメントを作成するロジックは、 `src / fauna / queries / fweets.js`ファイルにあります。動物相ドキュメントはJSONと同じであり、各Fweetは同じ基本構造に従います。
+新しいFweetドキュメントを作成するロジックは、 `src / fauna / queries / fweets.js`ファイルにあります。FaunaドキュメントはJSONと同じであり、各Fweetは同じ基本構造に従います。
 
 ```javascript
 const data = {
@@ -308,7 +308,7 @@ The [`Now`](https://docs.fauna.com/fauna/current/api/fql/functions/now) function
 
 Next, we send this data to Fauna with the [`Create`](https://docs.fauna.com/fauna/current/api/fql/functions/create) function. By providing [`Create`](https://docs.fauna.com/fauna/current/api/fql/functions/create) with the reference to the Fweets collection using `Collection('fweets')`, we specify where the document needs to exist.
 
-次に、このデータをCreate関数を使用して動物相に送信します。Createを使用してFweetsコレクションへの参照を提供することによりCollection('fweets')、ドキュメントが存在する必要がある場所を指定します。
+次に、このデータをCreate関数を使用してFaunaに送信します。Createを使用してFweetsコレクションへの参照を提供することによりCollection('fweets')、ドキュメントが存在する必要がある場所を指定します。
 
 ```javascript
 const query = Create(Collection('fweets'), data )
@@ -419,7 +419,7 @@ The attentive reader likely has some thoughts about security by now. We are esse
 
 Fauna provides two features that allow us to secure our data: [Attribute-Based Access Control (ABAC)](https://docs.fauna.com/fauna/current/security/abac) and User Defined Functions (UDF). With ABAC, we can control which collections or entities that a specific key or token can access by writing Roles.
 
-動物相は、データを保護するための2つの機能を提供します。 属性ベースのアクセス制御（ABAC）とユーザー定義関数（UDF）です。ABACを使用すると、ロールを作成することで、特定のキーまたはトークンがアクセスできるコレクションまたはエンティティを制御できます。
+Faunaは、データを保護するための2つの機能を提供します。 属性ベースのアクセス制御（ABAC）とユーザー定義関数（UDF）です。ABACを使用すると、ロールを作成することで、特定のキーまたはトークンがアクセスできるコレクションまたはエンティティを制御できます。
 
 With UDFs, we can combine multiple FQL statements into a single callable function by using the [`CreateFunction`](https://docs.fauna.com/fauna/current/api/fql/functions/createfunction) function:
 
@@ -654,7 +654,7 @@ Paginate(Documents(Collection('fweets')))
 
 [`Paginate`](https://docs.fauna.com/fauna/current/api/fql/functions/paginate) requires some explanation. Before calling [`Paginate`](https://docs.fauna.com/fauna/current/api/fql/functions/paginate), we had a query that returned a hypothetical set of data. [`Paginate`](https://docs.fauna.com/fauna/current/api/fql/functions/paginate) actually materializes that data into pages of entities that we can read. Fauna requires that we use this [`Paginate`](https://docs.fauna.com/fauna/current/api/fql/functions/paginate) function to protect us from writing inefficient queries that retrieve every document from a collection, because in a database built for massive scale, that collection could contain millions of documents. Without the safeguard of [`Paginate`](https://docs.fauna.com/fauna/current/api/fql/functions/paginate), that could get very expensive!
 
-Paginate説明が必要です。を呼び出す前 Paginateに、架空のデータセットを返すクエリがありました。Paginate実際にそのデータを、私たちが読むことができるエンティティのページに具体化します。動物相では、このPaginate関数を使用して、コレクションからすべてのドキュメントを取得する非効率的なクエリを作成しないようにする必要があります。これ は、大規模に構築されたデータベースでは、コレクションに数百万のドキュメントが含まれる可能性があるためです。のセーフガードがないと、Paginate非常に高額になる可能性があります。
+Paginate説明が必要です。を呼び出す前 Paginateに、架空のデータセットを返すクエリがありました。Paginate実際にそのデータを、私たちが読むことができるエンティティのページに具体化します。Faunaでは、このPaginate関数を使用して、コレクションからすべてのドキュメントを取得する非効率的なクエリを作成しないようにする必要があります。これ は、大規模に構築されたデータベースでは、コレクションに数百万のドキュメントが含まれる可能性があるためです。のセーフガードがないと、Paginate非常に高額になる可能性があります。
 
 Let’s save this partial query in a plain JavaScript variable reference that we can continue to build on:
 
@@ -721,7 +721,7 @@ const fweets = Map(
 
 Although we did not write a join, we have just joined Users (the author) with the Fweets. Browse [\`src/fauna/queries/fweets.js\`](https://github.com/fauna-brecht/fwitter/blob/master/src/fauna/queries/fweets.js) to view the final query and several more examples.
 
-結合を作成しませんでしたが、ユーザー（作成者）をFweetsに結合しました。ブラウズ`SRC /動物相/クエリ/ fweets.js`最終クエリといくつかのより多くの例を表示します。
+結合を作成しませんでしたが、ユーザー（作成者）をFweetsに結合しました。ブラウズ`SRC /Fauna/クエリ/ fweets.js`最終クエリといくつかのより多くの例を表示します。
 
 ## [](#codebase)More in the code base
 
@@ -747,7 +747,7 @@ Getting Fweets by popularity and time is a particularly interesting access patte
 
 Also, check out [\`src/fauna/queries/search.js\`](https://github.com/fauna-brecht/fwitter/blob/master/src/fauna/queries/search.js) where we’ve implemented autocomplete based on Fauna indexes and index bindings to search for authors and tags. Since Fauna can index over multiple collections, we can write one index that supports an autocomplete type of search on both Users and Tags.
 
-また、作成者とタグを検索するために、動物相インデックスとインデックスバインディングに基づいてオートコンプリートを実装した`src / fauna / queries / search.js`を確認してください。動物相は複数のコレクションにインデックスを付けることができるため、ユーザーとタグの両方でオートコンプリートタイプの検索をサポートする1​​つのインデックスを作成できます。
+また、作成者とタグを検索するために、Faunaインデックスとインデックスバインディングに基づいてオートコンプリートを実装した`src / fauna / queries / search.js`を確認してください。Faunaは複数のコレクションにインデックスを付けることができるため、ユーザーとタグの両方でオートコンプリートタイプの検索をサポートする1​​つのインデックスを作成できます。
 
 ![Screenshot: searching for users/tags](https://docs.fauna.com/fauna/current/start/apps/fwitter../_images/fwitter/search.png)
 
@@ -757,4 +757,4 @@ We’ve implemented these examples because the combination of flexible and power
 
 In Fauna, if you did not foresee a specific way that you’d like to access your data, no worries — just add another index! We have range indexes, term indexes, and composite indexes that can be specified whenever you want without having to code around eventual consistency.
 
-動物相では、データにアクセスする特定の方法を予測していなくても、心配する必要はありません。別のインデックスを追加するだけです。結果整合性をコード化することなく、いつでも指定できる範囲インデックス、用語インデックス、および複合インデックスがあります。
+Faunaでは、データにアクセスする特定の方法を予測していなくても、心配する必要はありません。別のインデックスを追加するだけです。結果整合性をコード化することなく、いつでも指定できる範囲インデックス、用語インデックス、および複合インデックスがあります。

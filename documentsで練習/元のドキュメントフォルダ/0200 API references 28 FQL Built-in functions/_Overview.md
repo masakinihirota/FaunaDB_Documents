@@ -7,11 +7,11 @@ https://docs.fauna.com/fauna/current/api/fql/functions/
 
 The section provides a reference for all of the functions in FQL, the Fauna Query Language.
 
-このセクションでは、動物相クエリ言語であるFQLのすべての関数のリファレンスを提供します。
+このセクションでは、Faunaクエリ言語であるFQLのすべての関数のリファレンスを提供します。
 
 For a quick overview of Fauna Query Language, see the [FQL cheat sheet](https://docs.fauna.com/fauna/current/api/fql/cheat_sheet).
 
-動物相クエリ言語の概要については、FQLチートシートを参照してください 。
+Faunaクエリ言語の概要については、FQLチートシートを参照してください 。
 
 ## [](#preview-and-deprecated-functions)Preview and deprecated functions
 

@@ -33,7 +33,7 @@ Fields within the Query or Mutation types.
 
 The `@resolver` directive marks a Query or Mutation that has an associated user-defined function in the database. Queries to fields annotated with the `@resolver` directive are resolved by calling the underlying user-defined function, which is a [Fauna Query Language](https://docs.fauna.com/fauna/current/api/fql/) [`Lambda`](https://docs.fauna.com/fauna/current/api/fql/functions/lambda) function.
 
-@resolverディレクティブマーククエリまたは突然変異データベースに関連するユーザー定義関数があります。@resolverディレクティブで注釈が付けられたフィールドへのクエリは、動物相クエリ言語 Lambda関数である基になるユーザー定義関数を呼び出すことによって解決され ます。
+@resolverディレクティブマーククエリまたは突然変異データベースに関連するユーザー定義関数があります。@resolverディレクティブで注釈が付けられたフィールドへのクエリは、Faunaクエリ言語 Lambda関数である基になるユーザー定義関数を呼び出すことによって解決され ます。
 
 The name of the function is controlled by the `name` argument, which defaults to the name of the field. The `paginated` argument controls pagination support for the values returned by the user-defined function.
 

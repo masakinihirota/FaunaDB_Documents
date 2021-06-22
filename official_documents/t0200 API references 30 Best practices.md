@@ -5,7 +5,7 @@ https://docs.fauna.com/fauna/current/api/best_practices?lang=javascript
 
 This section describes best practices that we recommend, covering a variety of Fauna use cases.
 
-このセクションでは、さまざまな動物相のユースケースをカバーする、推奨されるベストプラクティスについて説明します。
+このセクションでは、さまざまなFaunaのユースケースをカバーする、推奨されるベストプラクティスについて説明します。
 
 ## [](#counters-and-other-frequently-updated-fields)Counters and other frequently updated fields
 
@@ -13,7 +13,7 @@ This section describes best practices that we recommend, covering a variety of F
 
 -   Counter data is not well-suited for database storage. In Fauna, each document update stores a new version of the document. For frequently-updated fields, a lot of document history can be collected very quickly.
 
-カウンタデータは、データベースストレージには適していません。動物相では、ドキュメントが更新されるたびに、ドキュメントの新しいバージョンが保存されます。頻繁に更新されるフィールドの場合、多くのドキュメント履歴を非常に迅速に収集できます。
+カウンタデータは、データベースストレージには適していません。Faunaでは、ドキュメントが更新されるたびに、ドキュメントの新しいバージョンが保存されます。頻繁に更新されるフィールドの場合、多くのドキュメント履歴を非常に迅速に収集できます。
 
     If a frequently-updated counter is an essential part of your application, you can make some adjustments to improve performance:
 
@@ -29,7 +29,7 @@ Removeドキュメント履歴を明示的に削除するために呼び出す�
 
 -   Fauna processes transactions in 10 millisecond batches (100 times per second). Each batch can contain many transactions, but only one transaction per batch can modify a specific field, so throughput could be limited by contention on the field updates.
 
-動物相は、トランザクションを10ミリ秒のバッチ（1秒あたり100回）で処理します。各バッチには多くのトランザクションを含めることができますが、特定のフィールドを変更できるのはバッチごとに1つのトランザクションのみであるため、フィールド更新の競合によってスループットが制限される可能性があります。
+Faunaは、トランザクションを10ミリ秒のバッチ（1秒あたり100回）で処理します。各バッチには多くのトランザクションを含めることができますが、特定のフィールドを変更できるのはバッチごとに1つのトランザクションのみであるため、フィールド更新の競合によってスループットが制限される可能性があります。
 
 -   Indexes must evaluate document history when searching for matching entries. Where possible, do not include frequently-updated fields in an index’s `terms` or `values` definitions.
 
@@ -53,7 +53,7 @@ Removeドキュメント履歴を明示的に削除するために呼び出す�
 
 -   Relationships in Fauna typically involve storing a document’s [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref) in another document. For example, document A might store a reference to document B. When document B is deleted, the reference to B stored within A is not modified. So, queries that process document A and attempt to fetch the now-deleted document B would fail.
 
-動物相の関係には、通常、ドキュメントの参照を別のドキュメントに保存することが含ま れます。たとえば、ドキュメントAはドキュメントBへの参照を格納する場合があります。ドキュメントBが削除されても、A内に格納されているBへの参照は変更されません。したがって、ドキュメントAを処理し、削除されたドキュメントBをフェッチしようとするクエリは失敗します。
+Faunaの関係には、通常、ドキュメントの参照を別のドキュメントに保存することが含ま れます。たとえば、ドキュメントAはドキュメントBへの参照を格納する場合があります。ドキュメントBが削除されても、A内に格納されているBへの参照は変更されません。したがって、ドキュメントAを処理し、削除されたドキュメントBをフェッチしようとするクエリは失敗します。
 
     You can test for the existence of a document before attempting to fetch it by using the [`If`](https://docs.fauna.com/fauna/current/api/fql/functions/if) and [`Exists`](https://docs.fauna.com/fauna/current/api/fql/functions/exists) functions.
 
@@ -120,7 +120,7 @@ IfandExists関数を使用して、ドキュメントをフェッチする前に
 
 -   Fauna’s flexible data model allows documents with different structures to exist side-by-side in a single collection, so two documents in a single collection might have entirely different structures. When evaluating a document where the field structure is not consistent, attempting to access a non-existent field causes your query to fail.
 
-動物相の柔軟なデータモデルにより、異なる構造のドキュメントを1つのコレクションに並べて存在させることができるため、1つのコレクション内の2つのドキュメントの構造が完全に異なる場合があります。フィールド構造に一貫性がないドキュメントを評価するときに、存在しないフィールドにアクセスしようとすると、クエリが失敗します。
+Faunaの柔軟なデータモデルにより、異なる構造のドキュメントを1つのコレクションに並べて存在させることができるため、1つのコレクション内の2つのドキュメントの構造が完全に異なる場合があります。フィールド構造に一貫性がないドキュメントを評価するときに、存在しないフィールドにアクセスしようとすると、クエリが失敗します。
 
     You can test for the existence of a field within a document by using the [`If`](https://docs.fauna.com/fauna/current/api/fql/functions/if) and [`ContainsPath`](https://docs.fauna.com/fauna/current/api/fql/functions/containspath) functions.
 
@@ -242,7 +242,7 @@ IfandContainsPath関数を使用して、ドキュメント内のフィールド
 
     The best practice to handle 503 responses is to retry the query. Fauna is comprised of multiple replicas that each involve multiple nodes. Retrying would often involve a different set of nodes than the original query, and so may be more successful.
 
-503応答を処理するためのベストプラクティスは、クエリを再試行することです。動物相は、それぞれが複数のノードを含む複数のレプリカで構成されています。再試行には、多くの場合、元のクエリとは異なるノードのセットが含まれるため、より成功する可能性があります。
+503応答を処理するためのベストプラクティスは、クエリを再試行することです。Faunaは、それぞれが複数のノードを含む複数のレプリカで構成されています。再試行には、多くの場合、元のクエリとは異なるノードのセットが含まれるため、より成功する可能性があります。
 
     The best practice for retries is to apply a smaller query timeout initially so that your query can fail faster and then retry, and to apply exponential back-off to that timeout so that you are not creating a situation where your queries can never succeed but you keep executing queries.
 
@@ -268,7 +268,7 @@ IfandContainsPath関数を使用して、ドキュメント内のフィールド
 
 -   Temporality is the Fauna feature that allows you to perform point-in-time queries. A point-in-time query is executed using a specific timestamp in the past, using the [`At`](https://docs.fauna.com/fauna/current/api/fql/functions/at) function. The results are based on the document versions available at that timestamp.
 
-テンポラリティは、ポイントインタイムクエリを実行できる動物相機能です。ポイントインタイムクエリは、At関数を使用して、過去の特定のタイムスタンプを使用して実行されます。結果は、そのタイムスタンプで利用可能なドキュメントバージョンに基づいています。
+テンポラリティは、ポイントインタイムクエリを実行できるFauna機能です。ポイントインタイムクエリは、At関数を使用して、過去の特定のタイムスタンプを使用して実行されます。結果は、そのタイムスタンプで利用可能なドキュメントバージョンに基づいています。
 
     When you are not using temporality on a collection’s documents, document versions increase your storage costs and reduce the performance of indexes covering those documents. Reduce the collection’s `history_days` setting to reduce the period of time document versions should exist.
 
@@ -278,9 +278,9 @@ IfandContainsPath関数を使用して、ドキュメント内のフィールド
 
 -   Fauna stores data in geographically-distributed [clusters](https://docs.fauna.com/fauna/current/glossary#Cluster) of replicas, each involving multiple nodes. This means that there are always multiple copies of your stored documents.
 
-動物相は、地理的に分散したレプリカのクラスターにデータを格納します 。各クラスターには複数のノードが含まれます。これは、保存されたドキュメントのコピーが常に複数あることを意味します。
+Faunaは、地理的に分散したレプリカのクラスターにデータを格納します 。各クラスターには複数のノードが含まれます。これは、保存されたドキュメントのコピーが常に複数あることを意味します。
 
     Fauna does not currently offer a backup and restore solution.
 
-動物相は現在、バックアップと復元のソリューションを提供していません。
+Faunaは現在、バックアップと復元のソリューションを提供していません。
 

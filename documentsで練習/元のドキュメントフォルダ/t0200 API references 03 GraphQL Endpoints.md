@@ -7,7 +7,7 @@ GraphQL エンドポイント
 
 The Fauna GraphQL API provides two endpoints:
 
-動物相 GraphQL APIは2つのエンドポイントを提供します。
+Fauna GraphQL APIは2つのエンドポイントを提供します。
 
 |Endpoint|Description|
 |---|---|
@@ -38,11 +38,11 @@ https://graphql.fauna.com/graphqlエンドポイントアクセスGraphQL クエ
 
 The `https://graphql.fauna.com/import` endpoint accepts a GraphQL schema definition, which is translated into the equivalent Fauna collections and indexes.
 
-https://graphql.fauna.com/importエンドポイントが受け入れGraphQL スキーマ定義。これは、同等の動物相コレクションとインデックスに変換されます。
+https://graphql.fauna.com/importエンドポイントが受け入れGraphQL スキーマ定義。これは、同等のFaunaコレクションとインデックスに変換されます。
 
 When a GraphQL schema is imported, the GraphQL API automatically creates the following Fauna schema documents:
 
-いつ GraphQL スキーマがインポートされ、 GraphQL APIは、次の動物相スキーマドキュメントを自動的に作成します。
+いつ GraphQL スキーマがインポートされ、 GraphQL APIは、次のFaunaスキーマドキュメントを自動的に作成します。
 
 -   One collection for each declared GraphQL type (using the type’s name), but not for [`@embedded`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_embedded) types.
 
@@ -83,7 +83,7 @@ type Query {
 
 This query defines a `User` type, which would become a collection in Fauna called `User`:
 
-このクエリは、次のUserように呼ばれる動物相のコレクションになるタイプを定義しますUser。
+このクエリは、次のUserように呼ばれるFaunaのコレクションになるタイプを定義しますUser。
 
 ```javascript
 Get(Collection("User"))
@@ -123,7 +123,7 @@ Get(Collection("User"))
 
 It also defines an `allUsers` query that provides paginated `User` results. Fauna implements such a query as an index called `allUsers`:
 
-また、allUsersページ付けされたUser 結果を提供するクエリも定義します。動物相は、次のようなインデックスとしてクエリを実装しますallUsers。
+また、allUsersページ付けされたUser 結果を提供するクエリも定義します。Faunaは、次のようなインデックスとしてクエリを実装しますallUsers。
 
 ```javascript
 Get(Index("allUsers"))
@@ -180,7 +180,7 @@ Mode
 
 The `merge` mode creates missing collections, indexes, and functions, and annotates existing Fauna schema documents with GraphQL metadata, if required. This is the default mode.
 
-このmergeモードでは、欠落しているコレクション、インデックス、および関数が作成され、既存の動物相スキーマドキュメントに注釈が付けられます。GraphQL必要に応じてメタデータ。これがデフォルトのモードです。
+このmergeモードでは、欠落しているコレクション、インデックス、および関数が作成され、既存のFaunaスキーマドキュメントに注釈が付けられます。GraphQL必要に応じてメタデータ。これがデフォルトのモードです。
 
 Since index definitions cannot be edited after an index has been created, `merge` mode reports an error whenever an index definition would need to be modified to support the new schema.
 
@@ -286,7 +286,7 @@ overrideモードがエラーで中止される可能性があることに注意
 
 Both endpoints require authentication with a specific Fauna database. This is achieved with a standard [Fauna secret](https://docs.fauna.com/fauna/current/security/keys), which determines the database and permissions to be used.
 
-両方のエンドポイントは、特定の動物相データベースによる認証を必要とします。これは、使用するデータベースと権限を決定する標準の 動物相シークレットを使用して実現されます。
+両方のエンドポイントは、特定のFaunaデータベースによる認証を必要とします。これは、使用するデータベースと権限を決定する標準の Faunaシークレットを使用して実現されます。
 
 The secret can be provided through the HTTP `Authentication` request header, either as a `[Bearer](https://tools.ietf.org/html/rfc6750)` token, or via `[HTTP Basic](https://tools.ietf.org/html/rfc7617)` authentication.
 
@@ -298,7 +298,7 @@ The secret can be provided through the HTTP `Authentication` request header, eit
 
 To use the Fauna secret as a `[Bearer](https://tools.ietf.org/html/rfc6750)` token, the `Authorization` header should look like:
 
-動物相の秘密をBearerトークンとして使用するには、Authorization ヘッダーは次のようになります。
+Faunaの秘密をBearerトークンとして使用するには、Authorization ヘッダーは次のようになります。
 
 ```http
 Authorization: Bearer <secret>
@@ -306,7 +306,7 @@ Authorization: Bearer <secret>
 
 For example, if your Fauna secret is `fnADMxRzydATDKibGAciQlNQWBs-HJdpJS1vJaIM`, then your `Authorization` header would look like:
 
-たとえば、動物相の秘密が fnADMxRzydATDKibGAciQlNQWBs-HJdpJS1vJaIMである場合、Authorization ヘッダーは次のようになります。
+たとえば、Faunaの秘密が fnADMxRzydATDKibGAciQlNQWBs-HJdpJS1vJaIMである場合、Authorization ヘッダーは次のようになります。
 
 ```http
 Authorization: Bearer fnADMxRzydATDKibGAciQlNQWBs-HJdpJS1vJaIM
@@ -328,7 +328,7 @@ HTTPベーシック
 
 To use the Fauna secret with `[HTTP Basic](https://tools.ietf.org/html/rfc7617)` authentication, provide the secret as the username value. You do not need to provide a password. Make sure that you encode the credentials into a Base64 string. For example, if your Fauna secret is `fnADMxRzydATDKibGAciQlNQWBs-HJdpJS1vJaIM`, you can convert it to HTTP Basic credentials like so:
 
-HTTP Basic認証で動物相シークレットを使用するには、ユーザー名の値としてシークレットを指定します。パスワードを入力する必要はありません。クレデンシャルをBase64文字列にエンコードしていることを確認してください。たとえば、動物相の秘密がfnADMxRzydATDKibGAciQlNQWBs-HJdpJS1vJaIMである場合、次のようにHTTP基本認証に変換できます。
+HTTP Basic認証でFaunaシークレットを使用するには、ユーザー名の値としてシークレットを指定します。パスワードを入力する必要はありません。クレデンシャルをBase64文字列にエンコードしていることを確認してください。たとえば、Faunaの秘密がfnADMxRzydATDKibGAciQlNQWBs-HJdpJS1vJaIMである場合、次のようにHTTP基本認証に変換できます。
 
 terminal
 

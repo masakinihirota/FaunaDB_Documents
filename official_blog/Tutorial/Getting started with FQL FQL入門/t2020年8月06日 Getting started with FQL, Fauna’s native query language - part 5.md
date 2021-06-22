@@ -5,7 +5,7 @@ https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-p
 
 # Getting started with FQL, Fauna’s native query language - part 5
 
-動物相のネイティブクエリ言語であるFQLの使用を開始する-パート5
+Faunaのネイティブクエリ言語であるFQLの使用を開始する-パート5
 
 Pier Bover|Aug 6th, 2020|
 
@@ -29,15 +29,15 @@ Welcome back, fellow space developer!
 -   [Part 4: a look at how to create custom functions that run straight in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-4)
 -   Part 5: a look at authentication and authorization in Fauna
 
-パート1：FQLと基本的な動物相の概念を見る
-パート2：動物相を使ったインデックスの詳細
-パート3：動物相を使用したデータのモデリングの原則の調査
-パート4：動物相で直接実行されるカスタム関数を作成する方法を見てみましょう
-パート5：動物相の認証と承認について
+パート1：FQLと基本的なFaunaの概念を見る
+パート2：Faunaを使ったインデックスの詳細
+パート3：Faunaを使用したデータのモデリングの原則の調査
+パート4：Faunaで直接実行されるカスタム関数を作成する方法を見てみましょう
+パート5：Faunaの認証と承認について
 
 Today, in the final article of this series, we're going to take a look at authentication and authorization in Fauna.
 
-今日は、このシリーズの最後の記事で、動物相での認証と承認について見ていきます。
+今日は、このシリーズの最後の記事で、Faunaでの認証と承認について見ていきます。
 
 ## In this article:
 
@@ -71,7 +71,7 @@ UDFに対する特権
 
 Authentication and authorization are commonly implemented in the application layer. Fauna follows a different approach by centralizing those right at the database.
 
-認証と承認は通常、アプリケーション層で実装されます。動物相は、それらをデータベースに一元化することにより、異なるアプローチに従います。
+認証と承認は通常、アプリケーション層で実装されます。Faunaは、それらをデータベースに一元化することにより、異なるアプローチに従います。
 
 This means that any piece of code can now become a client of your database without having to reimplement authentication or authorization:
 
@@ -103,7 +103,7 @@ Before we get to the code, let me introduce a couple of core concepts.
 
 Fauna is secure by default. To execute queries, you will always need to pass a secret which is associated either with an application key or an access token.
 
-動物相はデフォルトで安全です。クエリを実行するには、アプリケーションキーまたはアクセストークンのいずれかに関連付けられているシークレットを常に渡す必要があります。
+Faunaはデフォルトで安全です。クエリを実行するには、アプリケーションキーまたはアクセストークンのいずれかに関連付けられているシークレットを常に渡す必要があります。
 
 #### **Secrets**
 
@@ -150,7 +150,7 @@ Tokens can be deleted manually, or upon logging a user out. It's also possible t
 
 Fauna features a fine-grained authorization system based on attributes, also known as [ABAC](https://docs.fauna.com/fauna/current/security/abac).
 
-動物相は、ABACとしても知られる属性に基づくきめ細かい認証システムを備えています。
+Faunaは、ABACとしても知られる属性に基づくきめ細かい認証システムを備えています。
 
 #### **Custom roles and privileges**
 
@@ -178,7 +178,7 @@ These privileges can range from _"this role can read and delete any document of 
 
 All Fauna databases include a special server role that can access all resources. Beware: if you're using a key with this role, you should store its secret safely and never commit it to your GIT repository.
 
-すべての動物相データベースには、すべてのリソースにアクセスできる特別なサーバーの役割が含まれています。注意：このロールでキーを使用している場合は、そのシークレットを安全に保存し、GITリポジトリにコミットしないでください。
+すべてのFaunaデータベースには、すべてのリソースにアクセスできる特別なサーバーの役割が含まれています。注意：このロールでキーを使用している場合は、そのシークレットを安全に保存し、GITリポジトリにコミットしないでください。
 
 ![blog post image](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/6ugrxCGmR64zsHQGzuw8S2/64b86d39c7314af8054843e2257bb5f0/8608-FQL-part5-1.png)
 
@@ -256,7 +256,7 @@ Again, **don't use server keys in your frontend web app**.
 
 That said, it's certainly possible to query Fauna directly from your frontend apps or mobile apps by creating keys with custom roles. Depending on the security features you desire, you could go with a frontend-only approach and move the authentication flow server-side. The Fauna team is currently working on guidance on the best security practices regarding different authentication scenarios.
 
-とはいえ、カスタムロールのキーを作成することで、フロントエンドアプリやモバイルアプリから直接動物相にクエリを実行することは確かに可能です。必要なセキュリティ機能に応じて、フロントエンドのみのアプローチを採用し、認証フローをサーバー側に移動することができます。動物相チームは現在、さまざまな認証シナリオに関するセキュリティのベストプラクティスに関するガイダンスに取り組んでいます。
+とはいえ、カスタムロールのキーを作成することで、フロントエンドアプリやモバイルアプリから直接Faunaにクエリを実行することは確かに可能です。必要なセキュリティ機能に応じて、フロントエンドのみのアプローチを採用し、認証フローをサーバー側に移動することができます。Faunaチームは現在、さまざまな認証シナリオに関するセキュリティのベストプラクティスに関するガイダンスに取り組んでいます。
 
 For simplicity's sake, from now on we're just going to assume short-lived access tokens are generated server-side. These tokens could then be used from any type of application.
 
@@ -1318,11 +1318,11 @@ With this article, we've finally reached the end of the series. What an adventur
 
 We've gone through many common scenarios and problems, but if you ever get stuck you can always get help from [Fauna's community](https://community.fauna.com/).
 
-私たちは多くの一般的なシナリオと問題を経験してきましたが、行き詰まった場合はいつでも動物相のコミュニティから助けを得ることができます。
+私たちは多くの一般的なシナリオと問題を経験してきましたが、行き詰まった場合はいつでもFaunaのコミュニティから助けを得ることができます。
 
 Don't forget you can also hit me up on Twitter: [@pierb](https://twitter.com/PierB)
 
-私たちは多くの一般的なシナリオと問題を経験してきましたが、行き詰まった場合はいつでも動物相のコミュニティから助けを得ることができます。
+私たちは多くの一般的なシナリオと問題を経験してきましたが、行き詰まった場合はいつでもFaunaのコミュニティから助けを得ることができます。
 
 Farewell, fellow space developer!
 

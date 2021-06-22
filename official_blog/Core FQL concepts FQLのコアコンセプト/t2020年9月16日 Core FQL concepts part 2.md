@@ -3,7 +3,7 @@ https://fauna.com/blog/core-fql-concepts-part-2-temporality-in-faunadb
 
 # Core FQL concepts part 2: Temporality in Fauna
 
-FQL のコアコンセプトパート 2：動物相のテンポラリティ
+FQL のコアコンセプトパート 2：Faunaのテンポラリティ
 
 Pier Bover|Sep 16th, 2020|
 
@@ -15,11 +15,11 @@ Categories:
 
 Today we're going to explore one of Fauna's most unique features: its temporal capabilities.
 
-今日は、動物相の最もユニークな機能の 1 つである時間的機能について説明します。
+今日は、Faunaの最もユニークな機能の 1 つである時間的機能について説明します。
 
 This series assumes you have a grasp on the basics. If you're new to Fauna and/or FQL here's [my introductory series on FQL](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-1).
 
-このシリーズは、基本を理解していることを前提としています。動物相や FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
+このシリーズは、基本を理解していることを前提としています。Faunaや FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
 
 [](https://fauna.com/blog/core-fql-concepts-part-1-working-with-dates-and-times)
 
@@ -28,7 +28,7 @@ This series assumes you have a grasp on the basics. If you're new to Fauna and/o
 - Part 3: Data Aggregation
 
 パート 1：日付と時刻の操作
-パート 2：動物相のテンポラリティ
+パート 2：Faunaのテンポラリティ
 パート 3：データ集約
 
 ## In this article:
@@ -57,7 +57,7 @@ This series assumes you have a grasp on the basics. If you're new to Fauna and/o
 
 One of the main temporal features of Fauna is being able to record every change you make to a document. When this is configured, new document snapshots are created for every change and added to the document's history.
 
-動物相の主な時間的特徴の 1 つは、ドキュメントに加えたすべての変更を記録できることです。これを構成すると、変更ごとに新しいドキュメントスナップショットが作成され、ドキュメントの履歴に追加されます。
+Faunaの主な時間的特徴の 1 つは、ドキュメントに加えたすべての変更を記録できることです。これを構成すると、変更ごとに新しいドキュメントスナップショットが作成され、ドキュメントの履歴に追加されます。
 
 By default, when creating a collection we get 30 days of minimum document history:
 
@@ -133,7 +133,7 @@ It should be noted that having permissions to read a document doesn't automatica
 
 For more info on authorization in Fauna [check my previous article](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-5).
 
-動物相での承認の詳細については、私の以前の記事を確認してください。
+Faunaでの承認の詳細については、私の以前の記事を確認してください。
 
 # Querying document history
 
@@ -408,7 +408,7 @@ Much like a time machine, **At()** allows us to execute FQL queries in the past.
 
 At()\*\* sets the point in time for all reads in FQL for that query. We can use indexes, filter data, etc. It's exactly like querying Fauna at that time.
 
-At（）\*\*は、そのクエリの FQL でのすべての読み取りの時点を設定します。インデックスやフィルターデータなどを使用できます。それは、当時の動物相にクエリを実行するのとまったく同じです。
+At（）\*\*は、そのクエリの FQL でのすべての読み取りの時点を設定します。インデックスやフィルターデータなどを使用できます。それは、当時のFaunaにクエリを実行するのとまったく同じです。
 
 It doesn't work exactly like a time machine though. We can't really write changes in the past with it. If we try to use **At()** to make any changes at any other time than **Now()** we will get an error.
 
@@ -579,7 +579,7 @@ In any case, if we now get the latest version of the document we can see it is u
 
 I'm sure I'm not the only one that has wanted to go back in time to restore something that was deleted by accident. Fauna offers a couple of ways to do this.
 
-誤って削除されたものを復元するために時間を遡りたいと思ったのは私だけではないと確信しています。動物相はこれを行うためのいくつかの方法を提供します。
+誤って削除されたものを復元するために時間を遡りたいと思ったのは私だけではないと確信しています。Faunaはこれを行うためのいくつかの方法を提供します。
 
 ## Removing the delete event
 
@@ -839,7 +839,7 @@ As you can see, even though we created a new document, the new **create** event 
 
 Now that we've seen an overview of the temporal features in Fauna let's examine a couple of common use cases in more detail.
 
-動物相の時間的特徴の概要を見てきたので、いくつかの一般的な使用例をさらに詳しく調べてみましょう。
+Faunaの時間的特徴の概要を見てきたので、いくつかの一般的な使用例をさらに詳しく調べてみましょう。
 
 ## Safe delete
 
@@ -859,7 +859,7 @@ There are two major points to consider though:
 
 1.  Fauna stores every single document change in its history, which occupies storage space. It might be overkill for simple safe delete at scale if you don't need document versioning.
 
-動物相は、ストレージスペースを占有する履歴内のすべてのドキュメントの変更を保存します。ドキュメントのバージョン管理が必要ない場合、大規模で単純な安全な削除を行うのはやり過ぎかもしれません。
+Faunaは、ストレージスペースを占有する履歴内のすべてのドキュメントの変更を保存します。ドキュメントのバージョン管理が必要ない場合、大規模で単純な安全な削除を行うのはやり過ぎかもしれません。
 
 2.  Since querying the history returns an array of events, you won't have as much flexibility as you would have by storing the deleted documents in a dedicated collection. For example, by using a "recycle bin" collection approach, you could use indexes and filter deleted documents by user, deletion reason, etc.
 
@@ -871,7 +871,7 @@ There are two major points to consider though:
 
 Another major use case for the temporal features of Fauna is storing and keeping track of content changes. Let's say you're working on SpaceDocs, the next app for collaborative writing of spacey documents. You obviously need a version history feature to keep track of changes.
 
-動物相の時間的特徴のもう 1 つの主要な使用例は、コンテンツの変更を保存および追跡することです。スペースのあるドキュメントを共同で作成するための次のアプリである SpaceDocs に取り組んでいるとしましょう。変更を追跡するには、明らかにバージョン履歴機能が必要です。
+Faunaの時間的特徴のもう 1 つの主要な使用例は、コンテンツの変更を保存および追跡することです。スペースのあるドキュメントを共同で作成するための次のアプリである SpaceDocs に取り組んでいるとしましょう。変更を追跡するには、明らかにバージョン履歴機能が必要です。
 
 Storage shouldn't be a concern here, since you would be storing all of the versions anyway, say in a **DocVersions** collection. But, again, if you used the history to keep older versions around you wouldn't be able to use common FQL features such as indexes. Maybe this would limit the kind of features you can build in the future.
 

@@ -11,11 +11,11 @@ Categories:
 
 Fauna is a serverless global database designed for low latency and developer productivity. FQL, its query language, was also designed with these goals in mind. With it, you can create expressive queries that will allow you to harness the full power of Fauna.
 
-Fauna は、低レイテンシと開発者の生産性のために設計されたサーバーレスグローバルデータベースです。クエリ言語である FQL も、これらの目標を念頭に置いて設計されました。これを使用すると、動物相の力を最大限に活用できる表現力豊かなクエリを作成できます。
+Fauna は、低レイテンシと開発者の生産性のために設計されたサーバーレスグローバルデータベースです。クエリ言語である FQL も、これらの目標を念頭に置いて設計されました。これを使用すると、Faunaの力を最大限に活用できる表現力豊かなクエリを作成できます。
 
 In this five-part series of articles, we’ll go through the basics of FQL with no need of prior knowledge. If you are skimming and don’t understand something, you probably only need to go back to a previous section.
 
-Fauna は、低レイテンシと開発者の生産性のために設計されたサーバーレスグローバルデータベースです。クエリ言語である FQL も、これらの目標を念頭に置いて設計されました。これを使用すると、動物相の力を最大限に活用できる表現力豊かなクエリを作成できます。
+Fauna は、低レイテンシと開発者の生産性のために設計されたサーバーレスグローバルデータベースです。クエリ言語である FQL も、これらの目標を念頭に置いて設計されました。これを使用すると、Faunaの力を最大限に活用できる表現力豊かなクエリを作成できます。
 
 - Part 1: a look at FQL and fundamental Fauna concepts
 - [Part 2: a deep dive into indexes with Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-2)
@@ -23,11 +23,11 @@ Fauna は、低レイテンシと開発者の生産性のために設計され�
 - [Part 4: a look at how to create custom functions that run straight in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-4)
 - [Part 5: a look at authentication and authorization in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-5)
 
-パート 1：FQL と基本的な動物相の概念を見る
-パート 2：動物相を使ったインデックスの詳細
-パート 3：動物相を使用したデータのモデリングの原則の調査
-パート 4：動物相で直接実行されるカスタム関数を作成する方法を見てみましょう
-パート 5：動物相の認証と承認について
+パート 1：FQL と基本的なFaunaの概念を見る
+パート 2：Faunaを使ったインデックスの詳細
+パート 3：Faunaを使用したデータのモデリングの原則の調査
+パート 4：Faunaで直接実行されるカスタム関数を作成する方法を見てみましょう
+パート 5：Faunaの認証と承認について
 
 In this article:
 
@@ -69,7 +69,7 @@ As an agnostic querying language, GraphQL is a great option for using Fauna stra
 
 Before embarking on our space adventure, you only need to [signup for a free Fauna account](https://dashboard.fauna.com/accounts/register). Fauna has a very generous free tier which is more than enough for learning, development, or even light production workloads.
 
-私たちの宇宙冒険に着手する前に、あなたは無料の動物相アカウントにサインアップする必要があるだけです。動物相には非常に寛大な無料枠があり、学習、開発、さらには軽い生産ワークロードにも十分すぎるほどです。
+私たちの宇宙冒険に着手する前に、あなたは無料のFaunaアカウントにサインアップする必要があるだけです。Faunaには非常に寛大な無料枠があり、学習、開発、さらには軽い生産ワークロードにも十分すぎるほどです。
 
 ![blog post image](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/TbBjn9VERebQCYQ1SRY0A/e77c430767161853aca79cc41a909cf6/7651-FQL-p1-1.png)
 
@@ -89,11 +89,11 @@ It’s also possible to install Fauna on your development machine using [an offi
 
 Fauna is a NoSQL database. Instead of organizing data in tables and rows, it uses documents and collections.
 
-動物相は NoSQL データベースです。データをテーブルと行に整理する代わりに、ドキュメントとコレクションを使用します。
+Faunaは NoSQL データベースです。データをテーブルと行に整理する代わりに、ドキュメントとコレクションを使用します。
 
 The smallest units of data in Fauna are schemaless [documents](https://docs.fauna.com/fauna/current/api/fql/documents) which are basically JSON with some extra [Fauna types](https://docs.fauna.com/fauna/current/api/fql/types). These documents are grouped into collections which are simply buckets of documents.
 
-動物相のデータの最小単位はスキーマレスドキュメントであり、基本的に JSON であり、いくつかの追加の動物相タイプがあります。これらのドキュメントは、単なるドキュメントのバケットであるコレクションにグループ化されます。
+Faunaのデータの最小単位はスキーマレスドキュメントであり、基本的に JSON であり、いくつかの追加のFaunaタイプがあります。これらのドキュメントは、単なるドキュメントのバケットであるコレクションにグループ化されます。
 
 This is what a simple document looks like:
 
@@ -123,7 +123,7 @@ ts は、ドキュメントの最後のイベント（作成、読み取り、�
 
 At creation, a document cannot exceed 1MB since that is the limit of a Fauna request. You can append more data to a document afterwards.
 
-作成時に、ドキュメントは 1MB を超えることはできません。これは、動物相リクエストの制限であるためです。後でドキュメントにさらにデータを追加できます。
+作成時に、ドキュメントは 1MB を超えることはできません。これは、Faunaリクエストの制限であるためです。後でドキュメントにさらにデータを追加できます。
 
 ## Your first collections
 
@@ -152,7 +152,7 @@ CreateCollection({name: "Spaceships"})
 
 As you can see, the result looks very similar to a document. Pretty much all data in Fauna is stored in documents. For now, let’s leave the default values and move on.
 
-ご覧のとおり、結果はドキュメントと非常によく似ています。動物相のほとんどすべてのデータはドキュメントに保存されます。とりあえず、デフォルト値のままにして先に進みましょう。
+ご覧のとおり、結果はドキュメントと非常によく似ています。Faunaのほとんどすべてのデータはドキュメントに保存されます。とりあえず、デフォルト値のままにして先に進みましょう。
 
 Let’s create another a collection for our pilots:
 
@@ -234,7 +234,7 @@ As you can see, we're now storing a reference to another document in the pilot p
 
 **Quick tip:** SQL users might be tempted to store the actual id in a pilot_id property of the JSON instead of a reference. This would be totally valid but it's recommended to use native Fauna references. This will make your FQL queries much simpler as we’ll see later on.
 
-クイックヒント： SQL ユーザーは、実際の ID を参照ではなく JSON の pilot_id プロパティに格納したくなる場合があります。これは完全に有効ですが、ネイティブの動物相参照を使用することをお勧めします。これにより、後で説明するように、FQL クエリがはるかに簡単になります。
+クイックヒント： SQL ユーザーは、実際の ID を参照ではなく JSON の pilot_id プロパティに格納したくなる場合があります。これは完全に有効ですが、ネイティブのFauna参照を使用することをお勧めします。これにより、後で説明するように、FQL クエリがはるかに簡単になります。
 
 ### **Read**
 
@@ -413,7 +413,7 @@ Let’s break this down:
 
 - [Match](https://docs.fauna.com/fauna/current/api/fql/functions/match) accepts that reference and constructs a set, which is sort of like an abstract representation of the data. At this point, no data has been fetched from Fauna yet.
 
-Match はその参照を受け入れ、データの抽象的な表現のようなセットを構築します。この時点では、動物相からデータはまだフェッチされていません。
+Match はその参照を受け入れ、データの抽象的な表現のようなセットを構築します。この時点では、Faunaからデータはまだフェッチされていません。
 
 - [Paginate](https://docs.fauna.com/fauna/current/api/fql/functions/paginate)
   takes the output from Match, fetches data from Fauna, and returns a [Page](https://docs.fauna.com/fauna/current/api/fql/functions/paginate#page) of results. In this case, this is simply an array of references.
@@ -595,11 +595,11 @@ Paginate は参照の配列を返します。
 
 - [Map](https://docs.fauna.com/fauna/current/api/fql/functions/map) accepts an array (from Paginate or other sources), performs an action on each item of this array, and returns a new array with the new items. In this case, the action is performed using [Lambda](https://docs.fauna.com/fauna/current/api/fql/functions/lambda), which is the Fauna equivalent of what you'd call a simple anonymous function in JavaScript. It's all very similar to the previous JavaScript example.
 
-Map は（Paginate または他のソースからの）配列を受け入れ、この配列の各アイテムに対してアクションを実行し、新しいアイテムを含む新しい配列を返します。この場合、アクションは Lambda を使用して実行されます。これは、JavaScript で単純な無名関数と呼ぶものと同等の動物相です。これはすべて、前の JavaScript の例と非常によく似ています。
+Map は（Paginate または他のソースからの）配列を受け入れ、この配列の各アイテムに対してアクションを実行し、新しいアイテムを含む新しい配列を返します。この場合、アクションは Lambda を使用して実行されます。これは、JavaScript で単純な無名関数と呼ぶものと同等のFaunaです。これはすべて、前の JavaScript の例と非常によく似ています。
 
 - **Lambda('pilotRef'** defines a parameter called pilotRef for the anonymous function. You can name this parameter anything that makes sense for you. Fauna doesn’t care. In this example, the parameter will receive a reference which is why I named it pilotRef.
 
-Lambda（ 'pilotRef'は、無名関数の pilotRef というパラメーターを定義します。このパラメーターには、意味のある名前を付けることができます。動物相は関係ありません。この例では、パラメーターは参照を受け取るため、pilotRef という名前を付けました。 。
+Lambda（ 'pilotRef'は、無名関数の pilotRef というパラメーターを定義します。このパラメーターには、意味のある名前を付けることができます。Faunaは関係ありません。この例では、パラメーターは参照を受け取るため、pilotRef という名前を付けました。 。
 
 - [Var](https://docs.fauna.com/fauna/current/api/fql/functions/var) is used to evaluate variables. In this case, it evaluates **"pilotRef"** and returns the document reference.
 
@@ -840,7 +840,7 @@ Here, we're telling Fauna to select the **name** property from the **data** prop
 
 This array-like notation **"data", "name"** is called a path in Fauna lingo. We're using it here to get to the **name** property, but it can be used with integers to access array items too.
 
-この配列のような表記「データ」、「名前」は、動物相の用語ではパスと呼ばれます。ここでは name プロパティにアクセスするために使用していますが、整数とともに使用して配列アイテムにアクセスすることもできます。
+この配列のような表記「データ」、「名前」は、Faunaの用語ではパスと呼ばれます。ここでは name プロパティにアクセスするために使用していますが、整数とともに使用して配列アイテムにアクセスすることもできます。
 
 ## Conclusion
 

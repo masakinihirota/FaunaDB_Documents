@@ -43,7 +43,7 @@ This post explores the pros and cons of each strategy for authenticating with Fa
 
 You learn how to implement basic Fauna authentication using [blueprints](https://github.com/fauna-labs/fauna-blueprints), Fauna Query Language (FQL) code that you can import and use in your applications. 
 
-ブループリント、アプリケーションでインポートして使用できる動物相クエリ言語（FQL）コードを使用して、基本的な動物相認証を実装する方法を学習します。
+ブループリント、アプリケーションでインポートして使用できるFaunaクエリ言語（FQL）コードを使用して、基本的なFauna認証を実装する方法を学習します。
 
 Finally, you review a sample application skeleton for building applications with an IDaaS provider.
 
@@ -79,7 +79,7 @@ Fauna で認証を実装すると、追加サービスのコストを回避す�
 
 Fauna authentication is also available on all plans, which can save you money on Fauna as well. Finally, authentication using Fauna can be more performant. There are no round-trips to the IdP to verify claims, and requests do not have to include the [JWTs](https://jwt.io/) used by third-party providers.
 
-動物相認証はすべてのプランで利用可能であり、動物相の費用も節約できます。最後に、Fauna を使用した認証はよりパフォーマンスが高くなります。クレームを検証するための IdP へのラウンドトリップはなく、リクエストにサードパーティプロバイダーが使用する JWT を含める必要はありません。
+Fauna認証はすべてのプランで利用可能であり、Faunaの費用も節約できます。最後に、Fauna を使用した認証はよりパフォーマンスが高くなります。クレームを検証するための IdP へのラウンドトリップはなく、リクエストにサードパーティプロバイダーが使用する JWT を含める必要はありません。
 
 ## Authentication with identity providers
 
@@ -126,7 +126,7 @@ This time is spent on functionality that is not differentiated and could be used
 
 ## Choosing between Fauna and identity providers
 
-動物相とIDプロバイダーのどちらを選択するか
+FaunaとIDプロバイダーのどちらを選択するか
 
 Each authentication strategy has its strengths, but how should you choose a strategy that is best for _your_ application?
 
@@ -172,11 +172,11 @@ If your authentication requirements are basic, you want to ship the first versio
 
 If you have development expertise around identity and want to minimize your number of service subscriptions then you should choose Fauna for authentication. 
 
-ID に関する開発の専門知識があり、サービスサブスクリプションの数を最小限に抑えたい場合は、認証に動物相を選択する必要があります。
+ID に関する開発の専門知識があり、サービスサブスクリプションの数を最小限に抑えたい場合は、認証にFaunaを選択する必要があります。
 
 You can implement Fauna authentication on any plan, including the free tier, and you do not need to provide any additional information to a third-party IDaaS provider. 
 
-動物相認証は、無料枠を含む任意のプランに実装でき、サードパーティの IDaaS プロバイダーに追加情報を提供する必要はありません。
+Fauna認証は、無料枠を含む任意のプランに実装でき、サードパーティの IDaaS プロバイダーに追加情報を提供する必要はありません。
 
 Note that if you have a small number of users, you may fall within your IDaaS provider’s free tier. See their pricing for more information.
 
@@ -256,5 +256,5 @@ In this post, you compared authenticating with Fauna and a third-party IDaaS pro
 
 You learned how to select an authentication strategy for your Fauna applications and how to implement your chosen strategy with sample code.
 
-動物相アプリケーションの認証戦略を選択する方法と、選択した戦略をサンプルコードで実装する方法を学びました。
+Faunaアプリケーションの認証戦略を選択する方法と、選択した戦略をサンプルコードで実装する方法を学びました。
 

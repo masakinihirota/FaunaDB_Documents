@@ -3,7 +3,7 @@ https://docs.fauna.com/fauna/current/start/
 
 # Welcome to the Fauna documentation!
 
-動物相のドキュメントへようこそ！
+Faunaのドキュメントへようこそ！
 
 Fauna is a general purpose, distributed database supporting multiple data models and strong global consistency, for modern app developers in the serverless era.
 
@@ -16,7 +16,7 @@ Faunaは、サーバーレス時代の現代のアプリ開発者向けに、複
 
 To start querying Fauna from your application code, choose your language:
 
-アプリケーションコードから動物相のクエリを開始するには、言語を選択します。
+アプリケーションコードからFaunaのクエリを開始するには、言語を選択します。
 
 [![GraphQL](https://docs.fauna.com/fauna/current/start//_images/graphql-logo.svg)](https://docs.fauna.com/fauna/current/api/graphql/endpoints)  
 [GraphQL](https://docs.fauna.com/fauna/current/api/graphql/endpoints)
@@ -49,7 +49,7 @@ Otherwise, try our…
 
 Fauna has two main APIs: GraphQL and FQL (Fauna Query Language). This quick start provides a brief intro to both since you can use them together.
 
-動物相には2つの主要なAPIがあります。 GraphQLおよびFQL（動物相クエリ言語）。このクイックスタートでは、両方を一緒に使用できるため、両方について簡単に紹介します。
+Faunaには2つの主要なAPIがあります。 GraphQLおよびFQL（Faunaクエリ言語）。このクイックスタートでは、両方を一緒に使用できるため、両方について簡単に紹介します。
 
 1.  **Sign up for a free account**
 
@@ -79,7 +79,7 @@ When you first log in, you are greeted with a Welcome tutorial. Click anywhere (
 
 You have created your first Fauna database!
 
-これで、最初の動物相データベースが作成されました。
+これで、最初のFaunaデータベースが作成されました。
 
 3.  **Browse your database**
 
@@ -567,11 +567,11 @@ quantity: 1
 
 6.  **Next steps: Query Fauna from an app**
 
-次のステップ：アプリから動物相をクエリする
+次のステップ：アプリからFaunaをクエリする
 
 If you already have an app to connect to Fauna, pick your language of choice:
 
-動物相に接続するアプリを既にお持ちの場合は、選択した言語を選択してください。
+Faunaに接続するアプリを既にお持ちの場合は、選択した言語を選択してください。
 
 [![GraphQL](https://docs.fauna.com/fauna/current/start//_images/graphql-logo.svg)](https://docs.fauna.com/fauna/current/api/graphql/endpoints)  
 [GraphQL](https://docs.fauna.com/fauna/current/api/graphql/endpoints)

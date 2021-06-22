@@ -7,7 +7,7 @@ GraphQL 関係
 
 The Fauna GraphQL API recognizes relationships based on the fields in the GraphQL schema imported. The relationship recognition algorithm looks at every field for all non-embedded types, if it finds a field in the source type where its return is also non-embedded type, it tries to find a field in the target type that points back to the source. The resulting relationship cardinality depends on the presence, absence, or cardinality of matching fields found.
 
-動物相 GraphQL APIは、のフィールドに基づいて関係を認識します GraphQLインポートされたスキーマ。関係認識アルゴリズムは、すべての非埋め込みタイプのすべてのフィールドを調べ、戻り値も非埋め込みタイプであるソースタイプのフィールドを見つけた場合、ソースを指すターゲットタイプのフィールドを見つけようとします。 。結果として得られる関係のカーディナリティは、見つかった一致するフィールドの存在、不在、またはカーディナリティによって異なります。
+Fauna GraphQL APIは、のフィールドに基づいて関係を認識します GraphQLインポートされたスキーマ。関係認識アルゴリズムは、すべての非埋め込みタイプのすべてのフィールドを調べ、戻り値も非埋め込みタイプであるソースタイプのフィールドを見つけた場合、ソースを指すターゲットタイプのフィールドを見つけようとします。 。結果として得られる関係のカーディナリティは、見つかった一致するフィールドの存在、不在、またはカーディナリティによって異なります。
 
 During schema import, the GraphQL API creates the necessary collections and indexes to correlate the data based on the recognized relationships in the schema.
 

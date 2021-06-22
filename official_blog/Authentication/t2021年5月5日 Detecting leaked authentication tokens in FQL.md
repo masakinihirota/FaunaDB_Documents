@@ -67,7 +67,7 @@ assumes
 
 The blueprint format allows you to set up or tear down the provided resources with the experimental [fauna-schema-migrate](https://github.com/fauna-labs/fauna-schema-migrate) tool. To deploy the blueprint to your own Fauna account, follow the [“Set up a blueprint” instructions](https://github.com/fauna-labs/fauna-blueprints#set-up-a-blueprint) in the repository README.
 
-ブループリント形式では、実験的な動物相-スキーマ-移行ツールを使用して、提供されたリソースを設定または破棄できます。ブループリントを自分の Fauna アカウントに展開するには、リポジトリ README の「ブループリントの設定」の手順に従います。
+ブループリント形式では、実験的なFauna-スキーマ-移行ツールを使用して、提供されたリソースを設定または破棄できます。ブループリントを自分の Fauna アカウントに展開するには、リポジトリ README の「ブループリントの設定」の手順に従います。
 
 ## Implementation
 
@@ -435,7 +435,7 @@ function InvalidateAccessToken (refreshTokenRef) {
 
 The Fauna [advanced refresh tokens blueprint](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/refresh-tokens-advanced) provides an example implementation that you can learn from, customize or use in your own application. In this article, you learned how to implement an advanced refresh token workflow how it improves upon the [simple refresh tokens blueprint](https://github.com/fauna-labs/fauna-blueprints/tree/master/official/auth/refresh-tokens-simple).
 
-動物相の高度な更新トークンのブループリントは、独自のアプリケーションから学習、カスタマイズ、または使用できる実装例を提供します。この記事では、高度な更新トークンワークフローを実装する方法を学び、単純な更新トークンのブループリントをどのように改善するかを学びました。
+Faunaの高度な更新トークンのブループリントは、独自のアプリケーションから学習、カスタマイズ、または使用できる実装例を提供します。この記事では、高度な更新トークンワークフローを実装する方法を学び、単純な更新トークンのブループリントをどのように改善するかを学びました。
 
 To implement more common authentication tasks in FQL, see the [registration](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/register-login-logout), [password reset](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/password-reset), and [email verification](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/email-verification) blueprints.
 
@@ -443,4 +443,4 @@ FQL でより一般的な認証タスクを実装するには、登録、パス�
 
 Deploy this blueprint to your own Fauna database today by [following the instructions in the README](https://github.com/fauna-labs/fauna-blueprints#set-up-a-blueprint). Share your thoughts in the [Fauna forums](https://forums.fauna.com/) and let us know which blueprints you would like to see next!
 
-README の指示に従って、このブループリントを自分の動物相データベースに今すぐ展開してください。動物相フォーラムであなたの考えを共有し、次に見たい青写真を教えてください！
+README の指示に従って、このブループリントを自分のFaunaデータベースに今すぐ展開してください。Faunaフォーラムであなたの考えを共有し、次に見たい青写真を教えてください！

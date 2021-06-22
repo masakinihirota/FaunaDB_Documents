@@ -26,7 +26,7 @@ Faunaドライバーのバージョン3リリース以降、整数の各リリ�
 
 Bug fixes, or improvements that do not affect the behavior of Fauna queries, may be required from time to time, and may be driver-specific. For example, there might be a JavaScript 3.1 driver, and a Go 3.4 driver. Point releases are also considered stable, but typically do not introduce any new features.
 
-バグ修正、または動物相クエリの動作に影響を与えない改善は、時々必要になる場合があり、ドライバー固有の場合があります。たとえば、JavaScript3.1ドライバーとGo3.4ドライバーがあるとします。ポイントリリースも安定していると見なされますが、通常、新しい機能は導入されていません。
+バグ修正、またはFaunaクエリの動作に影響を与えない改善は、時々必要になる場合があり、ドライバー固有の場合があります。たとえば、JavaScript3.1ドライバーとGo3.4ドライバーがあるとします。ポイントリリースも安定していると見なされますが、通常、新しい機能は導入されていません。
 
 ## [](#preview-releases)Preview releases
 

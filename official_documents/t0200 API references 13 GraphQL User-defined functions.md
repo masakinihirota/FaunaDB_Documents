@@ -7,7 +7,7 @@ https://docs.fauna.com/fauna/current/api/graphql/functions
 
 User-defined functions (UDF) are [Fauna Query Language](https://docs.fauna.com/fauna/current/api/fql/) [`Lambda`](https://docs.fauna.com/fauna/current/api/fql/functions/lambda) functions, and they can be exposed through the GraphQL API by using the [`@resolver`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_resolver) directive at fields in the Query and Mutation types. This directive has no effect if placed elsewhere.
 
-ユーザー定義関数（UDF）は、動物相クエリ言語 Lambda関数であり、 GraphQL@resolverクエリおよびクエリのフィールドでディレクティブを使用するAPI 突然変異タイプ。このディレクティブは、他の場所に配置された場合は効果がありません。
+ユーザー定義関数（UDF）は、Faunaクエリ言語 Lambda関数であり、 GraphQL@resolverクエリおよびクエリのフィールドでディレクティブを使用するAPI 突然変異タイプ。このディレクティブは、他の場所に配置された場合は効果がありません。
 
 The UDF **must** accept an array of arguments, the same number and order as the associated field in the GraphQL schema. While an FQL function can accept a single argument as a scalar value, the GraphQL API **always** passes arguments, even a single argument, as an array. There is no association between the arguments' names in the GraphQL schema and the arguments' names in the UDF definition. When a UDF field is queried, the GraphQL API simply calls the underlying UDF with an array of the given arguments.
 

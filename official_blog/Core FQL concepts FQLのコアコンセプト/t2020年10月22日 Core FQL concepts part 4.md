@@ -23,13 +23,13 @@ I briefly introduced [Range()](https://docs.fauna.com/fauna/current/api/fql/func
 - Part 4: Range queries
 
 パート 1：日付と時刻の操作
-パート 2：動物相のテンポラリティ
+パート 2：Faunaのテンポラリティ
 パート 3：データ集約
 パート 4：範囲クエリ
 
 This series assumes that you have a grasp on the basics. If you're new to Fauna and/or FQL here's [my introductory series on FQL](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-1).
 
-このシリーズは、基本を理解していることを前提としています。動物相や FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
+このシリーズは、基本を理解していることを前提としています。Faunaや FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
 
 ## In this article:
 
@@ -55,7 +55,7 @@ This series assumes that you have a grasp on the basics. If you're new to Fauna 
 
 The idea of range queries is to be able to filter results by providing two boundaries, expressed as start and end values. Since Fauna needs to be able to compare values to determine when a result should be included, these boundaries have to be scalar values such as numbers, strings, or dates, but not other [FQL types](https://docs.fauna.com/fauna/current/api/fql/types?lang=javascript) such as booleans.
 
-範囲クエリの考え方は、開始値と終了値として表される 2 つの境界を提供することにより、結果をフィルタリングできるようにすることです。動物相は、結果を含めるタイミングを決定するために値を比較できる必要があるため、これらの境界は、数値、文字列、日付などのスカラー値である必要がありますが、ブール値などの他の FQL タイプである必要はありません。
+範囲クエリの考え方は、開始値と終了値として表される 2 つの境界を提供することにより、結果をフィルタリングできるようにすることです。Faunaは、結果を含めるタイミングを決定するために値を比較できる必要があるため、これらの境界は、数値、文字列、日付などのスカラー値である必要がありますが、ブール値などの他の FQL タイプである必要はありません。
 
 Let's create some data to see how **Range()** works:
 
@@ -261,7 +261,7 @@ Each start/end array is actually used as a single value to determine which resul
 
 As you can see, Fauna considers **"F", 6** to be inferior to the upper limit of **"G", 4**, but how does that work?
 
-ご覧のとおり、動物相は「F」6 が「G」4 の上限よりも劣っていると見なしていますが、それはどのように機能しますか？
+ご覧のとおり、Faunaは「F」6 が「G」4 の上限よりも劣っていると見なしていますが、それはどのように機能しますか？
 
 Think of it this way. If you were sorting strings alphabetically, which one would come first: **"A8"** or **"Z1"**? Obviously **"A8"** because **A** comes before **Z**, right? Since the first character has the highest priority when sorting we don't care about the second one to determine which string comes first.
 
@@ -269,7 +269,7 @@ Think of it this way. If you were sorting strings alphabetically, which one woul
 
 This also explains why Fauna considers **"G", 7** to be superior to **"G", 4** and excludes it from the results. The first item is the same (the string **"G"**) so only the second item affects the comparison.
 
-これはまた、動物相が「G」7 を「G」4 よりも優れていると見なし、結果から除外する理由を説明しています。最初の項目は同じ（文字列"G"）であるため、2 番目の項目のみが比較に影響します。
+これはまた、Faunaが「G」7 を「G」4 よりも優れていると見なし、結果から除外する理由を説明しています。最初の項目は同じ（文字列"G"）であるため、2 番目の項目のみが比較に影響します。
 
 Let's see another example. Imagine we had a collection of people with their age and name and we had an index that returned these results:
 
@@ -345,7 +345,7 @@ We wouldn't be able to use **Range()** to solve this for the reasons I explained
 
 Even though the string **"Pier"** obviously comes after the string **"B"**, Fauna is only taking the age into consideration to determine that **41, "Pier"** is inferior to the upper bound of **60, "B"**.
 
-文字列「Pier」は明らかに文字列「B」の後にありますが、動物相は年齢のみを考慮して、41「Pier」が上限の 60「B」より劣っていると判断しています。
+文字列「Pier」は明らかに文字列「B」の後にありますが、Faunaは年齢のみを考慮して、41「Pier」が上限の 60「B」より劣っていると判断しています。
 
 ![core-fql-4-3](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/10YF67sYKfzSNo3tVx8ErW/4a52848f3aa510be221d6375730ac182/core-fql-4-3.png)
 

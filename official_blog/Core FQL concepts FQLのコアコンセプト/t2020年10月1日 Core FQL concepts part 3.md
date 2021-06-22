@@ -22,12 +22,12 @@ Today we're going to explore some of the aggregate functions of FQL and a number
 - Part 3: Data Aggregation
 
 パート 1：日付と時刻の操作
-パート 2：動物相のテンポラリティ
+パート 2：Faunaのテンポラリティ
 パート 3：データ集約
 
 This series assumes you have a grasp on the basics. If you're new to Fauna and/or FQL here's [my introductory series on FQL](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-1).
 
-このシリーズは、基本を理解していることを前提としています。動物相や FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
+このシリーズは、基本を理解していることを前提としています。Faunaや FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
 
 ## In this article:
 
@@ -233,7 +233,7 @@ As you probably have guessed, we use [Min()](https://docs.fauna.com/fauna/curren
 
 On top of numbers, strings, and dates, both **Min()** and **Max()** work with other Fauna types. Check [the documentation](https://docs.fauna.com/fauna/current/api/fql/functions/max?lang=javascript) for more information.
 
-数値、文字列、日付に加えて、Min（）と Max（）の両方が他の動物相タイプで機能します。詳細については、ドキュメントを確認してください。
+数値、文字列、日付に加えて、Min（）と Max（）の両方が他のFaunaタイプで機能します。詳細については、ドキュメントを確認してください。
 
 ## Summing values
 
@@ -277,7 +277,7 @@ As we'll see later, this becomes quite handy for grouping results.
 
 In relational databases, aggregate functions are used on a column of data (either from a table or the results of a query). Fauna uses documents as its underlying storage, so these calculations are done over arrays. The approach is very similar to what you'd do in regular programming using functional style techniques, which FQL naturally lends itself to.
 
-リレーショナルデータベースでは、集計関数はデータの列で使用されます（テーブルまたはクエリの結果のいずれかから）。動物相はその基礎となるストレージとしてドキュメントを使用するため、これらの計算は配列に対して行われます。このアプローチは、FQL が自然に役立つ機能スタイルの手法を使用した通常のプログラミングで行う方法と非常によく似ています。
+リレーショナルデータベースでは、集計関数はデータの列で使用されます（テーブルまたはクエリの結果のいずれかから）。Faunaはその基礎となるストレージとしてドキュメントを使用するため、これらの計算は配列に対して行われます。このアプローチは、FQL が自然に役立つ機能スタイルの手法を使用した通常のプログラミングで行う方法と非常によく似ています。
 
 Let's answer the following question: what's the total weight of all our robots?
 

@@ -83,7 +83,7 @@ One last thing. If you've never used Fauna or FQL before, it would be a good ide
 - Setting up fine-grained permissions
 
 最初のステップ
-動物相の初期化
+Faunaの初期化
 データの準備
 NodemonとDotenvのインストール
 カスタムエラークラスの作成
@@ -174,7 +174,7 @@ You can stop the server at any time with **Control + C** in your terminal.
 
 ## Initializing Fauna
 
-動物相の初期化
+Faunaの初期化
 
 After you've [created a free Fauna account](https://dashboard.fauna.com/accounts/register) and logged into the dashboard, you're ready to create a new database.
 
@@ -210,7 +210,7 @@ Go to the security section of the dashboard and create a new key. In the setting
 
 After creating this key you'll see the key's secret. This is what you'll use to access Fauna from Node. Store it somewhere safe as Fauna will never show it to you again.
 
-このキーを作成すると、キーの秘密が表示されます。これは、ノードから動物相にアクセスするために使用するものです。動物相が二度とあなたにそれを見せないので、それを安全な場所に保管してください。
+このキーを作成すると、キーの秘密が表示されます。これは、ノードからFaunaにアクセスするために使用するものです。Faunaが二度とあなたにそれを見せないので、それを安全な場所に保管してください。
 
 ![image11](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/3ZiQYYmR4mXpiLJ8q580EA/951fcc2d298adcc5c906968e942f6a0f/image11.png)
 
@@ -602,7 +602,7 @@ If you're feeling mischievous you could try sending wrong requests and see how F
 
 You could also try to create the same user twice and see how a Fauna error is returned. Our **Users_by_username** index will not allow two documents with the same **username**.
 
-同じユーザーを2回作成して、動物相エラーがどのように返されるかを確認することもできます。私たちのUsers_by_usernameのインデックスは同じとの二つの文書を許可しませんユーザー名を。
+同じユーザーを2回作成して、Faunaエラーがどのように返されるかを確認することもできます。私たちのUsers_by_usernameのインデックスは同じとの二つの文書を許可しませんユーザー名を。
 
 ## Authenticating users
 
@@ -753,7 +753,7 @@ Fastifyでプライベートルートを解決する最良の方法は、フッ�
 
 Our hook will check for the presence of a **fauna-secret** header on the routes we've marked as private. We also need to create a [decorator](https://www.fastify.io/docs/latest/Decorators/) to let Fastify know we will be modifying the request object.
 
-フックは、プライベートとしてマークしたルートに動物相の秘密のヘッダーが存在するかどうかを確認します。また、リクエストオブジェクトを変更することをFastifyに通知するデコレータを作成する必要があります。
+フックは、プライベートとしてマークしたルートにFaunaの秘密のヘッダーが存在するかどうかを確認します。また、リクエストオブジェクトを変更することをFastifyに通知するデコレータを作成する必要があります。
 
 Add this to our **index.js** file:
 
@@ -794,7 +794,7 @@ fastify.decorateRequest('faunaSecret', '');
 
 We don't really need to validate the secret. Fauna will return an error if we're using an invalid secret.
 
-秘密を検証する必要はありません。無効なシークレットを使用している場合、動物相はエラーを返します。
+秘密を検証する必要はありません。無効なシークレットを使用している場合、Faunaはエラーを返します。
 
 ### The route
 
@@ -890,7 +890,7 @@ We've added the **isPrivate** property in the **config** section of the route to
 
 Also note that we're now using the user provided secret to communicate with Fauna (added to the request object in our hook). Our user will now be subjected to the Fauna authorization rules instead of using the omnipotent server secret.
 
-また、ユーザー提供のシークレットを使用してFaunaと通信していることにも注意してください（フックのリクエストオブジェクトに追加されています）。これで、ユーザーは、全能のサーバーシークレットを使用する代わりに、動物相認証ルールの対象になります。
+また、ユーザー提供のシークレットを使用してFaunaと通信していることにも注意してください（フックのリクエストオブジェクトに追加されています）。これで、ユーザーは、全能のサーバーシークレットを使用する代わりに、Fauna認証ルールの対象になります。
 
 If you now try this route you will get an error because our user does not have permission to read the Users collection.
 
@@ -902,7 +902,7 @@ Let's create a new custom role in Fauna to solve this.
 
 ### Setting up authorization in Fauna
 
-動物相での承認の設定
+Faunaでの承認の設定
 
 It's also possible to configure authorization rules exclusively using the shell and FQL queries, but for this tutorial we will be using the dashboard.
 
@@ -926,7 +926,7 @@ Give it the name of **User**, add the **Users** collection, and click on the **R
 
 We also need to tell Fauna who belongs to this role.
 
-また、この役割に属する動物相にも伝える必要があります。
+また、この役割に属するFaunaにも伝える必要があります。
 
 Go to the **Membership** tab and select the **Users** collection as a member of this role:
 
@@ -1184,7 +1184,7 @@ If you've made it this far, good job!
 
 Here are some articles you could check to keep on learning about Fauna:
 
-動物相について学び続けるためにチェックできるいくつかの記事があります：
+Faunaについて学び続けるためにチェックできるいくつかの記事があります：
 
 **Getting started with FQL**
 
@@ -1196,11 +1196,11 @@ FQL入門
 - Part 4: [Running custom functions in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-4)
 - Part 5: [Authentication and authorization in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-5)
 
-パート1：基本的な動物相の概念
+パート1：基本的なFaunaの概念
 パート2：インデックスの詳細
-パート3：動物相を使用したデータのモデリング
-パート4：動物相でのカスタム関数の実行
-パート5：動物相での認証と承認
+パート3：Faunaを使用したデータのモデリング
+パート4：Faunaでのカスタム関数の実行
+パート5：Faunaでの認証と承認
 
 **Core FQL concepts**
 
@@ -1213,7 +1213,7 @@ FQLのコアコンセプト
 - Part 5: [Joins](https://fauna.com/blog/core-fql-concepts-part-5-joins)
 
 パート1：日付と時刻の操作
-パート2：動物相のテンポラリティ
+パート2：Faunaのテンポラリティ
 パート3：データ集約
 パート4：範囲クエリと高度なフィルタリング
 パート5：参加

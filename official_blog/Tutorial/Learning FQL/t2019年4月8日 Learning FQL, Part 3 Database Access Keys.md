@@ -15,7 +15,7 @@ Categories:
 
 In the previous two posts in this series, we covered Fauna schema basics, and basic CRUD operations (create, read, update, and delete). Fauna Shell handles access control for you, so you haven’t had to do any key management. This article will cover key creation and use. The basic operations discussed here can be combined with Fauna’s [multi-tenancy patterns](https://fauna.com/blog/secure-hierarchical-multi-tenancy-patterns) to automate SaaS application provisioning, user account creation, and other application lifecycle steps.
 
-このシリーズの前の 2 つの投稿では、動物相スキーマの基本と基本的な CRUD 操作（作成、読み取り、更新、削除）について説明しました。Fauna Shell がアクセス制御を処理するため、キー管理を行う必要はありません。この記事では、キーの作成と使用について説明します。ここで説明する基本的な操作は、Fauna のマルチテナンシーパターンと組み合わせて、SaaS アプリケーションのプロビジョニング、ユーザーアカウントの作成、およびその他のアプリケーションライフサイクルの手順を自動化できます。
+このシリーズの前の 2 つの投稿では、Faunaスキーマの基本と基本的な CRUD 操作（作成、読み取り、更新、削除）について説明しました。Fauna Shell がアクセス制御を処理するため、キー管理を行う必要はありません。この記事では、キーの作成と使用について説明します。ここで説明する基本的な操作は、Fauna のマルチテナンシーパターンと組み合わせて、SaaS アプリケーションのプロビジョニング、ユーザーアカウントの作成、およびその他のアプリケーションライフサイクルの手順を自動化できます。
 
 ## Access Keys
 
@@ -23,7 +23,7 @@ In the previous two posts in this series, we covered Fauna schema basics, and ba
 
 Fauna [keys correspond to a database and an access control level](https://docs.fauna.com/fauna/current/reference/security.html#access-keys). Admin keys can provision and manage nested databases, while server keys can manage the data in a particular database. There are also access tokens, which allow end users to authenticate connections from mobile devices and web clients.
 
-動物相キーは、データベースとアクセス制御レベルに対応しています。管理者キーはネストされたデータベースをプロビジョニングおよび管理でき、サーバーキーは特定のデータベースのデータを管理できます。エンドユーザーがモバイルデバイスや Web クライアントからの接続を認証できるようにするアクセストークンもあります。
+Faunaキーは、データベースとアクセス制御レベルに対応しています。管理者キーはネストされたデータベースをプロビジョニングおよび管理でき、サーバーキーは特定のデータベースのデータを管理できます。エンドユーザーがモバイルデバイスや Web クライアントからの接続を認証できるようにするアクセストークンもあります。
 
 When you are embedding a key into application code for queries or schema management, you’ll use a server key. To manage keys for a particular child database, you must connect with an admin key connection that corresponds to the parent database. In this case, Fauna Shell is currently connected to the root database with an admin key, so we can create a server key for the child database, called "my-database", that we created in an earlier article.
 
@@ -93,7 +93,7 @@ Sometimes you want to connect to the database as an untrusted user. Client keys 
 
 To create a publicly queryable index, you can set it’s “read” permission to “public” (in this case we’re in a shell session for my-databases, which you can reach with fauna shell my-database):
 
-パブリックにクエリ可能なインデックスを作成するには、その「読み取り」権限を「パブリック」に設定します（この場合、my-databases のシェルセッションにあり、動物相シェル my-database でアクセスできます）。
+パブリックにクエリ可能なインデックスを作成するには、その「読み取り」権限を「パブリック」に設定します（この場合、my-databases のシェルセッションにあり、Faunaシェル my-database でアクセスできます）。
 
 ```javascript
 CreateIndex({
@@ -127,7 +127,7 @@ This pattern allows you to open certain data resources to queries from anonymous
 
 These patterns give developers and administrators fine-grained control over data in Fauna. Whether you are provisioning databases for SaaS customers, business units, development teams, or projects, you can give just the right level of access to just those who need it, without worrying about impacts to the rest of the cluster.
 
-これらのパターンにより、開発者と管理者は動物相のデータをきめ細かく制御できます。SaaS の顧客、ビジネスユニット、開発チーム、またはプロジェクトのデータベースをプロビジョニングする場合でも、クラスターの他の部分への影響を心配することなく、データベースを必要とする人だけに適切なレベルのアクセスを提供できます。
+これらのパターンにより、開発者と管理者はFaunaのデータをきめ細かく制御できます。SaaS の顧客、ビジネスユニット、開発チーム、またはプロジェクトのデータベースをプロビジョニングする場合でも、クラスターの他の部分への影響を心配することなく、データベースを必要とする人だけに適切なレベルのアクセスを提供できます。
 
 Admin keys can be used to manage the database tenancy tree and to provision other keys. Server keys can define the database schema and issue queries. Client keys can query public resources. These capabilities are enough to get started with Fauna access keys.
 

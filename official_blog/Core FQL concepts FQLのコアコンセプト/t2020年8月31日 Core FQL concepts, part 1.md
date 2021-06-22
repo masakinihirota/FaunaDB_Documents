@@ -19,7 +19,7 @@ Welcome! This is the first article in a new series exploring some core concepts 
 
 This series will assume you have a grasp on the basics. If you're new to Fauna and/or FQL here's [my introductory series on FQL](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-1).
 
-このシリーズは、基本を理解していることを前提としています。動物相や FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
+このシリーズは、基本を理解していることを前提としています。Faunaや FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
 
 Today we'll explore how to work with dates and timestamps.
 
@@ -49,7 +49,7 @@ Today we'll explore how to work with dates and timestamps.
 
 Fauna has two native date types:
 
-動物相には 2 つのネイティブ日付タイプがあります。
+Faunaには 2 つのネイティブ日付タイプがあります。
 
 - [Date](https://docs.fauna.com/fauna/current/api/fql/types#date) to store a calendar date
 
@@ -77,7 +77,7 @@ Time("2020-08-15T18:39:45Z");
 
 Timestamps in Fauna are always stored in UTC time. If we pass an ISO string with a time zone offset it is automatically converted:
 
-動物相のタイムスタンプは常に UTC 時間で保存されます。タイムゾーンオフセット付きの ISO 文字列を渡すと、自動的に変換されます。
+Faunaのタイムスタンプは常に UTC 時間で保存されます。タイムゾーンオフセット付きの ISO 文字列を渡すと、自動的に変換されます。
 
 ```javascript
 > Time('2020-08-15T00:00:00+04:00')
@@ -103,7 +103,7 @@ FaunaFB タイムスタンプは最大ナノ秒の精度を格納できるため
 
 We can also use [Now()](https://docs.fauna.com/fauna/current/api/fql/functions/now) to create a new **Timestamp** (the Fauna type, not the UNIX time) at the current moment in microseconds (1 millisecond = 1000 microseconds):
 
-Now（）を使用して、現在の瞬間にマイクロ秒（1 ミリ秒= 1000 マイクロ秒）で新しいタイムスタンプ（UNIX 時間ではなく動物相タイプ）を作成することもできます。
+Now（）を使用して、現在の瞬間にマイクロ秒（1 ミリ秒= 1000 マイクロ秒）で新しいタイムスタンプ（UNIX 時間ではなくFaunaタイプ）を作成することもできます。
 
 ```javascript
 > Now()
@@ -239,7 +239,7 @@ As I said, **Format()** is extremely powerful. [Check the docs](https://docs.fau
 
 Fauna has many powerful capabilities to work with dates. Let's see a couple of practical examples.
 
-動物相には、日付を処理するための多くの強力な機能があります。いくつかの実用的な例を見てみましょう。
+Faunaには、日付を処理するための多くの強力な機能があります。いくつかの実用的な例を見てみましょう。
 
 For the rest of the article we'll just assume that all planets across the galaxy follow Earth's time. My apologies to any Vulkans reading this article.
 
@@ -421,7 +421,7 @@ Let(
 
 119 minutes is almost two hours, and yet Fauna returns one hour.
 
-119 分はほぼ 2 時間ですが、動物相は 1 時間戻ります。
+119 分はほぼ 2 時間ですが、Faunaは 1 時間戻ります。
 
 Ok, with this in mind let's calculate how much time a pilot has to wait before teleporting:
 
@@ -685,11 +685,11 @@ And here's how we would find all the teleportations that happened on a Wednesday
 
 #### **Introduction to ranges queries in Fauna**
 
-動物相の範囲クエリの概要
+Faunaの範囲クエリの概要
 
 Before being able to filter by a time range, we need to take a little detour to explain how range queries work in Fauna.
 
-時間範囲でフィルタリングできるようになる前に、動物相で範囲クエリがどのように機能するかを説明するために少し回り道をする必要があります。
+時間範囲でフィルタリングできるようになる前に、Faunaで範囲クエリがどのように機能するかを説明するために少し回り道をする必要があります。
 
 Let's create a quick collection and fill it with some documents first:
 
@@ -921,7 +921,7 @@ So that's it for today. Hopefully you learned something valuable!
 
 In the following article of the series, we will continue our space adventure by checking out all the temporality features in Fauna.
 
-シリーズの次の記事では、動物相のすべての一時的な機能をチェックすることによって、宇宙の冒険を続けます。
+シリーズの次の記事では、Faunaのすべての一時的な機能をチェックすることによって、宇宙の冒険を続けます。
 
 If you have any questions don't hesitate to hit me up on Twitter: [@pierb](https://twitter.com/PierB)
 

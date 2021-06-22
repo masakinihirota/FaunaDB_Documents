@@ -24,14 +24,14 @@ Today, in the final article of the Core FQL series, we're going to take an in-de
 - Part 5: Joins
 
 パート 1：日付と時刻の操作
-パート 2：動物相のテンポラリティ
+パート 2：Faunaのテンポラリティ
 パート 3：データ集約
 パート 4：範囲クエリ
 パート 5：参加
 
 This series assumes you have a grasp on the basics. If you're new to Fauna and/or FQL here's [my introductory series on FQL](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-1).
 
-このシリーズは、基本を理解していることを前提としています。動物相や FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
+このシリーズは、基本を理解していることを前提としています。Faunaや FQL を初めて使用する場合は、FQL の紹介シリーズをご覧ください。
 
 ## In this article:
 
@@ -271,7 +271,7 @@ We can get away with this when working with small collections, but the main issu
 
 What would happen if there were thousands of factories? Well, we'd need to query thousands of indexes to get all the parts for each factory. This can impact performance but also increase our Fauna bill by executing a read operation every time we use **Paginate()** to fetch indexed data.
 
-何千もの工場があったらどうなるでしょうか。各ファクトリのすべてのパーツを取得するには、何千ものインデックスをクエリする必要があります。これはパフォーマンスに影響を与える可能性がありますが、Paginate（）を使用してインデックス付きデータをフェッチするたびに読み取り操作を実行することにより、動物相の請求額も増加します。
+何千もの工場があったらどうなるでしょうか。各ファクトリのすべてのパーツを取得するには、何千ものインデックスをクエリする必要があります。これはパフォーマンスに影響を与える可能性がありますが、Paginate（）を使用してインデックス付きデータをフェッチするたびに読み取り操作を実行することにより、Faunaの請求額も増加します。
 
 Let's answer the same question but using **Join()** instead:
 
@@ -891,7 +891,7 @@ FQL での SQL 結合の複製
 
 Fauna is so inherently different from relational SQL databases it doesn't make sense to try to directly replicate SQL queries in idiomatic FQL. We can, however, answer the same questions.
 
-動物相は、リレーショナル SQL データベースとは本質的に異なるため、慣用的な FQL で SQL クエリを直接複製しようとしても意味がありません。ただし、同じ質問に答えることはできます。
+Faunaは、リレーショナル SQL データベースとは本質的に異なるため、慣用的な FQL で SQL クエリを直接複製しようとしても意味がありません。ただし、同じ質問に答えることはできます。
 
 Let's see a simple example. Imagine we had a **Mechanics** table and a **Tools** table and we executed this query:
 
@@ -907,7 +907,7 @@ In plain English this query says: _Find all the mechanics that have a_ **_toolId
 
 To replicate this in Fauna let's create this model where each Mechanic has a Tool:
 
-これを動物相で複製するために、各メカニックがツールを持っているこのモデルを作成しましょう。
+これをFaunaで複製するために、各メカニックがツールを持っているこのモデルを作成しましょう。
 
 ![Core-FQL-pt-5-2](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/5QHkfW8gRenHM0wtIMUoHg/d7bdc021cd2b3db68fb19a92071bae80/Core-FQL-pt-5-2.png)
 

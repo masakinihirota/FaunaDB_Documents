@@ -30,7 +30,7 @@ Want to keep your data in the EU or US? Region groups enable the ability to isol
 
 The Fauna Dashboard now provides a webshell impersonation feature to help debug [Attribute-based access control (](https://docs.fauna.com/fauna/current/security/abac.html)[ABAC](https://docs.fauna.com/fauna/current/security/abac.html)[)](https://docs.fauna.com/fauna/current/security/abac.html) roles. This feature allows you to impersonate different identity documents or custom roles so you can quickly and easily debug permissions and authorization issues.
 
-動物相ダッシュボードは、属性ベースのアクセス制御（ABAC ）の役割のデバッグに役立つ Web シェルの偽装機能を提供するようになりました。この機能を使用すると、さまざまな ID ドキュメントまたはカスタムロールを偽装できるため、アクセス許可と承認の問題をすばやく簡単にデバッグできます。
+Faunaダッシュボードは、属性ベースのアクセス制御（ABAC ）の役割のデバッグに役立つ Web シェルの偽装機能を提供するようになりました。この機能を使用すると、さまざまな ID ドキュメントまたはカスタムロールを偽装できるため、アクセス許可と承認の問題をすばやく簡単にデバッグできます。
 
 ## Fauna partners with Cloudflare
 

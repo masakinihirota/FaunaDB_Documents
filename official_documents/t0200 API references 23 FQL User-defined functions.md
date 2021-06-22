@@ -7,7 +7,7 @@ https://docs.fauna.com/fauna/current/api/fql/user_defined_functions
 
 The Fauna Query Language provides [many built-in functions](https://docs.fauna.com/fauna/current/api/fql/cheat_sheet) that can be used to query and modify a database. Functions, also known as user-defined functions (or UDFs), provide a mechanism to store and run commonly used Fauna queries.
 
-動物相クエリ言語は 、データベースのクエリと変更に使用できる多くの組み込み関数を提供します。ユーザー定義関数（またはUDF）とも呼ばれる関数は、一般的に使用される動物相クエリを格納および実行するメカニズムを提供します。
+Faunaクエリ言語は 、データベースのクエリと変更に使用できる多くの組み込み関数を提供します。ユーザー定義関数（またはUDF）とも呼ばれる関数は、一般的に使用されるFaunaクエリを格納および実行するメカニズムを提供します。
 
 This section describes functions, their anatomy, how to create them, and how execute them:
 
@@ -31,11 +31,11 @@ This section describes functions, their anatomy, how to create them, and how exe
 
 Fauna supports two different types of functions:
 
-動物相は、2つの異なるタイプの機能をサポートしています。
+Faunaは、2つの異なるタイプの機能をサポートしています。
 
 1.  [Built-in functions](https://docs.fauna.com/fauna/current/api/fql/cheat_sheet): these are used as the building blocks to query or mutate Fauna databases.
 
-組み込み関数：これらは、動物相データベースを照会または変更するための構成要素として使用されます。
+組み込み関数：これらは、Faunaデータベースを照会または変更するための構成要素として使用されます。
 
 2.  User-defined functions (UDFs): these are used to combine functions, built-in or user-defined, into queries that can be executed repeatedly.
 
@@ -129,7 +129,7 @@ CreateFunction 「サーバー」または「管理者」権限で呼び出す�
 
 UDFs are documents that exist within internal "functions" collection of Fauna, which can be referred to by name using the built-in [`Function`](https://docs.fauna.com/fauna/current/api/fql/functions/function) function. Each function document is stored within the context of the enclosing database: peer, parent, and child databases store functions independently.
 
-UDFは、動物相の内部「関数」コレクション内に存在するドキュメントであり、組み込みFunction関数を使用して名前で参照できます 。各関数ドキュメントは、囲んでいるデータベースのコンテキスト内に格納されます。ピア、親、および子データベースは、関数を個別に格納します。
+UDFは、Faunaの内部「関数」コレクション内に存在するドキュメントであり、組み込みFunction関数を使用して名前で参照できます 。各関数ドキュメントは、囲んでいるデータベースのコンテキスト内に格納されます。ピア、親、および子データベースは、関数を個別に格納します。
 
 UDFは、Faunaの内部の "functions "コレクションの中に存在するドキュメントで、組み込みの[`Function`](https://docs.fauna.com/fauna/current/api/fql/functions/function)関数を使って名前で参照することができます。各関数のドキュメントは、そのデータベースのコンテキスト内に格納されます。つまり、ピアデータベース、親データベース、子データベースはそれぞれ独立して関数を格納します。
 

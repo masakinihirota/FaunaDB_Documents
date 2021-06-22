@@ -21,11 +21,11 @@ Welcome back, fellow space developer! We will continue our FQL space journey in 
 - Part 4: a look at how to create custom functions that run straight in Fauna
 - [Part 5: a look at authentication and authorization in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-5)
 
-パート 1：FQL と基本的な動物相の概念を見る
-パート 2：動物相を使ったインデックスの詳細
-パート 3：動物相を使用したデータのモデリングの原則の調査
-パート 4：動物相で直接実行されるカスタム関数を作成する方法を見てみましょう
-パート 5：動物相の認証と承認について
+パート 1：FQL と基本的なFaunaの概念を見る
+パート 2：Faunaを使ったインデックスの詳細
+パート 3：Faunaを使用したデータのモデリングの原則の調査
+パート 4：Faunaで直接実行されるカスタム関数を作成する方法を見てみましょう
+パート 5：Faunaの認証と承認について
 
 Today, we're going to take a look at how to create custom functions that run straight in Fauna.
 
@@ -65,7 +65,7 @@ Much like in any programming language, FQL also allows you to craft complex beha
 
 UDFs are somewhat similar to stored procedures found in other databases. Of course, the implementation and capabilities of UDFs in Fauna will be very different because of the unique nature of FQL. For example, it's common to use stored procedures to group SQL queries, or to reduce the results sent to the database clients. You wouldn't really need to use an UDF in those situations since these can be accomplished in a regular FQL query executed from the application.
 
-UDF は、他のデータベースにあるストアドプロシージャにいくぶん似ています。もちろん、FQL の独自の性質により、動物相での UDF の実装と機能は大きく異なります。たとえば、ストアドプロシージャを使用して、SQL クエリをグループ化したり、データベースクライアントに送信される結果を減らしたりするのが一般的です。これらの状況では、アプリケーションから実行される通常の FQL クエリで実行できるため、UDF を実際に使用する必要はありません。
+UDF は、他のデータベースにあるストアドプロシージャにいくぶん似ています。もちろん、FQL の独自の性質により、Faunaでの UDF の実装と機能は大きく異なります。たとえば、ストアドプロシージャを使用して、SQL クエリをグループ化したり、データベースクライアントに送信される結果を減らしたりするのが一般的です。これらの状況では、アプリケーションから実行される通常の FQL クエリで実行できるため、UDF を実際に使用する必要はありません。
 
 ## Why use UDFs?
 
@@ -306,7 +306,7 @@ The **Do** command returns whatever the last command in the sequence returned, s
 
 Obviously, whenever something fails, Fauna will let you know about it. You can also define when and how you want a transaction or a function to fail. In Fauna this is done using the [Abort](https://docs.fauna.com/fauna/current/api/fql/functions/abort) function.
 
-明らかに、何かが失敗したときはいつでも、動物相はあなたにそれについて知らせます。トランザクションまたは関数をいつどのように失敗させるかを定義することもできます。動物相では、これは中止機能を使用して行われます。
+明らかに、何かが失敗したときはいつでも、Faunaはあなたにそれについて知らせます。トランザクションまたは関数をいつどのように失敗させるかを定義することもできます。Faunaでは、これは中止機能を使用して行われます。
 
 Let's create a simple example:
 
@@ -883,7 +883,7 @@ So that's it for today. Hopefully you learned something valuable!
 
 In part 5 of this series, we will wrap it all up by going deeper into roles and permissions in Fauna.
 
-このシリーズのパート 5 では、動物相の役割と権限について詳しく説明し、すべてをまとめます。
+このシリーズのパート 5 では、Faunaの役割と権限について詳しく説明し、すべてをまとめます。
 
 If you have any questions, don't hesitate to hit me up on Twitter: [@pierb](https://twitter.com/PierB)
 

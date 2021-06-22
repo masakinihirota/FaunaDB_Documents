@@ -7,7 +7,7 @@ https://docs.fauna.com/fauna/current/api/graphql/directives/
 
 Directives are extensions to standard GraphQL syntax that can enhance GraphQL queries. Every directive name is prefixed with the "at" sign (`@`). This section describes the directives provided by the Fauna GraphQL API.
 
-ディレクティブは標準の拡張です GraphQL 強化できる構文 GraphQLクエリ。すべてのディレクティブ名の前には「アットマーク」（@）が付いています。このセクションでは、動物相によって提供される指令について説明しますGraphQL API。
+ディレクティブは標準の拡張です GraphQL 強化できる構文 GraphQLクエリ。すべてのディレクティブ名の前には「アットマーク」（@）が付いています。このセクションでは、Faunaによって提供される指令について説明しますGraphQL API。
 
 [`@collection`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_collection)
 Specifies the name of the underlying collection for this type.

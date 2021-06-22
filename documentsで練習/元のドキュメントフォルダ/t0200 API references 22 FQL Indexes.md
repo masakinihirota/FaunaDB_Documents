@@ -375,7 +375,7 @@ client.query({
 
 When an index is added, it is immediately available for reads, but returns incomplete results until it is built. Fauna builds the index asynchronously by scanning over relevant documents. Upon completion, the index’s `active` field is set to `true`.
 
-インデックスが追加されると、すぐに読み取りに使用できますが、作成されるまで不完全な結果を返します。動物相は、関連するドキュメントをスキャンすることにより、非同期でインデックスを作成します。完了すると、インデックスのactiveフィールドはに設定されtrueます。
+インデックスが追加されると、すぐに読み取りに使用できますが、作成されるまで不完全な結果を返します。Faunaは、関連するドキュメントをスキャンすることにより、非同期でインデックスを作成します。完了すると、インデックスのactiveフィールドはに設定されtrueます。
 
 An index cannot be created and read in the same transaction.
 

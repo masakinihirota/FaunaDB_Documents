@@ -887,7 +887,7 @@ Mary は、自分、Bob、および John の給与を確認できます。
 属性ベースのアクセス制御 (ABAC)
 
 -   [Fauna security overview](https://docs.fauna.com/fauna/current/security/)
-動物相のセキュリティの概要
+Faunaのセキュリティの概要
 
 Was this article helpful?
 

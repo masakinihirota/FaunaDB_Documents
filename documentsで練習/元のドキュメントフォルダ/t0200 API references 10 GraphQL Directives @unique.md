@@ -5,7 +5,7 @@ https://docs.fauna.com/fauna/current/api/graphql/directives/d_unique
 
 Specifies the name of a Fauna index that enforces a uniqueness constraint.
 
-一意性の制約を適用する動物相インデックスの名前を指定します。
+一意性の制約を適用するFaunaインデックスの名前を指定します。
 
 ## [](#location)Location
 

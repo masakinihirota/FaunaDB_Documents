@@ -173,7 +173,7 @@ Region Groupsをお使いの方は、[support@fauna.com](mailto:support@fauna.co
 
 # 地域グループ
 
-リージョングループは「テクノロジープレビュー」機能です。これは、テスト目的で動物相プレビュー環境でのみ使用できます。プレビュー環境へのアクセスは招待制です。
+リージョングループは「テクノロジープレビュー」機能です。これは、テスト目的でFaunaプレビュー環境でのみ使用できます。プレビュー環境へのアクセスは招待制です。
 
 招待状をリクエストするには、[product @ fauna.com](mailto:product@fauna.com)までご連絡ください[。](mailto:product@fauna.com)
 
@@ -248,9 +248,9 @@ Faunaは、Amazon WebServicesおよびGoogleCloudPlatformのインフラスト�
     
     ダッシュボード
     
-    [動物相ダッシュボード](https://dashboard.fauna.com/)
+    [Faunaダッシュボード](https://dashboard.fauna.com/)
     
-    [動物相プレビューダッシュボード](https://dashboard.fauna-preview.com/)
+    [Faunaプレビューダッシュボード](https://dashboard.fauna-preview.com/)
     
     接続 `domain`
     

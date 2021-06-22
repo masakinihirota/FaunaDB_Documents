@@ -38,7 +38,7 @@ All documents have a set of common characteristics:
 
     To track timestamps independent of Fauna operations, include fields in your documents to record timestamps entirely under your control.
 
-動物相の操作とは無関係にタイムスタンプを追跡するには、ドキュメントにフィールドを含めて、完全に管理下にあるタイムスタンプを記録します。
+Faunaの操作とは無関係にタイムスタンプを追跡するには、ドキュメントにフィールドを含めて、完全に管理下にあるタイムスタンプを記録します。
 
 -   Documents can have an optional `ttl` field (meaning time-to-live), which is a [Timestamp](https://docs.fauna.com/fauna/current/api/fql/types#timestamp) that indicates when the document should be removed. When a document is removed, the document’s existence ceases (as if it never existed); temporal queries cannot recover the document.
 

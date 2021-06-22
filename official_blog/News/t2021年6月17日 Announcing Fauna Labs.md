@@ -27,7 +27,7 @@ Fauna Labsは、データベースの管理に役立つツールを提供しま�
 
 ### Fauna Serverless Framework plugin
 
-動物相サーバーレスフレームワークプラグイン
+Faunaサーバーレスフレームワークプラグイン
 
 The [Fauna plugin](https://github.com/fauna-labs/serverless-fauna) for the [Serverless Framework](https://serverless.com) allows you to manage your databases and resources directly in your _serverless.yml_ file. You can integrate it in your test and CI/CD pipeliness to keep your databases in sync across multiple environments. There's also an [example repository](https://github.com/fauna-labs/serverless-fauna-example) that demonstrates how to create, update, and delete collections, indexes, roles, and user-defined functions (UDFs).
 
@@ -37,7 +37,7 @@ Serverless FrameworkのFaunaプラグインを使用すると、serverless.yml�
 
 ### Fauna Schema Migrate tool
 
-動物相スキーマ移行ツール
+Faunaスキーマ移行ツール
 
 The [Fauna Schema Migrate](https://github.com/fauna-labs/fauna-schema-migrate) (FSM) tool also allows you to setup and manage your Fauna resources as code. It provides support for schema migrations for larger teams, and shows how to use `Let()` statements to update your databases in a single transaction. You also can use FSM to deploy blueprints, adding common functionality to your Fauna database quickly and consistently.
 
@@ -51,7 +51,7 @@ The [Fauna Schema Migrate](https://github.com/fauna-labs/fauna-schema-migrate) (
 
 [Fauna blueprints](https://github.com/fauna-labs/fauna-blueprints) are packages of resources defined in pure FQL that can be loaded using the Fauna Schema Migrate. You can load blueprints into your database to perform common tasks like [email verification](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/email-verification), [password reset](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/password-reset), [rate limiting](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/rate-limiting), and more.
 
-動物相ブループリントは、動物相スキーマ移行を使用してロードできる純粋なFQLで定義されたリソースのパッケージです。ブループリントをデータベースにロードして、電子メールの確認、パスワードのリセット、レート制限などの一般的なタスクを実行できます。
+Faunaブループリントは、Faunaスキーマ移行を使用してロードできる純粋なFQLで定義されたリソースのパッケージです。ブループリントをデータベースにロードして、電子メールの確認、パスワードのリセット、レート制限などの一般的なタスクを実行できます。
 
 ![Screenshot showing nested official blueprints](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/6wqqZDnpvm2m2At6EVGMXF/9323a8d29e475a3699b606cdc55219d4/blueprints.png)
 
@@ -69,13 +69,13 @@ Fwitter
 
 [Fwitter](https://github.com/fauna-labs/fwitter) is a Twitter clone that demonstrates Fauna's features and functionality. It uses a frontend-only approach that accesses Fauna directly for data storage, authentication, and authorization. It demonstrates basic concepts, such as storing and retrieving data, as well as more advanced concepts like securing your data with user-defined functions (UDFs) and attribute-based access control (ABAC). For more information on Fwitter, see the repository or [this CSS-Tricks article](https://css-tricks.com/rethinking-twitter-as-a-serverless-app/).
 
-Fwitterは、Faunaの特徴を示すTwitterクローンです。データの保存、認証、承認のために動物相に直接アクセスするフロントエンドのみのアプローチを使用します。データの保存や取得などの基本的な概念に加えて、ユーザー定義関数（UDF）や属性ベースのアクセス制御（ABAC）を使用してデータを保護するなどのより高度な概念を示します。Fwitterの詳細については、リポジトリまたはこのCSS-Tricksの記事を参照してください。
+Fwitterは、Faunaの特徴を示すTwitterクローンです。データの保存、認証、承認のためにFaunaに直接アクセスするフロントエンドのみのアプローチを使用します。データの保存や取得などの基本的な概念に加えて、ユーザー定義関数（UDF）や属性ベースのアクセス制御（ABAC）を使用してデータを保護するなどのより高度な概念を示します。Fwitterの詳細については、リポジトリまたはこのCSS-Tricksの記事を参照してください。
 
 ![Fwitter screenshot](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/7CAt3vZBAV6Urn5rwfJHHF/2bc889fe0ff3388368556784b2960f52/fwitter.png)
 
 ### Fauna authentication skeleton with Auth0
 
-Auth0を使用した動物相認証スケルトン
+Auth0を使用したFauna認証スケルトン
 
 This [application skeleton](https://github.com/fauna-labs/faunadb-auth-skeleton-with-auth0) gives you a basic React app with a login flow using Auth0. The app creates an [AccessProvider](https://docs.fauna.com/fauna/current/security/external/access_provider.html) and configures your Fauna database to accept JWT tokens from Auth0 for authentication. With Auth0 and Fauna, you can implement [social login](https://auth0.com/learn/social-login), allowing users to login using providers like Twitter or Google and reducing signup friction.
 
@@ -109,7 +109,7 @@ See a tool that you'd like to see officially supported? Create an issue and let 
 
 We are currently developing self-paced workshops to help you and your team build more effectively with Fauna. Check back regularly for this and other updates.
 
-私たちは現在、あなたとあなたのチームが動物相をより効果的に構築するのを助けるために、自分のペースで進められるワークショップを開発しています。このアップデートやその他のアップデートを定期的にチェックしてください。
+私たちは現在、あなたとあなたのチームがFaunaをより効果的に構築するのを助けるために、自分のペースで進められるワークショップを開発しています。このアップデートやその他のアップデートを定期的にチェックしてください。
 
 Not sure where to start? Explore the [Fauna Labs repositories](https://github.com/fauna-labs), or clone the [Fwitter app](https://github.com/fauna-labs/fwitter) and start building with Fauna today!
 

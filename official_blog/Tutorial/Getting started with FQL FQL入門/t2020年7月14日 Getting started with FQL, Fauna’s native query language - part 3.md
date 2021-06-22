@@ -3,7 +3,7 @@ https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-p
 
 # Getting started with FQL, Fauna’s native query language - part 3
 
-動物相のネイティブクエリ言語である FQL の使用を開始する-パート 3
+Faunaのネイティブクエリ言語である FQL の使用を開始する-パート 3
 
 Pier Bover|Jul 14th, 2020|
 
@@ -23,15 +23,15 @@ Welcome back, fellow space developer! We will continue our FQL space journey in 
 - [Part 4: a look at how to create custom functions that run straight in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-4)
 - [Part 5: a look at authentication and authorization in Fauna](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-5)
 
-パート 1：FQL と基本的な動物相の概念を見る
-パート 2：動物相を使ったインデックスの詳細
-パート 3：動物相を使用したデータのモデリングの原則の調査
-パート 4：動物相で直接実行されるカスタム関数を作成する方法を見てみましょう
-パート 5：動物相の認証と承認について
+パート 1：FQL と基本的なFaunaの概念を見る
+パート 2：Faunaを使ったインデックスの詳細
+パート 3：Faunaを使用したデータのモデリングの原則の調査
+パート 4：Faunaで直接実行されるカスタム関数を作成する方法を見てみましょう
+パート 5：Faunaの認証と承認について
 
 Today we're going to take a look into the principles of modeling data with Fauna.
 
-今日は、動物相を使用したデータのモデリングの原則について見ていきます。
+今日は、Faunaを使用したデータのモデリングの原則について見ていきます。
 
 ## In this article:
 
@@ -47,7 +47,7 @@ Today we're going to take a look into the principles of modeling data with Fauna
 前書き
 正規化と非正規化
 ネストされたデータ
-動物相の参照
+Faunaの参照
 参照の配列
 多対多の関係
 
@@ -57,7 +57,7 @@ Today we're going to take a look into the principles of modeling data with Fauna
 
 Fauna is a rare breed in the world of databases as it allows you to model and query your data using different paradigms:
 
-動物相は、さまざまなパラダイムを使用してデータをモデル化およびクエリできるため、データベースの世界では珍しい品種です。
+Faunaは、さまざまなパラダイムを使用してデータをモデル化およびクエリできるため、データベースの世界では珍しい品種です。
 
 - Relational
 - Documents (schemaless)
@@ -211,7 +211,7 @@ Galaxies can have billions of stars and your galaxy document would become huge.
 
 Fauna does not impose a size limit on documents, but as they get bigger, performance will start to degrade. The [documentation](https://docs.fauna.com/fauna/current/api/fql/documents#limits) warns us that we could start seeing degraded performance with documents larger than 5MB.
 
-動物相はドキュメントにサイズ制限を課しませんが、ドキュメントが大きくなると、パフォーマンスが低下し始めます。ドキュメントには、私たちが 5 メガバイトを超える文書とパフォーマンス低下を見始めることができることを私たちに警告しています。
+Faunaはドキュメントにサイズ制限を課しませんが、ドキュメントが大きくなると、パフォーマンスが低下し始めます。ドキュメントには、私たちが 5 メガバイトを超える文書とパフォーマンス低下を見始めることができることを私たちに警告しています。
 
 Personally, I would strive to keep my documents much smaller than that. Even 1MB can hold a lot of data if you consider The Odyssey (yes, that ancient Greek book) can fit in a [700kB text file](https://www.gutenberg.org/ebooks/1727).
 
@@ -290,7 +290,7 @@ Finally, even if your use case perfectly fits the nesting pattern, you have to c
 
 Remember that Fauna provides worldwide immediate consistency. Every time you change a document, it needs to be updated to all clusters in the world. There are physical constraints such as the speed of light which make very frequent updates around the world not very practical.
 
-動物相は世界的な即時の一貫性を提供することを忘れないでください。ドキュメントを変更するたびに、世界中のすべてのクラスターに更新する必要があります。光の速度などの物理的な制約があり、世界中で頻繁に更新することはあまり実用的ではありません。
+Faunaは世界的な即時の一貫性を提供することを忘れないでください。ドキュメントを変更するたびに、世界中のすべてのクラスターに更新する必要があります。光の速度などの物理的な制約があり、世界中で頻繁に更新することはあまり実用的ではありません。
 
 #### **How fast and how often do we need to retrieve our data?**
 
@@ -298,11 +298,11 @@ Remember that Fauna provides worldwide immediate consistency. Every time you cha
 
 Don't get me wrong: if your use case requires the best possible performance, nesting the data into a document might actually be your best option (assuming it's still under 1 MB). In Fauna, like in any other document-based database, retrieving a single document is the fastest operation there is. Just take the previous points into consideration if you need to do that.
 
-誤解しないでください。ユースケースで可能な限り最高のパフォーマンスが必要な場合は、データをドキュメントにネストするのが実際には最善の選択肢かもしれません（まだ 1 MB 未満であると想定）。動物相では、他のドキュメントベースのデータベースと同様に、単一のドキュメントを取得するのが最速の操作です。それを行う必要がある場合は、前のポイントを考慮に入れてください。
+誤解しないでください。ユースケースで可能な限り最高のパフォーマンスが必要な場合は、データをドキュメントにネストするのが実際には最善の選択肢かもしれません（まだ 1 MB 未満であると想定）。Faunaでは、他のドキュメントベースのデータベースと同様に、単一のドキュメントを取得するのが最速の操作です。それを行う必要がある場合は、前のポイントを考慮に入れてください。
 
 ## References in Fauna
 
-動物相の参照
+Faunaの参照
 
 Previously, we saw that each document in Fauna has a reference that identifies it with a unique id inside a collection.
 
@@ -473,7 +473,7 @@ position: ["create"]
 
 In Fauna, like its purely document-based cousins, there is no out-of-the-box concept of foreign keys like in relational databases. That is, without writing a custom function, Fauna will not verify if a document exists when creating a reference, nor will it warn you if you are deleting a document that is referenced elsewhere; it will not cascade delete related documents.
 
-動物相では、純粋にドキュメントベースのいとこのように、リレーショナルデータベースのような外部キーのすぐに使える概念はありません。つまり、カスタム関数を記述しないと、Fauna は参照の作成時にドキュメントが存在するかどうかを確認せず、他の場所で参照されているドキュメントを削除する場合にも警告を表示しません。関連ドキュメントをカスケード削除しません。
+Faunaでは、純粋にドキュメントベースのいとこのように、リレーショナルデータベースのような外部キーのすぐに使える概念はありません。つまり、カスタム関数を記述しないと、Fauna は参照の作成時にドキュメントが存在するかどうかを確認せず、他の場所で参照されているドキュメントを削除する場合にも警告を表示しません。関連ドキュメントをカスケード削除しません。
 
 This might sound like a deal breaker, but I've found in practice that it's not much of a big deal. Even in the relational world, it's much more common to soft delete rows than to actually delete rows, just in case. Also, many of the big apps and websites you use do not support foreign keys either. They run on purely document-based databases that were the only options available to meet their high global performance needs at the time.
 
@@ -611,7 +611,7 @@ As we've seen in previous examples, many-to-many relationships can be expressed 
 
 There is a bit of chaos in the dock and our boss, the admiral, has tasked us with creating a system for managing spaceship repairs. Armed with our new knowledge about references and relationships in Fauna, we should be able to solve this in no time!
 
-ドックには少し混乱があり、私たちの上司である提督は、宇宙船の修理を管理するためのシステムを作成するように私たちに任せました。動物相の参照と関係についての新しい知識を身につければ、これをすぐに解決できるはずです！
+ドックには少し混乱があり、私たちの上司である提督は、宇宙船の修理を管理するためのシステムを作成するように私たちに任せました。Faunaの参照と関係についての新しい知識を身につければ、これをすぐに解決できるはずです！
 
 First, we need to be able to track our personnel:
 
@@ -1005,7 +1005,7 @@ So that's it for today. Hopefully you learned something valuable!
 
 In part 4 of this series, we will continue our space adventure by learning how to create FQL functions to extend the basic functionality of Fauna with custom logic.
 
-このシリーズのパート 4 では、カスタムロジックを使用して動物相の基本機能を拡張する FQL 関数を作成する方法を学習することにより、宇宙の冒険を続けます。
+このシリーズのパート 4 では、カスタムロジックを使用してFaunaの基本機能を拡張する FQL 関数を作成する方法を学習することにより、宇宙の冒険を続けます。
 
 If you have any questions don't hesitate to hit me up on Twitter: [@pierb](https://twitter.com/PierB)
 

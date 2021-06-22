@@ -81,7 +81,7 @@ mutation {
 
 The resulting document within Fauna would look like:
 
-動物相内の結果のドキュメントは次のようになります。
+Fauna内の結果のドキュメントは次のようになります。
 
 ```javascript
 Get(Ref(Collection("User")

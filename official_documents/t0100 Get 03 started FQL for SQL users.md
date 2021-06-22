@@ -3,15 +3,15 @@ https://docs.fauna.com/fauna/current/start/fql_for_sql_users
 
 # Fauna Query Language for SQL users
 
-SQLユーザー向けの動物相クエリ言語
+SQLユーザー向けのFaunaクエリ言語
 
 This section describes a number of common structured query language (SQL) queries and their Fauna Query Language (FQL) equivalents.
 
-このセクションでは、いくつかの一般的な構造化照会言語（SQL）照会と、それに相当する動物相照会言語（FQL）について説明します。
+このセクションでは、いくつかの一般的な構造化照会言語（SQL）照会と、それに相当するFauna照会言語（FQL）について説明します。
 
 While it is almost impossible to provide an exhaustive comparison of every variation of all SQL commands, we provide a very basic comparison of the most used [DDL](#data-definition-language) (Data Definition Language) and [DML](#data-manipulation-language) (Data Manipulation Language) queries. As you gain more experience with the Fauna Query Language, the ease and power of its syntax should become evident. Complex queries that are difficult, or even impossible, in SQL can be composed very easily in FQL. One very important difference between the two is that FQL is not a declarative language as SQL. Hence the actual path of execution needs to be provided for each query — FQL requires the developer to specify an index in most queries.
 
-すべてのSQLコマンドのすべてのバリエーションの完全な比較を提供することはほとんど不可能ですが、最も使用されるDDL（データ定義言語）およびDML（データ操作言語）クエリの非常に基本的な比較を提供します。動物相クエリ言語の経験を積むにつれて、その構文の容易さと力が明らかになるはずです。SQLでは困難または不可能でさえある複雑なクエリは、FQLで非常に簡単に作成できます。2つの非常に重要な違いの1つは、FQLがSQLのような宣言型言語ではないことです。したがって、実際の実行パスをクエリごとに提供する必要があります— FQLでは、ほとんどのクエリで開発者がインデックスを指定する必要があります。
+すべてのSQLコマンドのすべてのバリエーションの完全な比較を提供することはほとんど不可能ですが、最も使用されるDDL（データ定義言語）およびDML（データ操作言語）クエリの非常に基本的な比較を提供します。Faunaクエリ言語の経験を積むにつれて、その構文の容易さと力が明らかになるはずです。SQLでは困難または不可能でさえある複雑なクエリは、FQLで非常に簡単に作成できます。2つの非常に重要な違いの1つは、FQLがSQLのような宣言型言語ではないことです。したがって、実際の実行パスをクエリごとに提供する必要があります— FQLでは、ほとんどのクエリで開発者がインデックスを指定する必要があります。
 
 [DDL](#data-definition-language)
 -   [CREATE DATABASE](#create-database)
@@ -66,7 +66,7 @@ GROUPBYを選択
 |Row|Document|
 |Index/Materialized Views|Index|
 
-|関連した|動物相|
+|関連した|Fauna|
 | ---- | ---- |
 |スキーマ|データベース|
 |テーブル|コレクション|
@@ -123,7 +123,7 @@ CREATE DATABASE employees;
 
 Fauna is a multi-tenant database and databases can be created like a nested tree.
 
-動物相はマルチテナントデータベースであり、データベースはネストされたツリーのように作成できます。
+Faunaはマルチテナントデータベースであり、データベースはネストされたツリーのように作成できます。
 
 shell
 
@@ -156,7 +156,7 @@ CreateCollection({name: "dept"});
 
 Fauna doesn’t enforce the structure of a collection at the time of creation. However, if we know that every document in this collection should have a `deptno` field, we can create a unique index on the `deptno` field which emulates a relational database’s primary key.
 
-動物相は、作成時にコレクションの構造を強制しません。ただし、このコレクション内のすべてのドキュメントにdeptnoフィールドが必要であることがわかっている場合はdeptno、リレーショナルデータベースの主キーをエミュレートする一意のインデックスをフィールドに作成できます 。
+Faunaは、作成時にコレクションの構造を強制しません。ただし、このコレクション内のすべてのドキュメントにdeptnoフィールドが必要であることがわかっている場合はdeptno、リレーショナルデータベースの主キーをエミュレートする一意のインデックスをフィールドに作成できます 。
 
 shell
 
@@ -183,7 +183,7 @@ ALTER TABLE dept ADD (zip NUMBER);
 
 As documents do not have a predefined schema, there is no straightforward equivalent to adding a term (equivalent to a column) to all documents without any values. The Fauna equivalent would be to run `Update` on the document.
 
-ドキュメントには事前定義されたスキーマがないため、値のないすべてのドキュメントに用語（列に相当）を追加することに相当する簡単な方法はありません。動物相に相当するものUpdateは、ドキュメント上で実行すること です。
+ドキュメントには事前定義されたスキーマがないため、値のないすべてのドキュメントに用語（列に相当）を追加することに相当する簡単な方法はありません。Faunaに相当するものUpdateは、ドキュメント上で実行すること です。
 
 shell
 
@@ -412,7 +412,7 @@ SELECT * FROM dept;
 
 Just like in relational databases, selecting all documents from a collection results in a full scan. In SQL, the server automatically selects the appropriate indexes based on the specified columns. In Fauna, indexes must be specified explicitly.
 
-リレーショナルデータベースの場合と同様に、コレクションからすべてのドキュメントを選択すると、フルスキャンが実行されます。SQLでは、サーバーは指定された列に基づいて適切なインデックスを自動的に選択します。動物相では、インデックスを明示的に指定する必要があります。
+リレーショナルデータベースの場合と同様に、コレクションからすべてのドキュメントを選択すると、フルスキャンが実行されます。SQLでは、サーバーは指定された列に基づいて適切なインデックスを自動的に選択します。Faunaでは、インデックスを明示的に指定する必要があります。
 
 You need a collection index to run a full scan:
 

@@ -7,7 +7,7 @@ https://docs.fauna.com/fauna/current/api/graphql/previews/
 
 The Fauna GraphQL API uses an approach called "Schema previews", which gives you early, opt-in access to new or incomplete features. This approach lets you test features which will be available to production GraphQL queries in the future, which lets you develop your GraphQL queries with confidence.
 
-動物相 GraphQLAPIは、「スキーマプレビュー」と呼ばれるアプローチを使用します。これにより、新しい機能または不完全な機能への早期のオプトインアクセスが可能になります。このアプローチにより、本番環境で使用できる機能をテストできます GraphQL 将来のクエリ。これにより、 GraphQL 自信を持ってクエリを実行します。
+Fauna GraphQLAPIは、「スキーマプレビュー」と呼ばれるアプローチを使用します。これにより、新しい機能または不完全な機能への早期のオプトインアクセスが可能になります。このアプローチにより、本番環境で使用できる機能をテストできます GraphQL 将来のクエリ。これにより、 GraphQL 自信を持ってクエリを実行します。
 
 Schema previews represent functionality changes to the GraphQL API. All such changes will be made in an _additive_ way. Whenever fields require changes, they will be marked as deprecated but otherwise continue to function as normal. New fields supporting the new/revised functionality are added. This approach should eliminate changes that could break your queries.
 

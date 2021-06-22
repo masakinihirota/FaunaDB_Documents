@@ -28,7 +28,7 @@ This article is about basic CRUD operations. There is some setup and context tha
 
 Once you’ve setup your Fauna client driver and created a database in Fauna, you are ready to create a document. In Fauna Shell, your query might look like this:
 
-あなたがしたら、あなたの動植物クライアントドライバの設定をしてファウナでデータベースを作成し、ドキュメントを作成する準備ができました。動物相シェルでは、クエリは次のようになります。
+あなたがしたら、あなたの動植物クライアントドライバの設定をしてファウナでデータベースを作成し、ドキュメントを作成する準備ができました。Faunaシェルでは、クエリは次のようになります。
 
 ```
 Create(Class("recipes"), {
