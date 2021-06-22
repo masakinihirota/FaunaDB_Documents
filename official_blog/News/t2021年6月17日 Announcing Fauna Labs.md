@@ -31,7 +31,7 @@ Faunaサーバーレスフレームワークプラグイン
 
 The [Fauna plugin](https://github.com/fauna-labs/serverless-fauna) for the [Serverless Framework](https://serverless.com) allows you to manage your databases and resources directly in your _serverless.yml_ file. You can integrate it in your test and CI/CD pipeliness to keep your databases in sync across multiple environments. There's also an [example repository](https://github.com/fauna-labs/serverless-fauna-example) that demonstrates how to create, update, and delete collections, indexes, roles, and user-defined functions (UDFs).
 
-Serverless Framework](https://serverless.com)の[Fauna plugin](https://github.com/fauna-labs/serverless-fauna)を使うと、_serverless.yml_ファイルでデータベースやリソースを直接管理することができます。テストやCI/CDのパイプラインに組み込むことで、複数の環境でデータベースを同期させることができます。また、[example repository](https://github.com/fauna-labs/serverless-fauna-example)では、コレクション、インデックス、ロール、ユーザー定義関数(UDF)の作成、更新、削除の方法を紹介しています。
+[Serverless Framework](https://serverless.com)の[Fauna plugin](https://github.com/fauna-labs/serverless-fauna)を使うと、_serverless.yml_ファイルでデータベースやリソースを直接管理することができます。テストやCI/CDのパイプラインに組み込むことで、複数の環境でデータベースを同期させることができます。また、[example repository](https://github.com/fauna-labs/serverless-fauna-example)では、コレクション、インデックス、ロール、ユーザー定義関数(UDF)の作成、更新、削除の方法を紹介しています。
 
 ![Serverless plugin deployment screenshot](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/1ytFRhzqmzBaAZHYCPG2I7/122b0fa649a6ec0bf50ada3717c2dbb0/serverless-fauna.png)
 
@@ -51,7 +51,7 @@ The [Fauna Schema Migrate](https://github.com/fauna-labs/fauna-schema-migrate) (
 
 [Fauna blueprints](https://github.com/fauna-labs/fauna-blueprints) are packages of resources defined in pure FQL that can be loaded using the Fauna Schema Migrate. You can load blueprints into your database to perform common tasks like [email verification](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/email-verification), [password reset](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/password-reset), [rate limiting](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/rate-limiting), and more.
 
-Fauna blueprints](https://github.com/fauna-labs/fauna-blueprints)は、純粋なFQLで定義されたリソースのパッケージで、Fauna Schema Migrateを使用してロードすることができます。ブループリントをデータベースにロードすると、[email verification](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/email-verification)、[password reset](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/password-reset)、[rate limiting](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/rate-limiting)などの一般的なタスクを実行することができます。
+[Fauna blueprints](https://github.com/fauna-labs/fauna-blueprints)は、純粋なFQLで定義されたリソースのパッケージで、Fauna Schema Migrateを使用してロードすることができます。ブループリントをデータベースにロードすると、[email verification](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/email-verification)、[password reset](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/password-reset)、[rate limiting](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/rate-limiting)などの一般的なタスクを実行することができます。
 
 
 
