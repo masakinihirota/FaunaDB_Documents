@@ -325,7 +325,7 @@ Each GraphQL query is translated into a single FQL query, which means that the G
 
 それぞれのGraphQLクエリは、1つのFQLクエリに変換されます。つまり、GraphQL APIは、舞台裏で[n+1](https://medium.com/the-marcy-lab-school/what-is-the-n-1-problem-in-graphql-dd4921cb3c1a)問題を完全に解決してくれたことになります。
 
-How Fauna solved n+1, or why FQL + GraphQL = ![Emoji: heart rocket](https://docs.fauna.com/fauna/current/start//_images/icon-heart_rocket.png)
+## How Fauna solved n+1, or why FQL + GraphQL = ![Emoji: heart rocket](https://docs.fauna.com/fauna/current/start//_images/icon-heart_rocket.png)
 
 Faunaはいかにしてn+1を解決したのか、あるいはなぜFQL + GraphQL = ![絵文字: ハートロケット](https://docs.fauna.com/fauna/current/start//_images/icon-heart_rocket.png)
 
@@ -345,23 +345,19 @@ In other words, any given query you send to the GraphQL API always incurs only o
 
 言い換えれば、GraphQL APIに送信されたクエリは、常にデータベースへの1回のリクエストしか発生せず、しかもそれが効率的に行われるということです。例を挙げての詳しい説明は、[ブログ記事](https://fauna.com/blog/no-more-n-1-problems-with-faunadbs-graphql-api)をご覧ください。
 
-Practice more GraphQL queries and their FQL equivalents
+## Practice more GraphQL queries and their FQL equivalents
 
-より多くのGraphQLクエリとそれに相当するFQLを練習する
+いつくかのGraphQLクエリとそれに相当するFQLを練習します。
+
+## GraphQL
 
 Run these queries using the **GRAPHQL** screen.
 
-GRAPHQL**画面を使って、これらのクエリを実行してみましょう。
-
-Run these queries using the **SHELL** screen.
-
-SHELL**画面を使用して、これらのクエリを実行します。
+**GRAPHQL**画面を使って、これらのクエリを実行してみましょう。
 
 #### Create a product
 
 製品の作成
-
-graphql
 
 ```graphql
 mutation {
@@ -379,30 +375,9 @@ mutation {
 }
 ```
 
-shell
-
-```shell
-Create(
-  Collection("products"),
-  {
-    data: {
-      "name": "Apple",
-      "description": "Gala, per each",
-      "price": 0.89,
-      "quantity": 1000,
-      "storeId": Ref(Collection("stores"), "301"),
-      "backorderLimit": 10,
-      "backordered": false,
-    }
-  }
-)
-```
-
 #### Read all products
 
 全ての商品を読む
-
-graphql
 
 ```graphql
 query {
@@ -420,22 +395,9 @@ query {
 }
 ```
 
-shell
-
-```shell
-Map(
-  Paginate(
-    Documents(Collection("products"))
-  ),
-  Lambda("each_ref", Get(Var("each_ref")))
-)
-```
-
 #### Update a store
 
 ストアの更新
-
-graphql
 
 ```graphql
 mutation {
@@ -448,19 +410,6 @@ mutation {
     _id
   }
 }
-```
-
-shell
-
-```shell
-Update(
-  Ref(Collection("stores"), "301"),
-  {
-    data: {
-      "name": "DC Fruits FTW"
-    }
-  }
-)
 ```
 
 #### Read a store
@@ -484,12 +433,6 @@ query {
 }
 ```
 
-shell
-
-```shell
-Get(Ref(Collection("stores"), "301"))
-```
-
 #### Delete a product
 
 商品を削除する
@@ -504,17 +447,9 @@ mutation {
 }
 ```
 
-shell
-
-```shell
-Delete(Ref(Collection("products"), "208"))
-```
-
 #### Call a UDF to submit an order
 
 注文を送信するUDFを呼び出す
-
-    graphql
 
     ```graphql
     mutation {
@@ -532,7 +467,82 @@ Delete(Ref(Collection("products"), "208"))
     }
     ```
 
-    shell
+---
+
+## FQL
+
+Run these queries using the **SHELL** screen.
+
+**SHELL**画面を使用して、これらのクエリを実行します。
+
+#### Create a product
+
+製品の作成
+
+```shell
+Create(
+  Collection("products"),
+  {
+    data: {
+      "name": "Apple",
+      "description": "Gala, per each",
+      "price": 0.89,
+      "quantity": 1000,
+      "storeId": Ref(Collection("stores"), "301"),
+      "backorderLimit": 10,
+      "backordered": false,
+    }
+  }
+)
+```
+
+#### Read all products
+
+全ての商品を読む
+
+```shell
+Map(
+  Paginate(
+    Documents(Collection("products"))
+  ),
+  Lambda("each_ref", Get(Var("each_ref")))
+)
+```
+
+#### Update a store
+
+ストアの更新
+
+```shell
+Update(
+  Ref(Collection("stores"), "301"),
+  {
+    data: {
+      "name": "DC Fruits FTW"
+    }
+  }
+)
+```
+
+#### Read a store
+
+ストアの読み込み
+
+```shell
+Get(Ref(Collection("stores"), "301"))
+```
+
+#### Delete a product
+
+商品を削除する
+
+```shell
+Delete(Ref(Collection("products"), "208"))
+```
+
+#### Call a UDF to submit an order
+
+注文を送信するUDFを呼び出す
 
     ```shell
     Call(
