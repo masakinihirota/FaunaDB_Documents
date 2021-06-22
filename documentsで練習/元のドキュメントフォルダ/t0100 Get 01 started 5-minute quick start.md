@@ -24,22 +24,6 @@ To start querying Fauna from your application code, choose your language:
 [![JavaScript](https://docs.fauna.com/fauna/current/start//_images/javascript.png)](https://docs.fauna.com/fauna/current/drivers/javascript)  
 [JS/Node](https://docs.fauna.com/fauna/current/drivers/javascript)
 
-[![Java](https://docs.fauna.com/fauna/current/start//_images/java.svg)](https://docs.fauna.com/fauna/current/drivers/jvm)  
-[Java](https://docs.fauna.com/fauna/current/drivers/jvm)
-
-[![C#](https://docs.fauna.com/fauna/current/start//_images/csharp.png)](https://docs.fauna.com/fauna/current/drivers/csharp)  
-[C#](https://docs.fauna.com/fauna/current/drivers/csharp)
-
-[![Go](https://docs.fauna.com/fauna/current/start//_images/golang.png)](https://docs.fauna.com/fauna/current/drivers/go)  
-[Go](https://docs.fauna.com/fauna/current/drivers/go)
-
-[![Python](https://docs.fauna.com/fauna/current/start//_images/python.png)](https://docs.fauna.com/fauna/current/drivers/python)  
-[Python](https://docs.fauna.com/fauna/current/drivers/python)
-
-[![Scala](https://docs.fauna.com/fauna/current/start//_images/scala.svg)](https://docs.fauna.com/fauna/current/drivers/jvm)  
-[Scala](https://docs.fauna.com/fauna/current/drivers/jvm)
-
-Otherwise, try our…
 
 それ以外の場合は、私たちを試してみてください…
 

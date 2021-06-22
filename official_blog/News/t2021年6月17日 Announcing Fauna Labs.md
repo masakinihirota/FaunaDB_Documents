@@ -31,7 +31,7 @@ Faunaサーバーレスフレームワークプラグイン
 
 The [Fauna plugin](https://github.com/fauna-labs/serverless-fauna) for the [Serverless Framework](https://serverless.com) allows you to manage your databases and resources directly in your _serverless.yml_ file. You can integrate it in your test and CI/CD pipeliness to keep your databases in sync across multiple environments. There's also an [example repository](https://github.com/fauna-labs/serverless-fauna-example) that demonstrates how to create, update, and delete collections, indexes, roles, and user-defined functions (UDFs).
 
-Serverless FrameworkのFaunaプラグインを使用すると、serverless.ymlファイルでデータベースとリソースを直接管理できます。これをテストおよびCI / CDパイプラインに統合して、複数の環境間でデータベースの同期を維持できます。コレクション、インデックス、ロール、およびユーザー定義関数（UDF）を作成、更新、および削除する方法を示すリポジトリの例もあります。
+Serverless Framework](https://serverless.com)の[Fauna plugin](https://github.com/fauna-labs/serverless-fauna)を使うと、_serverless.yml_ファイルでデータベースやリソースを直接管理することができます。テストやCI/CDのパイプラインに組み込むことで、複数の環境でデータベースを同期させることができます。また、[example repository](https://github.com/fauna-labs/serverless-fauna-example)では、コレクション、インデックス、ロール、ユーザー定義関数(UDF)の作成、更新、削除の方法を紹介しています。
 
 ![Serverless plugin deployment screenshot](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/1ytFRhzqmzBaAZHYCPG2I7/122b0fa649a6ec0bf50ada3717c2dbb0/serverless-fauna.png)
 
@@ -41,7 +41,7 @@ Faunaスキーマ移行ツール
 
 The [Fauna Schema Migrate](https://github.com/fauna-labs/fauna-schema-migrate) (FSM) tool also allows you to setup and manage your Fauna resources as code. It provides support for schema migrations for larger teams, and shows how to use `Let()` statements to update your databases in a single transaction. You also can use FSM to deploy blueprints, adding common functionality to your Fauna database quickly and consistently.
 
-ファウナスキーマの移行（FSM）ツールは、セットアップにあなたを可能にし、コードとして、あなたの動植物資源を管理します。大規模なチームのスキーマ移行をサポートし、Let()ステートメントを使用して1回のトランザクションでデータベースを更新する方法を示します。また、FSMを使用してブループリントをデプロイし、Faunaデータベースに共通の機能を迅速かつ一貫して追加することもできます。
+また、[Fauna Schema Migrate](https://github.com/fauna-labs/fauna-schema-migrate) (FSM)ツールでは、Fauna リソースをコードとして設定・管理することができます。このツールは、大規模なチームのスキーマ移行をサポートし、`Let()`ステートメントを使用して単一のトランザクションでデータベースを更新する方法を示します。また、FSM を使用してブループリントを展開し、Fauna データベースに共通の機能を迅速かつ一貫して追加することができます。
 
 ![Fauna Schema Migrate screenshot](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/3lwdeB4cnJX5xKsdyvFTDD/bb63a1f6e60109f091c0336a45b53684/fauna-schema-migrate.png)
 
@@ -51,7 +51,9 @@ The [Fauna Schema Migrate](https://github.com/fauna-labs/fauna-schema-migrate) (
 
 [Fauna blueprints](https://github.com/fauna-labs/fauna-blueprints) are packages of resources defined in pure FQL that can be loaded using the Fauna Schema Migrate. You can load blueprints into your database to perform common tasks like [email verification](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/email-verification), [password reset](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/password-reset), [rate limiting](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/rate-limiting), and more.
 
-Faunaブループリントは、Faunaスキーマ移行を使用してロードできる純粋なFQLで定義されたリソースのパッケージです。ブループリントをデータベースにロードして、電子メールの確認、パスワードのリセット、レート制限などの一般的なタスクを実行できます。
+Fauna blueprints](https://github.com/fauna-labs/fauna-blueprints)は、純粋なFQLで定義されたリソースのパッケージで、Fauna Schema Migrateを使用してロードすることができます。ブループリントをデータベースにロードすると、[email verification](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/email-verification)、[password reset](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/auth/password-reset)、[rate limiting](https://github.com/fauna-labs/fauna-blueprints/tree/main/official/rate-limiting)などの一般的なタスクを実行することができます。
+
+
 
 ![Screenshot showing nested official blueprints](https://fauna.com//images.ctfassets.net/po4qc9xpmpuh/6wqqZDnpvm2m2At6EVGMXF/9323a8d29e475a3699b606cdc55219d4/blueprints.png)
 
