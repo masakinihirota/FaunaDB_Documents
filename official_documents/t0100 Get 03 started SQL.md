@@ -1,8 +1,8 @@
-
-
+DESCとは
 DESC（SQLのコマンドの場合）
 指定した表、ビューまたはシノニムの列定義を表示したり、指定したファンクションまたはプロシージャの仕様を表示します。
 
+説明に使う表
 
 ```sql
 SQL> DESC emp
@@ -44,7 +44,6 @@ MySQLなどの一部のリレーショナルデータベースでは、データ
 CREATE DATABASE employees;
 ```
 
-
 **CREATE TABLE**
 
 テーブル作成
@@ -58,7 +57,6 @@ CREATE TABLE dept(
 )
 ```
 
-
 **ALTER TABLE ADD COLUMN**
 
 テーブル構造を変更する
@@ -66,10 +64,6 @@ CREATE TABLE dept(
 ```sql
 ALTER TABLE dept ADD (zip NUMBER);
 ```
-
-
-
-
 
 **TRUNCATE TABLE**
 
@@ -83,8 +77,6 @@ SQLでは、truncateすべてのレコードを削除しますが、テーブル
 TRUNCATE TABLE dept;
 ```
 
-
-
 **DROP TABLE**
 
 ドロップテーブル
@@ -92,9 +84,6 @@ TRUNCATE TABLE dept;
 ```sql
 DROP TABLE dept;
 ```
-
-
-
 
 ## [](#data-manipulation-language)Data manipulation language
 
@@ -109,7 +98,6 @@ INSERT INTO dept (deptno, dname, loc)
   VALUES (10, "ACCOUNTING", "NEW YORK");
 ```
 
-
 **UPDATE**
 
 更新
@@ -119,7 +107,6 @@ UPDATE dept SET loc = "AUSTIN"
   WHERE deptno = 10;
 ```
 
-
 **DELETE**
 
 削除
@@ -127,7 +114,6 @@ UPDATE dept SET loc = "AUSTIN"
 ```sql
 DELETE FROM dept WHERE deptno = 10;
 ```
-
 
 ---
 
@@ -143,10 +129,6 @@ DELETE FROM dept WHERE deptno = 10;
 SELECT * FROM dept;
 ```
 
-
-
-
-
 **SELECT: Based on a single Parameter**
 
 SELECT：単一のパラメーターに基づく
@@ -154,11 +136,6 @@ SELECT：単一のパラメーターに基づく
 ```sql
 SELECT * FROM dept WHERE deptno = 10;
 ```
-
-
-
-
-
 
 **SELECT: Based on a single Parameter with a NOT**
 
@@ -168,11 +145,6 @@ SELECT：NOTを含む単一のパラメーターに基づく
 SELECT * FROM dept WHERE deptno != 10;
 ```
 
-
-
-
-
-
 **SELECT: Based on a condition**
 
 選択：条件に基づく
@@ -180,10 +152,6 @@ SELECT * FROM dept WHERE deptno != 10;
 ```sql
 SELECT * FROM emp WHERE sal >= 2000
 ```
-
-
-
-
 
 **SELECT: GROUP BY**
 
@@ -197,12 +165,6 @@ Query to select the maximum salary by department
 SELECT MAX(sal), deptno FROM emp GROUP BY deptno;
 ```
 
-
-
-
-
-
-
 **EQUI-JOIN two tables**
 
 2つのテーブルをEQUI-JOINする
@@ -212,8 +174,4 @@ SELECT e.* FROM emp e, dept d
  WHERE e.deptno = d.deptno
    AND d.dname = "SALES";
 ```
-
-
-
-
 

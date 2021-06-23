@@ -76,8 +76,22 @@ multi-tenant database
 
 同じシステムやサービスを複数の互いに無関係な利用者間が共同で利用する方式
 
+---
 
+FQLのインデックスとは
+リレーショナルデータベースで言うところの主キーです。
+このインデックスはユニークにできます。
 
+作成例
+
+```shell
+CreateIndex({
+  name:   "dept_by_deptno",
+  source: Collection("dept"),
+  terms:  [{ field: [ "data", "deptno" ] }],
+  unique: true
+})
+```
 
 
 
