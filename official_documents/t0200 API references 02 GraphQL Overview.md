@@ -50,7 +50,8 @@ Boolean：trueまたはを表す値false。
 
 -   `Date`: A [Date](https://docs.fauna.com/fauna/current/api/fql/types#date) value. The GraphQL API communicates and renders these as strings in the format `yyyy-MM-dd`, but they are stored as FQL dates.
 
-Date：日付値。GraphQL APIは、これらを通信してフォーマットの文字列としてレンダリングしますが、FQLyyyy-MM-dd日付として保存されます。
+- `Date`: Date](https://docs.fauna.com/fauna/current/api/fql/types#date)の値です。GraphQL APIでは、これらを `yyyy-MM-dd` 形式の文字列として通信・描画しますが、FQLの日付として保存されます。
+
 
 -   `Float`: A 64-bit floating point number.
 
@@ -58,27 +59,33 @@ Float：64ビット浮動小数点数。
 
 -   `ID`: A string representing a generic identifier. Compared to the `String` type, an `ID` is not intended to be human-readable.
 
-ID：総称識別子を表す文字列。Stringタイプと比較して 、anIDは人間が読める形式ではありません。
+- `ID`: 汎用の識別子を表す文字列です。`String` 型と比べて、`ID` は人間が読めることを意図していません。
 
     If the field specification in your schema includes the [`@unique`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_unique) directive, the identifier must be unique within the current type.
 
-スキーマのフィールド仕様に@uniqueディレクティブが含まれている 場合、識別子は現在のタイプ内で一意である必要があります。
+    スキーマのフィールド仕様に[`@unique`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_unique)ディレクティブが含まれている場合、識別子は現在の型の中で一意でなければなりません。
 
-    Fauna provides a unique identifier for a document via the `_id` field, which represents the document’s [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref). You would typically use the `ID` type for documents that have an externally-created identifier, such as documents imported from another database).
 
-Faunaは_id 、ドキュメントの参照を表すフィールドを介してドキュメントの一意の識別子を提供します。通常ID、別のデータベースからインポートされたドキュメントなど、外部で作成された識別子を持つドキュメントのタイプを使用します。
+Fauna provides a unique identifier for a document via the `_id` field, which represents the document’s [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref). You would typically use the `ID` type for documents that have an externally-created identifier, such as documents imported from another database).
+
+Faunaでは、ドキュメントの[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)を表す`_id`フィールドによって、ドキュメントのユニークな識別子を提供しています。他のデータベースからインポートされたドキュメントなど、外部で作成された識別子を持つドキュメントには、通常 `ID` タイプを使用します。)
 
 -   `Int`: A 32-bit signed decimal integer number.
 -   `Long`: A 64-bit signed decimal integer number.
 -   `String`: A string of UTF-8 characters.
--   `Time`: A [Timestamp](https://docs.fauna.com/fauna/current/api/fql/types#timestamp) value. The GraphQL API communicates and renders these as strings in the format `yyyy-MM-ddTHH:mm:ss.SSSZ`, but they are stored as FQL timestamps.
+-   `Time`: A [Timestamp](https://docs.fauna.com/fauna/current/api/fql/types#timestamp) value. 
+
 
 Int：32ビットの符号付き10進整数。
 Long：64ビットの符号付き10進整数。
 String：UTF-8文字の文字列。
-Time：タイムスタンプ値。GraphQL APIは、これらを通信してフォーマットの文字列としてレンダリングしますが、FQLyyyy-MM-ddTHH:mm:ss.SSSZタイムスタンプとして保存されます。
+Time：タイムスタンプ値。
 
-    Fauna provides a document’s most recent modification timestamp via the `_ts` field, which has microsecond resolution.
+The GraphQL API communicates and renders these as strings in the format `yyyy-MM-ddTHH:mm:ss.SSSZ`, but they are stored as FQL timestamps.
+
+GraphQL APIは、これらを通信してフォーマットの文字列としてレンダリングしますが、FQLyyyy-MM-ddTHH:mm:ss.SSSZタイムスタンプとして保存されます。
+
+Fauna provides a document’s most recent modification timestamp via the `_ts` field, which has microsecond resolution.
 
 Faunaは、_tsマイクロ秒の解像度を持つフィールドを介して、ドキュメントの最新の変更タイムスタンプを提供します。
 
@@ -98,7 +105,7 @@ https://github.com/graphql/graphql-spec
 
 There are a few online, interactive GraphQL interfaces. The one we recommend is [GraphQL Playground](https://graphqlbin.com/v2/). It is embedded into the [Fauna Dashboard](https://dashboard.fauna.com/).
 
-オンラインでインタラクティブなものがいくつかあります GraphQLインターフェイス。私たちがお勧めするのはGraphQLPlaygroundです。Faunaダッシュボードに埋め込まれています。
+オンラインのインタラクティブなGraphQLインターフェースはいくつかあります。私たちがお勧めするのは、[GraphQL Playground](https://graphqlbin.com/v2/)です。これは[Fauna Dashboard](https://dashboard.fauna.com/)に組み込まれている。
 
 For developers, the Fauna GraphQL API should work with most GraphQL libraries. See the next section for known limitations.
 
@@ -110,7 +117,7 @@ For developers, the Fauna GraphQL API should work with most GraphQL libraries. S
 
 The Fauna GraphQL API is in its initial release. It is functional, and can handle most GraphQL workloads. However, there are some GraphQL features that are currently not supported:
 
-Fauna GraphQLAPIは最初のリリースです。それは機能的であり、ほとんどを処理することができますGraphQLワークロード。ただし、いくつかありますGraphQL 現在サポートされていない機能：
+Fauna GraphQL APIは、初期リリースの状態です。機能的には、ほとんどのGraphQLワークロードを処理することができます。ただし、現在サポートされていないGraphQL機能もあります。
 
 -   Schemas do not support:
 
@@ -136,5 +143,6 @@ Fauna GraphQLAPIは最初のリリースです。それは機能的であり、�
 
 Also, Fauna GraphQL API can only work with the defined schema. Any existing collections, indexes, or functions that may exist in a database, that are not referenced in the GraphQL schema, are unavailable to GraphQL queries.
 
-また、Fauna GraphQL APIは、定義されたスキーマでのみ機能します。データベースに存在する可能性があり、データベースで参照されていない既存のコレクション、インデックス、または関数GraphQL スキーマ、利用できません GraphQL クエリ。
+また、Fauna GraphQL APIは定義されたスキーマでのみ動作します。データベースに存在するコレクション、インデックス、関数のうち、GraphQLスキーマで参照されていないものは、GraphQLのクエリでは利用できません。
+
 
