@@ -5,7 +5,10 @@ https://docs.fauna.com/fauna/current/api/graphql/directives/d_index
 
 Specifies the name of the index used to collate documents of the current type, instead of a index named after the field’s name.
 
-フィールドの名前にちなんで名付けられたインデックスの代わりに、現在のタイプのドキュメントを照合するために使用されるインデックスの名前を指定します。
+collate
+照合する
+
+フィールド名にちなんだインデックスではなく、現在のタイプのドキュメントを照合するために使用されるインデックスの名前を指定します。
 
 ## [](#location)Location
 
@@ -31,7 +34,10 @@ Fields within a Query type.
 
 The `@index` directive controls the name of the underlying database index for the annotated field. By default, the GraphQL API uses the name of the query field as the name of the index within the database.
 
-@indexディレクティブは、注釈付きのフィールドのための基礎となるデータベースのインデックスの名前を制御します。デフォルトでは、GraphQL APIは、クエリフィールドの名前をデータベース内のインデックスの名前として使用します。
+directive
+指示する 
+
+`index` ディレクティブは、アノテーションされたフィールドの基礎となるデータベースインデックスの名前を制御します。デフォルトでは、GraphQL APIはクエリフィールドの名前をデータベース内のインデックスの名前として使用します。
 
 ## [](#example)Example
 

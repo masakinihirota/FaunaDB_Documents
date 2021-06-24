@@ -32,15 +32,13 @@ Types.
 
 The `@collection` directive controls the name of the underlying database collection for the annotated type. By default, the GraphQL API uses the name of a type as the name of the collection in the database.
 
-@collectionディレクティブは、注釈付きのタイプのための基盤となるデータベースコレクションの名前を制御します。デフォルトでは、GraphQL APIは、データベース内のコレクションの名前としてタイプの名前を使用します。
+`collection` ディレクティブは、アノテーションされた型の基礎となるデータベースコレクションの名前を制御します。デフォルトでは、GraphQL APIは型の名前をデータベース内のコレクションの名前として使用します。
 
 ## [](#example)Example
 
 Given the following GraphQL schema:
 
-次のことを考えると GraphQL スキーマ：
-
-graphql
+次のようなGraphQLスキーマが与えられます。
 
 ```graphql
 type User @collection(name: "users") {
@@ -50,12 +48,13 @@ type User @collection(name: "users") {
 
 The database collections would be:
 
-データベースコレクションは次のようになります。
-
-shell
+データベースコレクションは、次のようになります。
 
 ```shell
 Paginate(Collections())
 { data: [ Collection("users") ] }
 ```
+
+感想
+このドキュメントではよくわからない。
 

@@ -5,6 +5,9 @@ https://docs.fauna.com/fauna/current/api/graphql/directives/d_relation
 
 Declares that the current field has a bi-directional relationship with the target type.
 
+bi-directional
+双方向の
+
 現在のフィールドがターゲットタイプと双方向の関係にあることを宣言します。
 
 ## [](#location)Location
@@ -23,7 +26,7 @@ Fields.
 
 |引数|Type|必須|説明|
 |--|--|--|--|
-|`name`|String|No|リレーションの名前です。a-zA-Z0-9_]`のセット内の文字のみを含む必要があります。|
+|`name`|String|No|リレーションの名前です。`[a-zA-Z0-9_]`のセット内の文字のみを含む必要があります。|
 
 ## [](#description)Description
 
@@ -31,11 +34,11 @@ Fields.
 
 The `@relation` directive marks the annotated field as participating in a bi-directional relationship with the target type.
 
-@relationターゲット・タイプとの双方向の関係に参加するよう指示マーク注釈付きフィールド。
+`@relation` ディレクティブは、アノテーションされたフィールドがターゲットタイプとの双方向の関係に参加していることを示します。
 
 The `name` argument defines the name of the relationship, and is useful if there is any ambiguity in relationship construction. For example, if the target type has two fields referring to the source type. The `name` argument must be unique. The same `name` should be used in both types participating in the relationship.
 
-name引数には、関係の名前を定義し、関係構築のいずれかのあいまいさがある場合に便利です。たとえば、ターゲットタイプにソースタイプを参照する2つのフィールドがある場合。name 引数は一意でなければなりません。name関係に参加している両方のタイプで同じものを使用する必要があります。
+`name`はリレーションシップの名前を定義するもので、リレーションシップの構築に曖昧さがある場合に役立ちます。例えば、ターゲットタイプがソースタイプを参照する2つのフィールドを持っている場合などです。`name`の引数は一意でなければなりません。リレーションシップに参加する両方のタイプで同じ `name` を使用する必要があります。
 
 For more information, see the [relations](https://docs.fauna.com/fauna/current/api/graphql/relations) reference.
 

@@ -29,7 +29,7 @@ Fields.
 
 The `@unique` directive marks a field as being unique. Unique fields have an associated unique index within the database. The `index` argument controls the name of the unique index. By default, the index name uses this template: `unique_<type name>_<field name>`.
 
-@uniqueユニークなものとして指示マークフィールド。一意のフィールドには、データベース内に関連付けられた一意のインデックスがあります。index 引数には、一意のインデックスの名前を制御します。デフォルトでは、インデックス名は次のテンプレートを使用しますunique_<type name>_<field name>。
+`@unique` ディレクティブは、フィールドが一意であることを示します。ユニークなフィールドには、データベース内のユニークなインデックスが関連付けられます。`index`の引数はユニークインデックスの名前を制御します。デフォルトでは、インデックスの名前は次のテンプレートを使用します： `unique_<タイプ名>_<フィールド名>`.
 
 ## [](#example)Example
 

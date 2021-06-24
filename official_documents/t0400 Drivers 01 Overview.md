@@ -15,25 +15,9 @@ All of our drivers are open source. The following are officially supported and m
 
 当社のドライバーはすべてオープンソースです。以下のドライバは、当社の社内エンジニアリングチームとオープンソースコミュニティの両方によって公式にサポートおよびメンテナンスされています。
 
-[![C#](https://docs.fauna.com/fauna/current/drivers//_images/csharp.png)](https://docs.fauna.com/fauna/current/drivers/csharp)  
-[C#](https://docs.fauna.com/fauna/current/drivers/csharp)
-
-[![Go](https://docs.fauna.com/fauna/current/drivers//_images/golang.png)](https://docs.fauna.com/fauna/current/drivers/go)  
-[Go](https://docs.fauna.com/fauna/current/drivers/go)
-
-[![Java](https://docs.fauna.com/fauna/current/drivers//_images/java.svg)](https://docs.fauna.com/fauna/current/drivers/jvm)  
-[Java](https://docs.fauna.com/fauna/current/drivers/jvm)
-
 [![JavaScript](https://docs.fauna.com/fauna/current/drivers//_images/javascript.png)](https://docs.fauna.com/fauna/current/drivers/javascript)  
 [Javascript](https://docs.fauna.com/fauna/current/drivers/javascript)
 
-[![Python](https://docs.fauna.com/fauna/current/drivers//_images/python.png)](https://docs.fauna.com/fauna/current/drivers/python)  
-[Python](https://docs.fauna.com/fauna/current/drivers/python)
-
-[![Scala](https://docs.fauna.com/fauna/current/drivers//_images/scala.svg)](https://docs.fauna.com/fauna/current/drivers/jvm)  
-[Scala](https://docs.fauna.com/fauna/current/drivers/jvm)
-
 You can also interact directly with Fauna via the [Fauna Shell](https://docs.fauna.com/fauna/current/start/).
 
-また、FaunaShellを介してFaunaと直接対話することもでき ます。
-
+また、[Fauna Shell](https://docs.fauna.com/fauna/current/start/)でFaunaと直接対話することもできます。

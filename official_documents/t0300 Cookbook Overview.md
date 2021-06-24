@@ -5,7 +5,7 @@ https://docs.fauna.com/fauna/current/cookbook/?lang=javascript
 
 This is a cookbook of examples that demonstrate various Fauna queries, including [Databases](#database), [Keys](#key), [Collections](#collection), [User-defined functions](#udf), and [Indexes](#index).
 
-データベース](#database)、[キー](#key)、[コレクション](#collection)、[ユーザー定義関数](#udf)、[インデックス](#index)など、さまざまなFaunaのクエリを実演する例のクックブックです。
+[データベース](#database)、[キー](#key)、[コレクション](#collection)、[ユーザー定義関数](#udf)、[インデックス](#index)など、さまざまなFaunaのクエリを実演する例のクックブックです。
 
 ## [](#database)Databases
 
@@ -127,6 +127,7 @@ adminClient.query(
 ```
 
 Keys
+
 Reading or writing keys requires an admin key.
 
 キーの読み取りまたは書き込みには、管理者キーが必要です。

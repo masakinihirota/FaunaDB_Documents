@@ -7,7 +7,7 @@ https://docs.fauna.com/fauna/current/api/graphql/directives/d_embedded
 
 Specifies that the type should be embedded within any types referring to this type.
 
-このタイプを参照するすべてのタイプにタイプを埋め込む必要があることを指定します。
+このタイプを参照しているすべてのタイプの中に埋め込むことを指定します。
 
 ## [](#location)Location
 
@@ -31,7 +31,7 @@ None.
 
 The `@embedded` directive marks the annotated as an embedded type. Embedded types do not have their own associated collection; the data for an embedded type is stored within the parent type.
 
-@embedded` ディレクティブは、アノテーションを埋め込み型としてマークします。埋め込み型は独自の関連コレクションを持たず、埋め込み型のデータは親型の中に格納されます。
+`@embedded` ディレクティブは、アノテーションを埋め込み型としてマークします。埋め込み型は独自の関連コレクションを持たず、埋め込み型のデータは親型の中に格納されます。
 
 ## [](#example)Example
 
@@ -56,11 +56,12 @@ type Address @embedded {
 }
 ```
 
+メモ
+上のgraphqlで上のAddress型が下のAddress型として埋め込まれている。
+
 You could create a user and address with the following mutation:
 
 次の変更を加えて、ユーザーとアドレスを作成できます。
-
-graphql
 
 ```graphql
 mutation {
@@ -92,6 +93,11 @@ Get(Ref(Collection("User")
      address:
       { street: 'Market street, 1023',
         city: 'San Francisco',
-        zipCode: '91044' } } }
+        zipCode: '91044' 
+      } 
+    } 
+}
 ```
 
+メモ
+型を定義してその型の中に定義した型を入れる。

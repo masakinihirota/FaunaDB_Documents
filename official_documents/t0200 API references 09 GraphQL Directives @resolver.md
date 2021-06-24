@@ -25,7 +25,7 @@ Fields within the Query or Mutation types.
 |引数|Type|必須|既定|説明|
 |--|--|--|--|--|
 |`name`|String|No|フィールドの名前。|リゾルバー関数の名前。|
-|paginated|ブール値|番号|false|場合はtrue、リゾルバは、3つの引数を受け入れsize、 afterCursor、およびbeforeCursor、その後、返しページの結果を。以下の例と、 データベースページを返すUDFを参照してください。|
+|paginated|ブール値|番号|false|`true`の場合、リゾルバは`size`, `afterCursor`, `beforeCursor`の3つの引数を受け取り、結果を[ページ](https://docs.fauna.com/fauna/current/api/fql/types#page)として返します。下記の[例](#example)や、[データベースのページを返すUDF](https://docs.fauna.com/fauna/current/api/graphql/functions)を参照してください。|
 
 ## [](#description)Description
 
@@ -33,25 +33,27 @@ Fields within the Query or Mutation types.
 
 The `@resolver` directive marks a Query or Mutation that has an associated user-defined function in the database. Queries to fields annotated with the `@resolver` directive are resolved by calling the underlying user-defined function, which is a [Fauna Query Language](https://docs.fauna.com/fauna/current/api/fql/) [`Lambda`](https://docs.fauna.com/fauna/current/api/fql/functions/lambda) function.
 
-@resolverディレクティブマーククエリまたは突然変異データベースに関連するユーザー定義関数があります。@resolverディレクティブで注釈が付けられたフィールドへのクエリは、Faunaクエリ言語 Lambda関数である基になるユーザー定義関数を呼び出すことによって解決され ます。
+`@resolver` ディレクティブは、データベース内で関連するユーザ定義関数を持つクエリやミューテーションをマークします。これは[Fauna Query Language](https://docs.fauna.com/fauna/current/api/fql/) [`Lambda`](https://docs.fauna.com/fauna/current/api/fql/functions/lambda)の関数です。
 
 The name of the function is controlled by the `name` argument, which defaults to the name of the field. The `paginated` argument controls pagination support for the values returned by the user-defined function.
 
-関数の名前はname引数によって制御されます。引数のデフォルトはフィールドの名前です。paginatedユーザー定義関数によって返される値の引数コントロールの改ページのサポート。
+関数の名前は `name` 引数で制御され、デフォルトではフィールドの名前が使われます。`paginated` 引数は、ユーザ定義関数が返す値のページネーションのサポートを制御します。
+
 
 When a schema is imported into the GraphQL API, resolvers for your schemas fields are automatically generated. When you apply the `@resolver` directive to a query field, the named resolver is used instead of the automatically-generated resolver for the field.
 
-スキーマがにインポートされるとき GraphQLAPI、スキーマフィールドのリゾルバーが自動的に生成されます。@resolverディレクティブをクエリフィールドに適用する と、フィールドに対して自動的に生成されたリゾルバーの代わりに、指定されたリゾルバーが使用されます。
+スキーマがGraphQL APIにインポートされると、スキーマのフィールドに対するリゾルバが自動的に生成されます。クエリのフィールドに `@resolver` ディレクティブを適用すると、そのフィールド用に自動生成されたリゾルバの代わりに、名前の付いたリゾルバが使われます。
 
 The GraphQL API always passes arguments to resolver’s user-defined function as an array. Even if your schema only ever passes one argument to your resolver, you must implement the resolver’s user-defined function to accept the arguments as an array. See the `function_names` function in the [Example](#example) section.
 
-ザ・ GraphQLAPIは常に、引数をリゾルバーのユーザー定義関数に配列として渡します。スキーマがリゾルバーに引数を1つだけ渡す場合でも、引数を配列として受け入れるには、リゾルバーのユーザー定義関数を実装する必要があります。例のセクションのfunction_names 関数を参照してください。
+
+GraphQL APIでは、リゾルバのユーザー定義関数への引数は常に配列として渡されます。たとえスキーマがリゾルバに渡す引数がひとつだけであっても、リゾルバのユーザー定義関数が引数を配列として受け取るように実装する必要があります。Example](#example)セクションの `function_names` 関数を参照してください。
+
 
 User-defined functions cannot be created directly with GraphQL queries. When you import a schema that refers to a resolver that does not exist, the GraphQL API creates "stub" functions that throw resolver-specific errors reminding you to implement them. For example, if your GraphQL schema referred to an unimplemented resolver called `prune_order`, the GraphQL API would create the following function:
 
-ユーザー定義関数は、で直接作成することはできません GraphQLクエリ。存在しないリゾルバーを参照するスキーマをインポートすると、GraphQLAPIは、実装を促すリゾルバー固有のエラーをスローする「スタブ」関数を作成します。たとえば、GraphQL スキーマは、と呼ばれる実装されていないリゾルバを参照しましprune_orderた。 GraphQL APIは次の関数を作成します。
 
-shell
+ユーザー定義関数は、GraphQLクエリでは直接作成できません。存在しないリゾルバを参照しているスキーマをインポートすると、GraphQL APIは「スタブ」関数を作成し、リゾルバ固有のエラーを投げて、実装するように促す。例えば、あなたのGraphQLスキーマが `prune_order` という未実装のリゾルバを参照している場合、GraphQL APIは以下のような関数を作成します。
 
 ```shell
 Get(Function("prune_order"))
@@ -106,16 +108,12 @@ The following two FQL queries each create a function:
 
 次の2つのFQLクエリは、それぞれ関数を作成します。
 
-shell
-
 ```shell
 CreateFunction({
   name: "say_hello",
   body: Query(Lambda([], "hello"))
 })
 ```
-
-shell
 
 ```shell
 CreateFunction({
@@ -133,13 +131,11 @@ CreateFunction({
 
 The first function, called `say_hello`, only returns the string `hello`. The second function, called `function_names`, returns the list of functions defined in the database. For a more in-depth example, see [A UDF that returns a database page](https://docs.fauna.com/fauna/current/api/graphql/functions#paginated).
 
-と呼ばれる最初の関数say_helloは、文字列のみを返しますhello。と呼ばれる2番目の関数function_namesは、データベースで定義されている関数のリストを返します。より詳細な例について は、データベースページを返すUDFを参照してください。
+最初の関数は `say_hello` という名前で、`hello` という文字列だけを返します。2つ目の関数は`function_names`という名前で、データベースで定義されている関数のリストを返します。より詳細な例については，[A UDF that returns a database page](https://docs.fauna.com/fauna/current/api/graphql/functions#paginated)を参照してください．
 
 We can use these function in GraphQL queries by using the following schema:
 
-これらの機能はで使用できます GraphQL 次のスキーマを使用してクエリを実行します。
-
-graphql
+これらの関数は、次のようなスキーマを使って、GraphQLのクエリで使用することができます。
 
 ```graphql
 type Query {
@@ -150,9 +146,7 @@ type Query {
 
 With the functions and the schema in place, we can call the first function with this GraphQL query:
 
-関数とスキーマが整ったら、これで最初の関数を呼び出すことができます GraphQL クエリ：
-
-graphql
+関数とスキーマの準備ができたら、次のGraphQLクエリで最初の関数を呼び出してみましょう。
 
 ```graphql
 {
