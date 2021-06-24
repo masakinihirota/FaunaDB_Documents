@@ -1,0 +1,467 @@
+
+
+
+
+
+The `https://graphql.fauna.com/import` endpoint accepts a GraphQL schema definition, which is translated into the equivalent Fauna collections and indexes.
+
+
+https://graphql.fauna.com/import` のエンドポイントには GraphQL のスキーマ定義が入力され、それが同等の Fauna コレクションとインデックスに変換される。
+
+
+
+
+
+
+
+When a GraphQL schema is imported, the GraphQL API automatically creates the following Fauna schema documents:
+
+
+
+GraphQL スキーマがインポートされると、GraphQL API は以下の Fauna スキーマドキュメントを自動的に作成する。
+
+
+
+
+
+
+
+
+-   One collection for each declared GraphQL type (using the type’s name), but not for [`@embedded`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_embedded) types.
+
+
+
+
+- 宣言された各 GraphQL タイプに対して 1 つのコレクション (タイプの名前を使用) ただし、[`@embedded`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_embedded) タイプは含まない。
+
+
+
+
+
+
+-   One index for each declared query (using the query’s name), but not for queries annotated with the [`@resolver`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_resolver) directive. The collection name can be specified with [`@collection`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_collection), and the index name can be specified with [`@index`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_index).
+
+
+- ただし、[`@resolver`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_resolver)ディレクティブでアノテーションされたクエリは除く。コレクション名は [`@collection`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_collection) で指定でき、インデックス名は [`@index`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_index) で指定できます。
+
+
+
+
+
+
+
+-   When a [`@relation`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_relation) directive is used and the relationship is many-to-many (instead of one-to-one, or one-to-many), an associative collection is created, as well as three indexes, one for each side of the relationship, and a third indexing the refs of both sides.
+
+
+
+
+- また、[`@relation`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_relation)指令が使われ、関係が多対多（1対1や1対多ではなく）である場合には、連想コレクションが作成され、関係の各側に1つ、両側部のrefに3つ目のインデックスが作成されます。
+
+
+
+
+
+
+-   One user-defined function for each mutation declared with the [`@resolver`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_resolver) directive (using the resolver name). Note that you have to provide the implementation for the mutation function via FQL yourself. See [User-defined functions](https://docs.fauna.com/fauna/current/api/graphql/functions) for details.
+
+
+
+
+- `@resolver`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_resolver)ディレクティブで宣言された各変異に対して、1つのユーザー定義関数が作成されます(リゾルバ名を使用)。変異関数の実装は、FQLを使って自分で行わなければならないことに注意してください。詳細は[ユーザー定義関数](https://docs.fauna.com/fauna/current/api/graphql/functions)を参照してください。
+
+
+
+
+
+
+
+The `https://graphql.fauna.com/import` endpoint is not for importing data, it is only for importing a GraphQL schema. Use GraphQL [mutations](https://graphql.org/learn/queries/#mutations) to create or update data.
+
+
+
+
+
+
+https://graphql.fauna.com/import` エンドポイントはデータをインポートするためのものではなく、GraphQLスキーマをインポートするためのものです。データの作成や更新にはGraphQLの[mutations](https://graphql.org/learn/queries/#mutations)を使います。
+
+
+
+
+
+
+
+A basic GraphQL schema looks like:
+
+
+
+
+
+
+基本的なGraphQLスキーマは次のようなものです。
+
+
+
+
+
+
+
+```
+type User {
+  username: String!
+}
+
+
+
+
+
+
+type Query {
+  allUsers: [User!]!
+}
+```
+
+
+
+
+
+
+This query defines a `User` type, which would become a collection in Fauna called `User`:
+
+
+
+
+
+
+このクエリは `User` というタイプを定義しており、Fauna では `User` というコレクションになります。
+
+
+
+
+
+
+
+
+```
+Get(Collection("User"))
+{
+  ref: Collection("User"),
+  ts: 1618959271660000,
+  history_days: 30,
+  name: "User",
+  data: {
+    gql: {
+      ts: Time("2021-04-20T22:54:31.557442Z"),
+      meta: {
+        name: "User",
+        fields: [
+          {
+            name: "username",
+            type: {
+              NotNull: {
+                Named: "String"
+              }
+            }
+          }
+        ],
+        directives: [
+          {
+            name: "collection",
+            args: {
+              name: "User"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+
+
+
+
+
+It also defines an `allUsers` query that provides paginated `User` results. Fauna implements such a query as an index called `allUsers`:
+
+
+
+
+
+また、ページングされた `User` の結果を提供する `allUsers` クエリも定義されています。Fauna では、このようなクエリを `allUsers` という名前のインデックスとして実装しています。
+
+
+
+
+
+
+
+```
+Get(Index("allUsers"))
+{
+  ref: Index("allUsers"),
+  ts: 1618959271800000,
+  active: true,
+  serialized: true,
+  name: "allUsers",
+  source: Collection("User"),
+  data: {
+    gql: {
+      ts: Time("2021-04-20T22:54:31.700473Z"),
+      meta: {
+        name: "allUsers",
+        directives: [
+          {
+            name: "index",
+            args: {
+              name: "allUsers"
+            }
+          }
+        ],
+        type: {
+          NotNull: {
+            List: {
+              NotNull: {
+                Named: "User"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  unique: false,
+  partitions: 8
+}
+```
+
+
+
+
+
+
+For end-to-end examples of importing a schema, creating records, and querying them, see [Getting started with GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start).
+
+
+
+スキーマのインポートからレコードの作成、問い合わせまでのエンドツーエンドの例については、[Getting started with GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start)をご覧ください。
+
+
+
+
+
+
+
+### [](https://docs.fauna.com/fauna/current/api/graphql/endpoints#modes)Modes
+
+
+
+
+### [](https://docs.fauna.com/fauna/current/api/graphql/endpoints#modes)モードについて
+
+
+
+
+
+
+
+There are three import modes:
+
+
+
+
+
+
+インポートには3つのモードがあります。
+
+
+
+
+
+
+
+
+
+|Mode|Description|
+|--|--|
+|`merge`|The `merge` mode creates missing collections, indexes, and functions, and annotates existing Fauna schema documents with GraphQL metadata, if required. This is the default mode.<br><br>Since index definitions cannot be edited after an index has been created, `merge` mode reports an error whenever an index definition would need to be modified to support the new schema.<br><br>**NOTE**<br>Since `merge` incorporates a new schema with an existing schema, it is not possible to remove schema elements using `merge`. If removal is required, use `replace` instead.|
+|`replace`|The `replace` mode replaces the current GraphQL metadata stored in collections, indexes, functions, and databases. `replace` is especially useful if you need to remove schema elements (type, inputs, etc.). It does not modify the underlying user-created documents in any way. Like `merge` mode, `replace` mode also creates missing collections, indexes, and functions.<br><br>Since index definitions cannot be edited after an index has been created, `replace` mode reports an error whenever an index definition would need to be modified to support the new schema.<br><br>**IMPORTANT**<br>After the schema has been replaced, the underlying data may no longer work with existing queries. Fields that exist in documents that are not declared in the schema are not accessible via GraphQL queries. Fields that have new types may cause existing queries to fail. If you encounter such problems, either update the schema accordingly, or modify the data via `fauna-shell`, Dashboard, or write a transformation script using one of the available [drivers](https://docs.fauna.com/fauna/current/drivers/).|
+|`override`|The `override` mode deletes all collections, indexes, and functions that are annotated with GraphQL metadata, pauses 60 seconds to allow all cluster nodes to process the deletions, then it imports the new schema with `merge` mode. Basically, `override` lets you start over with a fresh schema that has no documents.<br><br>The purpose of `override` mode is to make it easy to experiment with varying schemas without having to worry about how to migrate existing documents from the old schema to the new schema.<br><br>**WARNING**<br>`override` mode causes data loss for any previous GraphQL schema. Any collections, indexes, or documents that are not involved in GraphQL are not affected.|
+
+---
+
+
+
+|Mode|Description|
+|--|--|
+|`merge`|`merge`モードは、不足しているコレクション、インデックス、関数を作成し、必要に応じて既存の Fauna スキーマドキュメントに GraphQL メタデータをアノテーションします。<br><br>インデックスが作成された後にインデックス定義を編集することはできないので、`merge`モードでは、新しいスキーマをサポートするためにインデックス定義を修正する必要がある場合には、エラーが報告されます。<br><br>**NOTE**<br>`merge`は既存のスキーマに新しいスキーマを組み込むので、`merge`を使ってスキーマ要素を削除することはできません。削除が必要な場合には、代わりに `replace` を使用してください。
+|`replace`|`replace`モードは、コレクション、インデックス、関数、データベースに格納されている現在のGraphQLメタデータを置き換えるものです。`replace`は、スキーマの要素（型、入力など）を削除する必要がある場合に特に有効です。このモードでは、ユーザーが作成した基礎的なドキュメントは一切変更されません。<br><br>インデックスが作成された後、インデックス定義を編集することはできませんので、新しいスキーマをサポートするためにインデックス定義を修正する必要がある場合、`replace`モードはエラーを報告します。<br><br>**重要**<br>スキーマが置換された後、基礎となるデータは既存のクエリで動作しなくなる可能性があります。スキーマで宣言されていないドキュメントに存在するフィールドは、GraphQL クエリではアクセスできません。新しいタイプのフィールドでは、既存のクエリが失敗することがあります。このような問題が発生した場合は、スキーマを適宜更新するか、`fauna-shell` やダッシュボードを使ってデータを修正するか、利用可能な [driver](https://docs.fauna.com/fauna/current/drivers/)のいずれかを使って変換スクリプトを作成してください。
+|`override`|`override`モードは、GraphQLメタデータでアノテーションされたすべてのコレクション、インデックス、および関数を削除し、すべてのクラスタノードが削除を処理できるように60秒間待機した後、`merge`モードで新しいスキーマをインポートします。<br><br>`override`モードの目的は、既存のドキュメントを古いスキーマから新しいスキーマに移行する方法を心配することなく、さまざまなスキーマを簡単に試すことができるようにすることです。<br><br>**WARNING**<br>`override`モードでは、以前のGraphQLスキーマのデータが失われます。ただし、GraphQLに関係のないコレクションやインデックス、ドキュメントは影響を受けません。
+
+---
+
+
+
+
+
+
+Specify the mode using a query parameter. For example:
+
+
+
+
+クエリーパラメーターでモードを指定します。例えば、以下のようになります。
+
+
+
+
+
+
+```
+POST /import?mode=override
+```
+
+
+
+
+
+
+If you are using `[curl](https://curl.haxx.se/)`, the command would look like:
+
+
+
+curl](https://curl.haxx.se/)`を使用している場合、コマンドは次のようになります。
+
+
+
+
+
+
+
+
+```
+curl -H 'Authorization: Bearer <FAUNA_SECRET>' https://graphql.fauna.com/import?mode=override --data-binary "@path/to/schema.gql"
+```
+
+
+
+
+
+
+Where `FAUNA_SECRET` is a [secret](https://docs.fauna.com/fauna/current/security/keys) associated with the database where the schema should be imported, and `path/to/schema.gql` is the path to a file containing your GraphQL schema.
+
+
+
+
+
+
+ここで、`FAUNA_SECRET`はスキーマをインポートするデータベースに関連する[secret](https://docs.fauna.com/fauna/current/security/keys)、`path/to/schema.gql`はGraphQLスキーマを格納したファイルのパスです。
+
+
+
+
+
+
+### [](https://docs.fauna.com/fauna/current/api/graphql/endpoints#handling-import-errors)Handling import errors
+
+
+
+
+
+### [](https://docs.fauna.com/fauna/current/api/graphql/endpoints#handling-import-errors)インポートエラーの処理
+
+
+
+
+
+
+
+When errors are encountered during schema import, they most often involve index definitions. Once an index has been created, its definition cannot be modified. There are two strategies that you can use to resolve the errors:
+
+
+
+
+
+スキーマのインポート時にエラーが発生した場合、多くはインデックスの定義に関わるものです。インデックスは一度作成するとその定義を変更することはできません。エラーを解決するためには 2 つの方法があります。
+
+
+
+
+
+
+1.  Create replacement indexes that provide the appropriate `terms` and `values` definitions. There are two ways to use the replacement indexes:
+
+
+
+1.  適切な `terms` と `values` の定義を提供する置換インデックスを作成する。置換インデックスを使用するには2つの方法があります。
+
+
+
+
+
+
+
+
+1.  Renaming the existing index, and then create a new index using the correct definition and the original index name.
+
+
+
+
+
+1.  既存のインデックスの名前を変更してから、正しい定義と元のインデックス名を使用して新しいインデックスを作成する。
+
+
+
+
+
+
+
+
+2.  Create the new index with a new name and correct definition, then update your schema using the [`@index`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_index) directive.
+
+
+
+
+
+2. 新しい名前と正しい定義で新しいインデックスを作成し、[`@index`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_index) 指令を使用してスキーマを更新する。
+
+
+
+
+
+
+Once you know that the new index works correctly for your queries and mutations, and that the original index is no longer needed, you can delete the original index.
+
+
+
+
+新しいインデックスがクエリや変異に対して正しく動作し、元のインデックスが不要になったことを確認したら、元のインデックスを削除することができます。
+
+
+
+
+
+
+
+2.  Use `override` mode. This deletes all collections, indexes, and functions defined by the current schema, then the new schema is imported creating the necessary collections, indexes, and functions. The drawback is that all documents are deleted.
+
+
+
+
+
+
+2. `override` モードを使用します。このモードでは、現在のスキーマで定義されたすべてのコレクション、インデックス、および関数が削除され、その後、新しいスキーマがインポートされて、必要なコレクション、インデックス、および関数が作成されます。欠点は，すべてのドキュメントが削除されることです。
+
+
+
+
+
+
+Note that it is possible for `override` mode to abort with an error. GraphQL schema often require indexes with specific definitions to model relationships between types. When a new schema requires an index, and an index exists with the desired name but an incompatible definition, the GraphQL API aborts `override` mode to avoid interfering with non-GraphQL queries. You would have to assess whether adjusting your schema, or renaming existing indexes and updating FQL queries, was the better approach.
+
+
+
+
+
+なお、`override`モードはエラーで中断する可能性があります。GraphQLのスキーマでは、型間の関係をモデル化するために、特定の定義を持つインデックスが必要になることがよくあります。新しいスキーマがインデックスを必要としていて、希望する名前のインデックスが存在するが定義に互換性がない場合、GraphQL APIは非GraphQLのクエリとの干渉を避けるために`override`モードを中止します。スキーマを調整するのか、既存のインデックスの名前を変更してFQLクエリを更新するのか、どちらが良い方法なのかを評価する必要があります。
+
