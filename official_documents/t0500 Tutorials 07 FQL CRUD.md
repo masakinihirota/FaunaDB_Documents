@@ -213,17 +213,23 @@ Instantiate
 
 アドミンクライアントをインスタンス化します。
 
-javascript
-
 ```javascript
 var adminClient = new faunadb.Client({ secret: "YOUR_FAUNADB_ADMIN_SECRET" });
 ```
+
+```TypeScript
+var adminClient = new faunadb.Client({ secret: "YOUR_FAUNADB_ADMIN_SECRET" as string });
+```
+
+※ as stringを付けると警告が消える。
 
 ## [](#database)Create a database
 
 Create a database called `my_app` in Fauna:
 
 Fauna で `my_app` というデータベースを作成します。
+
+ここで言うデータベースとは子データベースです。
 
 ```javascript
 adminClient

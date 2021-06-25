@@ -55,6 +55,11 @@ child database
 親データベース＞子データベース＞コレクション＞Indexes＞row
 
 
+---
+
+プログラムでCreateDatabaseと命令があるが、
+これは子データベースを作るための命令。
+
 
 ---
 
@@ -148,15 +153,103 @@ stanza
 
 ---
 
+子データベースを作るとき
+secretで警告が出る
+
+```
+var adminClient = new faunadb.Client({ secret: process.env.FAUNA_ADMIN_KEY });
+```
+
+警告
+型 'string | undefined' を型 'string' に割り当てることはできません。
+  型 'undefined' を型 'string' に割り当てることはできません。ts(2322)
+(property) ClientConfig.secret: string
+
+解決方法
+as string を追加する。
+
+```
+var adminClient = new faunadb.Client({
+  secret: process.env.FAUNA_ADMIN_KEY as string,
+});
+
+adminClient.query(
+  q.CreateDatabase({ name: 'my_app' })
+)
+.then((ret) => console.log(ret))
+.catch((err) => console.error('Error: %s', err))
+```
 
 
 
 
 ---
 
+CreateKey
+
+例
+
+```
+    q.CreateKey({
+      database: q.Database("my_app"),
+      role: "server",
+    })
+```
+
+```
+{
+  ref: Ref(Keys(), "302397385342976520"),
+  ts: 1624647469860000,
+  database: Database("my_app"),
+  role: 'server',
+  secret: 'fnAE*********************************wQMb',
+  hashed_secret: '$2*******************************************************PW'
+}
+```
 
 
+CreateKeyは実行ごとに新しいキーが生成される
+tsはタイムスタンプ
 
+作られるのは role: 'server' つまりServerkey
+
+キーは子データベース単位で作られる。
+secret はその作成されたキーのキー文字列にあたる。
+
+hashed_secret:
+キーのハッシュ化された認証シークレットです。
+謎？？？
+使い方がわからない
+
+作られたキーはFaunaダッシュボード側では管理されていない。
+（左のSecurityからは見当たらなかった。）
+
+
+const admin_key = process.env.FAUNA_ADMIN_KEY as string;
+
+var adminClient = new faunadb.Client({
+  secret: admin_key,
+});
+
+adminClient
+  .query(
+    q.CreateKey({
+      database: q.Database("my_app"),
+      role: "server",
+      data:{
+        name:'testnamekey'
+      }
+    })
+  )
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
+
+
+名前をつけるとき
+data:{
+  name:'testkey'
+}
+をつける。
 
 ---
 
