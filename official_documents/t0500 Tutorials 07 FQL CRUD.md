@@ -3,11 +3,11 @@ https://docs.fauna.com/fauna/current/tutorials/crud?lang=javascript
 
 # Create, retrieve, update, and delete documents in Fauna
 
-Faunaでドキュメントを作成、取得、更新、削除する
+Fauna でドキュメントを作成、取得、更新、削除する
 
 Fauna allows you to store documents and query them in a relational fashion. This section walks you through a basic example of creating, retrieving, updating, and deleting (CRUD) documents in Fauna, including working with collections. If you are new to Fauna, make sure to check out our [Glossary](https://docs.fauna.com/fauna/current/glossary) for definitions.
 
-Fauna では、ドキュメントを保存し、リレーショナル方式で照会することができます。このセクションでは、Faunaでドキュメントを作成、取得、更新、削除(CRUD)する基本的な例を、コレクションの操作を含めて説明します。初めてFaunaを使う方は、[Glossary](https://docs.fauna.com/fauna/current/glossary)で定義を確認してください。
+Fauna では、ドキュメントを保存し、リレーショナル方式で照会することができます。このセクションでは、Fauna でドキュメントを作成、取得、更新、削除(CRUD)する基本的な例を、コレクションの操作を含めて説明します。初めて Fauna を使う方は、[Glossary](https://docs.fauna.com/fauna/current/glossary)で定義を確認してください。
 
 ## [](#introduction)Introduction
 
@@ -23,33 +23,27 @@ The steps are:
 
 1.  Make sure that the [Requirements](#requirements) are met.
 
-要件](#requirements)を満たしていることを確認する。
-
 2.  [Create a database](#database).
-
- データベースの作成](#database)を行います。
 
 3.  [Create a collection](#collection),
 
-コレクションを作成](#コレクション)します。
-
 4.  [Create an index](#index).
-
-インデックスの作成]
 
 5.  [Create a post](#post).
 
-ポストの作成
-
 6.  [Retrieve posts](#retrieve).
-
-投稿を検索する
 
 7.  [Update posts](#update).
 
-投稿の更新
-
 8.  [Delete a post](#delete).
+
+要件 (#requirements)を満たしていることを確認する。
+データベースの作成 (#database)を行います。
+コレクションを作成 (#コレクション)します。
+インデックスの作成
+ポストの作成
+投稿を検索する
+投稿の更新
 
 投稿を削除する
 
@@ -63,6 +57,9 @@ We have set up this example so you can follow along from start to finish. Feel f
 
 This section walks you through setting up your environment, installing a driver, importing the driver, obtaining an admin key, and instantiating the client.
 
+instantiating
+インスタンスを生成する、例示する
+
 このセクションでは、環境の設定、ドライバーのインストール、ドライバーのインポート、管理者キーの取得、クライアントのインスタンス化について説明します。
 
 ### [](#supported-runtimes)Supported runtimes
@@ -71,79 +68,48 @@ This section walks you through setting up your environment, installing a driver,
 
 Before you install the driver, it’s important to ensure you’re running a compatible version of the language runtime and have satisfied other dependencies.
 
+ensure
+確実にする、保証する、確保する
+
+satisfied
+満たす
+
 ドライバをインストールする前に、互換性のあるバージョンの言語ランタイムを実行していること、およびその他の依存関係を満たしていることを確認することが重要です。
 
 The JavaScript driver is supported on:
 
 JavaScript ドライバは以下のランタイムに対応しています。
 
--   Node.js
-
-    -   LTS (v12)
-
-    -   Stable (v10+)
-
--   Chrome
-
--   Firefox
-
--   Safari
-
--   Internet Explorer 11
+- Node.js
+  - LTS (v12)
+  - Stable (v10+)
+- Chrome
+- Firefox
+- Safari
+- Internet Explorer 11
 
 Currently, the driver is tested on Go versions:
 
-現在、ドライバーはGoバージョンでテストされています。
+現在、ドライバーは Go バージョンでテストされています。
 
--   1.11
-
--   1.12
-
--   1.13
-
--   1.14
+- 1.11
+- 1.12
+- 1.13
+- 1.14
 
 Compatible with:
 
 と互換性があります。
 
--   Mono (on macOS or Linux)
+- Mono (on macOS or Linux)
 
 Shared
 
 共有
 
--   [Jackson](https://github.com/FasterXML/jackson) for JSON parsing.
+- [Jackson](https://github.com/FasterXML/jackson) for JSON parsing.
 
-JSONの解析には[Jackson](https://github.com/FasterXML/jackson)を使用しています。
-
--   [Jackson](https://github.com/FasterXML/jackson) for JSON parsing.
-
- JSONの解析には[Jackson](https://github.com/FasterXML/jackson)を使用しています。
-
-Scala
-
--   Scala 2.11.x
-
--   Scala 2.12.x
-
-The following versions of Python are supported:
-
-以下のバージョンのPythonをサポートしています。
-
--   Python 2.7
-
--   Python 3.3
-
--   Python 3.4
-
--   Python 3.5
-
--   Python 3.6
-
--   Python 3.7
-
--   Python 3.8
+JSON の解析には[Jackson](https://github.com/FasterXML/jackson)を使用しています。
 
 ### [](#install-the-driver)Install the driver
 
@@ -163,13 +129,13 @@ npm install --save faunadb
 
 See [`faunadb` on NPM](https://npmjs.com/package/faunadb) for more information. Note that not all Node.js/serverless environments are supported.
 
-詳細は[`faunadb` on NPM](https://npmjs.com/package/faunadb)を参照してください。なお、すべてのNode.js/サーバーレス環境に対応しているわけではありません。
+詳細は[`faunadb` on NPM](https://npmjs.com/package/faunadb)を参照してください。なお、すべての Node.js/サーバーレス環境に対応しているわけではありません。
 
 Browsers
 
 The JavaScript driver can be included via CDN:
 
-JavaScriptドライバはCDN経由でインクルードすることができます。
+JavaScript ドライバは CDN 経由でインクルードすることができます。
 
 html
 
@@ -179,7 +145,7 @@ html
 
 The minified version of the driver can also be used via CDN:
 
-また、CDNを介してminifyされたドライバーを利用することもできます。
+また、CDN を介して minify されたドライバーを利用することもできます。
 
 html
 
@@ -190,55 +156,6 @@ html
 See the driver’s repository for more details: [fauna/faunadb-js](https://github.com/fauna/faunadb-js)
 
 詳細はドライバのリポジトリを参照してください。[fauna/faunadb-js](https://github.com/fauna/faunadb-js)
-
-To install the Go driver, run this in the terminal:
-
-Go ドライバをインストールするには、ターミナルで次のように実行します。
-
-terminal
-
-```bash
-go get github.com/fauna/faunadb-go/{driver-go-get)/faunadb
-```
-
-First install the Nuget package by adding the package reference to your MSBuild project:
-
-まず、MSBuildプロジェクトにパッケージ参照を追加して、Nugetパッケージをインストールします。
-
-```xml
-<PackageReference Include="FaunaDB.Client" Version="4.0.0" />
-```
-
-or by using your IDE and searching for `FaunaDB.Client`.
-
-または、お使いの IDE で `FaunaDB.Client` を検索してください。
-
-Download from the Maven central repository:
-
-Maven セントラル リポジトリからダウンロードします。
-
-`faunadb-java/pom.xml`
-
-```xml
-<dependencies>
-  ...
-  <dependency>
-    <groupId>com.faunadb</groupId>
-    <artifactId>faunadb-java</artifactId>
-    <version>4.1.1</version>
-    <scope>compile</scope>
-  </dependency>
-  ...
-</dependencies>
-```
-
-`faunadb-scala/sbt`
-
-terminal
-
-```bash
-pip install faunadb
-```
 
 ### [](#import-the-driver)Import the driver
 
@@ -255,13 +172,17 @@ We recommend that you import this driver with an alias import such as:
 javascript
 
 ```javascript
-var faunadb = require('faunadb')
+var faunadb = require("faunadb");
 var q = faunadb.query;
 ```
 
 This is the recommended require stanza. The `faunadb.query` module contains all of the functions to create Fauna query expressions.
 
-これは推奨される require stanza です。faunadb.query` モジュールには、Fauna のクエリ式を作成するためのすべての関数が含まれています。
+stanza
+
+？？？
+
+これは推奨される require stanza です。`faunadb.query` モジュールには、Fauna のクエリ式を作成するためのすべての関数が含まれています。
 
 Similarly with ES6 modules:
 
@@ -270,7 +191,7 @@ ES6 モジュールと同様です。
 javascript
 
 ```javascript
-import faunadb, { query as q } from "faunadb"
+import faunadb, { query as q } from "faunadb";
 ```
 
 The CDN package exposes a global `faunadb` variable.
@@ -283,16 +204,19 @@ CDN パッケージでは、グローバル変数 `faunadb` を公開してい�
 
 To follow along, you need an admin key, which you can create using the [Fauna Dashboard](https://dashboard.fauna.com/).
 
-Fauna Dashboard](https://dashboard.fauna.com/)で作成できる管理者キーが必要です。
+フォローするためには、[Fauna Dashboard](https://dashboard.fauna.com/)を使って作成できる管理者キーが必要です。
 
 ### [](#instantiate-an-admin-client)Instantiate an admin client
+
+Instantiate
+例示化する インスタンスを作成する
 
 アドミンクライアントをインスタンス化します。
 
 javascript
 
 ```javascript
-var adminClient = new faunadb.Client({ secret: 'YOUR_FAUNADB_ADMIN_SECRET' });
+var adminClient = new faunadb.Client({ secret: "YOUR_FAUNADB_ADMIN_SECRET" });
 ```
 
 ## [](#database)Create a database
@@ -302,11 +226,10 @@ Create a database called `my_app` in Fauna:
 Fauna で `my_app` というデータベースを作成します。
 
 ```javascript
-adminClient.query(
-  q.CreateDatabase({ name: 'my_app' })
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+adminClient
+  .query(q.CreateDatabase({ name: "my_app" }))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -319,14 +242,15 @@ adminClient.query(
 ```
 
 ```javascript
-adminClient.query(
-  q.CreateKey({
-    database: q.Database('my_app'),
-    role: 'server',
-  })
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+adminClient
+  .query(
+    q.CreateKey({
+      database: q.Database("my_app"),
+      role: "server",
+    })
+  )
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -340,30 +264,29 @@ adminClient.query(
 }
 ```
 
-```
+````
 
 javascript
 
 ```javascript
 var serverClient = new faunadb.Client({ secret: 'YOUR_FAUNADB_SERVER_SECRET' });
-```
+````
 
 ## [](#collection)Create a collection
 
 Fauna stores documents in the form of nested containers. A database contains collections, and collections contain documents. Each [document](https://docs.fauna.com/fauna/current/glossary#Document) belongs to a specific collection. So in order to create a document for a post, we need to first create a collection for posts.
 
-Faunaは、入れ子構造のコンテナの形でドキュメントを保存します。データベースはコレクションを含み、コレクションはドキュメントを含みます。各[ドキュメント](https://docs.fauna.com/fauna/current/glossary#Document)は、特定のコレクションに属します。つまり、投稿用のドキュメントを作成するには、まず投稿用のコレクションを作成する必要があります。
+Fauna は、入れ子構造のコンテナの形でドキュメントを保存します。データベースはコレクションを含み、コレクションはドキュメントを含みます。各[ドキュメント](https://docs.fauna.com/fauna/current/glossary#Document)は、特定のコレクションに属します。つまり、投稿用のドキュメントを作成するには、まず投稿用のコレクションを作成する必要があります。
 
 Create a collection using the `CreateCollection` function with a `param_object` containing the `name` of the collection. We shall name our collection "Posts":
 
 コレクションを作成するには、`CreateCollection`関数を使い、コレクションの`名前`を含む`param_object`を指定します。ここではコレクションの名前を "Posts "とします。
 
 ```javascript
-serverClient.query(
-  q.CreateCollection({ name: 'Posts' })
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+serverClient
+  .query(q.CreateCollection({ name: "Posts" }))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -376,15 +299,16 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.CreateIndex({
-    name: 'posts_by_title',
-    source: q.Collection('Posts'),
-    terms: [{ field: ['data', 'title'] }],
-  })
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+serverClient
+  .query(
+    q.CreateIndex({
+      name: "posts_by_title",
+      source: q.Collection("Posts"),
+      terms: [{ field: ["data", "title"] }],
+    })
+  )
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -401,16 +325,17 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.CreateIndex({
-    name: 'posts_by_tags_with_title',
-    source: q.Collection('Posts'),
-    terms: [{ field: ['data', 'tags'] }],
-    values: [{ field: ['data', 'title'] }],
-  })
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+serverClient
+  .query(
+    q.CreateIndex({
+      name: "posts_by_tags_with_title",
+      source: q.Collection("Posts"),
+      terms: [{ field: ["data", "tags"] }],
+      values: [{ field: ["data", "title"] }],
+    })
+  )
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -428,14 +353,14 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.Create(
-    q.Collection('Posts'),
-    { data: { title: 'What I had for breakfast ..' } },
+serverClient
+  .query(
+    q.Create(q.Collection("Posts"), {
+      data: { title: "What I had for breakfast .." },
+    })
   )
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -447,14 +372,14 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.Create(
-    q.Ref(q.Collection('Posts'), '1'),
-    { data: { title: 'The first post' } },
+serverClient
+  .query(
+    q.Create(q.Ref(q.Collection("Posts"), "1"), {
+      data: { title: "The first post" },
+    })
   )
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -466,24 +391,24 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.Map(
-    [
-      'My cat and other marvels',
-      'Pondering during a commute',
-      'Deep meanings in a latte',
-    ],
-    q.Lambda(
-      'post_title',
-      q.Create(
-        q.Collection('Posts'),
-        { data: { title: q.Var('post_title') } },
+serverClient
+  .query(
+    q.Map(
+      [
+        "My cat and other marvels",
+        "Pondering during a commute",
+        "Deep meanings in a latte",
+      ],
+      q.Lambda(
+        "post_title",
+        q.Create(q.Collection("Posts"), {
+          data: { title: q.Var("post_title") },
+        })
       )
-    ),
+    )
   )
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -507,11 +432,10 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.Get(q.Ref(q.Collection('Posts'), '1'))
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+serverClient
+  .query(q.Get(q.Ref(q.Collection("Posts"), "1")))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -523,13 +447,10 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.Get(
-    q.Match(q.Index('posts_by_title'), 'My cat and other marvels')
-  )
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+serverClient
+  .query(q.Get(q.Match(q.Index("posts_by_title"), "My cat and other marvels")))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -541,14 +462,14 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.Update(
-    q.Ref(q.Collection('Posts'), '1'),
-    { data: { tags: ['welcome', 'short'] } },
+serverClient
+  .query(
+    q.Update(q.Ref(q.Collection("Posts"), "1"), {
+      data: { tags: ["welcome", "short"] },
+    })
   )
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -560,14 +481,14 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.Replace(
-    q.Ref(q.Collection('Posts'), '1'),
-    { data: { title: 'The replacement first post' } },
+serverClient
+  .query(
+    q.Replace(q.Ref(q.Collection("Posts"), "1"), {
+      data: { title: "The replacement first post" },
+    })
   )
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -579,11 +500,10 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.Delete(q.Ref(q.Collection('Posts'), '1'))
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+serverClient
+  .query(q.Delete(q.Ref(q.Collection("Posts"), "1")))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -595,11 +515,10 @@ serverClient.query(
 ```
 
 ```javascript
-serverClient.query(
-  q.Get(q.Ref(q.Collection('Posts'), '1'))
-)
-.then((ret) => console.log(ret))
-.catch((err) => console.error('Error: %s', err))
+serverClient
+  .query(q.Get(q.Ref(q.Collection("Posts"), "1")))
+  .then((ret) => console.log(ret))
+  .catch((err) => console.error("Error: %s", err));
 ```
 
 ```none
@@ -608,4 +527,3 @@ Error: [NotFound: instance not found] {
   requestResult: [RequestResult]
 }
 ```
-
