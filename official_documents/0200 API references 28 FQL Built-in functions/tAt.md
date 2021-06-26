@@ -1,11 +1,6 @@
 At | Fauna Documentation
 https://docs.fauna.com/fauna/current/api/fql/functions/at?lang=javascript
 
-
-
-
-
-
 # `At`
 
 ```javascript
@@ -25,14 +20,10 @@ The `At` function executes a temporal query, a query which examines the data in 
 |`timestamp`|[Timestamp](https://docs.fauna.com/fauna/current/api/fql/types#timestamp)|The timestamp of the virtual snapshot of the data.|
 |`expression`|FQL expression|The FQL statement to be executed.|
 
-
-
 |Argument|Type|Definition and Requirements|
 |--|--|--|
 |`timestamp`|[Timestamp](https://docs.fauna.com/fauna/current/api/fql/types#timestamp)|データの仮想スナップショットのタイムスタンプ。|
 |`expression`|FQL expression|実行されるFQL文です。|
-
-
 
 ## [](#returns)Returns
 
@@ -40,13 +31,11 @@ The result of the evaluation of `expression` at the given timestamp.
 
 与えられたタイムスタンプで `expression` を評価した結果です。
 
-
 ## [](#examples)Examples
 
 The following query creates a snapshot of the data to read at "1970-01-01" and retrieves all collections that existed on that date:
 
 次のクエリは、「1970-01-01」で読み取るデータのスナップショットを作成し、その日に存在したすべてのコレクションを取得します。
-
 
 ```javascript
 client.query(
