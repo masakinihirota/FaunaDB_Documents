@@ -180,7 +180,7 @@ This is the recommended require stanza. The `faunadb.query` module contains all 
 
 stanza
 
-？？？
+？？？ 節 連
 
 これは推奨される require stanza です。`faunadb.query` モジュールには、Fauna のクエリ式を作成するためのすべての関数が含まれています。
 
@@ -247,6 +247,14 @@ adminClient
 }
 ```
 
+### Create a server key to access the `my_app` database
+
+Create a server key. The server key has unrestricted access to a single database; in this case, the server key allows access only to the `my_app` database that we just created.
+
+サーバーキーを作成します。サーバーキーは単一のデータベースへの無制限のアクセス権を持ちます。ここでは、先ほど作成した`my_app`データベースへのアクセスのみを許可します。
+
+キーの作成
+
 ```javascript
 adminClient
   .query(
@@ -270,9 +278,29 @@ adminClient
 }
 ```
 
-````
+Save this key’s secret; it is only displayed once, and if you lose it, you would have to generate a new one. The key is used to perform all of the remaining database setup steps.
 
-javascript
+このキーの秘密は保存しておいてください。このキーは一度しか表示されませんので、紛失した場合は新しいキーを生成する必要があります。このキーは、残りのデータベースセットアップのすべての手順を実行するために使用されます。
+
+Your key will be different than the key you see displayed in the command output in this documentation. The key you saved just above will be different.
+
+あなたのキーは、このドキュメントのコマンド出力に表示されるキーとは異なります。先ほど保存したキーは異なります。
+
+### [](#clientserverkey)Instantiate a client that has server key privileges
+
+### [](#clientserverkey)サーバーキーの権限を持つクライアントのインスタンスを作成します。
+
+Instantiate a client that uses the server key that we just set up, to perform the rest of the tasks in this tutorial. Be sure to copy the secret returned in the previous step and replace `YOUR_FAUNADB_SERVER_SECRET` with that value.
+
+先ほど設定したサーバーキーを使用するクライアントをインスタンス化し、このチュートリアルの残りのタスクを実行します。前のステップで返されたシークレットを必ずコピーして、`YOUR_FAUNADB_SERVER_SECRET`をその値に置き換えてください。
+
+アドミンキー
+YOUR_FAUNADB_ADMIN_SECRET
+
+サーバーキー
+YOUR_FAUNADB_SERVER_SECRET
+
+
 
 ```javascript
 var serverClient = new faunadb.Client({ secret: 'YOUR_FAUNADB_SERVER_SECRET' });

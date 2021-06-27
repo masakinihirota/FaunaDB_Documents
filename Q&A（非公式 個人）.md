@@ -2,23 +2,63 @@
 
 ---
 
-FaunaはどんなタイプのDBか？
-NoSQLです。
+Fauna はどんなタイプの DB か？
+NoSQL です。
 （リレーショナルも行けるらしい？意味不明）
+
+---
+
+JavaScript、TypeScript での必要な技術。
+
+Fauna はオンラインデータベースです。
+データ取得には Promise を使います。
+
+Promise が未取得、もしくはまだ不安がある人は
+100％使えるようになるまで Promise の学習をしておいてください。
+
+非同期処理:コールバック/Promise/Async Function · JavaScript Primer #jsprimer
+https://jsprimer.net/basic/async/
+
+この入門書は現在の JavaScript 入門書の最高峰であり最先端です。
+これが無料なんてとんでもない話ですね。
+
+JavaScript Primer - 迷わないための入門書 #jsprimer
+https://jsprimer.net/
+
+---
+
+VSCode拡張機能
+
+Fauna
+
+入力補助
+Tabnine - AI Code Completion
+
+入力補助
+Visual Studio IntelliCode
+
+
+
+
+
+
 
 
 ---
 
+Fauna とはどんなデータベース化？
+
 multi-tenant database
-マルチテナント 
+マルチテナント
 
 同じシステムやサービスを複数の互いに無関係な利用者間が共同で利用する方式
 
-つまりFaunaDBは誰もが同じエンドポイントを使って
+つまり FaunaDB は誰もが同じエンドポイントを使って
 アクセスしているということ・・・
+共有サーバーのデータベース版みたいなもの？
 本当だろうか？？？
 
-たしかにGraphQLのエンドポイントは
+たしかに GraphQL のエンドポイントは
 https://graphql.fauna.com/graphql
 https://graphql.fauna.com/import
 
@@ -26,44 +66,37 @@ https://graphql.fauna.com/import
 全員がこのエンドポイントを使っているのだから
 そう解釈していいのだろうか？
 
-
-
-
 ---
 
 リレーショナル・データベースと
 Fauna・データベースの用語の違いは？
 
-|リレーショナル・データベース|Fauna・データベース|
-| ---- | ---- |
-|スキーマ|データベース|
-|テーブル|コレクション|
-|行|ドキュメント|
-|インデックス/マテリアライズドビュー|インデックス|
-
-
+| リレーショナル・データベース        | Fauna・データベース |
+| ----------------------------------- | ------------------- |
+| スキーマ                            | データベース        |
+| テーブル                            | コレクション        |
+| 行                                  | ドキュメント        |
+| インデックス/マテリアライズドビュー | インデックス        |
 
 ---
 
-Faunaのデータベースとは
-Faunaにはデータベース内にデータベースを作ることが可能
+Fauna のデータベースとは
+Fauna にはデータベース内にデータベースを作ることが可能
 それを子データベースと言う。
 child database
 区別するために上位のデータベースを
 親データベースと呼ぶ。
 
-親データベース＞子データベース＞コレクション＞Indexes＞row
-
+親データベース＞子データベース＞コレクション＞ Indexes ＞ row
 
 ---
 
-プログラムでCreateDatabaseと命令があるが、
+プログラムで CreateDatabase と命令があるが、
 これは子データベースを作るための命令。
 
-
 ---
 
-FQL と GraphQLの違いは？
+FQL と GraphQL の違いは？
 ・・・
 ほぼ同じことができるらしい（未確認）
 
@@ -73,33 +106,30 @@ FQL は学習したほうがいい？
 
 ---
 
-SQLとは違うのか？
+SQL とは違うのか？
 全く違う。
 
 ---
 
-Faunaでのキーとは？
+Fauna でのキーとは？
 数字を揃えてチェーンを開けるタイプのキー
 ダイヤル錠
 データにアクセスする許可を与える文字列
 現実世界の部屋の扉に書けるキー
 パーミッション
 たとえば、電話番号の情報にアクセスするには
-adminキー（管理者キー）か電話番号へのアクセスへのアクセスを許可するキーを発行する必要がある。
+admin キー（管理者キー）か電話番号へのアクセスへのアクセスを許可するキーを発行する必要がある。
 キーはサーバー側にのみあり、クライアント側にはない。（クライアント側は廃止された。）
 
 ---
 
-SQLでのキーとは？
+SQL でのキーとは？
 実体集合の個々の実体を一意（ユニーク）に識別できる属性、
 もしくは属性の組合せな小さいもの
 
-
-
-
 ---
 
-FQLのインデックスとは
+FQL のインデックスとは
 リレーショナルデータベースで言うところの主キーです。
 このインデックスはユニークにできます。
 
@@ -113,7 +143,6 @@ CreateIndex({
   unique: true
 })
 ```
-
 
 ---
 
@@ -140,9 +169,7 @@ cursoring
 取得した結果を複数のページに分割して、
 それらのページ間を前後に移動するための方法を用意することです。
 
-Paginateとは、よくセットで使われます。
-
-
+Paginate とは、よくセットで使われます。
 
 ---
 
@@ -150,11 +177,10 @@ stanza
 
 節、連
 
-
 ---
 
 子データベースを作るとき
-secretで警告が出る
+secret で警告が出る
 
 ```
 var adminClient = new faunadb.Client({ secret: process.env.FAUNA_ADMIN_KEY });
@@ -162,7 +188,7 @@ var adminClient = new faunadb.Client({ secret: process.env.FAUNA_ADMIN_KEY });
 
 警告
 型 'string | undefined' を型 'string' に割り当てることはできません。
-  型 'undefined' を型 'string' に割り当てることはできません。ts(2322)
+型 'undefined' を型 'string' に割り当てることはできません。ts(2322)
 (property) ClientConfig.secret: string
 
 解決方法
@@ -179,9 +205,6 @@ adminClient.query(
 .then((ret) => console.log(ret))
 .catch((err) => console.error('Error: %s', err))
 ```
-
-
-
 
 ---
 
@@ -207,11 +230,10 @@ CreateKey
 }
 ```
 
+CreateKey は実行ごとに新しいキーが生成される
+ts はタイムスタンプ
 
-CreateKeyは実行ごとに新しいキーが生成される
-tsはタイムスタンプ
-
-作られるのは role: 'server' つまりServerkey
+作られるのは role: 'server' つまり Serverkey
 
 キーは子データベース単位で作られる。
 secret はその作成されたキーのキー文字列にあたる。
@@ -221,119 +243,77 @@ hashed_secret:
 謎？？？
 使い方がわからない
 
-作られたキーはFaunaダッシュボード側では管理されていない。
-（左のSecurityからは見当たらなかった。）
-
+作られたキーは Fauna ダッシュボード側では管理されていない。
+（左の Security からは見当たらなかった。）
 
 const admin_key = process.env.FAUNA_ADMIN_KEY as string;
 
 var adminClient = new faunadb.Client({
-  secret: admin_key,
+secret: admin_key,
 });
 
 adminClient
-  .query(
-    q.CreateKey({
-      database: q.Database("my_app"),
-      role: "server",
-      data:{
-        name:'testnamekey'
-      }
-    })
-  )
-  .then((ret) => console.log(ret))
-  .catch((err) => console.error("Error: %s", err));
-
+.query(
+q.CreateKey({
+database: q.Database("my_app"),
+role: "server",
+data:{
+name:'testnamekey'
+}
+})
+)
+.then((ret) => console.log(ret))
+.catch((err) => console.error("Error: %s", err));
 
 名前をつけるとき
 data:{
-  name:'testkey'
+name:'testkey'
 }
 をつける。
 
 ---
 
+ABAC
+Attribute-based access control
+って何？
 
+よくわからない
 
+RBAC
+role-based access control
+を拡張したもの
 
+役割ベースのアクセスコントロール
 
----
+ロールとは
+特定のリソースに対して実行できる特定のアクションと
+指定された特権を持つべき特定の ID-
+のセットを定義します。
 
-
-
-
-
----
-
-
-
-
-
----
-
-
-
-
+意味不明
 
 ---
 
-
-
-
+---
 
 ---
 
-
-
-
+---
 
 ---
 
-
-
-
+---
 
 ---
 
-
-
-
+---
 
 ---
 
-
-
-
+---
 
 ---
 
-
-
-
-
 ---
 
-
-
-
-
 ---
-
-
-
-
-
----
-
-
-
-
-
----
-
-
-
-
-
-
-

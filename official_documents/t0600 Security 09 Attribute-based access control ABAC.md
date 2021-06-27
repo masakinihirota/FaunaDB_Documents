@@ -17,11 +17,18 @@ A _role_ defines a set of [_privileges_](#privileges) — specific actions t
 
 ロールは、[_privileges_](#privileges)-特定のリソースに対して実行できる特定のアクション-と[_membership_](#membership)-指定された特権を持つべき特定のID-のセットを定義します。
 
+A role defines a set of privileges  specific actions that can be executed on specific resources  and membership  specific identities that should have the specified privileges.
+
+ロールには、特定のリソースで実行可能な特定のアクションや、特定の特権を持つべきメンバーシップ特定のアイデンティティなど、一連の特権が定義されています。
+
 ![ABAC role overview](https://docs.fauna.com/fauna/current/security/abac_images/abac-roles.svg)
 
 ![ABACロール概要](https://docs.fauna.com/fauna/current/security/abac_images/abac-roles.svg)
 
 Changes to identities or resources are reflected immediately, as ABAC is evaluated for every query. For example, if Carol’s manager membership is removed, she can no longer access manager-specific resources.
+
+evaluate
+評価する
 
 ABACはクエリごとに評価されるため、IDやリソースの変更は即座に反映されます。例えば、Carol のマネージャーメンバーシップが削除された場合、彼女はマネージャー固有のリソースにアクセスできなくなります。
 

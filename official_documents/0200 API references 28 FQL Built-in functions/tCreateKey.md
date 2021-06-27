@@ -15,7 +15,7 @@ CreateKey( param_object )
 
 The `CreateKey` function creates a new key, based on the settings in `param_object`, which can be used to access the current database. If you provide an optional [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref) to a child database, the key is associated with (and provides access to) that database. An admin key must be used when calling `CreateKey`.
 
-`CreateKey`関数は`param_object`の設定に基づいて新しいキーを作成し、現在のデータベースにアクセスするのに使用できます。オプションの[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)で子データベースを指定すると、そのキーはそのデータベースに関連付けられ、アクセスできるようになります。CreateKey`を呼び出す際には管理者用のキーを使用する必要があります。
+`CreateKey`関数は`param_object`の設定に基づいて新しいキーを作成し、現在のデータベースにアクセスするのに使用できます。オプションの[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)で子データベースを指定すると、そのキーはそのデータベースに関連付けられ、アクセスできるようになります。`CreateKey`を呼び出す際には管理者用のキーを使用する必要があります。
 
 Once the key is created, the key’s secret can be used to connect to Fauna and execute queries within the associated database, with the permissions associated with the key’s `role`.
 
