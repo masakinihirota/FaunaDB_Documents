@@ -242,12 +242,62 @@ async function asyncMain() {
 
 # Promiseチェーンをawait式で表現する
 
+46.js
+47.js
+
+Async Functionと組み合わせ
+
+# Async Functionと反復処理
+
+48.js
+
+複数の非同期処理を行う際に、Async Functionはforループなどの反復処理と組み合わせることが可能です。
+
+# Promise APIとAsync Functionを組み合わせる
+
+同期処理のような見た目となるため、複数の非同期処理を反復処理する場合に無駄な待ち時間を作ってしまうコードを書きやすくなります。
+
+49.js
+
+# await式はAsync Functionの中でのみ利用可能
+
+50.js
+  エラーになる
+
+51.js
+先ほどのfetchResources関数ではforループとawait式を利用していました。 このときにforループの代わりにArray#forEachメソッドは利用できません。
+
+52.js
+
+そのため、Array#forEachメソッドのコールバック関数もAsync Functionとして定義しないと、コールバック関数ではawait式が利用できません。
+
+この構文エラーはArray#forEachメソッドのコールバック関数をAsync Functionにすることで解決できます。 しかし、コールバック関数をAsync Functionにしただけでは、fetchResources関数は常に空の配列で解決されるPromiseを返すという意図しない挙動となります。
+
+53.js
+
+なぜこのようになるかをfetchResources関数の動きを見てみましょう。
+
+forEachメソッドのコールバック関数としてAsync Functionを渡し、コールバック関数中でawait式を利用して非同期処理の完了を待っています。 しかし、この非同期処理の完了を待つのはコールバック関数Async Functionの中だけで、コールバック関数の外側ではfetchResources関数の処理が進んでいます。
 
 
+54.js
 
 
+このように、Async Functionとコールバック関数を組み合わせた場合には気をつける必要があります。
+
+この問題を解決する方法として、最初のfetchResources関数のように、コールバック関数を使わずにすむforループとawait式を組み合わせる方法があります。 また、fetchAllResources関数のように、複数の非同期処理を1つのPromiseにまとめることでループ中にawait式を使わないようにする方法があります。
 
 
+# まとめ
+この章では、非同期処理に関するコールバック関数、Promise、Async Functionについて学びました。
+
+非同期処理はその処理が終わるのを待つ前に次の処理を評価すること
+非同期処理であってもメインスレッドで実行されることがある
+エラーファーストコールバックは、非同期処理での例外を扱うルールの1つ
+Promiseは、ES2015で導入された非同期処理を扱うビルトインオブジェクト
+Async Functionは、ES2017で導入された非同期処理を扱う構文
+Async FunctionはPromiseの上に作られた構文であるため、Promiseと組み合わせて利用する
+PromiseやAsync Functionの応用パターンについては「JavaScript Promiseの本」も参照してください。
 
 
 

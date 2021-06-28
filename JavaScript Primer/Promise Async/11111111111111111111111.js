@@ -1,26 +1,30 @@
 function dummyFetch(path) {
   return new Promise((resolve, reject) => {
-      setTimeout(() => {
-          if (path.startsWith("/resource")) {
-              resolve({ body: `Response body of ${path}` });
-          } else {
-              reject(new Error("NOT FOUND"));
-          }
-      }, 1000 * Math.random());
+    setTimeout(() => {
+      if (path.startsWith("/resource")) {
+        resolve({ body: `Response body of ${path}` });
+      } else {
+        reject(new Error("NOT FOUND"));
+      }
+    }, 1000 * Math.random());
   });
 }
-// リソースAとリソースBを順番に取得する
-function fetchAB() {
-  const results = [];
-  return dummyFetch("/resource/A").then(response => {
-      results.push(response.body);
-      return dummyFetch("/resource/B");
-  }).then(response => {
-      results.push(response.body);
-      return results;
+// 複数のリソースをまとめて取得する
+async function fetchAllResources(resources) {
+  // リソースを同時に取得する
+  const promises = resources.map(function (resource) {
+    return dummyFetch(resource);
+  });
+  // すべてのリソースが取得できるまで待つ
+  // Promise.allは [ResponseA, ResponseB] のように結果が配列となる
+  const responses = await Promise.all(promises);
+  // 取得した結果からレスポンスのボディだけを取り出す
+  return responses.map((response) => {
+    return response.body;
   });
 }
+const resources = ["/resource/A", "/resource/B"];
 // リソースを取得して出力する
-fetchAB().then((results) => {
+fetchAllResources(resources).then((results) => {
   console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
 });
