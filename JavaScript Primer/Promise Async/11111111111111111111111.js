@@ -1,27 +1,26 @@
-// `timeoutMs`ミリ秒後にrejectする
-function timeout(timeoutMs) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject(new Error(`Timeout: ${timeoutMs}ミリ秒経過`));
-    }, timeoutMs);
-  });
-}
 function dummyFetch(path) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (path.startsWith("/resource")) {
-        resolve({ body: `Response body of ${path}` });
-      } else {
-        reject(new Error("NOT FOUND"));
-      }
-    }, 1000 * Math.random());
+      setTimeout(() => {
+          if (path.startsWith("/resource")) {
+              resolve({ body: `Response body of ${path}` });
+          } else {
+              reject(new Error("NOT FOUND"));
+          }
+      }, 1000 * Math.random());
   });
 }
-// 500ミリ秒以内に取得できなければ失敗時の処理が呼ばれる
-Promise.race([dummyFetch("/resource/data"), timeout(500)])
-  .then((response) => {
-    console.log(response.body); // => "Response body of /resource/data"
-  })
-  .catch((error) => {
-    console.log(error.message); // => "Timeout: 500ミリ秒経過"
+// リソースAとリソースBを順番に取得する
+function fetchAB() {
+  const results = [];
+  return dummyFetch("/resource/A").then(response => {
+      results.push(response.body);
+      return dummyFetch("/resource/B");
+  }).then(response => {
+      results.push(response.body);
+      return results;
   });
+}
+// リソースを取得して出力する
+fetchAB().then((results) => {
+  console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
