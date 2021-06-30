@@ -1,3 +1,5 @@
+2009年の投稿
+
 Why do we need a temporal database? - Stack Overflow
 https://stackoverflow.com/questions/800331/why-do-we-need-a-temporal-database/3218880
 
