@@ -58,22 +58,30 @@ to enforce uniqueness
 
 -   Learn how to use pagination, where only a small group of results is return for any one query and subsequent queries can fetch the next or previous group, in the [Pagination](https://docs.fauna.com/fauna/current/tutorials/graphql/pagination) tutorial.
 
-
 pagination
 ページ付け
 
 where only
 だけでは、だけが、のみが、
 
+for any one query 
+任意の1つのクエリに対して 
+
 subsequent
 その後の、それに続く
 
- where only a small group of results is return for any one query and subsequent queries can fetch the next or previous group
+is return for any one query and subsequent queries 
+は、1つのクエリとそれ以降のクエリに対して返されます。
 
- 1つのクエリに対して少数の結果グループのみが返され、後続のクエリでは次または前のグループを取得することができます。
+where only a small group of results is return for any one query
+and
+subsequent queries can fetch the next or previous group
+
+ 1つのクエリに対して少数の結果グループのみが返され、
+ そして
+ 後続のクエリでは次または前のグループを取得することができます。
 
 - ページネーションとは、1つのクエリに対して小さなグループの結果のみを返し、後続のクエリで次のグループまたは前のグループを取得する方法です。[ページネーション](https://docs.fauna.com/fauna/current/tutorials/graphql/pagination)のチュートリアルをご覧ください。
-
 
 ## [](#fql-tutorials)FQL tutorials
 
@@ -81,17 +89,55 @@ subsequent
 
 - Faunaの基本的なコンセプトである、ドキュメント、コレクション、インデックス、データモデリング、カスタム関数、そして認証と承認について、[5パートからなる基本チュートリアル](https://docs.fauna.com/fauna/current/tutorials/basics/)で学びます。
 
+documentsは5つ
+
+collections コレクション
+indexes インデックス
+data modeling データモデリング
+custom functions 自作関数
+authentication and authorization  認証と許可
+
 -   Learn how to create, read, update, and delete documents with our [CRUD](https://docs.fauna.com/fauna/current/tutorials/crud) tutorial.
+
+FQLのCRUDを学ぶ
 
 - CRUD](https://docs.fauna.com/fauna/current/tutorials/crud)のチュートリアルでは、ドキュメントの作成、読み取り、更新、削除の方法を学びます。
 
 -   Learn how to use [indexes](https://docs.fauna.com/fauna/current/tutorials/indexes/) to [sort](https://docs.fauna.com/fauna/current/tutorials/indexes/sort), [search](https://docs.fauna.com/fauna/current/tutorials/indexes/search), or to [search and sort](https://docs.fauna.com/fauna/current/tutorials/indexes/search_and_sort) documents.
 
-- インデックス](https://docs.fauna.com/fauna/current/tutorials/indexes/)を使って、ドキュメントを [ソート](https://docs.fauna.com/fauna/current/tutorials/indexes/sort)、[検索](https://docs.fauna.com/fauna/current/tutorials/indexes/search)、または [検索とソート](https://docs.fauna.com/fauna/current/tutorials/indexes/search_and_sort)する方法を学びます。
+- [インデックス](https://docs.fauna.com/fauna/current/tutorials/indexes/)を使って、ドキュメントを [ソート](https://docs.fauna.com/fauna/current/tutorials/indexes/sort)、[検索](https://docs.fauna.com/fauna/current/tutorials/indexes/search)、または [検索とソート](https://docs.fauna.com/fauna/current/tutorials/indexes/search_and_sort)する方法を学びます。
+
+-   Learn how to use indexes to sort, search, or to search and sort documents.
+
+インデックスを使ってドキュメントをソートしたり、検索したり、あるいは検索してソートする方法を学びます。
 
 -   Fauna is a bi-temporal database. Learn how to execute snapshot and event queries in the [Temporality](https://docs.fauna.com/fauna/current/tutorials/temporality) tutorial.
 
-- Fauna は、2 時系列のデータベースです。Temporality](https://docs.fauna.com/fauna/current/tutorials/temporality)のチュートリアルでは、スナップショットやイベントクエリの実行方法について説明しています。
+bi-temporal
+？？？
+
+BiTemporal Data Modelに入門中 - だいたいよくわからないブログ
+https://matsu-chara.hatenablog.com/entry/2017/04/01/110000
+
+日本語
+時制データベース
+https://ja.wikinew.wiki/wiki/Temporal_database
+
+英語
+Temporal database - Wikipedia
+https://en.wikipedia.org/wiki/Temporal_database
+
+翻訳
+Fauna文書\Wiki\Temporal database.md
+
+temporal
+一時的な,時の,時間の,時間的な,束の間の,
+一時的なもの,
+
+- Fauna は、BiTemporalです。Temporality](https://docs.fauna.com/fauna/current/tutorials/temporality)のチュートリアルでは、スナップショットやイベントクエリの実行方法について説明しています。
+
+- Faunaは2時間制のデータベースです。スナップショットやイベントクエリの実行方法については、Temporalityチュートリアルをご覧ください。
+
 
 -   Fauna supports multi-tenant databases. Our [Multitenancy](https://docs.fauna.com/fauna/current/tutorials/multitenant) tutorial shows you how to use this feature.
 
