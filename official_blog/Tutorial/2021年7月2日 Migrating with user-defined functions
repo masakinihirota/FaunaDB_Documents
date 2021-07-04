@@ -1,0 +1,597 @@
+Migrating with user-defined functions
+https://fauna.com/blog/migrating-with-user-defined-functions
+
+# Migrating with user-defined functions
+
+ユーザー定義関数を使ったマイグレーション
+
+Rob Sutter|Jul 2nd, 2021|
+
+2021年7月2日
+
+Categories:
+
+[Tutorial](https://fauna.com/blog?category=tutorial)
+
+Modern applications frequently change as you deliver features and fixes to customers. In this series, you learn how to implement migrations in [Fauna](https://fauna.com/), the data API for modern applications.
+
+最近のアプリケーションは、顧客に機能や修正を提供する際に頻繁に変更されます。このシリーズでは、モダンアプリケーションのデータAPIである[Fauna](https://fauna.com/)にマイグレーションを実装する方法を学びます。
+
+The [first post in this series](https://fauna.com/blog/evolving-the-structure-of-your-fauna-database) introduces a high-level strategy for planning and running migrations. In this post, you learn how to implement migration patterns using [user-defined functions (UDFs)](https://docs.fauna.com/fauna/current/api/fql/user_defined_functions) written in the [Fauna Query Language (FQL)](https://docs.fauna.com/fauna/current/api/fql/).
+
+[このシリーズの最初の記事](https://fauna.com/blog/evolving-the-structure-of-your-fauna-database)では、マイグレーションを計画・実行するためのハイレベルな戦略を紹介しています。この記事では、[Fauna Query Language (FQL)](https://docs.fauna.com/fauna/current/api/fql/)で記述された[User-Defined Functions (UDF)](https://docs.fauna.com/fauna/current/api/fql/user_defined_functions)を使用して移行パターンを実装する方法を学びます。
+
+All of the code in this series is available on GitHub in [Fauna Labs](https://github.com/fauna-labs/migrations).
+
+このシリーズのコードはすべて [Fauna Labs](https://github.com/fauna-labs/migrations) の GitHub で公開されています。
+
+## Migration scenario
+
+移行のシナリオ
+
+Imagine you use an application to manage computers and appliances that communicate on your company's network. One of your domain objects is a firewall rule, which permits or denies inbound traffic to a resource on a given port from a specific range of IP addresses. The range of IP addresses is provided using [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) and stored in your Fauna database as an [FQL string](https://docs.fauna.com/fauna/current/api/fql/types#string)
+
+会社のネットワーク上で通信するコンピュータやアプライアンスを管理するアプリケーションを使用しているとします。ドメインオブジェクトの1つにファイアウォールルールがあり、特定のIPアドレス範囲から特定のポートのリソースへのインバウンドトラフィックを許可または拒否します。IP アドレスの範囲は、[CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)を使用して提供され、[FQL string](https://docs.fauna.com/fauna/current/api/fql/types#string)として Fauna データベースに保存されます。
+
+For this post, you have an updated user requirement to permit or deny inbound traffic on a particular port from _an arbitrary number_ of IP address ranges. To satisfy this requirement, you must migrate the _ipRange_ field type to an [FQL array](https://docs.fauna.com/fauna/current/api/fql/types#array) of strings. This demonstrates a common migration, changing a singleton to a collection as requirements evolve.
+
+この記事では、「任意の数のIPアドレス範囲からの、特定のポートへのインバウンドトラフィックを許可または拒否する」という、最新のユーザー要件を紹介します。この要件を満たすためには、_ipRange_フィールドタイプを文字列の[FQL配列](https://docs.fauna.com/fauna/current/api/fql/types#array)に移行する必要があります。これは、要件の変化に応じてシングルトンをコレクションに変更するという、一般的な移行方法を示しています。
+
+### Pre-requisites
+
+前提条件
+
+To follow along with this post you must have access to a Fauna account. You can [register for a free Fauna account](https://dashboard.fauna.com/accounts/register) and benefit from [Fauna’s free tier](https://fauna.com/pricing) while you learn and build. You do not need to provide payment information until you upgrade your plan.
+
+この記事を読むためには、Fauna アカウントへのアクセスが必要です。Fauna の無料アカウントに登録](https://dashboard.fauna.com/accounts/register)すると、[Fauna の無料ティア](https://fauna.com/pricing)の恩恵を受けながら、学習と構築を行うことができます。プランをアップグレードするまで、支払い情報を提供する必要はありません。
+
+You do not need to install any additional software or tools. All examples in this post can be run in the web shell in the [Fauna dashboard](https://dashboard.fauna.com).
+
+また、追加のソフトウェアやツールをインストールする必要もありません。この記事のすべての例は、[Fauna ダッシュボード](https://dashboard.fauna.com)のウェブシェルで実行できます。
+
+### Create and populate your database
+
+データベースの作成と入力
+
+Create a new database in the [Fauna dashboard](https://dashboard.fauna.com). Do not select the "Pre-populate with demo data" checkbox.
+
+Fauna ダッシュボード](https://dashboard.fauna.com)で新しいデータベースを作成します。Pre-populate with demo data "のチェックボックスは選択しないでください。
+
+Select the _Collections_ tab and choose _New collection_. Enter _firewall\_rules_ as the _Collection Name_, leave the default settings for _History Days_ and _TTL_, and choose _Save_ to create your new collection.
+
+_Collections_タブを選択し、_New collection_を選択します。コレクション名」に「firewall\_rules」と入力し、「履歴の日数」と「TTL」はデフォルトのままにして、「保存」を選択すると新しいコレクションが作成されます。
+
+Select the _Shell_ tab (>\_) to open the web shell. Copy and paste the following FQL into the editor window and choose _Run Query_ to add three basic firewall rules.
+
+シェル」タブ（>>）を選択し、ウェブシェルを開きます。次のFQLをコピーしてエディターウィンドウに貼り付け、_Run Query_を選択すると、3つの基本的なファイアーウォールルールが追加されます。
+
+```
+Do(
+    Create(Collection("firewall_rules"), { data: { action: "Allow", port: 80, ipRange: "0.0.0.0/0", description: "Universal HTTP access" } }),
+    Create(Collection("firewall_rules"), { data: { action: "Allow", port: 443, ipRange: "0.0.0.0/0", description: "Universal HTTPS access" } }),
+    Create(Collection("firewall_rules"), { data: { action: "Allow", port: 22, ipRange: "192.0.2.0/24", description: "Allow SSH from company headquarters" } })
+)
+```
+
+![Populating sample firewall rules](https://fauna.com//images.contentful.com/po4qc9xpmpuh/1lrumPsZ4k5tjK5fKVK0EX/c132b5cb2066041b26add33742c558c7/populate.png)
+
+Choose the _Collections_ tab and select the _firewall\_rules_ collection. You should see three documents, each describing one of the previous firewall rules.
+
+_Collections_タブを選択し、_firewall\_rules_コレクションを選択します。3つのドキュメントが表示され、それぞれが前のファイアウォールルールの1つを説明しているはずです。
+
+## Encapsulating your data
+
+データのカプセル化
+
+In the [first post in this series](https://fauna.com/blog/evolving-the-structure-of-your-fauna-database#encapsulating-your-data), you learn always to access your data via [user-defined functions (UDFs)](https://docs.fauna.com/fauna/current/api/fql/user_defined_functions). Before migrating your database, create UDFs that provide create, retrieve, update, and delete functionality.
+
+[このシリーズの最初の投稿](https://fauna.com/blog/evolving-the-structure-of-your-fauna-database#encapsulating-your-data)では、[ユーザー定義関数(UDF)](https://docs.fauna.com/fauna/current/api/fql/user_defined_functions)を使ってデータにアクセスする方法を学びました。データベースを移行する前に、作成、取得、更新、削除の機能を提供するUDFを作成しましょう。
+
+**Note**: Do not abstract your UDFs to generic functions that wrap all operations across all collections! This approach introduces additional complexity and tightly couples your UDFs. Creating one UDF for each data access pattern aligns your UDFs with your business rules, making them easier to manage and more likely to be correct. This is especially true if you access your database via GraphQL, as you learn in the next post.
+
+**注意***。UDFを、すべてのコレクションのすべての操作をラップする汎用関数に抽象化しないでください。この方法では、さらに複雑さが増し、UDFが緊密に結合してしまいます。データアクセスパターンごとに1つのUDFを作成すると、UDFがビジネスルールに沿ったものになり、管理が容易になり、正確なデータアクセスが可能になります。これは、次の記事で紹介するように、GraphQLでデータベースにアクセスする場合に特に当てはまります。
+
+### Create
+
+作成
+
+Select the _Functions_ tab in the Fauna dashboard and choose _New function_. Enter _create\_firewall\_rule_ as the _Function Name_, leave the default value for _Role_, and paste the following FQL as the _Function Body_. Choose _Save_ to create the UDF in your database.
+
+Fauna ダッシュボードの _Functions_ タブを選択し、_New function_ を選択します。Function Name_ に _create_firewall\_rule_ を入力し、_Role_ はデフォルトのまま、_Function Body_ に以下の FQL を貼り付けます。保存」を選択すると、データベースにUDFが作成されます。
+
+```
+Query(
+    Lambda(
+        "new_rule",
+        Create(
+            Collection("firewall_rules"),
+            Var("new_rule")
+        )
+    )
+)
+```
+
+This creates a UDF that accepts one parameter object, _new\_rule_, and stores its value as a new document in the collection _firewall\_rules_. This mirrors the format of the [FQL `Create()` primitive](https://docs.fauna.com/fauna/current/api/fql/functions/create), which accepts a collection name and a parameter object.
+
+これは、1つのパラメータオブジェクト、_new\_rule_を受け入れ、その値をコレクション_firewall\_rules_の新しいドキュメントとして保存するUDFを作成します。これは[FQL `Create()` primitive](https://docs.fauna.com/fauna/current/api/fql/functions/create)のフォーマットを反映したもので、コレクション名とパラメータ・オブジェクトを受け取ります。
+
+Passing a single object containing the required parameters is a best practice. Do not deconstruct the object into multiple parameters. Deconstructing can lead to incompatibilities, and future calls may fail if they do not provide the right parameters in the right order.
+
+必要なパラメータを含む単一のオブジェクトを渡すことは、最良の方法です。オブジェクトを複数のパラメータに分解してはいけません。分解すると互換性がなくなり、正しいパラメータを正しい順序で提供しないと将来の呼び出しに失敗する可能性があります。
+
+Test your UDF by selecting the _Shell_ tab (>\_) and pasting the following FQL query into the code editor. Choose _Run Query_ to call your function and create a new firewall rule.
+
+「シェル」タブ（>>）を選択し、コードエディターに以下のFQLクエリを貼り付けて、UDFをテストします。Run Query]を選択して関数を呼び出し、新しいファイアウォールルールを作成します。
+
+```
+Call("create_firewall_rule", { data: { action: "Deny", port: 25, ipRange: "0.0.0.0/0", description: "Deny SMTP" } })
+```
+
+Return to the _Collections_ tab and select the _firewall\_rules_ collection. You should now see four documents, including the new rule. Copy the `id` of the new rule for use in the next section.
+
+_Collections_タブに戻り、_firewall\_rules_コレクションを選択します。新しいルールを含む4つのドキュメントが表示されているはずです。次のセクションで使用するために、新しいルールの `id` をコピーします。
+
+### Retrieve
+
+Select the _Functions_ tab in the Fauna dashboard and choose _New function_. This time, enter _get\_firewall\_rule_ as the _Function Name_, leave the default value for _Role_, and paste the following FQL as the _Function Body_. Choose _Save_ to create the UDF in your database.
+
+Fauna ダッシュボードの [Functions] タブを選択し、[New function] を選択します。今回は、_Function Name_ に _get_firewall\_rule_ を入力し、_Role_ はデフォルトのまま、_Function Body_ には以下の FQL を貼り付けます。保存」を選択すると、データベースにUDFが作成されます。
+
+```
+Query(
+    Lambda(
+        ["id"],
+        Get(
+            Ref(Collection("FirewallRule"), Var("id"))
+        )
+    )
+)
+```
+
+This creates a UDF that accepts one parameter object, _id_, and retrieves the entire associated document. Test your new UDF by selecting the _Shell_ tab (>\_) and pasting the following FQL query into the code editor, replacing _<some\_id>_ with the `id` you copy from the output of running your _create\_firewall\_rule_ function.
+
+これにより、_id_という1つのパラメータオブジェクトを受け取り、関連するドキュメント全体を取得するUDFが作成されます。シェル」タブ（>>）を選択し、コードエディターに以下のFQLクエリを貼り付けて、新しいUDFをテストしてください。
+
+```
+Call("get_firewall_rule", "<some_id>")
+```
+
+Choose _Run Query_ to call your UDF. Your function should return the firewall rule you provided, along with its [reference](https://docs.fauna.com/fauna/current/api/fql/types#ref) and [timestamp](https://docs.fauna.com/fauna/current/api/fql/types#timestamp).
+
+Run Query_を選択して、UDFを呼び出します。この関数は、提供したファイアウォールルールを、その[reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)と[timestamp](https://docs.fauna.com/fauna/current/api/fql/types#timestamp)とともに返すはずです。
+
+### Update
+
+更新
+
+Return to the _Functions_ tab and create another function named _update\_firewall\_rule_ with the following FQL as the _Function Body_.
+
+Functions_タブに戻り、_update_firewall\_rule_という名前の関数をもう一つ作成し、_Function Body_に以下のFQLを記述します。
+
+```
+Query(
+    Lambda(
+        ["id", "new_rule"],
+        Update(
+            Ref(Collection("firewall_rules"), Var("id")),
+            Var("new_rule")
+        )
+    )
+)
+```
+
+This UDF differs slightly from the first two. It accepts two parameters, the `id` of the document to update, and a data object _new\_rule_ containing the fields to be updated.
+
+このUDFは最初の2つのUDFと少し異なります。更新するドキュメントの `id` と、更新されるフィールドを含むデータオブジェクト _new\_rule_ の2つのパラメータを受け取ります。
+
+**Note**: Updates in Fauna are not destructive. The fields of the provided document are merged with the existing document. To remove a field from a document, set the value of the field to `null` when updating the document.
+
+**注意**: Faunaのアップデートは破壊的ではありません。提供されたドキュメントのフィールドは、既存のドキュメントにマージされます。ドキュメントからフィールドを削除するには、ドキュメントの更新時にフィールドの値を `null` に設定します。
+
+You can prove this by testing your new UDF. In the web shell, paste the following FQL query, again replacing _<some\_id>_ with the `id` you copy when creating your firewall rule.
+
+これを証明するには，新しいUDFをテストしてみてください．Webシェルで以下のFQLクエリを貼り付けてください。ここでも_<some_id>_をファイアウォールルール作成時にコピーした`id`に置き換えてください。
+
+```
+Call("update_firewall_rule", ["<some_id>", { data: { action: "Allow", description: null } }])
+```
+
+Choose _Run Query_ to call your UDF. Your function should return the updated document, with the _action_ field modified to "_Allow_", the _description_ field removed, and the _port_ and _ipRange_ fields unchanged.
+
+Run Query_を選択して、UDFを呼び出します。この関数は、 _action_ フィールドを "_Allow_" に変更し、 _description_ フィールドを削除し、 _port_ と _ipRange_ フィールドを変更していない、 更新されたドキュメントを返す必要があります。
+
+### Delete
+
+ 削除
+
+Create another UDF named _delete\_firewall\_rule_ from the _Functions_ tab with the following FQL.
+
+delete_firewall\_rule_という名前のUDFを_Functions_タブから以下のようなFQLで作成します。
+
+```
+Query(
+    Lambda(
+        ["id"],
+        Delete(
+            Ref(Collection("firewall_rules"), Var("id"))
+        )
+    )
+)
+```
+
+Test your UDF by pasting the following FQL in the web shell, replacing _<some\_id>_ with the `id` you copy in a previous step.
+
+Webシェルで以下のFQLを貼り付けて、UDFをテストしてください。_<some_id>_を前のステップでコピーした`id`で置き換えてください。
+
+```
+Call("delete_firewall_rule", "<some_id>")
+```
+
+Choose _Run Query_ to call your UDF, and Fauna removes the document from your database. You should have three documents in your _firewall\_rules_ collection and four UDFs - one for each CRUD primitive.
+
+Run Query_ を選択して UDF を呼び出すと、Fauna はデータベースからドキュメントを削除します。3つのドキュメントが _firewall\_rules_ コレクションにあり、4つのUDF（CRUDプリミティブごとに1つ）があるはずです。
+
+At this point, you should modify your client code to call the UDFs you create and avoid all calls to the FQL primitives. You have not changed any functionality in your application, but you are now prepared to make changes safely and perform migrations!
+
+この時点で、作成したUDFを呼び出すようにクライアントコードを修正し、FQLプリミティブの呼び出しをすべて回避する必要があります。アプリケーションの機能は何も変更していませんが、これで安全に変更を行い、移行を行うための準備が整いました。
+
+## Migrating in steps
+
+Migrating in steps reduces the risk of each stage of your migration.
+
+段階的に移行することで、移行の各段階でのリスクを軽減することができます。
+
+1.  Create a UDF that accepts a reference to a previous version of an object and updates it to the new format.
+2.  Modify the four UDFs you create in the previous section to call the migration function.
+3.  Create another UDF that verifies that your migration was successful. This is similar to a unit test of your migration UDF.
+4.  Remove any fields that you have deprecated with your migration.
+
+1.  オブジェクトの旧バージョンへの参照を受け取り、それを新しいフォーマットに更新するUDFを作成します。
+2.  2. 前のセクションで作成した4つのUDFを変更して、移行関数を呼び出します。
+3.  3. マイグレーションが成功したことを検証する別のUDFを作成します。これは、マイグレーションUDFのユニットテストに似ています。
+4.  4. マイグレーションで非推奨となったフィールドを削除します。
+
+### Populating new field values
+
+新しいフィールド値の入力
+
+In the previous post, you learn that the first step in a migration is creating a UDF that populates the value of your new field from existing data according to your business logic. In this example, the business rule is to convert the string stored in _ipRange_ to an array with one element, the existing value.
+
+前回の記事では、移行の最初のステップとして、ビジネスロジックに従って既存のデータから新しいフィールドの値を生成する UDF を作成することを学びました。この例では、_ipRange_に格納されている文字列を、既存の値を1つの要素とする配列に変換するというビジネスルールです。
+
+Create a UDF named "migrate\_firewall\_rule" with the following FQL code as the body.
+
+migrate_firewall\_rule "という名前のUDFを作成し、次のようなFQLコードをボディとして記述します。
+
+```
+Query(
+    Lambda(
+        ["firewall_rule_ref"],
+        Let(
+            { 
+                doc: Get(Var("firewall_rule_ref")),
+                ipRange: Select(["data", "ipRange"], Var("doc"))
+            },
+            If(
+                IsArray(Var("ipRange")),
+                Var("doc"),
+                Update(
+                    Ref(Var("firewall_rule_ref")),
+                    { data: { ipRange: [Var("ipRange")] } }
+                )
+            )
+        )
+    )
+)
+```
+
+The UDF accepts a reference, retrieves the specified document, and extracts the _ipRange_ field. It determines whether the _ipRange_ field is already an array. If so, it returns the unmodified document. If not, it updates the value of the _ipRange_ field in the document to an array consisting of one element, the current value of _ipRange_. The `IsArray()` check makes this function idempotent. You always receive the same result no matter how many times you apply it to a document.
+
+このUDFは，参照を受け取り，指定されたドキュメントを取得し，_ipRange_フィールドを抽出します。このUDFは、_ipRange_フィールドがすでに配列になっているかどうかを判断します。もしそうであれば、変更されていないドキュメントを返します。そうでない場合は、文書の_ipRange_フィールドの値を、現在の_ipRange_の値を1要素とする配列に更新する。IsArray()`をチェックすることで、この関数は冪等になります。この関数をドキュメントに何度適用しても、常に同じ結果が得られます。
+
+Note that this function accepts a Fauna reference as a parameter, **not** a string _id_. This function is invoked inside Fauna from other UDFs, so using the Fauna data type simplifies both writing and calling the function.
+
+この関数はパラメータとして Fauna の参照を受け取りますが、 **文字列 _id_ ではありません** 。この関数は他のUDFからFauna内部で呼び出されるため、Faunaデータ型を使用することで、関数の記述と呼び出しの両方が簡単になります。
+
+### Updating your UDFs
+
+UDF の更新
+
+After you save your migration UDF, you must update the UDFs you create in the previous section. The order of operations in each function differs based on the nature of the operation.
+
+マイグレーション UDF を保存した後は、前節で作成した UDF を更新する必要があります。各関数の操作順序は、操作内容によって異なります。
+
+#### Create
+
+作成
+
+You have two options when modifying your _create\_firewall\_rule_ UDF. You can check the input format, make the value of _ipRange_ an array if it is a string, and then create a document with the new info. However, this is awkward for large documents with nested objects, and duplicates the functionality you create with _migrate\_firewall\_rule_.
+
+create_firewall\_rule_ UDFを修正する際には、2つのオプションがあります。入力フォーマットをチェックして、_ipRange_の値が文字列の場合は配列にして、新しい情報でドキュメントを作成することができます。しかし、これはネストされたオブジェクトを持つ大きなドキュメントには不便であり、_migrate\\rule_で作成した機能と重複してしまいます。
+
+A simpler approach is to write the object as is and then apply the migration. Because Fauna is schemaless, you have the flexibility to perform both tasks in a single transaction, without restrictions on field types.
+
+よりシンプルな方法は、オブジェクトをそのまま書いてからマイグレーションを適用することです。Fauna はスキーマレスなので、フィールドタイプの制限を受けることなく、1 つのトランザクションで両方のタスクを実行できる柔軟性があります。
+
+Replace the body of your _create\_firewall\_rule_ UDF with the following FQL.
+
+Create\\ UDFの本文を以下のFQLで置き換えてください。
+
+```
+Query(
+    Lambda(
+        ["new_rule"],
+        Let(
+            { doc: Create(Collection("firewall_rules"), Var("new_rule")) },
+            Call("migrate_firewall_rule", Select(["ref"], Var("doc"))
+        )
+    )
+)
+```
+
+This function works even when the provided document is in the new format, because _migrate\_firewall\_rule_ is idempotent. You can verify this by calling your UDF from the web shell.
+
+この関数は、提供されたドキュメントが新しいフォーマットであっても動作します。なぜなら、_migrate_firewall\_rule_はidempotentだからです。WebシェルからUDFを呼び出すことで、これを確認することができます。
+
+First, invoke your function passing a string for _ipRange_.
+
+まず、_ipRange_に文字列を渡して関数を呼び出します。
+
+```
+Call("create_firewall_rule", {
+  data: {
+    action: "Deny",
+    port: 25,
+    ipRange: "0.0.0.0/0",
+    description: "Unencrypted SMTP"
+  }
+})
+```
+
+Note that the returned value is the updated version of your document with an array as the value for _ipRange_, even though you provided a string. You can verify that the document is stored this way on the _Collections_ tab.
+
+返された値は、文字列を指定したにもかかわらず、_ipRange_の値として配列が指定された、ドキュメントの更新バージョンであることに注意してください。ドキュメントがこのように保存されていることは、_Collections_タブで確認することができます。
+
+Return to the _Shell (>\_)_ tab and invoke your function again, this time with an array for _ipRange_:
+
+「シェル」タブに戻り、今度は「ipRange」に配列を指定して、再度関数を呼び出します。
+
+```
+Call("create_firewall_rule", {
+  data: {
+    action: "Allow",
+    port: 21,
+    ipRange: ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"],
+    description: "Allow FTP within private subnets"
+  }
+})
+```
+
+Your function succeeds, and stores your document exactly as provided.
+
+この関数は成功し、指定された通りにドキュメントを保存します。
+
+#### Retrieve
+
+Two characteristics of your _migrate\_firewall\_rule_ UDF make adding the migration to your _get\_firewall\_rule_ UDF simple.
+
+migrate_firewall\_rule_UDFの2つの特徴により、get_firewall\_UDFにマイグレーションを追加することが簡単になります。
+
+1.  The _migrate\_firewall\_rule_ UDF is idempotent, so you can apply it to a document any number of times and get the same result.
+2.  The _migrate\_firewall\_rule_ UDF returns the document in the updated format, and all UDFs return the value of the last statement in the function.
+
+1.  1. _migrate\firewall\_rule_ UDFは冪等なので、ドキュメントに何度でも適用して同じ結果を得ることができます。
+2.  2. _migrate_firewall\_rule_UDFは、更新されたフォーマットでドキュメントを返し、すべてのUDFは、関数内の最後のステートメントの値を返します。
+
+Taken together, this means that your _get\_firewall\_rule_ UDF is written as a wrapper to your _migrate\_firewall\_rule_ UDF, replacing the application-friendly _id_ field with its associated Fauna-native reference.
+
+これらを総合すると、「_get_firewall\_rule_UDF」は「_migrate_firewall\_rule_UDF」のラッパーとして書かれており、アプリケーションに適した「_id_」フィールドを、関連するFauna-nativeの参照に置き換えていることになります。
+
+Replace the body of your _get\_firewall\_rule_ UDF with the following FQL.
+
+get_firewall\_rule_UDFのボディを以下のようなFQLで置き換えてください。
+
+```
+Query(
+    Lambda(
+        ["id"],
+        Call(
+            "migrate_firewall_rule", 
+            Ref(Collection("firewall_rules"), Var("id"))
+        )
+    )
+)
+```
+
+Select the _Collections_ tab and copy the _id_ fields from two documents: one with a string value for _ipRange_ and one with an array value for _ipRange_. Return to the web shell and invoke your _get\_firewall\_rule_ twice, replacing _<string\_id>_ and _<array\_id>_ with their respective values.
+
+_Collections_タブを選択して、2つのドキュメントから_id_フィールドをコピーしてください。1つは_ipRange_に文字列の値、もう1つは_ipRange_に配列の値です。Webシェルに戻り、_<string\_id>_と_<array\_id>_をそれぞれの値に置き換えて、_get\_firewall\_rule_を2回実行してください。
+
+```
+Call("get_firewall_rule", "<string_id>")
+Call("get_firewall_rule", "<array_id>")
+```
+
+Note again that each function call returns a document with an array value for _ipRange_. Return to the _Collections_ tab and verify that both documents now have array values for _ipRange_.
+
+各関数の呼び出しは、_ipRange_の配列値を持つドキュメントを返すことにもう一度注意してください。_Collections_タブに戻り、両方のドキュメントが_ipRange_の配列値を持つようになったことを確認してください。
+
+#### Update
+
+Updates in migrations work similarly to creates. First, make the provided changes to your document, then call the migration function to ensure the document is in the correct format.
+
+マイグレーションでのアップデートは、「作成」と同様に動作します。まず、ドキュメントに変更を加えた後、マイグレーション関数を呼び出してドキュメントが正しい形式になっていることを確認します。
+
+Replace the body of your _update\_firewall\_rule_ UDF with the following FQL.
+
+update_firewall\_rule_UDFのボディを以下のFQLで置き換えてください。
+
+```
+Query(
+    Lambda(
+        ["id", "new_rule"],
+        Let(
+            {
+                ref: Ref(Collection("migrate_firewall_rule"), Var("id")),
+                doc: Update(
+                    Var("ref"),
+                    Var("new_rule")
+                )
+            },
+            Call("migrate_firewall_rule", Var("ref"))
+        )        
+    )
+)
+```
+
+Select the _Collections_ tab and copy the _id_ from a document with a string value for _ipRange_. Return to the web shell and invoke your _update\_firewall\_rule_ function, replacing _<some\_id>_ with the value you copied.
+
+_Collections_タブを選択し、_ipRange_に文字列の値を持つドキュメントから_id_をコピーします。Webシェルに戻り、<some\id>_をコピーした値に置き換えて、_update\rule_関数を起動してください。
+
+```
+Call("update_firewall_rule", ["<some_id>", { data: { description: null } }])
+```
+
+This query removes the _description_ field from the document while the migration UDF updates the value of _ipRange_ to be an array.
+
+このクエリはドキュメントから_description_フィールドを削除し、マイグレーションUDFは_ipRange_の値を配列に更新します。
+
+#### Delete
+
+Deletes are different from the other three operations. In order to migrate the data in a document during a delete, you must first apply the migration and _then_ delete the document.
+
+削除は他の3つの操作とは異なります。削除時にドキュメント内のデータをマイグレーションするには、まずマイグレーションを適用し、その後ドキュメントを削除する必要があります。
+
+Replace the body of your _delete\_firewall\_rule_ UDF with the following FQL.
+
+delete_firewall\_rule_UDFのボディを以下のFQLで置き換えてください。
+
+```
+Query(
+    Lambda(
+        ["id"],
+        Let(
+            {
+                ref: Ref(Collection("migrate_firewall_rule"), Var("id")),
+                doc: Call("migrate_firewall_rule", Var("ref"))
+            },
+            Delete(Var("ref"))
+        )
+    )
+)
+```
+
+Select the _Collections_ tab and copy the _id_ fields from two documents: one with a string value for _ipRange_ and one with an array value for _ipRange_. Return to the web shell and invoke your _delete\_firewall\_rule_ twice, replacing _<string\_id>_ and _<array\_id>_ with their respective values.
+
+_Collections_タブを選択し、2つのドキュメントから_id_フィールドをコピーします。1つは_ipRange_の文字列値、もう1つは_ipRange_の配列値です。Webシェルに戻り、delete\\ruleを2回起動して、_<string\id>_と_<array\id>_をそれぞれの値で置き換えてください。
+
+```
+Call("delete_firewall_rule", "<string_id>")
+Call("delete_firewall_rule", "<array_id>")
+```
+
+Verify that both function calls return the document as it existed at the time of deletion with array values for _ipRange_.
+
+どちらの関数呼び出しも、削除された時点で存在していたドキュメントを、_ipRange_の配列値で返していることを確認してください。
+
+Why should you migrate a document if you're deleting it anyway? If you do not access your database via GraphQL, a migration is strictly optional. However, it is considered a best practice to modify before delete since it provides a consistent return object shape and better supports [temporality](https://docs.fauna.com/fauna/current/tutorials/temporality.html). Migrating delete functionality _is_ required, however, if you access your database via GraphQL. The next post in this series addresses the reason for this requirement.
+
+どうせ削除するのであれば、なぜドキュメントを移行する必要があるのでしょうか? GraphQLでデータベースにアクセスしない場合、移行は厳密には任意です。しかし、削除する前に修正することは、一貫したリターンオブジェクトの形状を提供し、[Temporality](https://docs.fauna.com/fauna/current/tutorials/temporality.html)をよりよくサポートするため、ベストプラクティスと考えられています。ただし、GraphQL経由でデータベースにアクセスする場合は、削除機能のマイグレーションが必須となります。次の記事では、その理由を説明します。
+
+### Confirming zero defects
+
+不具合ゼロを確認する
+
+In this example, you overwrite the existing field of a document with a new value rather than create a new field. How do you compare the new value to the previous value and ensure correctness in your migration?
+
+この例では、新しいフィールドを作成するのではなく、ドキュメントの既存のフィールドを新しい値で上書きします。新しい値と以前の値を比較して、移行の正しさを確認するにはどうすればよいでしょうか。
+
+Fauna provides temporality features that enable you to compare the history of a document at different points in time. Fauna retains thirty days of history data on your collections by default. This value can be increased or decreased both when a collection is created and at a later point in time.
+
+Faunaには、異なる時点でのドキュメントの履歴を比較することができる一時性機能があります。Fauna はデフォルトで、コレクションの 30 日間の履歴データを保持します。この値は、コレクションの作成時と後の時点の両方で増減させることができます。
+
+The following FQL uses temporality to compare the values of _ipRange_ in the same document at two points in time: the time of the last update, and one millisecond prior. It checks that the current value is an array, the previous value is a string, and the current value is equal to an array with one element, the previous value.
+
+次のFQLは、時間性を利用して、同じドキュメント内の_ipRange_の値を、2つの時点（最終更新時とその1ミリ秒前）で比較します。現在の値が配列であること、前の値が文字列であること、現在の値が前の値を1要素とする配列と等しいことをチェックします。
+
+Note that this particular function only handles the happy path of a simple migration. It assumes that the tested document exists and was migrated in the last update without a change to the value of _ipRange_, only its format.
+
+この関数は、単純なマイグレーションのハッピーパスのみを扱うことに注意してください。この関数は、テストされたドキュメントが存在し、_ipRange_の値に変更がなく、その形式のみが変更されたまま最後の更新で移行されたことを前提としています。
+
+Create a UDF named "validate\_migration" with the following FQL code as the body.
+
+validate\_migration "という名前のUDFを作成し、次のようなFQLコードをボディにします。
+
+```
+Query(
+    Lambda(
+        ["ref"],
+        Let(
+            { 
+                new_doc: Get(Var("ref")),
+                new_ts: Select(["ts"], Var("new_doc")),
+                old_ts: Subtract(Var("new_ts"), 1),
+                old_doc: At(Var("old_ts"), Get(Var("ref"))),
+                new_ipRange: Select(["data", "ipRange"], Var("new_doc")),
+                old_ipRange: Select(["data", "ipRange"], Var("old_doc"))
+            },
+            And(
+                IsArray(Var("new_ipRange")),
+                IsString(Var("old_ipRange")),
+                Equals(
+                    Var("new_ipRange"),
+                    [Var("old_ipRange")]
+                )
+            )
+        )
+    )
+)
+```
+
+Select the _Collections_ tab and copy the _id_ fields from two documents: one that you migrated from a string _ipRange_ and one you created with an array _ipRange_. Return to the web shell and invoke your _validate\_migration_ twice, replacing _<string\_id>_ and _<array\_id>_ with their respective values.
+
+_Collections_タブを選択し、2つのドキュメントから_id_フィールドをコピーします。1つは文字列_ipRange_から移行したもの、もう1つは配列_ipRange_で作成したものです。Webシェルに戻り、_validate\_migration_を2回実行し、_<string\_id>_と_<array\_id>_をそれぞれの値に置き換えます。
+
+```
+Call("validate_migration", Ref(Collection("FirewallRule"), "<string_id>"))
+Call("validate_migration", Ref(Collection("FirewallRule"), "<array_id>"))
+```
+
+Verify that calling with _<string\_id>_ returns _true_ and calling with _<array\_id>_ returns _false_. You can also manually modify the value of a document and note its impact on the result of the _validate\_migration_ function.
+
+<string_id>_で呼び出した場合はtrue_、_<array\_id>_で呼び出した場合はfalse_が返ってくることを確認してください。また、手動でドキュメントの値を変更して、_validate\_migration_関数の結果に影響を与えることもできます。
+
+### Removing deprecated fields
+
+非推奨のフィールドの削除
+
+Instead of migrating the value of _ipRange_, you could choose to create a new field _ipRangeList_ and leave the existing field unmodified. In this case, the next step is to update all documents with a value for _ipRange_ and set it to `null`, remove the field.
+
+_ipRange_の値を移行する代わりに、新しいフィールド_ipRangeList_を作成し、既存のフィールドは変更しないという選択もあります。この場合、次のステップとして、_ipRange_の値を持つすべてのドキュメントを更新し、それを `null` に設定して、フィールドを削除します。
+
+This doesn't apply to the current migration because you overwrite the existing field. More information on this topic is provided in the final post in this series.
+
+既存のフィールドを上書きするので、現在のマイグレーションには適用されません。このトピックに関する詳しい情報は、このシリーズの最後の投稿に記載されています。
+
+## Security and roles
+
+セキュリティとロール
+
+Note that without using the _migrate\_firewall\_rule_ UDF your retrieve function would need permission to write to your collection. This violates the separation of concerns and least privilege principles. By offloading migration responsibilities to a separate UDF, your business logic UDFs only need permission to call the _migrate\_firewall\_rule_.
+
+migrate\-firewall\-rule_ UDFを使用しない場合、検索関数はコレクションへの書き込み許可が必要になることに注意してください。これは関心事の分離と最小権限の原則に違反します。移行の責任を別のUDFにオフロードすることで、ビジネスロジックのUDFは_migrate\_firewall\_rule_を呼び出すパーミッションだけが必要になります。
+
+## Conclusion
+
+UDFs are a powerful tool for decoupling your business logic from your migration logic. UDFs enable a number of additional techniques, including fine-grained access to resources and comparing different versions of documents at call time.
+
+UDFは、ビジネスロジックとマイグレーションロジックを切り離すための強力なツールです。UDFを使うと、リソースへのきめ細かいアクセスや、呼び出し時に異なるバージョンのドキュメントを比較するなど、多くの追加技術が可能になります。
+
+The next post in this series shows you how to perform migrations when you access Fauna via [the Fauna GraphQL API](https://docs.fauna.com/fauna/current/api/graphql/). If you are not a GraphQL user, the final post in the series provides code and considerations for migrating your data and indexes.
+
+このシリーズの次の記事では、[Fauna GraphQL API](https://docs.fauna.com/fauna/current/api/graphql/)を介してFaunaにアクセスしたときにマイグレーションを実行する方法を紹介します。GraphQLをお使いでない方は、シリーズ最後の投稿で、データとインデックスを移行するためのコードと注意点をご紹介します。
+
+If you enjoyed our blog, and want to work on systems and challenges related to globally distributed systems, serverless databases, GraphQL, and Jamstack, Fauna is [hiring](https://fauna.com/careers)!
+
+もしあなたが私たちのブログを楽しんでくれて、グローバルな分散システム、サーバーレスデータベース、GraphQL、Jamstackに関連するシステムや課題に取り組みたいと思っているなら、Faunaは[hiring](https://fauna.com/careers)です!
+
