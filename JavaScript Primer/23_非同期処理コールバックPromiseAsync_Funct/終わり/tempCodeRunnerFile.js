@@ -1,1 +1,0 @@
-// `await`式で評価した右辺のPromiseがRejectedとなったため、例外がthrowされる
