@@ -25,6 +25,9 @@ If your Dashboard session has expired:
 
 To form bi-directional relations in GraphQL requires using the `@relation` directive. `@relation` connects an attribute in a GraphQL schema to another GraphQL type.
 
+bi-directional
+双方向の
+
 GraphQLで双方向の関係を構築するには、`@relation`ディレクティブを使う必要がある。`@relation`は、GraphQLスキーマの属性を別のGraphQLタイプに接続します。
 
 In this tutorial, we are going to extend the current schema (established in the [Get started with GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start) tutorial). Instead of simply storing todo records, we are going to categorize our todos using lists.
