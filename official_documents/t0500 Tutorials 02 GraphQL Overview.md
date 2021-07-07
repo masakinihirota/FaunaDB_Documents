@@ -15,12 +15,12 @@ This section includes several tutorials that demonstrate various aspects of the 
 
 -   [GraphQL relations](https://docs.fauna.com/fauna/current/tutorials/graphql/relations)
 
-GraphQLのリレーション]
+[GraphQLのリレーション]
 
 -   [Unique constraints in GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/unique)
 
- GraphQLのユニークな制約]
+[GraphQLのユニークな制約]
 
 -   [GraphQL pagination](https://docs.fauna.com/fauna/current/tutorials/graphql/pagination)
 
-GraphQLのページネーション]
+[GraphQLのページネーション]

@@ -35,7 +35,7 @@ GraphQLの概要
 
 GraphQL間での双方向のやり取りを勉強する。
 
-- [Relations](https://docs.fauna.com/fauna/current/tutorials/graphql/relations)チュートリアルでは、`@relation`ディレクティブを使って、GraphQLにおける双方向の関係を形成する方法、つまり、GraphQLスキーマの属性を別のGraphQLタイプに接続する方法を紹介しています。
+- [Relations](https://docs.fauna.com/fauna/current/tutorials/graphql/relations)チュートリアルでは、`@relation`命令を使って、GraphQLにおける双方向の関係を形成する方法、つまり、GraphQLスキーマの属性を別のGraphQLタイプに接続する方法を紹介しています。
 
 -   Learn how to use the `@unique`·directive,·which·allows·you·to add·constraints·to·your·GraphQL·schema to enforce uniqueness on a type, in the [Unique·constraints](https://docs.fauna.com/fauna/current/tutorials/graphql/unique) tutorial.
 
@@ -51,8 +51,6 @@ to enforce uniqueness
 
  to enforce uniqueness on a type
  を使って、型の一意性を確保することができます。
-
-- [ユニーク制約](https://docs.fauna.com/fauna/current/tutorials/graphql/unique)のチュートリアルでは、`@unique`ディレクティブを使って、GraphQLスキーマに制約を追加し、型に一意性を持たせる方法を紹介しています。
 
 - [ユニーク制約](https://docs.fauna.com/fauna/current/tutorials/graphql/unique)のチュートリアルでは、`@unique`ディレクティブを使って、GraphQLスキーマに制約を追加し、型に一意性を持たせる方法を紹介しています。
 
@@ -141,7 +139,7 @@ temporal
 
 -   Fauna supports multi-tenant databases. Our [Multitenancy](https://docs.fauna.com/fauna/current/tutorials/multitenant) tutorial shows you how to use this feature.
 
-- Fauna はマルチテナントデータベースをサポートしています。Multitenancy](https://docs.fauna.com/fauna/current/tutorials/multitenant)チュートリアルでは、この機能の使用方法を説明しています。
+- Fauna はマルチテナントデータベースをサポートしています。[Multitenancy](https://docs.fauna.com/fauna/current/tutorials/multitenant)チュートリアルでは、この機能の使用方法を説明しています。
 
 -   Learn how to use [authentication](https://docs.fauna.com/fauna/current/tutorials/authentication/) in the [user authentication](https://docs.fauna.com/fauna/current/tutorials/authentication/user) tutorial, and how to control access to information in Fauna with our [Attribute-based access control (ABAC)](https://docs.fauna.com/fauna/current/tutorials/authentication/abac) tutorial.
 
@@ -152,6 +150,11 @@ temporal
 - また、[Social graph](https://docs.fauna.com/fauna/current/tutorials/social_graph)では、シンプルなグラフのようなクエリを使って、ユーザ間の関係を形成する方法を紹介しています。
 
 -   Finally, our [E-commerce](https://docs.fauna.com/fauna/current/tutorials/ecommerce) tutorial demonstrates one way to use Fauna to keep track of users and purchases.
+
+purchase
+名1 購入,買ったもの,購入品,買い物,購買,買い入れ,注文,仕入れ,価値
+名2 しっかり握ること,しっかりした足掛かり,てこ装置
+他動～を買う,購入する,仕入れる,獲得する
 
 - 最後に、[E-commerce](https://docs.fauna.com/fauna/current/tutorials/ecommerce)では、Fauna を使ってユーザや購入品を追跡する方法を紹介しています。
 

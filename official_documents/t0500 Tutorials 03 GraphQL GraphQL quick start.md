@@ -7,6 +7,10 @@ https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start
 
 GraphQL is an open source data query and manipulation language that provides declarative schema definitions and a composable query syntax. By design, GraphQL eliminates over- and under-fetching of relational data, which minimizes network and memory use for clients.
 
+composable
+構成する、組み立てる
+
+
 GraphQLは、オープンソースのデータ検索・操作言語であり、宣言的なスキーマ定義と合成可能なクエリ構文を提供します。GraphQLは、リレーショナルデータのオーバーフェッチやアンダーフェッチを排除するよう設計されており、クライアントのネットワークやメモリの使用を最小限に抑えます。
 
 ## [](#resources)Resources
