@@ -10,7 +10,6 @@ GraphQL is an open source data query and manipulation language that provides dec
 composable
 構成する、組み立てる
 
-
 GraphQLは、オープンソースのデータ検索・操作言語であり、宣言的なスキーマ定義と合成可能なクエリ構文を提供します。GraphQLは、リレーショナルデータのオーバーフェッチやアンダーフェッチを排除するよう設計されており、クライアントのネットワークやメモリの使用を最小限に抑えます。
 
 ## [](#resources)Resources
@@ -50,10 +49,6 @@ The steps:
 
     Webブラウザで[https://dashboard.fauna.com/](https://dashboard.fauna.com/)にアクセスし、ログインしてください。
 
-    ![The Fauna dashboard](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_images/screen-cloud-home.png)
-
-    ![The Fauna dashboard](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_images/screen-cloud-home.png)
-
 2.  **Create a GraphQL database**
 
 GraphQLデータベースの作成
@@ -64,11 +59,7 @@ GraphQLデータベースの作成
 
     Click **New Database**, enter `graphql` into the **Database Name** field, and press Return (or click **SAVE**).
 
-    New Database**をクリックし、**Database Name**に`graphql`と入力してReturnを押す（または**SAVE**をクリックする）と、新しいデータベースが作成されます。
-
-    ![The new graphql database](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_images/screen-graphql-new_db.png)
-
-    ![The new graphql database](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_images/screen-graphql-new_db.png)
+    **New Database**をクリックし、**Database Name**に`graphql`と入力してReturnを押す（または**SAVE**をクリックする）と、新しいデータベースが作成されます。
 
 3.  **Create a GraphQL schema**
 
@@ -78,9 +69,9 @@ GraphQLスキーマの作成
 
     GraphQLスキーマは、すべてのフィールドとそのタイプを含む、管理および問い合わせが可能なデータの「形」を定義します。ここでは、「Todo」リストの非常に基本的なスキーマから始めます。各Todoアイテムは、タイトルと、そのアイテムが完了しているかどうかを示すフラグだけです。このスキーマでは、実行したいクエリの種類も定義します。
 
-    Create a file called `schema.gql` containing the following content (or [download it here](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_attachments/graphql/schema.gql)):
+    Create a file called `schema.gql` containing the following content 
 
-    以下の内容を含む `schema.gql` というファイルを作成してください（または [Download it here](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_attachments/graphql/schema.gql)）。
+    以下の内容を含む `schema.gql` というファイルを作成してください。
 
     graphql
 
@@ -108,13 +99,9 @@ GraphQLスキーマをインポートする。
 
     左サイドバーの **GRAPHQL** をクリックします。
 
-    ![The Import your <mark>GraphQL</mark> schema page](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_images/screen-graphql-import_schema.png)
-
     Click **IMPORT SCHEMA**, which opens your browser’s file selector. Select the `schema.gql` file, and click the file selector’s **Open** button. The GraphQL Playground screen is displayed:
 
-    IMPORT SCHEMA**をクリックすると，ブラウザのファイルセレクタが開きます．「schema.gql」を選択して、ファイルセレクタの「開く」ボタンをクリックします。GraphQL Playgroundの画面が表示されます。
-
-    ![The <mark>GraphQL</mark> Playground screen](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_images/screen-graphql-playground.png)
+    **IMPORT SCHEMA**をクリックすると，ブラウザのファイルセレクタが開きます．「schema.gql」を選択して、ファイルセレクタの「開く」ボタンをクリックします。GraphQL Playgroundの画面が表示されます。
 
 5.  **Create a document**
 
@@ -123,8 +110,6 @@ GraphQLスキーマをインポートする。
     Even though our schema has been imported, there are no documents yet. Let’s create one. Copy the following GraphQL mutation query into the left panel of the GraphQL Playground screen:
 
     スキーマがインポートされたにもかかわらず、まだドキュメントがありません。ドキュメントを作成してみましょう。以下のGraphQL mutation queryをGraphQL Playground画面の左パネルにコピーします。
-
-    graphql
 
     ```graphql
     mutation CreateATodo {
@@ -157,8 +142,6 @@ GraphQLスキーマをインポートする。
 
     GraphQL Playgroundの画面は次のようになっているはずです。
 
-    ![Created a document in <mark>GraphQL</mark> Playground](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_images/screen-graphql-created.png)
-
 6.  **Fetch all documents**
 
 すべてのドキュメントを取得する。
@@ -166,8 +149,6 @@ GraphQLスキーマをインポートする。
     Now that we have a document that can be fetched, let’s run a query to fetch all documents. Copy the following GraphQL fetch query:
 
     フェッチ可能なドキュメントができたので、すべてのドキュメントをフェッチするクエリを実行してみましょう。以下のGraphQLのフェッチクエリをコピーしてください。
-
-    graphql
 
     ```graphql
     query FindAllTodos {
