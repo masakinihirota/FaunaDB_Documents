@@ -17,8 +17,8 @@ If your Dashboard session has expired:
 3.  Click the **GRAPHQL** button in the left navigation.
 
 1.  [Log in again](https://dashboard.fauna.com/)をクリックします。
-2.  2. `graphql` データベースを選択します。
-3.  3. 左側のナビゲーションにある**GRAPHQL**ボタンをクリックします。
+2. `graphql` データベースを選択します。
+3. 左側のナビゲーションにある**GRAPHQL**ボタンをクリックします。
 
 This tutorial explores the `@unique` directive, which allows you to add constraints to your GraphQL schema. When you add `@unique` to a field definition, Fauna handles the creation of an index that enforces this constraint.
 
@@ -49,8 +49,6 @@ Let’s define a simple user type, with a uniqueness constraint on the username,
         以下の内容のファイル`schema-unique.gql`を作成します(または[ここからダウンロード](https://docs.fauna.com/fauna/current/tutorials/graphql/unique../_attachments/graphql/schema-unique.gql)します)。
     
 
-    graphql
-    
     ```graphql
     type User {
       username: String! @unique
@@ -63,7 +61,7 @@ Let’s define a simple user type, with a uniqueness constraint on the username,
     
     Click the **UPDATE SCHEMA** button in the GraphQL Playground screen (in your browser), which opens your browser’s file selector. Select the `schema-unique.gql` file, and click the file selector’s **Open** button.
     
-        ブラウザのGraphQL Playground画面で**UPDATE SCHEMA**ボタンをクリックすると、ブラウザのファイルセレクタが開きます。schema-unique.gql` を選択し、ファイルセレクタの **開く** ボタンをクリックします。
+    ブラウザのGraphQL Playground画面で**UPDATE SCHEMA**ボタンをクリックすると、ブラウザのファイルセレクタが開きます。schema-unique.gql` を選択し、ファイルセレクタの **開く** ボタンをクリックします。
     
     This new schema only updates collections (and associated indexes) with the same name. Any other collections are unaffected.
 

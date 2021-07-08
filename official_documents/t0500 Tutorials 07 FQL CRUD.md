@@ -5,9 +5,36 @@ https://docs.fauna.com/fauna/current/tutorials/crud?lang=javascript
 
 Fauna でドキュメントを作成、取得、更新、削除する
 
-Fauna allows you to store documents and query them in a relational fashion. This section walks you through a basic example of creating, retrieving, updating, and deleting (CRUD) documents in Fauna, including working with collections. If you are new to Fauna, make sure to check out our [Glossary](https://docs.fauna.com/fauna/current/glossary) for definitions.
+Fauna allows you to store documents and query them in a relational fashion. 
 
-Fauna では、ドキュメントを保存し、リレーショナル方式で照会することができます。このセクションでは、Fauna でドキュメントを作成、取得、更新、削除(CRUD)する基本的な例を、コレクションの操作を含めて説明します。初めて Fauna を使う方は、[Glossary](https://docs.fauna.com/fauna/current/glossary)で定義を確認してください。
+fashion
+流儀
+
+Faunaでは、ドキュメントを保存し、リレーショナルな方法でクエリを実行することができます。
+
+
+This section walks you through a basic example of creating, retrieving, updating, and deleting (CRUD) documents in Fauna, including working with collections. If you are new to Fauna, make sure to check out our [Glossary](https://docs.fauna.com/fauna/current/glossary) for definitions.
+
+walk 
+案内する
+
+retrieving
+retrieveの現在分詞
+(…を)取り戻す、 回収する 取得する
+
+make sure
+確認する 確かめる
+
+make sure to
+ようにする
+
+check out
+確認する 確かめる
+
+working
+実際(の工作)に役立つ、実用的な
+
+このセクションでは、Fauna でドキュメントを作成、取得、更新、削除(CRUD)する基本的な例を、コレクションの操作を含めて説明します。初めて Fauna を使う方は、[Glossary](https://docs.fauna.com/fauna/current/glossary)で定義を確認してください。
 
 ## [](#introduction)Introduction
 
@@ -15,27 +42,27 @@ Fauna では、ドキュメントを保存し、リレーショナル方式で�
 
 To demonstrate how to perform CRUD operations in Fauna, we are going to use the example of blog posts: creating blog posts, updating them with additional attributes, and querying for specific posts.
 
-Fauna で CRUD 操作を行う方法を示すために、ブログ記事を例にして説明します。ブログ記事の作成、属性を追加した更新、特定の記事の問い合わせを行います。
+how to perform
+実行方法
+
+FaunaでCRUD操作を行う方法を説明するために、ブログ記事を例にして、ブログ記事の作成、属性を追加した更新、特定の記事の問い合わせを行います。
 
 The steps are:
 
 手順は以下の通りです。
 
 1.  Make sure that the [Requirements](#requirements) are met.
-
 2.  [Create a database](#database).
-
 3.  [Create a collection](#collection),
-
 4.  [Create an index](#index).
-
 5.  [Create a post](#post).
-
 6.  [Retrieve posts](#retrieve).
-
 7.  [Update posts](#update).
-
 8.  [Delete a post](#delete).
+
+met
+meet 過去形 過去分詞
+〈必要 義務 要求などに〉応じる，〈…を〉満たす.
 
 要件 (#requirements)を満たしていることを確認する。
 データベースの作成 (#database)を行います。
@@ -44,12 +71,21 @@ The steps are:
 ポストの作成
 投稿を検索する
 投稿の更新
-
 投稿を削除する
 
-We have set up this example so you can follow along from start to finish. Feel free to skip straight to [Create a post](#post) if you are just looking for examples of the create, retrieve, update, and delete process.
+We have set up this example so you can follow along from start to finish.
 
-この例では、最初から最後まで順を追って説明できるように設定しています。作成、取得、更新、削除のプロセスの例だけを見たい場合は、遠慮なく[Create a post](#post)に進んでください。
+follow along
+順を追って
+
+この例では、最初から最後まで順を追って説明できるように設定しています。
+
+Feel free to skip straight to [Create a post](#post) if you are just looking for examples of the create, retrieve, update, and delete process.
+
+Feel free to 
+お好みでどうぞ、遠慮なく･･･する、遠慮なく･･･する
+
+作成、取得、更新、削除のプロセスの例だけを見たい場合は、遠慮なく[Create a post](#post)に進んでください。
 
 ## [](#requirements)Requirements
 
@@ -74,7 +110,14 @@ ensure
 satisfied
 満たす
 
-ドライバをインストールする前に、互換性のあるバージョンの言語ランタイムを実行していること、およびその他の依存関係を満たしていることを確認することが重要です。
+compatible
+互換性がある 相性が良い
+
+runtime
+実行時 ＜＝＞ 開発時、コンパイル時
+
+
+ドライバをインストールする前に、互換性のあるバージョンの言語ランタイムを実行していること、およびその他の依存関係を満たしていることを確認してください。
 
 The JavaScript driver is supported on:
 
@@ -169,7 +212,8 @@ We recommend that you import this driver with an alias import such as:
 
 このドライバーのインポートには、次のようなエイリアスインポートを行うことをお勧めします。
 
-javascript
+such as
+例えば～,～といった
 
 ```javascript
 var faunadb = require("faunadb");
@@ -179,16 +223,17 @@ var q = faunadb.query;
 This is the recommended require stanza. The `faunadb.query` module contains all of the functions to create Fauna query expressions.
 
 stanza
-
+一区切り、1カ所での興行期間◆【略】st.
 ？？？ 節 連
+
+expressions
+式、表現
 
 これは推奨される require stanza です。`faunadb.query` モジュールには、Fauna のクエリ式を作成するためのすべての関数が含まれています。
 
 Similarly with ES6 modules:
 
 ES6 モジュールと同様です。
-
-javascript
 
 ```javascript
 import faunadb, { query as q } from "faunadb";
@@ -203,6 +248,10 @@ CDN パッケージでは、グローバル変数 `faunadb` を公開してい�
 管理者キーの取得
 
 To follow along, you need an admin key, which you can create using the [Fauna Dashboard](https://dashboard.fauna.com/).
+
+To follow along
+ついていく＋沿って
+後について行く、話についていく、理解する
 
 フォローするためには、[Fauna Dashboard](https://dashboard.fauna.com/)を使って作成できる管理者キーが必要です。
 
@@ -237,6 +286,8 @@ adminClient
   .then((ret) => console.log(ret))
   .catch((err) => console.error("Error: %s", err));
 ```
+
+プロミスで取得
 
 ```none
 {
@@ -278,9 +329,13 @@ adminClient
 }
 ```
 
-Save this key’s secret; it is only displayed once, and if you lose it, you would have to generate a new one. The key is used to perform all of the remaining database setup steps.
+Save this key’s secret; it is only displayed once, and if you lose it, you would have to generate a new one. 
 
-このキーの秘密は保存しておいてください。このキーは一度しか表示されませんので、紛失した場合は新しいキーを生成する必要があります。このキーは、残りのデータベースセットアップのすべての手順を実行するために使用されます。
+このキーの秘密は保存しておいてください。このキーは一度しか表示されませんので、紛失した場合は新しいキーを生成する必要があります。
+
+The key is used to perform all of the remaining database setup steps.
+
+このキーは、残りのデータベースセットアップのすべての手順を実行するために使用されます。
 
 Your key will be different than the key you see displayed in the command output in this documentation. The key you saved just above will be different.
 

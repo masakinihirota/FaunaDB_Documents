@@ -28,11 +28,21 @@ To form bi-directional relations in GraphQL requires using the `@relation` direc
 bi-directional
 双方向の
 
+attribute
+属性
+
 GraphQLで双方向の関係を構築するには、`@relation`ディレクティブを使う必要がある。`@relation`は、GraphQLスキーマの属性を別のGraphQLタイプに接続します。
 
-In this tutorial, we are going to extend the current schema (established in the [Get started with GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start) tutorial). Instead of simply storing todo records, we are going to categorize our todos using lists.
+In this tutorial, we are going to extend the current schema (established in the [Get started with GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start) tutorial).
 
-このチュートリアルでは、現在のスキーマ（[Get started with GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start)のチュートリアルで確立したもの）を拡張していきます。単純にTodoのレコードを保存するのではなく、リストを使ってTodoを分類することにします。
+established
+確立された、確定の
+
+このチュートリアルでは、現在のスキーマ（[Get started with GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start)のチュートリアルで確立したもの）を拡張していきます。
+
+Instead of simply storing todo records, we are going to categorize our todos using lists.
+
+単純にTodoのレコードを保存するのではなく、リストを使ってTodoを分類することにします。
 
 The steps:
 
@@ -40,7 +50,7 @@ The steps:
 
 -   [Create a new schema file](#schema-file)
 
-新しいスキーマファイルの作成](#schema-file)
+[新しいスキーマファイルの作成](#schema-file)
 
 -   [Import the new GraphQL schema into Fauna](#import)
 
@@ -74,11 +84,9 @@ TODOリストにTODOを作成する
 
 新しいスキーマファイルを作成します。
 
-    Create the file `schema-relations.gql` with the following content (or [download it here](https://docs.fauna.com/fauna/current/tutorials/graphql/relations../_attachments/graphql/schema-relations.gql)):
+    Create the file `schema-relations.gql` with the following content
 
-    以下の内容のファイル`schema-relations.gql`を作成します(または[ここからダウンロード](https://docs.fauna.com/fauna/current/tutorials/graphql/relations../_attachments/graphql/schema-relations.gql)します)。
-
-    graphql
+    以下の内容のファイル`schema-relations.gql`を作成します。
 
     ```graphql
     type Todo {
@@ -101,7 +109,7 @@ TODOリストにTODOを作成する
 
 2.  **Import the new GraphQL schema into Fauna**
 
-新しいGraphQLスキーマをFauna**にインポートします。
+新しいGraphQLスキーマをFaunaにインポートします。
 
     Click the **UPDATE SCHEMA** button on the GraphQL Playground screen in your browser, which opens your browser’s file selector. Select the `schema-relations.gql` file, and click the file selector’s **Open** button.
 
@@ -123,8 +131,6 @@ Todoリストの作成
 
     以下の GraphQL mutation クエリをコピーします。
 
-    graphql
-
     ```graphql
     mutation CreateAList {
       createList(data: {
@@ -136,9 +142,13 @@ Todoリストの作成
     }
     ```
 
-    Then click the "new tab" **`+`** button on the GraphQL Playground screen in your browser (at the top left, just right of the last query tab). Then paste the query into the left panel, and click the "Play" button. The query should execute and the response should appear in the right panel:
+    Then click the "new tab" **`+`** button on the GraphQL Playground screen in your browser (at the top left, just right of the last query tab). 
+    
+    Then paste the query into the left panel, and click the "Play" button. The query should execute and the response should appear in the right panel:
 
-    次に、ブラウザのGraphQL Playground画面で、「新しいタブ」**`+`**ボタンをクリックします（左上の、最後のクエリタブのすぐ右）。そして、左のパネルにクエリを貼り付けて、「再生」ボタンをクリックします。クエリが実行され、右パネルにレスポンスが表示されるはずです。
+    次に、ブラウザのGraphQL Playground画面で、「新しいタブ」の**`+`**ボタンをクリックします（左上の、最後のクエリタブのすぐ右）。
+    
+    そして、左のパネルにクエリを貼り付けて、「再生」ボタンをクリックします。クエリが実行され、右パネルにレスポンスが表示されるはずです。
 
     ```json
     {
@@ -157,7 +167,7 @@ Todoリストの作成
 
 4.  **Create a todo related to the list**
 
-リストに関連したTodoを作成する**。
+**リストに関連したTodoを作成する**。
 
     Now that we have a todo list, how do we create related todos? We use the `connect` field on a todo’s `list` attribute to use its defined relationship to make the connection for us.
 
@@ -166,8 +176,6 @@ Todoリストの作成
     Copy the following GraphQL mutation query:
 
     以下の GraphQL mutation クエリをコピーしてください。
-
-    graphql
 
     ```graphql
     mutation CreateAListedTodo {
@@ -205,7 +213,7 @@ Todoリストの作成
 
 5.  **Query the list for related todos**
 
-リストに関連するTODOを検索する。
+関連するTODOをリストから検索する。
 
     Now that we have a todo that is related to the list, let’s verify that situation.
 
@@ -214,8 +222,6 @@ Todoリストの作成
     Copy the following GraphQL query:
 
     以下のGraphQLクエリをコピーします。
-
-    graphql
 
     ```graphql
     query FindAListByID {
@@ -264,8 +270,6 @@ Todoリストの作成
     Copy the following GraphQL query:
 
     以下のGraphQLクエリをコピーします。
-
-    graphql
 
     ```graphql
     query FindAllTodos {
@@ -327,8 +331,6 @@ Todoリストの作成
 
     以下のGraphQLクエリをコピーします。
 
-    graphql
-
     ```graphql
     mutation UpdateATodo {
       updateTodo(id: "234367997153640967", data: {
@@ -345,9 +347,17 @@ Todoリストの作成
     }
     ```
 
-    Then click the "new tab" **`+`** button on the GraphQL Playground screen in your browser (at the top left, just right of the last query tab). Paste the query into the left panel. Replace `234367997153640967` in the query with the id of the todo from the [previous step](#query-all), and replace `234458015536775681` with the value of `_id` from the [Create a todo list](#create-list) step. Finally, click the "Play" button. The query should execute and the response should appear in the right panel:
+    Then click the "new tab" **`+`** button on the GraphQL Playground screen in your browser (at the top left, just right of the last query tab). 
+    
+    次に、ブラウザのGraphQL Playground画面で、「新しいタブ」**`+`**ボタンをクリックします（左上の、最後のクエリタブのすぐ右）。
 
-    次に、ブラウザのGraphQL Playground画面で、「新しいタブ」**`+`**ボタンをクリックします（左上の、最後のクエリタブのすぐ右）。左のパネルにクエリを貼り付けます。クエリの中の`234367997153640967`は、[前のステップ](#query-all)でのTodoのidに、`234458015536775681`は、[Todoリストの作成](#create-list)のステップでの`_id`の値に置き換えてください。最後に "Play "ボタンをクリックします。クエリが実行され、右パネルにレスポンスが表示されます。
+    Paste the query into the left panel. 
+    
+    左のパネルにクエリを貼り付けます。
+    
+    Replace `234367997153640967` in the query with the id of the todo from the [previous step](#query-all), and replace `234458015536775681` with the value of `_id` from the [Create a todo list](#create-list) step. Finally, click the "Play" button. The query should execute and the response should appear in the right panel:
+
+    クエリの中の`234367997153640967`は、[前のステップ](#query-all)でのTodoのidに、`234458015536775681`は、[Todoリストの作成](#create-list)のステップでの`_id`の値に置き換えてください。最後に "Play "ボタンをクリックします。クエリが実行され、右パネルにレスポンスが表示されます。
 
     ```json
     {
@@ -365,7 +375,7 @@ Todoリストの作成
 
     Notice that we used `connect` to associate the todo with the list’s id. We also change the `completed` field to `true`. We didn’t change the title, but we had to provide it because the `title` field is marked as `required` (due to the exclamation mark in the schema).
 
-    connect`を使ってTodoとリストのIDを関連付けていることに注目してください。また、`completed`フィールドを`true`に変更しています。タイトルは変更していませんが、`title` フィールドが `required` とマークされているので、提供しなければなりませんでした (スキーマにエクスクラメーションマークがあるため)。
+    `connect`を使ってTodoとリストのIDを関連付けていることに注目してください。また、`completed`フィールドを`true`に変更しています。タイトルは変更していませんが、`title` フィールドが `required` とマークされているので、提供しなければなりませんでした (スキーマにエクスクラメーションマークがあるため)。
 
 8.  **Create a list with its own todos**
 
@@ -373,13 +383,11 @@ Todoリストの作成
 
     It is possible to bulk-create related documents using the `create` field. `create` gives access to the underlying collection, so you can add (or update) a list with a handful of todos in a single GraphQL mutation query.
 
-    create`フィールドを使って、関連ドキュメントを一括作成することができます。create`では下層のコレクションにアクセスできるので、1つのGraphQL mutationクエリで、いくつかのTodosを持つリストを追加(または更新)することができます。
+    `create`フィールドを使って、関連ドキュメントを一括作成することができます。`create`では下層のコレクションにアクセスできるので、1つのGraphQL mutationクエリで、いくつかのTodosを持つリストを追加(または更新)することができます。
 
     Copy the following GraphQL query:
 
     以下のGraphQLクエリをコピーしてください。
-
-    graphql
 
     ```graphql
     mutation CreateListWithTodos {
