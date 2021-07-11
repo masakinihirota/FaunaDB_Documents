@@ -728,7 +728,7 @@ serverClient
 
 Note that the `title` has been updated, but `tags` has been deleted.
 
-タイトル "は更新されていますが、"タグ "は削除されていることに注意してください。
+"タイトル "は更新されていますが、"タグ "は削除されていることに注意してください。
 
 ## [](#delete)Delete a post
 
