@@ -135,9 +135,12 @@ Check out the following blog post which I published a few weeks ago to know more
 [3 Simple Steps To Setup Authentication in Next.js](https://blog.bhanuteja.dev/3-simple-steps-to-setup-authentication-in-nextjs)
 
 
+
 ##################
 ここからFauna
 ##################
+
+
 
 ## Setting up Fauna in Next.js
 
@@ -163,9 +166,8 @@ Next.js プロジェクトに `faunadb` (Fauna DB の javascript ドライバ) �
 
 ```
 yarn add faunadb
-# npm install faunadb
+npm install faunadb
 ```
-
 
 
 
@@ -180,7 +182,7 @@ While developing locally, you have two choices:
 
 
 1.  Fauna クラウドにテスト用のデータベースを直接作成するか。
-2.  Fauna DevのDockerコンテナをローカルにセットアップすることができる。
+2.  Fauna DevのDockerコンテナをローカルにセットアップする。
 
 
 
@@ -202,12 +204,7 @@ Fauna Devコンテナのセットアップについては、[ドキュメント�
 
 To summarize, here is what I have done.
 
-
-
-
 要約すると、私が行ったことは以下の通りです。
-
-
 
 
 ```
@@ -253,17 +250,33 @@ If you go through the [documentation](https://docs.fauna.com/fauna/current/integ
 
 
 
-If you come from a background of Laravel/Django/Rails/Node, you are most probably be aware of migrations. In simple terms, the migrations are the set of files. They help manage the changes in the database schema. The files are usually associated with timestamps of the time when the migrations are created. There will usually be a way to apply a migration or rollback(unapply) a migration. These are incremental steps that you need to perform to get the fresh database to the same state as the current database.
+If you come from a background of Laravel/Django/Rails/Node, you are most probably be aware of migrations. 
+
+Laravel/Django/Rails/Node を使用している方であれば、マイグレーションについてはご存知のことと思います。
+
+In simple terms, the migrations are the set of files. 
+
+簡単に言えば、マイグレーションとはファイルの集合体です。
+
+They help manage the changes in the database schema.
+
+データベーススキーマの変更を管理するのに役立ちます。
+
+The files are usually associated with timestamps of the time when the migrations are created.
+There will usually be a way to apply a migration or rollback(unapply) a migration.
+These are incremental steps that you need to perform to get the fresh database to the same state as the current database.
+
+このファイルには、マイグレーションが作成された時のタイムスタンプが付いています。通常、マイグレーションを適用したり、マイグレーションをロールバック（適用解除）する方法があります。これらは、新しいデータベースを現在のデータベースと同じ状態にするために実行する必要のある増分ステップです。
 
 
-Laravel/Django/Rails/Node を使用している方であれば、マイグレーションについてはご存知のことと思います。簡単に言えば、マイグレーションとはファイルの集合体です。データベーススキーマの変更を管理するのに役立ちます。このファイルには、マイグレーションが作成された時のタイムスタンプが付いています。通常、マイグレーションを適用したり、マイグレーションをロールバック（適用解除）する方法があります。これらは、新しいデータベースを現在のデータベースと同じ状態にするために実行する必要のある増分ステップです。
 
+In Fauna, there is no native solution to achieve this. 
 
+Faunaでは、これを実現するネイティブなソリューションはありません。
 
-In Fauna, there is no native solution to achieve this. But very recently, an unofficial tool has been created by a developer advocate at Fauna. I have been using that tool for setting up migrations in my projects.
+But very recently, an unofficial tool has been created by a developer advocate at Fauna. I have been using that tool for setting up migrations in my projects.
 
-
-Faunaでは、これを実現するネイティブなソリューションはありません。しかし、ごく最近、Faunaの開発者擁護者によって非公式のツールが作成されました。私のプロジェクトでは、そのツールを使ってマイグレーションを設定しています。
+しかし、ごく最近、Faunaの開発者擁護者によって非公式のツールが作成されました。私のプロジェクトでは、そのツールを使ってマイグレーションを設定しています。
 
 
 
@@ -308,10 +321,10 @@ This will create some files and folders which we later use to set up migrations 
         -   Since I am using Fauna Dev for local development, I have set up these as per my configuration.
 
 1.  コレクションやインデックスなどをすべて `fauna/resources` フォルダに追加します。
-2.  2. resources フォルダ内の変更に基づいて、マイグレーションを生成することができるようになります。これらのマイグレーションは `fauna/migrations` フォルダに生成されます。
-3.  3. データベースの状態を確認することができるようになります。すべてのマイグレーションが適用され、どのマイグレーションがまだ適用されていないかを見ることができるようになります。
-4.  4. 移行を適用したり、適用した移行をロールバックしたりすることができます。
-5.  5. これらのコマンドを実行する際に、「FAUNA ADMIN KEY」の入力を求められます。
+2. resources フォルダ内の変更に基づいて、マイグレーションを生成することができるようになります。これらのマイグレーションは `fauna/migrations` フォルダに生成されます。
+3. データベースの状態を確認することができるようになります。すべてのマイグレーションが適用され、どのマイグレーションがまだ適用されていないかを見ることができるようになります。
+4. 移行を適用したり、適用した移行をロールバックしたりすることができます。
+5. これらのコマンドを実行する際に、「FAUNA ADMIN KEY」の入力を求められます。
     - このキーは、Fauna ダッシュボードの「セキュリティ」タブで生成できます。
     - また、環境変数 `FAUNA_ADMIN_KEY`, `FAUNADB_DOMAIN`, `FAUNADB_SCHEME`, `FAUNADB_PORT` を設定することもできます。
     - クラウドデータベースに接続するときは、`FAUNA_ADMIN_KEY`を設定するだけでよいでしょう。

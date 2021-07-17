@@ -16,6 +16,7 @@ We do not license or support use of Fauna Dev multi-node clusters.
 マルチクラスターモードはサポートしてません。
 
 This section includes the following topics:
+
 この章での話題
 
 - [Requirements](#requirements)
@@ -25,7 +26,7 @@ This section includes the following topics:
 
 ## [](#requirements)Requirements
 
-要件
+必要条件
 
 Fauna Dev has the following requirements:
 

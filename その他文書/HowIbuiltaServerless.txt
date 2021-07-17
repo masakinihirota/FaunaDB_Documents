@@ -121,6 +121,33 @@ yarn dev
 How I built a Serverless Micro-Blogging Site Using Next.js and Fauna
 https://blog.bhanuteja.dev/how-i-built-a-serverless-micro-blogging-site-using-nextjs-and-fauna
 
+Faunaイメージダウンロード
+docker pull fauna/faunadb:latest
+
+インストールの確認
+docker run fauna/faunadb --help
+
+faunadbのコンテナ起動
+docker run --rm --name faunadb -p 8443:8443 -p 8084:8084 fauna/faunadb
+
+起動確認
+docker ps
+
+その他の起動方法
+Fauna Dev | Fauna Documentation
+https://docs.fauna.com/fauna/current/integrations/dev
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ●●●●●●●●●●●●●●●●●●●●●●●
