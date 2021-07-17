@@ -53,6 +53,11 @@ terminal
 
 ```bash
 docker run fauna/faunadb --help
+```
+
+下記が表示される
+
+```
 FaunaDB Enterprise Docker Image
 
 Options:
@@ -62,6 +67,7 @@ Options:
 --join host[:port]   Join a cluster through an active node specified in host and port.
 --config <path>      Specify a custom config file. Should be accessible inside the docker image.
 ```
+
 
 ## [](#ports)Ports
 
@@ -77,7 +83,7 @@ The port most commonly used for the Fauna Dev database service, as used in examp
 
 The port most commonly used for the GraphQL API is 8084. This means that the [GraphQL endpoints](https://docs.fauna.com/fauna/current/api/graphql/endpoints) would be:
 
-GraphQLAPI で最も一般的に使用されるポート は 8084 です。これは、GraphQL エンドポイントが次のようになることを意味します。
+GraphQL API で最も一般的に使用されるポート は 8084 です。これは、GraphQL エンドポイントが次のようになることを意味します。
 
 - [http://localhost:8084/import](http://localhost:8084/import)
 - [http://localhost:8084/graphql](http://localhost:8084/graphql)
@@ -87,7 +93,8 @@ The Docker container’s database service
 and GraphQL endpoints are HTTP services
 that run without certificates installed;
 
-make sure that your client code uses the `http` scheme when making connections.
+make sure that your client code uses the
+`http` scheme when making connections.
 
 certificates
 証明書
@@ -140,6 +147,8 @@ See the [Docker docs](https://docs.docker.com/engine/reference/run/#expose-incom
 There are several approaches to running Fauna Dev with Docker:
 
 Docker で Fauna Dev を実行するには、いくつかのアプローチがあります。
+
+
 
 1.  As a single developer node, with ephemeral data:
 

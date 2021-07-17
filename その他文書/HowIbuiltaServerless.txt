@@ -1,0 +1,318 @@
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+How I built a Serverless Micro-Blogging Site Using Next.js and Fauna
+https://blog.bhanuteja.dev/how-i-built-a-serverless-micro-blogging-site-using-nextjs-and-fauna
+
+HowIbuiltaServerless
+
+
+----------------------------------------
+----------------------------------------
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+これはNextAuthを使う方法
+Githubの認証を使う
+一番シンプルな方法
+
+
+3 Simple Steps To Setup Authentication in Next.js
+https://blog.bhanuteja.dev/3-simple-steps-to-setup-authentication-in-nextjs
+
+yarn create next-app next-auth
+yarn create next-app next-auth
+
+```
+// pages/index.js
+export default function Home() {
+  return (
+    <div>
+      <h1>Hello World</h1>
+    </div>
+  )
+}
+```
+
+yarn add next-auth sqlite3
+
+
+```
+// pages/api/auth/[...nextauth].js
+
+import NextAuth from 'next-auth'
+import Providers from 'next-auth/providers'
+
+const options = {
+  providers: [
+    Providers.GitHub({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET
+    }),
+  ],
+  database: process.env.DATABASE_URL,
+}
+
+export default (req, res) => NextAuth(req, res, options)
+
+```
+
+
+.env.local
+
+```
+# .env.local
+GITHUB_ID=*****
+GITHUB_SECRET=*****
+DATABASE_URL=sqlite://localhost/:memory:?synchronize=true
+```
+
+GITHUB_IDとGITHUB_SECRETを取得
+Developer applications
+https://github.com/settings/developers
+
+```
+// pages/index.js
+import { signIn, signOut, useSession } from 'next-auth/client'
+
+export default function Home() {
+  const [ session ] = useSession()
+  return (
+    <div>
+      <h1>Hello World</h1>
+      {session ? (
+        <button onClick={() => signOut()}>Signout</button>
+      ) : (
+        <button onClick={() => signIn()}>SignIn</button> 
+        )}
+      {session && (
+        <div>
+          <small>Signed in as</small>
+         <br/>
+          <strong>{session.user.email || session.user.name}</strong>
+        </div>
+      )}
+    </div>
+  )
+}
+
+```
+
+
+yarn dev
+で動作確認
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+ここからはFauna
+
+How I built a Serverless Micro-Blogging Site Using Next.js and Fauna
+https://blog.bhanuteja.dev/how-i-built-a-serverless-micro-blogging-site-using-nextjs-and-fauna
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+npx create-next-app --example with-typescript .
+npx create-next-app next-auth
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+
