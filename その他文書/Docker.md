@@ -1,3 +1,5 @@
+2018年作成
+
 # How to use the FaunaDB public Docker image.
 
 # FaunaDB 公開 Docker イメージの使い方。
@@ -83,8 +85,6 @@ The downloaded image can be validated using the command below:
 $ docker run fauna/faunadb --help
 FaunaDB Enterprise Docker Image
 
-
-
 Options:
  --help               Print this message and exit.
  --init               Initialize the node (default action).
@@ -155,7 +155,7 @@ No configuration file specified; loading defaults...
 
 
 
-Datacenter: NoDc (data-and-log)
+Data center: NoDc (data-and-log)
 ===============================
 Status  State  WorkerID  Log Segment  Address     Owns    Goal    HostID
 up      live   512       Segment-0    172.17.0.2  100.0%  100.0%  4905eff4-449c-4e69-aac0-27685071f499
@@ -198,7 +198,7 @@ Starting...
 Loaded configuration from /faunadb/enterprise/default.yml...
 Network Host ID: 172.17.0.2
 Cluster name: fauna
-Datacenter name: NoDc
+Data center name: NoDc
 Identified as fafa9a6d-c63e-455c-b275-2ea5f32276e3 at 172.17.0.2.
 Data path: /var/lib/faunadb
 Temp path: /var/lib/faunadb/tmp

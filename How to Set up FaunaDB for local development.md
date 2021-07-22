@@ -21,7 +21,8 @@ FaunaDB とは何か、そしてなぜそれを試す必要があるのか。
 
 [FaunaDB](https://docs.fauna.com/fauna/current/introduction) is a serverless database that is an ideal choice for serverless applications, because it has the same benefits as the latter: auto-scaling, pay-for-what-you-use billing, not requiring server configuration or maintenance. FaunaDB accomplishes this by executing database operations via calls to its HTTP API rather than maintaining a connection to a database server. There are other options available for serverless database services. DynamoDB from AWS is one of the most commonly referenced when looking up information about serverless databases, but I find a basic key-value data store to be too limiting when trying to model an application's business domain, as it makes modelling relationships among entities very difficult. Relational databases are ideal for this, and AWS has another serverless option, Aurora Serverless, which combines the advantages of serverless architecture with the expressiveness of relational databases and SQL queries. Although I haven't used it myself, Aurora Serverless seems to be a good option. It comes with a large caveat, however, in that Aurora Serverless requires all applications and services that access its databases to be in the same Amazon Virtual Private Cloud. This means committing yourself even further to vendor lock-in, as any move away from using AWS, even partially, would mean having to completely change your database infrastructure. Also, my knowledge of ops stuff is pretty basic, and setting up an Amazon VPC is just the sort of extra complication that I wanted to avoid by going serverless in the first place. FaunaDB isn't strictly a relational database, but it still offers some of the same advantages by allowing for the inclusion of all the usual entity relationships (e.g. one-to-one, one-to-many). Also, FaunaDB databases can be called from any application hosted on any cloud service, giving you more flexibility in how and where you deploy applications, thus reducing vendor lock-in.
 
-[FaunaDB](https://docs.fauna.com/fauna/current/introduction)は、サーバーレスアプリケーションに理想的な選択肢であるサーバーレスデータベースです。なぜなら、後者と同じ利点を持っているからです。
+[FaunaDB](https://docs.fauna.com/fauna/current/introduction)は、サーバーレスアプリケーションに理想的な選択肢であるサーバーレスデータベースです。
+なぜなら、後者と同じ利点を持っているからです。
 自動スケーリング、
 使用した分だけ支払う課金、
 サーバーの構成やメンテナンスを必要としません。
@@ -140,7 +141,7 @@ FaunaDB インスタンスにデータベースを作成します。
 
 Now that we have FaunaDB up and running, the easiest way to interact with it is to use `fauna-shell`. In a new tab or window, run the following to create a database and an API key for it.  
 
-FaunaDB が起動したので、`fauna-shell` を使用するのが一番簡単な操作方法です。新しいタブまたはウィンドウで以下を実行して、データベースとその API キーを作成します。 
+FaunaDB が起動したので、`fauna-shell` を使用する一番簡単な操作方法です。新しいタブまたはウィンドウで以下を実行して、データベースとその API キーを作成します。 
 
 ```
 fauna add-endpoint http://localhost:8443/ --alias localhost --key secret
