@@ -69,7 +69,6 @@ Options:
 --config <path>      Specify a custom config file. Should be accessible inside the docker image.
 ```
 
-
 ## [](#ports)Ports
 
 ポート
@@ -132,9 +131,10 @@ docker コマンドの-p オプションは、構文を使用して、コンテ�
 
 `hostPort` and `containerPort` can be a single port number, or a range expressed as `low-high`.
 
-hostPort そして containerPort1 つのポート番号、またはのように表す範囲とすることができます low-high。
+`hostPort`と`containerPort`には、1 つのポート番号を指定するか、`low-high`で表される範囲を指定します。
 
 For example, to connect your host computer’s port 1234 to the container’s port 6789, you would use `-p 1234:6789`.
+
 たとえば、ホスト コンピューターのポート 1234 をコンテナーのポート 6789 に接続するには、
 
 `-p 1234:6789`
@@ -148,8 +148,6 @@ See the [Docker docs](https://docs.docker.com/engine/reference/run/#expose-incom
 There are several approaches to running Fauna Dev with Docker:
 
 Docker で Fauna Dev を実行するには、いくつかのアプローチがあります。
-
-
 
 1.  As a single developer node, with ephemeral data:
 
@@ -282,4 +280,3 @@ on-premise
 業務用の、店舗用の
 
 Fauna はオンプレミスの本番環境で使用するライセンスを取得していないため、構成に関するドキュメントは提供していません。
-

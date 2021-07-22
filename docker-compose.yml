@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  db:
+    image: fauna/faunadb:latest
+    ports:
+      # FaunaDB endpoint
+      - 8443:8443
+      # GraphQL endpoint
+      - 8084:8084
+    volumes:
+      - lib:/var/lib/faunadb
+      - log:/var/log/faunadb
+
+volumes:
+  #ボリュームとは、データを永続化できる場所のこと
+  lib:
+    driver: local
+  log:
+    driver: local
