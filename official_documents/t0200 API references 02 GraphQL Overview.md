@@ -30,11 +30,11 @@ This section provides reference information for the Fauna GraphQL API.
 
 You can find step-by-step [GraphQL tutorials](https://docs.fauna.com/fauna/current/tutorials/graphql/) in the [Tutorials](https://docs.fauna.com/fauna/current/tutorials/) section.
 
-ステップバイステップの GraphQLチュートリアルは、 チュートリアルセクションにあります。
+ステップバイステップの[GraphQLチュートリアル](https://docs.fauna.com/fauna/current/tutorials/graphql/)は、[チュートリアル](https://docs.fauna.com/fauna/current/tutorials/)セクションでご覧いただけます。
 
 See [Limits](https://docs.fauna.com/fauna/current/api/limits) for details on document size and transaction limits.
 
-参照制限文書のサイズと取引限度額の詳細については、を。
+ドキュメントサイズとトランザクションの制限については、[Limits](https://docs.fauna.com/fauna/current/api/limits)を参照してください。
 
 ## [](#supported-scalar-types)Supported scalar types
 
@@ -44,13 +44,13 @@ The GraphQL API supports the following built-in types:
 
 GraphQL APIは、次の組み込み型をサポートしています。
 
--   `Boolean`: A value that represents `true` or `false`.
+- `Boolean`: true "または "false "を表す値です。
 
 Boolean：trueまたはを表す値false。
 
 -   `Date`: A [Date](https://docs.fauna.com/fauna/current/api/fql/types#date) value. The GraphQL API communicates and renders these as strings in the format `yyyy-MM-dd`, but they are stored as FQL dates.
 
-- `Date`: Date](https://docs.fauna.com/fauna/current/api/fql/types#date)の値です。GraphQL APIでは、これらを `yyyy-MM-dd` 形式の文字列として通信・描画しますが、FQLの日付として保存されます。
+- [`Date`: Date](https://docs.fauna.com/fauna/current/api/fql/types#date)の値です。GraphQL APIでは、これらを `yyyy-MM-dd` 形式の文字列として通信・描画しますが、FQLの日付として保存されます。
 
 
 -   `Float`: A 64-bit floating point number.
