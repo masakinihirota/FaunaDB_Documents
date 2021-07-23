@@ -1,6 +1,8 @@
 GraphQL quick start | Fauna Documentation
 https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start
 
+このページの内容を実践して確認した。
+
 # GraphQL quick start
 
 ![Get started with GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_images/get-started-graphql.svg)
