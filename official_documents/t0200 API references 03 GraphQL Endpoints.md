@@ -47,7 +47,7 @@ GraphQLスキーマをインポートすると、GraphQL APIは以下のFaunaス
 
 -   One collection for each declared GraphQL type (using the type’s name), but not for [`@embedded`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_embedded) types.
 
-- ただし、[`@embedded`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_embedded)タイプは除く。
+- 宣言されている各GraphQLタイプに対して1つのコレクション（タイプの名前を使用）がありますが、[`@embedded`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_embedded)タイプはありません。
 
 -   One index for each declared query (using the query’s name), but not for queries annotated with the [`@resolver`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_resolver) directive. The collection name can be specified with [`@collection`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_collection), and the index name can be specified with [`@index`](https://docs.fauna.com/fauna/current/api/graphql/directives/d_index).
 
@@ -182,13 +182,16 @@ There are three import modes:
 |`replace`|The `replace` mode replaces the current GraphQL metadata stored in collections, indexes, functions, and databases. `replace` is especially useful if you need to remove schema elements (type, inputs, etc.). It does not modify the underlying user-created documents in any way. Like `merge` mode, `replace` mode also creates missing collections, indexes, and functions.<br><br>Since index definitions cannot be edited after an index has been created, `replace` mode reports an error whenever an index definition would need to be modified to support the new schema.<br><br>**IMPORTANT**<br>After the schema has been replaced, the underlying data may no longer work with existing queries. Fields that exist in documents that are not declared in the schema are not accessible via GraphQL queries. Fields that have new types may cause existing queries to fail. If you encounter such problems, either update the schema accordingly, or modify the data via `fauna-shell`, Dashboard, or write a transformation script using one of the available [drivers](https://docs.fauna.com/fauna/current/drivers/).|
 |`override`|The `override` mode deletes all collections, indexes, and functions that are annotated with GraphQL metadata, pauses 60 seconds to allow all cluster nodes to process the deletions, then it imports the new schema with `merge` mode. Basically, `override` lets you start over with a fresh schema that has no documents.<br><br>The purpose of `override` mode is to make it easy to experiment with varying schemas without having to worry about how to migrate existing documents from the old schema to the new schema.<br><br>**WARNING**<br>`override` mode causes data loss for any previous GraphQL schema. Any collections, indexes, or documents that are not involved in GraphQL are not affected.|
 
+annotates
+〈本文に〉注釈をつける.
+
 ---
 
 |Mode|Description|
 |--|--|
 |`merge`|`merge`モードは、不足しているコレクション、インデックス、関数を作成し、必要に応じて既存の Fauna スキーマドキュメントに GraphQL メタデータをアノテーションします。<br><br>インデックスが作成された後にインデックス定義を編集することはできないので、`merge`モードでは、新しいスキーマをサポートするためにインデックス定義を修正する必要がある場合には、エラーが報告されます。<br><br>**NOTE**<br>`merge`は既存のスキーマに新しいスキーマを組み込むので、`merge`を使ってスキーマ要素を削除することはできません。削除が必要な場合には、代わりに `replace` を使用してください。
 |`replace`|`replace`モードは、コレクション、インデックス、関数、データベースに格納されている現在のGraphQLメタデータを置き換えるものです。`replace`は、スキーマの要素（型、入力など）を削除する必要がある場合に特に有効です。このモードでは、ユーザーが作成した基礎的なドキュメントは一切変更されません。<br><br>インデックスが作成された後、インデックス定義を編集することはできませんので、新しいスキーマをサポートするためにインデックス定義を修正する必要がある場合、`replace`モードはエラーを報告します。<br><br>**重要**<br>スキーマが置換された後、基礎となるデータは既存のクエリで動作しなくなる可能性があります。スキーマで宣言されていないドキュメントに存在するフィールドは、GraphQL クエリではアクセスできません。新しいタイプのフィールドでは、既存のクエリが失敗することがあります。このような問題が発生した場合は、スキーマを適宜更新するか、`fauna-shell` やダッシュボードを使ってデータを修正するか、利用可能な [driver](https://docs.fauna.com/fauna/current/drivers/)のいずれかを使って変換スクリプトを作成してください。
-|`override`|`override`モードでは、GraphQLメタデータでアノテーションされたすべてのコレクション、インデックス、関数を削除し、すべてのクラスタノードが削除を処理できるように60秒間待機した後、`merge`モードで新しいスキーマをインポートします。<br><br>`override`モードの目的は、既存のドキュメントを古いスキーマから新しいスキーマに移行する方法を心配することなく、さまざまなスキーマを簡単に試すことができるようにすることです。<br><br>**WARNING**<br>`override`モードでは、以前のGraphQLスキーマのデータが失われます。ただし、GraphQLに関係のないコレクションやインデックス、ドキュメントは影響を受けません。
+|`override`|`override`モードでは、GraphQLメタデータでアノテーションされたすべてのコレクション、インデックス、関数を削除し、すべてのクラスタノードが削除を処理できるように60秒間待機した後、`merge`モードで新しいスキーマをインポートします。<br><br>`override`モードの目的は、既存のドキュメントを古いスキーマから新しいスキーマに移行する方法を心配することなく、さまざまなスキーマを簡単に試すことができるようにすることです。<br><br>**WARNING**<br>`override`モードでは、以前のGraphQLスキーマのデータが失われます。ただし、GraphQLに関係のないコレクションやインデックス、ドキュメントは影響を受けません。｜
 
 Specify the mode using a query parameter. For example:
 
@@ -200,7 +203,7 @@ POST /import?mode=override
 
 If you are using `[curl](https://curl.haxx.se/)`, the command would look like:
 
-[curl](https://curl.haxx.se/)`を使用している場合、コマンドは次のようになります。
+`[curl](https://curl.haxx.se/)`を使用している場合、コマンドは次のようになります。
 
 ```
 curl -H 'Authorization: Bearer <FAUNA_SECRET>' https://graphql.fauna.com/import?mode=override --data-binary "@path/to/schema.gql"
