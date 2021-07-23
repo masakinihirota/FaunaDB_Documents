@@ -36,6 +36,12 @@ Fauna GraphQL API の詳細については、API の[エンドポイント](http
 
 This tutorial demonstrates how to get started with GraphQL, including designing an initial schema, importing that schema into Fauna, adding a few documents, and then running a GraphQL query to retrieve those documents. Start to finish, these steps should only take a few minutes to complete.
 
+retrieve
+【他動-1】～を取り出す、取り戻す、回収する、取ってくる
+【他動-2】～を検索する、読み出す ◆ 情報を
+【他動-3】～を挽回する、回復する
+【他動-4】～を償う、救う
+
 このチュートリアルでは、GraphQL を使い始める方法を説明します。初期のスキーマを設計し、そのスキーマを Fauna にインポートし、いくつかのドキュメントを追加し、それらのドキュメントを取得するために GraphQL クエリを実行します。最初から最後まで、わずか数分で完了することができます。
 
 The steps:
@@ -76,8 +82,6 @@ GraphQL スキーマの作成
     Create a file called `schema.gql` containing the following content
 
     以下の内容を含む `schema.gql` というファイルを作成してください。
-
-    graphql
 
     ```graphql
     type Todo {
