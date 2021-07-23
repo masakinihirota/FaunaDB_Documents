@@ -43,7 +43,6 @@ constraints
 制限すること、制約
 
 enforce
-
 実行する、実施する、施行する、執行する、強化する
 
 to enforce uniqueness

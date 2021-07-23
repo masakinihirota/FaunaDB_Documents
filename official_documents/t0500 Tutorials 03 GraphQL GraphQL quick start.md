@@ -5,28 +5,32 @@ https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start
 
 ![Get started with GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start../_images/get-started-graphql.svg)
 
-GraphQL is an open source data query and manipulation language that provides declarative schema definitions and a composable query syntax. By design, GraphQL eliminates over- and under-fetching of relational data, which minimizes network and memory use for clients.
+GraphQL is an open source data query and manipulation language that provides declarative schema definitions and a composable query syntax.
 
 composable
 構成する、組み立てる
 
-GraphQLは、オープンソースのデータ検索・操作言語であり、宣言的なスキーマ定義と合成可能なクエリ構文を提供します。GraphQLは、リレーショナルデータのオーバーフェッチやアンダーフェッチを排除するよう設計されており、クライアントのネットワークやメモリの使用を最小限に抑えます。
+GraphQL は、オープンソースのデータ検索・操作言語であり、宣言的なスキーマ定義と合成可能なクエリ構文を提供します。
+
+By design, GraphQL eliminates over- and under-fetching of relational data, which minimizes network and memory use for clients.
+
+GraphQL では、リレーショナルデータのオーバーフェッチやアンダーフェッチが発生しないように設計されているため、クライアントのネットワークやメモリの使用量を最小限に抑えることができます。
 
 ## [](#resources)Resources
 
 This tutorial, and other GraphQL topics covered within this documentation, provides details of the Fauna GraphQL API. For more general information about GraphQL, training, or the specification itself, see these resources:
 
-Fauna GraphQL APIの詳細については、このチュートリアルと、このドキュメントで扱っている他のGraphQLトピックを参照してください。GraphQLやトレーニング、仕様そのものに関する一般的な情報については、以下のリソースを参照してください。
+Fauna GraphQL API の詳細については、このチュートリアルと、このドキュメントで扱っている他の GraphQL トピックを参照してください。GraphQL やトレーニング、仕様そのものに関する一般的な情報については、以下のリソースを参照してください。
 
--   [https://graphql.org/](https://graphql.org/)
+- [https://graphql.org/](https://graphql.org/)
 
--   [https://www.howtographql.com/](https://www.howtographql.com/)
+- [https://www.howtographql.com/](https://www.howtographql.com/)
 
--   [https://github.com/graphql/graphql-spec](https://github.com/graphql/graphql-spec)
+- [https://github.com/graphql/graphql-spec](https://github.com/graphql/graphql-spec)
 
 To learn more about the Fauna GraphQL API, see the [GraphQL reference](https://docs.fauna.com/fauna/current/api/graphql/), which includes details on the API’s [endpoints](https://docs.fauna.com/fauna/current/api/graphql/endpoints), [directives](https://docs.fauna.com/fauna/current/api/graphql/directives/), [input types](https://docs.fauna.com/fauna/current/api/graphql/input), [relations](https://docs.fauna.com/fauna/current/api/graphql/relations), and [user-defined functions](https://docs.fauna.com/fauna/current/api/graphql/functions).
 
-Fauna GraphQL APIの詳細については、APIの[エンドポイント](https://docs.fauna.com/fauna/current/api/graphql/endpoints)、[ディレクティブ](https://docs.fauna.com/fauna/current/api/graphql/directives/)、[入力タイプ](https://docs.fauna.com/fauna/current/api/graphql/input)、[リレーション](https://docs.fauna.com/fauna/current/api/graphql/relations)、[ユーザー定義関数](https://docs.fauna.com/fauna/current/api/graphql/functions)の詳細を含む[GraphQLリファレンス](https://docs.fauna.com/fauna/current/api/graphql/)を参照してください。
+Fauna GraphQL API の詳細については、API の[エンドポイント](https://docs.fauna.com/fauna/current/api/graphql/endpoints)、[ディレクティブ](https://docs.fauna.com/fauna/current/api/graphql/directives/)、[入力タイプ](https://docs.fauna.com/fauna/current/api/graphql/input)、[リレーション](https://docs.fauna.com/fauna/current/api/graphql/relations)、[ユーザー定義関数](https://docs.fauna.com/fauna/current/api/graphql/functions)の詳細を含む[GraphQL リファレンス](https://docs.fauna.com/fauna/current/api/graphql/)を参照してください。
 
 ## [](#graphql-tutorial)GraphQL tutorial
 
@@ -36,22 +40,22 @@ This tutorial demonstrates how to get started with GraphQL, including designing 
 
 The steps:
 
--   [Log in to Fauna](#login)
--   [Create a GraphQL database](#database)
--   [Create a GraphQL schema](#schema)
--   [Import the GraphQL schema](#import)
--   [Create a document](#create)
--   [Fetch all documents](#query)
+- [Log in to Fauna](#login)
+- [Create a GraphQL database](#database)
+- [Create a GraphQL schema](#schema)
+- [Import the GraphQL schema](#import)
+- [Create a document](#create)
+- [Fetch all documents](#query)
 
 1.  **Log in to Fauna**
 
     Visit [https://dashboard.fauna.com/](https://dashboard.fauna.com/) in your web browser, and log in.
 
-    Webブラウザで[https://dashboard.fauna.com/](https://dashboard.fauna.com/)にアクセスし、ログインしてください。
+    Web ブラウザで[https://dashboard.fauna.com/](https://dashboard.fauna.com/)にアクセスし、ログインしてください。
 
 2.  **Create a GraphQL database**
 
-GraphQLデータベースの作成
+GraphQL データベースの作成
 
     Let’s create a new database to hold our GraphQL data. Any database would work, but this keeps your GraphQL experiments separate.
 
@@ -63,13 +67,13 @@ GraphQLデータベースの作成
 
 3.  **Create a GraphQL schema**
 
-GraphQLスキーマの作成
+GraphQL スキーマの作成
 
     A GraphQL schema defines the "shape" of the data that can be managed and queried, including all of the fields and their types. We are going to start with a very basic schema for a "todo" list, where each todo item is just a title and a flag to indicate whether the item is complete or not. The schema also defines the kinds of queries that we want to run.
 
     GraphQLスキーマは、すべてのフィールドとそのタイプを含む、管理および問い合わせが可能なデータの「形」を定義します。ここでは、「Todo」リストの非常に基本的なスキーマから始めます。各Todoアイテムは、タイトルと、そのアイテムが完了しているかどうかを示すフラグだけです。このスキーマでは、実行したいクエリの種類も定義します。
 
-    Create a file called `schema.gql` containing the following content 
+    Create a file called `schema.gql` containing the following content
 
     以下の内容を含む `schema.gql` というファイルを作成してください。
 
@@ -89,7 +93,7 @@ GraphQLスキーマの作成
 
 4.  **Import the GraphQL schema**
 
-GraphQLスキーマをインポートする。
+GraphQL スキーマをインポートする。
 
     Before we can perform any GraphQL queries, we need to import the schema into Fauna. Once we do so, the Fauna GraphQL API automatically creates the necessary classes and indexes to support the schema.
 
@@ -194,17 +198,18 @@ GraphQLスキーマをインポートする。
 
 You have now seen how to prepare Fauna for GraphQL queries, how to create and import a GraphQL schema, how to use the GraphQL Playground screen to create and query data. You are now ready to continue your GraphQL journey!
 
-ここまでで、Fauna を GraphQL クエリ用に準備する方法、GraphQL スキーマを作成してインポートする方法、GraphQL プレイグラウンド画面を使ってデータを作成したりクエリを実行したりする方法を見てきました。これで、GraphQLの旅を続ける準備が整いました!
+ここまでで、Fauna を GraphQL クエリ用に準備する方法、GraphQL スキーマを作成してインポートする方法、GraphQL プレイグラウンド画面を使ってデータを作成したりクエリを実行したりする方法を見てきました。これで、GraphQL の旅を続ける準備が整いました!
 
 ## [](#next-steps)Next steps
 
 次のステップ
--   [GraphQL relations](https://docs.fauna.com/fauna/current/tutorials/graphql/relations)
--   [Unique constraints in GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/unique)
--   [GraphQL pagination](https://docs.fauna.com/fauna/current/tutorials/graphql/pagination)
--   [GraphQL reference](https://docs.fauna.com/fauna/current/api/graphql/)
 
-GraphQLの関係
-GraphQLの一意の制約
-GraphQLページネーション
-GraphQLリファレンス
+- [GraphQL relations](https://docs.fauna.com/fauna/current/tutorials/graphql/relations)
+- [Unique constraints in GraphQL](https://docs.fauna.com/fauna/current/tutorials/graphql/unique)
+- [GraphQL pagination](https://docs.fauna.com/fauna/current/tutorials/graphql/pagination)
+- [GraphQL reference](https://docs.fauna.com/fauna/current/api/graphql/)
+
+GraphQL の関係
+GraphQL の一意の制約
+GraphQL ページネーション
+GraphQL リファレンス
