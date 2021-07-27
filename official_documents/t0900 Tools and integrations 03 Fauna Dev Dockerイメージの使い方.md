@@ -154,9 +154,7 @@ Docker で Fauna Dev を実行するには、いくつかのアプローチが�
     一時データを使用する単一の開発者ノードとして:
 
 ephemeral
-一時的
-
-terminal
+一時的（エフェメラル）
 
 ```bash
 docker run --rm --name faunadb -p 8443:8443 -p 8084:8084 fauna/faunadb
@@ -183,9 +181,7 @@ where the database starts with a known state.
 
 2.  As a single developer node, with persisted data:
 
-    単一の開発者ノードとして、永続化されたデータを使用する場合:
-
-terminal
+単一の開発者ノードとして、永続化されたデータを使用する場合:
 
 ```bash
 docker run --rm --name faunadb -p 8443:8443 -p 8084:8084 \
@@ -235,8 +231,6 @@ Docker コンテナーが停止または強制終了されると、
 
 4.  With managed configuration:
     管理された構成の場合:
-
-terminal
 
 ```bash
 docker run --rm --name faunadb -p 8443:8443 -p 8084:8084 \

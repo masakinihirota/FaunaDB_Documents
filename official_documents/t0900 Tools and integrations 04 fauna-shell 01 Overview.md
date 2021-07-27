@@ -21,7 +21,7 @@ For more information, see our [Introducing Fauna Shell](https://fauna.com/blog/i
 
 要件
 
--   Node.js, versions 10.0.0 through 12.16.3.
+- Node.js, versions 10.0.0 through 12.16.3.
 
 - Node.js, バージョン 10.0.0 から 12.16.3.
 
@@ -29,9 +29,9 @@ For more information, see our [Introducing Fauna Shell](https://fauna.com/blog/i
 
 既知の問題
 
--   With Node.js 12.17.0, or newer, `fauna-shell` can crash when typing a period during query construction.
+- With Node.js 12.17.0, or newer, `fauna-shell` can crash when typing a period during query construction.
 
-- Node.js 12.17.0以降では、`fauna-shell`がクエリ構築中にピリオドを入力するとクラッシュする可能性があります。
+- Node.js 12.17.0 以降では、`fauna-shell`がクエリ構築中にピリオドを入力するとクラッシュする可能性があります。
 
 ## [](#installation)Installation
 
@@ -39,7 +39,7 @@ For more information, see our [Introducing Fauna Shell](https://fauna.com/blog/i
 
 To install `fauna-shell`, issue the following command:
 
-funa-shell` をインストールするには、以下のコマンドを実行してください。
+fauna-shell` をインストールするには、以下のコマンドを実行してください。
 
 terminal
 
@@ -174,4 +174,3 @@ Lists keys for the current database or its child databases.
 Starts an interactive shell to run Fauna queries.
 
 Fauna クエリを実行するためのインタラクティブシェルを起動します。
-
