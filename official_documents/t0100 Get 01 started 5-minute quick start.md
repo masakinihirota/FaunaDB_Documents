@@ -108,6 +108,14 @@ corresponding
 
 Click **COLLECTIONS** in the left sidebar to browse your collections. You’ll see the documents for each collection on the right. If you are familiar with SQL, collections are like tables and documents are like rows in a table, except that each document can contain its own, distinct fields.
 
+familiar
+【名-1】親友、親しい仲間［友人］
+【名-2】精通している［詳しい］人〔ある物事に〕、よく出入りする［訪れる］人〔ある場所に〕
+【名-3】雇人、用務員、用人 ◆ カトリック教の教皇や司教の
+【形-1】おなじみの、精通している、よく知られている、（～に）通じている、（～の）様子を知っている、造詣が深い、心当たりがある
+【形-2】聞き慣れた、見慣れた、普通の、珍しくない
+【形-3】打ち解けた、なじんだ、親しみがある、親しい、気楽な
+
 except
 
 【接】ただし～を除く
