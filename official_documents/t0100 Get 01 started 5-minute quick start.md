@@ -125,33 +125,25 @@ except
 
 左サイドバーの**COLLECTIONS**をクリックすると、コレクションを閲覧できます。右側には、各コレクションのドキュメントが表示されます。SQL に詳しい方なら、コレクションはテーブルのようなもので、ドキュメントはテーブルの行のようなものですが、各ドキュメントには独自の異なるフィールドを含めることができます。
 
-![The Fauna Dashboard collections screen](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-collections.png)
-
-![Fauna Dashboardのコレクション画面](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-collections.png)
-
 2.  **Indexes**
 
 **Indexes** (インデックス)
 
 Click the **INDEXES** tab in the left sidebar. If you are familiar with SQL, Fauna’s indexes are like SQL views. Most Fauna queries require a companion index to help avoid performing full scans of collections (which could get expensive), but you can have hundreds of indexes without affecting overall performance.
 
-左サイドバーの「INDEXES\*\*」タブをクリックします。SQL に精通していれば、Fauna のインデックスは SQL のビューのようなものです。ほとんどの Fauna クエリは、コレクションのフルスキャンの実行を避けるためにコンパニオンインデックスを必要としますが、全体のパフォーマンスに影響を与えることなく数百のインデックスを持つことができます。
-
-![The Fauna Dashboard indexes screen](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-indexes.png)
-
-![Faunaダッシュボードのインデックス画面](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-indexes.png)
+左サイドバーの「**INDEXES**」タブをクリックします。SQL に精通していれば、Fauna のインデックスは SQL のビューのようなものです。ほとんどの Fauna クエリは、コレクションのフルスキャンの実行を避けるためにコンパニオンインデックスを必要としますが、全体のパフォーマンスに影響を与えることなく数百のインデックスを持つことができます。
 
 3.  **Functions**
 
-\*\*機能」をクリックします。
+「**機能**」をクリックします。
 
 Click the **FUNCTIONS** tab in the left sidebar. User-defined functions (UDFs) contain custom business logic that runs on the server, similar to "stored procedures".
 
 左サイドバーの「**FUNCTIONS**」タブをクリックします。ユーザー定義関数(UDF)には、「ストアドプロシージャ」と同様に、サーバー上で実行されるカスタムビジネスロジックが含まれています。
 
-![The Fauna Dashboard functions screen](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-functions.png)
+ストアドプロシージャとは
 
-![Fauna Dashboardのファンクション画面](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-functions.png)
+データベース管理システム（DBMS）の機能の一つで、データベースに対する連続した複数の処理を一つのプログラムにまとめ、データと共に保存できるようにしたもの。処理は DBMS 側で行われ、外部からはクエリを発行するのと同じ手順で実行できる。
 
 This UDF might look weird if it’s your first time seeing FQL, the Fauna Query Language, but FQL is actually pretty easy and tons of fun to learn. FQL is also unique in how much power and precision it gives you with respect to predictable cost and performance as you scale.
 
