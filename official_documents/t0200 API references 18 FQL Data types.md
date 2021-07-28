@@ -29,13 +29,13 @@ booleanデータ型は，`true`または`false`の値のみを格納します。
 
 Null is a special marker used to indicate that a data value does not exist. It is a representation of missing information, indicating a lack of a value. A lack of a value is not the same thing as a value of zero, in the same way that a lack of an answer is not the same thing as an answer of "no".
 
-Nullは、データ値が存在しないことを示すために使用される特別なマーカーです。これは欠落している情報を表したものであり、値が不足していることを示しています。値の欠如はゼロの値と同じではありません。同じように、答えの欠如は「いいえ」の答えと同じではありません。
+Nullとは、データの値が存在しないことを示すために使われる特別なマーカーです。これは、情報の欠落を表し、値がないことを示します。値が存在しないことは、値がゼロであることと同じではなく、答えがないことは「いいえ」という答えと同じではありません。
 
 Null is a value that can be directly compared for application programmer simplicity.  
 This means that `Null == Null` returns `true`.
 
-Nullは、アプリケーションプログラマーを単純化するために直接比較できる値です。
-これは、をNull == Null返すことを意味しますtrue。
+Nullは、アプリケーションプログラマが簡単に使えるように、直接比較できる値です。 
+つまり、`Null == Null` は `true` を返します。
 
 ```json
 { my_null: null }
@@ -60,8 +60,11 @@ JavaScriptは、期待どおりに整数と浮動小数点数を区別せず、�
 
 If your client applications involve JavaScript, or you are using the Web Shell or `fauna-shell` (which are both implement in JavaScript), and your queries depend on the distinction between integers and floats, be sure to use the conversion functions [`ToDouble`](https://docs.fauna.com/fauna/current/api/fql/functions/todouble) and [`ToInteger`](https://docs.fauna.com/fauna/current/api/fql/functions/tointeger) as necessary.
 
+be sure to 動詞の原形
+「必ず〜する」「きっと〜する」（命令形）
+
 重要2
-クライアントアプリケーションは、JavaScriptを伴う、またはあなたは、Webシェルを使用している場合fauna-shell（両方のJavaScriptで実装されている）、およびクエリは、整数と浮動小数点数の区別に依存して、変換関数を使用してくださいToDoubleと ToInteger必要に応じて。
+クライアントアプリケーションでJavaScriptを使用している場合や、Web Shellや`fauna-shell`（いずれもJavaScriptで実装されている）を使用していて、クエリが整数と浮動小数点の区別に依存している場合は、必要に応じて変換関数[`ToDouble`](https://docs.fauna.com/fauna/current/api/fql/functions/todouble)や[`ToInteger`](https://docs.fauna.com/fauna/current/api/fql/functions/tointeger)を必ず使用してください。
 
 Functions that operate on numbers:
 
@@ -297,9 +300,38 @@ String data types store any letters, numbers, whitespaces, and/or symbols in a f
 
 文字列データ型は、文字、数字、空白、記号を固定された順序で格納します。
 
-FQL accepts and communicates strings as [UTF-8](http://unicode.org/glossary/#UTF_8) encoded strings. For string functions, any arguments or returned values which utilize offsets and lengths operate using [code points](http://unicode.org/glossary/#code_point).
+FQL accepts and communicates strings as [UTF-8](http://unicode.org/glossary/#UTF_8) encoded strings. 
 
-FQLは、文字列をUTF-8でエンコードされた文字列として受け入れて通信し ます。文字列関数の場合、オフセットと長さを利用する引数または戻り値は、コードポイントを使用して動作します。
+FQLでは、文字列を[UTF-8](http://unicode.org/glossary/#UTF_8)でエンコードされた文字列として受け入れ、通信します。
+
+> encode
+1〈情報などを〉暗号［記号］化する，コード化する（⇔decode）
+1a《言語学》…を（外国語で）言い換える，翻訳する
+2《コンピュ》〈データなどを〉符号化する，エンコードする
+3《生化学》〈遺伝子が〉〈たんぱく質を〉エンコードする，コード化する
+
+
+
+For string functions, any arguments or returned values which utilize offsets and lengths operate using [code points](http://unicode.org/glossary/#code_point).
+
+utilize
+
+【他動】～を利用する、活用する、役立たせる
+
+offsets
+位置を基準点からの距離で表したもの
+オフセットとは、埋め合わせ（る）、相殺する（もの）、補う、補正（する）、補正値、代償、分派などの意味を持つ英単語。ITの分野では、何かの位置を指し示す際に、基準となる位置からの差（距離、ズレ、相対位置）を表す値のことをオフセットということが多い。
+
+> code points 
+Code Point. (1) Any value in the Unicode codespace; that is, the range of integers from 0 to 10FFFF16. (See definition D10 in Section 3.4, Characters and Encoding.) Not all code points are assigned to encoded characters. See code point type. (2) A value, or position, for a character, in any coded character set.
+
+> コードポイント。(1) Unicodeコードスペース内の任意の値、つまり0から10FFFF16までの整数の範囲。(すべてのコードポイントがエンコードされた文字に割り当てられるわけではない。コードポイントタイプを参照。(2) 符号化された文字セットにおける、文字の値または位置。
+
+文字列関数では、オフセットや長さを利用する引数や戻り値は、[コードポイント](http://unicode.org/glossary/#code_point)を使って操作します。
+
+
+
+
 
 Functions that operate on strings:
 
@@ -985,11 +1017,12 @@ The Reference type (or simply Ref) denotes a resource reference for a document i
 
 Each Reference is a compound value, composed of:
 
-各 参照 は複合値であり、次のもので構成されます。
+各Referenceは複合的な値で、以下のように構成されています。
 
 -   a reference to the collection containing the document: either a user-defined collection, or a system schema collection, such as [`Tokens`](https://docs.fauna.com/fauna/current/api/fql/functions/tokens)
 
-ドキュメントを含むコレクションへの参照：ユーザー定義コレクション、またはシステムスキーマコレクション（次のような） Tokens
+- ドキュメントを含むコレクションへの参照：ユーザー定義のコレクションか、[`Tokens`](https://docs.fauna.com/fauna/current/api/fql/functions/tokens)のようなシステムスキーマのコレクションのいずれか。
+
 
 -   a document ID: a string-encoded 64-bit integer
 
@@ -997,19 +1030,20 @@ Each Reference is a compound value, composed of:
 
 Together, the collection reference and the document ID refer to a distinct document: no two documents in a database can share the same reference.
 
-コレクション参照とドキュメントIDは一緒になって、別個のドキュメントを参照します。データベース内の2つのドキュメントが同じ参照を共有することはできません。
+データベース内の2つのドキュメントが同じリファレンスを共有することはありません。
 
 For example:
 
 例えば：
-
-shell
 
 ```fql
 Ref(Collection("users"), "12345")
 ```
 
 When creating a document, if you do not specify a document ID (by using the [`Ref`](https://docs.fauna.com/fauna/current/api/fql/functions/ref) function), a synthetic document ID is generated. Synthetic document ID generation is based on the [Snowflake ID algorithm](https://en.wikipedia.org/wiki/Snowflake_ID).
+
+synthetic
+合成の、人工の、模造の
 
 ドキュメントを作成する際に、ドキュメントIDを指定しない場合（[`Ref`](https://docs.fauna.com/fauna/current/api/fql/functions/ref)関数を使用する場合）、合成ドキュメントIDが生成されます。合成文書IDの生成は、[Snowflake ID algorithm](https://en.wikipedia.org/wiki/Snowflake_ID)に基づいています。
 

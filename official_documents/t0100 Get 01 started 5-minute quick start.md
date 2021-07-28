@@ -174,6 +174,12 @@ precision
 
 Now that we know some basic concepts, let’s query our data.
 
+Now that
+今や～だから、～からには
+・Now that things are better, we should talk about the problem. : 状況も好転してきたので、問題について話し合うべきだ。
+・Now that you put it that way, I sort of agree with you. : 言われてみるとそうですね。
+それは本当に◆「ほかはともかく直前の発言について言えば」と取り立てて論じる。thatは主語。しばしば強調される。
+
 基本的な概念を理解したところで、データを照会してみましょう。
 
 1.  Click on **SHELL** in the left sidebar to open the web shell.
@@ -183,8 +189,6 @@ Now that we know some basic concepts, let’s query our data.
 2.  Copy the following FQL query:
 
 以下の FQL クエリをコピーします。
-
-shell
 
 ```shell
 Get(Ref(Collection("products"),"202"))
