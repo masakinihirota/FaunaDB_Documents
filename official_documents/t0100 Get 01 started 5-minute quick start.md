@@ -3,14 +3,14 @@ https://docs.fauna.com/fauna/current/start/
 
 # Welcome to the Fauna documentation!
 
-# Faunaのドキュメントへようこそ!
+# Fauna のドキュメントへようこそ!
 
 Fauna is a general purpose, distributed database supporting multiple data models and strong global consistency, for modern app developers in the serverless era.
 
 consistency
 整合性
 
-FaunaはNoSQL
+Fauna は NoSQL
 
 Fauna は、サーバーレス時代の現代のアプリ開発者のために、複数のデータモデルと強力なグローバル一貫性をサポートする汎用の分散型データベースです。
 
@@ -32,7 +32,7 @@ To start querying Fauna from your application code, choose your language:
 
 ## [](#quick-start)5-minute quick start
 
-5分間のクイックスタート
+5 分間のクイックスタート
 
 Fauna has two main APIs: GraphQL and FQL (Fauna Query Language). This quick start provides a brief intro to both since you can use them together.
 
@@ -88,7 +88,21 @@ Pre-populate with demo data "のチェックボックスにチェックを入れ
 
 The Overview page for the `my_db` database is displayed. The database has been populated with some collections, indexes, and the corresponding GraphQL schema for a grocery delivery app.
 
-my_db`データベースの概要ページが表示されます。このデータベースには、いくつかのコレクション、インデックス、そして食料品配送アプリに対応するGraphQLスキーマが入力されています。
+populated
+
+《電子工学》〔基板に部品が〕実装済みの
+
+has been populated
+
+は入力されている
+
+corresponding
+
+対応する
+
+`my_db`データベースの概要ページが表示されています。このデータベースには、いくつかのコレクション、インデックス、そして食料品配送アプリに対応する GraphQL スキーマが入力されています。
+
+my_db`データベースの概要ページが表示されます。このデータベースには、いくつかのコレクション、インデックス、そして食料品配送アプリに対応する GraphQL スキーマが入力されています。
 
 ![The Fauna Dashboard database overview screen](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-db_overview.png)
 
@@ -100,7 +114,7 @@ my_db`データベースの概要ページが表示されます。このデー�
 
 Click **COLLECTIONS** in the left sidebar to browse your collections. You’ll see the documents for each collection on the right. If you are familiar with SQL, collections are like tables and documents are like rows in a table, except that each document can contain its own, distinct fields.
 
-左サイドバーの**COLLECTIONS**をクリックすると、コレクションを閲覧できます。右側には、各コレクションのドキュメントが表示されます。SQLに詳しい方なら、コレクションはテーブルのようなもので、ドキュメントはテーブルの行のようなものですが、各ドキュメントには独自の異なるフィールドを含めることができます。
+左サイドバーの**COLLECTIONS**をクリックすると、コレクションを閲覧できます。右側には、各コレクションのドキュメントが表示されます。SQL に詳しい方なら、コレクションはテーブルのようなもので、ドキュメントはテーブルの行のようなものですが、各ドキュメントには独自の異なるフィールドを含めることができます。
 
 ![The Fauna Dashboard collections screen](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-collections.png)
 
@@ -108,11 +122,11 @@ Click **COLLECTIONS** in the left sidebar to browse your collections. You’ll s
 
 2.  **Indexes**
 
- **Indexes** (インデックス)
+**Indexes** (インデックス)
 
 Click the **INDEXES** tab in the left sidebar. If you are familiar with SQL, Fauna’s indexes are like SQL views. Most Fauna queries require a companion index to help avoid performing full scans of collections (which could get expensive), but you can have hundreds of indexes without affecting overall performance.
 
-左サイドバーの「INDEXES**」タブをクリックします。SQL に精通していれば、Fauna のインデックスは SQL のビューのようなものです。ほとんどの Fauna クエリは、コレクションのフルスキャンの実行を避けるためにコンパニオンインデックスを必要としますが、全体のパフォーマンスに影響を与えることなく数百のインデックスを持つことができます。
+左サイドバーの「INDEXES\*\*」タブをクリックします。SQL に精通していれば、Fauna のインデックスは SQL のビューのようなものです。ほとんどの Fauna クエリは、コレクションのフルスキャンの実行を避けるためにコンパニオンインデックスを必要としますが、全体のパフォーマンスに影響を与えることなく数百のインデックスを持つことができます。
 
 ![The Fauna Dashboard indexes screen](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-indexes.png)
 
@@ -120,7 +134,7 @@ Click the **INDEXES** tab in the left sidebar. If you are familiar with SQL, Fau
 
 3.  **Functions**
 
-**機能」をクリックします。
+\*\*機能」をクリックします。
 
 Click the **FUNCTIONS** tab in the left sidebar. User-defined functions (UDFs) contain custom business logic that runs on the server, similar to "stored procedures".
 
@@ -132,11 +146,11 @@ Click the **FUNCTIONS** tab in the left sidebar. User-defined functions (UDFs) c
 
 This UDF might look weird if it’s your first time seeing FQL, the Fauna Query Language, but FQL is actually pretty easy and tons of fun to learn. FQL is also unique in how much power and precision it gives you with respect to predictable cost and performance as you scale.
 
-このUDFは、初めてFQL（Fauna Query Language）を見た人には奇妙に見えるかもしれませんが、FQLは実際にはとても簡単で、学ぶのがとても楽しいものです。また、FQLは、スケールアップしても予測可能なコストとパフォーマンスに関して、どれだけのパワーと精度を与えてくれるかという点でもユニークです。
+この UDF は、初めて FQL（Fauna Query Language）を見た人には奇妙に見えるかもしれませんが、FQL は実際にはとても簡単で、学ぶのがとても楽しいものです。また、FQL は、スケールアップしても予測可能なコストとパフォーマンスに関して、どれだけのパワーと精度を与えてくれるかという点でもユニークです。
 
 4.  **Try some FQL**
 
-**FQLを使ってみよう**
+**FQL を使ってみよう**
 
 Now that we know some basic concepts, let’s query our data.
 
@@ -152,7 +166,7 @@ Now that we know some basic concepts, let’s query our data.
 
 2.  Copy the following FQL query:
 
-以下のFQLクエリをコピーします。
+以下の FQL クエリをコピーします。
 
 shell
 
@@ -170,7 +184,7 @@ Get(Ref(Collection("products"),"202"))
 
 This query simply gets a document identified by its [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref). A document [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref) contains a reference to the document’s collection (in this case, "products") and a unique ID for the document in that collection (in this case, "202"). Fauna’s auto-generated Reference IDs are 18-digits long — you can set your own during document creation, as we have done with the pre-populated demo data to ease copy/pasting.
 
-このクエリは単に[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)で特定されるドキュメントを取得するものです。ドキュメントの[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)には、そのドキュメントのコレクション(この場合は「products」)への参照と、そのコレクション内のドキュメントのユニークなID(この場合は「202」)が含まれています。Faunaの自動生成された参照IDは18桁の長さですが、コピー/ペーストを容易にするために、事前に入力されたデモデータと同様に、ドキュメント作成時に独自に設定することができます。
+このクエリは単に[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)で特定されるドキュメントを取得するものです。ドキュメントの[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)には、そのドキュメントのコレクション(この場合は「products」)への参照と、そのコレクション内のドキュメントのユニークな ID(この場合は「202」)が含まれています。Fauna の自動生成された参照 ID は 18 桁の長さですが、コピー/ペーストを容易にするために、事前に入力されたデモデータと同様に、ドキュメント作成時に独自に設定することができます。
 
 The upper panel contains the result of the query:
 
@@ -182,7 +196,7 @@ The upper panel contains the result of the query:
 
 5.  Hover your pointer over the **i** icon to the left of "Time elapsed" to see the query execution metrics. For example, here we can learn that this query resulted in one read operation.
 
-"Time elapsed "の左にある**i**アイコンにポインタを合わせると、クエリの実行メトリックスが表示されます。例えば、このクエリでは1回の読み取り操作が行われたことがわかります。
+"Time elapsed "の左にある**i**アイコンにポインタを合わせると、クエリの実行メトリックスが表示されます。例えば、このクエリでは 1 回の読み取り操作が行われたことがわかります。
 
 ![The Fauna Dashboard shell screen with the query result and query statistics tooltip](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-shell-stats.png)
 
@@ -202,7 +216,7 @@ Indexes can be configured to provide any number of document fields. Using indexe
 
 While [`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get) is used to a retrieve a single document, [`Paginate`](https://docs.fauna.com/fauna/current/api/fql/functions/paginate) is required when you want to retrieve details about multiple documents.
 
-1つのドキュメントを取得するためには[`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get)を使いますが、複数のドキュメントの詳細を取得したい場合には[`Paginate`](https://docs.fauna.com/fauna/current/api/fql/functions/paginate)が必要になります。
+1 つのドキュメントを取得するためには[`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get)を使いますが、複数のドキュメントの詳細を取得したい場合には[`Paginate`](https://docs.fauna.com/fauna/current/api/fql/functions/paginate)が必要になります。
 
 Try the following:
 
@@ -237,7 +251,7 @@ Map(
 
 Now, hover over the **i** icon to see that this costs 17 read operations. During development, you might use many [`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map)/[`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get) queries, so the number of read operations can climb quickly. At some point, you might want to leverage an index for cost-efficiency. Let’s leverage an index to do this.
 
-ここで、**i**アイコンにカーソルを合わせると、17回の読み取り操作が必要であることがわかります。開発時には、[`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map)/[`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get)のクエリを多用することがあるので、読み込み操作の回数はすぐに増えてしまいます。ある時点で、コスト効率のためにインデックスを活用したいと思うかもしれません。そのためにインデックスを活用してみましょう。
+ここで、**i**アイコンにカーソルを合わせると、17 回の読み取り操作が必要であることがわかります。開発時には、[`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map)/[`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get)のクエリを多用することがあるので、読み込み操作の回数はすぐに増えてしまいます。ある時点で、コスト効率のためにインデックスを活用したいと思うかもしれません。そのためにインデックスを活用してみましょう。
 
 Create an index defining which fields from the document that you want to return:
 
@@ -271,7 +285,7 @@ Paginate(Match(Index("product_details")))
 
 If you hover over the **i** icon, you can see that using the [`Index`](https://docs.fauna.com/fauna/current/api/fql/functions/iindex) and [`Match`](https://docs.fauna.com/fauna/current/api/fql/functions/match) functions together costs only eight read operations!
 
-i**アイコンにカーソルを合わせると、[`Index`](https://docs.fauna.com/fauna/current/api/fql/functions/iindex)と[`Match`](https://docs.fauna.com/fauna/current/api/fql/functions/match)の関数を一緒に使うと、たった8回の読み取り操作で済むことがわかります!
+i\*\*アイコンにカーソルを合わせると、[`Index`](https://docs.fauna.com/fauna/current/api/fql/functions/iindex)と[`Match`](https://docs.fauna.com/fauna/current/api/fql/functions/match)の関数を一緒に使うと、たった 8 回の読み取り操作で済むことがわかります!
 
 Combining [`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map) with [`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get) might be inexpensive during development, but you should leverage indexes as your usage scales.
 
@@ -279,11 +293,11 @@ Combining [`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map) wi
 
 5.  **Try some GraphQL**
 
-**GraphQLを使ってみよう**
+**GraphQL を使ってみよう**
 
 Click **GraphQL** in the left sidebar to access the GraphQL Playground.
 
-左サイドバーの**GraphQL**をクリックすると、GraphQL Playgroundにアクセスできます。
+左サイドバーの**GraphQL**をクリックすると、GraphQL Playground にアクセスできます。
 
 ![The Fauna Dashboard GraphQL](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-playground-initial.png)
 
@@ -307,7 +321,7 @@ query {
 
 This query fetches a single document based on its Reference ID, just like the FQL example in [Step #4](#step4):
 
-このクエリは、[Step #4](#step4)のFQLの例と同じように、Reference IDに基づいて1つのドキュメントを取得します。
+このクエリは、[Step #4](#step4)の FQL の例と同じように、Reference ID に基づいて 1 つのドキュメントを取得します。
 
 ```json
 {
@@ -323,31 +337,31 @@ This query fetches a single document based on its Reference ID, just like the FQ
 
 Each GraphQL query is translated into a single FQL query, which means that the GraphQL API has completely solved the [n+1](https://medium.com/the-marcy-lab-school/what-is-the-n-1-problem-in-graphql-dd4921cb3c1a) problem behind the scenes for you.
 
-それぞれのGraphQLクエリは、1つのFQLクエリに変換されます。つまり、GraphQL APIは、舞台裏で[n+1](https://medium.com/the-marcy-lab-school/what-is-the-n-1-problem-in-graphql-dd4921cb3c1a)問題を完全に解決してくれたことになります。
+それぞれの GraphQL クエリは、1 つの FQL クエリに変換されます。つまり、GraphQL API は、舞台裏で[n+1](https://medium.com/the-marcy-lab-school/what-is-the-n-1-problem-in-graphql-dd4921cb3c1a)問題を完全に解決してくれたことになります。
 
 ## How Fauna solved n+1, or why FQL + GraphQL = ![Emoji: heart rocket](https://docs.fauna.com/fauna/current/start//_images/icon-heart_rocket.png)
 
-Faunaはいかにしてn+1を解決したのか、あるいはなぜFQL + GraphQL = ![絵文字: ハートロケット](https://docs.fauna.com/fauna/current/start//_images/icon-heart_rocket.png)
+Fauna はいかにして n+1 を解決したのか、あるいはなぜ FQL + GraphQL = ![絵文字: ハートロケット](https://docs.fauna.com/fauna/current/start//_images/icon-heart_rocket.png)
 
 While GraphQL famously solves the over-fetching and under-fetching of traditional REST APIs, it sometimes causes another serious problem: too many round trips to the server, AKA the notorious "[n+1](https://medium.com/the-marcy-lab-school/what-is-the-n-1-problem-in-graphql-dd4921cb3c1a) problem". Typically, there are two approaches to solve this:
 
-GraphQLは、従来のREST APIのオーバーフェッチやアンダーフェッチを解決することで有名ですが、時として別の深刻な問題を引き起こすことがあります。それは、サーバーへのラウンドトリップが多すぎること、つまり悪名高い「[n+1](https://medium.com/the-marcy-lab-school/what-is-the-n-1-problem-in-graphql-dd4921cb3c1a)問題」です。一般的に、これを解決するには2つのアプローチがあります。
+GraphQL は、従来の REST API のオーバーフェッチやアンダーフェッチを解決することで有名ですが、時として別の深刻な問題を引き起こすことがあります。それは、サーバーへのラウンドトリップが多すぎること、つまり悪名高い「[n+1](https://medium.com/the-marcy-lab-school/what-is-the-n-1-problem-in-graphql-dd4921cb3c1a)問題」です。一般的に、これを解決するには 2 つのアプローチがあります。
 
--   The first is query batching/caching with a data loader, but such tools introduce complexity and don’t solve the entire problem. You still end up with more than one round trip to the server.
+- The first is query batching/caching with a data loader, but such tools introduce complexity and don’t solve the entire problem. You still end up with more than one round trip to the server.
 
-- 1つ目は、データローダを使ったクエリのバッチ処理/キャッシュですが、このようなツールは複雑さをもたらし、問題全体を解決するものではありません。結局、サーバーへのラウンドトリップは1回以上になってしまいます。
+- 1 つ目は、データローダを使ったクエリのバッチ処理/キャッシュですが、このようなツールは複雑さをもたらし、問題全体を解決するものではありません。結局、サーバーへのラウンドトリップは 1 回以上になってしまいます。
 
--   The second is to generate one query from each GraphQL query, but this sometimes results in a monster join that can choke traditional SQL databases. Instead of relying on joins, Fauna uses a strategy more akin to what graph databases call index-free adjacency. By nesting Map/Get queries, FQL maps perfectly on the execution plan of a GraphQL query, efficiently walking down the GraphQL tree and retrieving nested documents.
+- The second is to generate one query from each GraphQL query, but this sometimes results in a monster join that can choke traditional SQL databases. Instead of relying on joins, Fauna uses a strategy more akin to what graph databases call index-free adjacency. By nesting Map/Get queries, FQL maps perfectly on the execution plan of a GraphQL query, efficiently walking down the GraphQL tree and retrieving nested documents.
 
-- 2つ目の方法は、各GraphQLクエリから1つのクエリを生成することですが、これでは従来のSQLデータベースを窒息させるようなモンスタージョインになってしまうことがあります。Faunaでは結合に頼らず、グラフデータベースの「インデックスフリーの隣接」に近い戦略を採用している。Map/Getクエリを入れ子にすることで、FQLはGraphQLクエリの実行プランに完全にマッピングし、効率的にGraphQLツリーを歩き、入れ子になったドキュメントを取得します。
+- 2 つ目の方法は、各 GraphQL クエリから 1 つのクエリを生成することですが、これでは従来の SQL データベースを窒息させるようなモンスタージョインになってしまうことがあります。Fauna では結合に頼らず、グラフデータベースの「インデックスフリーの隣接」に近い戦略を採用している。Map/Get クエリを入れ子にすることで、FQL は GraphQL クエリの実行プランに完全にマッピングし、効率的に GraphQL ツリーを歩き、入れ子になったドキュメントを取得します。
 
 In other words, any given query you send to the GraphQL API always incurs only one single request to the database, and does so efficiently. For a more in-depth explanation, with examples, see [our blog post](https://fauna.com/blog/no-more-n-1-problems-with-faunadbs-graphql-api).
 
-言い換えれば、GraphQL APIに送信されたクエリは、常にデータベースへの1回のリクエストしか発生せず、しかもそれが効率的に行われるということです。例を挙げての詳しい説明は、[ブログ記事](https://fauna.com/blog/no-more-n-1-problems-with-faunadbs-graphql-api)をご覧ください。
+言い換えれば、GraphQL API に送信されたクエリは、常にデータベースへの 1 回のリクエストしか発生せず、しかもそれが効率的に行われるということです。例を挙げての詳しい説明は、[ブログ記事](https://fauna.com/blog/no-more-n-1-problems-with-faunadbs-graphql-api)をご覧ください。
 
 ## Practice more GraphQL queries and their FQL equivalents
 
-いつくかのGraphQLクエリとそれに相当するFQLを練習します。
+いつくかの GraphQL クエリとそれに相当する FQL を練習します。
 
 ## GraphQL
 
@@ -361,15 +375,17 @@ Run these queries using the **GRAPHQL** screen.
 
 ```graphql
 mutation {
-  createProduct(data: {
-    name: "Lemon",
-    description: "Organic, per each",
-    price: 0.35,
-    quantity: 100,
-    store: { connect: "301" },
-    backorderLimit: 10,
-    backordered: false,
-  }) {
+  createProduct(
+    data: {
+      name: "Lemon"
+      description: "Organic, per each"
+      price: 0.35
+      quantity: 100
+      store: { connect: "301" }
+      backorderLimit: 10
+      backordered: false
+    }
+  ) {
     _id
   }
 }
@@ -401,12 +417,7 @@ query {
 
 ```graphql
 mutation {
-  updateStore(
-    id: "301",
-    data: {
-      name: "DC Fruits R Us"
-    }
-  ){
+  updateStore(id: "301", data: { name: "DC Fruits R Us" }) {
     _id
   }
 }
@@ -449,7 +460,7 @@ mutation {
 
 #### Call a UDF to submit an order
 
-注文を送信するUDFを呼び出す
+注文を送信する UDF を呼び出す
 
     ```graphql
     mutation {
@@ -542,7 +553,7 @@ Delete(Ref(Collection("products"), "208"))
 
 #### Call a UDF to submit an order
 
-注文を送信するUDFを呼び出す
+注文を送信する UDF を呼び出す
 
     ```shell
     Call(
@@ -563,11 +574,11 @@ Delete(Ref(Collection("products"), "208"))
 
 6.  **Next steps: Query Fauna from an app**
 
-**次のステップ アプリからFaunaに問い合わせる**。
+**次のステップ アプリから Fauna に問い合わせる**。
 
 If you already have an app to connect to Fauna, pick your language of choice:
 
-すでにFaunaに接続するアプリをお持ちの場合は、お好きな言語をお選びください。
+すでに Fauna に接続するアプリをお持ちの場合は、お好きな言語をお選びください。
 
 [![GraphQL](https://docs.fauna.com/fauna/current/start//_images/graphql-logo.svg)](https://docs.fauna.com/fauna/current/api/graphql/endpoints)  
 [GraphQL](https://docs.fauna.com/fauna/current/api/graphql/endpoints)
@@ -580,12 +591,14 @@ Otherwise, clone and run a sample app:
 それ以外の場合は、サンプルアプリをクローンして実行してください。
 
 FQL
--   [Rethinking Twitter as a Serverless App](https://docs.fauna.com/fauna/current/start/apps/fwitter)
--   [https://github.com/netlify/netlify-faunadb-example](https://github.com/netlify/netlify-faunadb-example)
+
+- [Rethinking Twitter as a Serverless App](https://docs.fauna.com/fauna/current/start/apps/fwitter)
+- [https://github.com/netlify/netlify-faunadb-example](https://github.com/netlify/netlify-faunadb-example)
 
 GraphQL
--   [https://github.com/molebox/serverless-graphql-potter](https://github.com/molebox/serverless-graphql-potter)
+
+- [https://github.com/molebox/serverless-graphql-potter](https://github.com/molebox/serverless-graphql-potter)
 
 For more sample apps, visit the [awesome-faunadb](https://github.com/n400/awesome-faunadb) list on GitHub.
 
-その他のサンプルアプリについては、GitHubの[awesome-faunadb](https://github.com/n400/awesome-faunadb)リストをご覧ください。
+その他のサンプルアプリについては、GitHub の[awesome-faunadb](https://github.com/n400/awesome-faunadb)リストをご覧ください。
