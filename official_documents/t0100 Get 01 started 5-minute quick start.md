@@ -102,17 +102,18 @@ corresponding
 
 `my_db`データベースの概要ページが表示されています。このデータベースには、いくつかのコレクション、インデックス、そして食料品配送アプリに対応する GraphQL スキーマが入力されています。
 
-my_db`データベースの概要ページが表示されます。このデータベースには、いくつかのコレクション、インデックス、そして食料品配送アプリに対応する GraphQL スキーマが入力されています。
-
-![The Fauna Dashboard database overview screen](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-db_overview.png)
-
-![Fauna Dashboardのデータベース概要画面](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-db_overview.png)
-
 1.  **Collections**
 
 **コレクション**の作成
 
 Click **COLLECTIONS** in the left sidebar to browse your collections. You’ll see the documents for each collection on the right. If you are familiar with SQL, collections are like tables and documents are like rows in a table, except that each document can contain its own, distinct fields.
+
+except
+
+【接】ただし～を除く
+【前-1】～を除いて、～以外は、～をおいて、～以外に
+【前-2】～がなければ、～以外では、～を除いては、別にすれば、～の点を除いては、～のほかは
+【他動】～を例外として、～を…から省く、～を除外する
 
 左サイドバーの**COLLECTIONS**をクリックすると、コレクションを閲覧できます。右側には、各コレクションのドキュメントが表示されます。SQL に詳しい方なら、コレクションはテーブルのようなもので、ドキュメントはテーブルの行のようなものですが、各ドキュメントには独自の異なるフィールドを含めることができます。
 
