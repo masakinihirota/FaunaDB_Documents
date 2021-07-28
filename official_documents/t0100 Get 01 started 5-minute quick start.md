@@ -147,6 +147,25 @@ Click the **FUNCTIONS** tab in the left sidebar. User-defined functions (UDFs) c
 
 This UDF might look weird if it’s your first time seeing FQL, the Fauna Query Language, but FQL is actually pretty easy and tons of fun to learn. FQL is also unique in how much power and precision it gives you with respect to predictable cost and performance as you scale.
 
+might
+かもしれない
+
+weird
+【形-1】風変わりな、変な、妙な、奇妙な、珍妙な、不思議な、不可思議な、超自然的な、この世の物とは思えない、気味が悪い、恐ろしい、不気味な、異様な
+
+actually
+
+実は、実際は
+
+tons of
+たくさんの、大量の、山ほどの、ものすごい数［量］の ◆【同】a lot of ; lots of
+
+precision
+
+precision
+【名】正確さ、明確さ、的確、精度、精密、細心、几帳面さ
+【形】精密な
+
 この UDF は、初めて FQL（Fauna Query Language）を見た人には奇妙に見えるかもしれませんが、FQL は実際にはとても簡単で、学ぶのがとても楽しいものです。また、FQL は、スケールアップしても予測可能なコストとパフォーマンスに関して、どれだけのパワーと精度を与えてくれるかという点でもユニークです。
 
 4.  **Try some FQL**
@@ -160,10 +179,6 @@ Now that we know some basic concepts, let’s query our data.
 1.  Click on **SHELL** in the left sidebar to open the web shell.
 
 左サイドバーの**SHELL**をクリックして、ウェブシェルを開きます。
-
-![The Fauna Dashboard shell screen](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-shell-initial.png)
-
-![Fauna Dashboardのシェル画面](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-shell-initial.png)
 
 2.  Copy the following FQL query:
 
