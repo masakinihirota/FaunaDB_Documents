@@ -230,27 +230,54 @@ The upper panel contains the result of the query:
 
 上部パネルには、クエリの結果が表示されます。
 
-![The Fauna Dashboard shell screen with the query result](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-shell-result.png)
-
-![Fauna Dashboardのシェル画面にクエリの結果が表示されます](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-shell-result.png)
-
 5.  Hover your pointer over the **i** icon to the left of "Time elapsed" to see the query execution metrics. For example, here we can learn that this query resulted in one read operation.
+
+elapsed
+elapseの過去形、または過去分詞。経過する、 たつ
+
+Time elapsed
+経過時間
+
+metrics
+韻律学、作詩法
+
+メトリックとは
+コンピューターネットワークにおける通信相手までのパス（経路）の距離のこと。「ルーティングメトリック」ともいう。
+
+送信元から通信相手までの間に複数のパスが存在する場合、パスごとのメトリックを比較し、最も近いパスを使って通信データが届くようになっている。距離は送信元からあて先までの物理的な長さではなく、論理的に決められる指標であり、経由するネットワーク機器の台数（ホップ数）などが用いられる。
+
+ルーターは、周囲のルーターから経路情報を集め、通信データをどのポートに転送するかを記述したルーティングテーブル（経路表）を作成する。ルーティングテーブルを作成するのが、ルーティングプロトコルで、これがメトリックを定義している。
+
 
 "Time elapsed "の左にある**i**アイコンにポインタを合わせると、クエリの実行メトリックスが表示されます。例えば、このクエリでは 1 回の読み取り操作が行われたことがわかります。
 
-![The Fauna Dashboard shell screen with the query result and query statistics tooltip](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-shell-stats.png)
 
-![Fauna Dashboardのシェル画面に表示されるクエリ結果とクエリ統計のツールチップ](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-shell-stats.png)
+
+
 
 You can reduce read operations by leveraging indexes and using them as views. Expand the following block to learn more.
 
+
+leveragingとは
+leverageの現在分詞。てこの力、 てこ装置
+
 インデックスを活用し、それをビューとして使用することで、読み取り操作を減らすことができます。次のブロックを展開して詳細を確認してください。
+
+
+
+
 
 Using indexes as views
 
 ビューとしてのインデックスの使用
 
 Indexes can be configured to provide any number of document fields. Using indexes, you can often avoid using the [`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get) function to retrieve the values that you need, which reduces the number of read operations required.
+
+be configured
+設定する 構成する
+
+retrieve
+を取り出す
 
 インデックスは、任意の数のドキュメントフィールドを提供するように構成できます。インデックスを使用すると、必要な値を取得するために[`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get)関数を使用しなくて済むことが多く、必要な読み取り操作の回数を減らすことができます。
 
@@ -262,25 +289,29 @@ Try the following:
 
 以下のようにしてみてください。
 
-shell
-
 ```shell
 Paginate(Documents(Collection("products")))
 ```
 
 When an index does not have `terms` and `values` defined, it only returns ref:ref[]s.
 
+terms 
+味
+(学校・大学の 3 学期制度の) 1 学期、(一定の)期間、期限、任期、(家賃・賃金などの支払いの)期日、勘定日、出産予定日、(裁判所・議会などの)開催期間、(専門分野での)術語、用語
+
 インデックスに `terms` と `values` が定義されていない場合、ref:ref[]しか返ってきません。
 
-What if you want the whole document? The most flexible option is the combination of the [`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map) and [`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get) functions.
+What if you want the whole document? 
+The most flexible option is the combination of the [`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map) and [`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get) functions.
 
-ドキュメント全体を取得したい場合は？最も柔軟な方法は、[Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map)と[Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get)の組み合わせです。
+ドキュメント全体を取得したい場合は？
+最も柔軟な方法は、[`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map)と[`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get)の組み合わせです。
+
+
 
 The following query takes the array of [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)s from the previous query, then uses the `Map` function to repeatedly apply an anonymous function for each [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref) in the result. The anonymous function (or [`Lambda`](https://docs.fauna.com/fauna/current/api/fql/functions/lambda)) assigns each [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref) in the array to the variable `product_ref`, then uses the [`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get) function to retrieve the referenced document.
 
 次のクエリは、前のクエリから[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)の配列を受け取り、`Map`関数を使って、結果の各[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)に対して匿名関数を繰り返し適用します。この匿名関数（または[Lambda`](https://docs.fauna.com/fauna/current/api/fql/functions/lambda)）は、配列内の各[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)を変数 `product_ref` に割り当て、[`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get)関数を使用して参照されたドキュメントを取得します。
-
-shell
 
 ```shell
 Map(
@@ -296,8 +327,6 @@ Now, hover over the **i** icon to see that this costs 17 read operations. During
 Create an index defining which fields from the document that you want to return:
 
 ドキュメントのどのフィールドを返したいかを定義するインデックスを作成します。
-
-shell
 
 ```shell
 CreateIndex(
@@ -317,19 +346,21 @@ Now, paginate using the index:
 
 では、インデックスを使ってページネーションしてみましょう。
 
-shell
-
 ```shell
 Paginate(Match(Index("product_details")))
 ```
 
 If you hover over the **i** icon, you can see that using the [`Index`](https://docs.fauna.com/fauna/current/api/fql/functions/iindex) and [`Match`](https://docs.fauna.com/fauna/current/api/fql/functions/match) functions together costs only eight read operations!
 
-i\*\*アイコンにカーソルを合わせると、[`Index`](https://docs.fauna.com/fauna/current/api/fql/functions/iindex)と[`Match`](https://docs.fauna.com/fauna/current/api/fql/functions/match)の関数を一緒に使うと、たった 8 回の読み取り操作で済むことがわかります!
+**i**アイコンにカーソルを合わせると、[`Index`](https://docs.fauna.com/fauna/current/api/fql/functions/iindex)と[`Match`](https://docs.fauna.com/fauna/current/api/fql/functions/match)の関数を一緒に使うと、たった 8 回の読み取り操作で済むことがわかります!
 
 Combining [`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map) with [`Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get) might be inexpensive during development, but you should leverage indexes as your usage scales.
 
 [`Map`](https://docs.fauna.com/fauna/current/api/fql/functions/map)と[Get`](https://docs.fauna.com/fauna/current/api/fql/functions/get)の組み合わせは、開発中は安価かもしれませんが、使用量が増えてきたらインデックスを活用すべきです。
+
+
+
+
 
 5.  **Try some GraphQL**
 
