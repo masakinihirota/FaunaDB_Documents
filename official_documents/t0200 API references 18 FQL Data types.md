@@ -1017,22 +1017,57 @@ The Query type denotes a query expression object, and represents any valid FQL q
 
 The Reference type (or simply Ref) denotes a resource reference for a document in a particular database.
 
+resource
+
+この場合のresourceは、それまでの文章で扱ってきた内容に関連する「具体的な要素」
+
+
 Referenceタイプ（または単にRef）は、特定のデータベース内のドキュメントのリソース参照を表します。
 
 Each Reference is a compound value, composed of:
+
+compound
+【変化】《動》compounds | compounding | compounded
+【1-名】化合物、複合物、合成語、合成物
+【1-形】複数の部分からなる、合成の、化合した、複合の、《文法》重文の
+【1-自動】妥協する、折り合う、折り合いをつける、和議に及ぶ
+【1-他動-1】～を混合する
+【1-他動-2】～の度合いを増す、（事態）を悪化させる
+【2-名】屋敷、構内、住宅地、敷地
+
+composed of
+
+構成されている
 
 各Referenceは複合的な値で、以下のように構成されています。
 
 -   a reference to the collection containing the document: either a user-defined collection, or a system schema collection, such as [`Tokens`](https://docs.fauna.com/fauna/current/api/fql/functions/tokens)
 
-- ドキュメントを含むコレクションへの参照：ユーザー定義のコレクションか、[`Tokens`](https://docs.fauna.com/fauna/current/api/fql/functions/tokens)のようなシステムスキーマのコレクションのいずれか。
+- ドキュメントを含むコレクションへの参照：
+ユーザー定義のコレクション
+か、
+[`Tokens`](https://docs.fauna.com/fauna/current/api/fql/functions/tokens)のようなシステムスキーマのコレクション
+のいずれか。
 
 
 -   a document ID: a string-encoded 64-bit integer
 
 ドキュメントID：文字列でエンコードされた64ビット整数
 
-Together, the collection reference and the document ID refer to a distinct document: no two documents in a database can share the same reference.
+Together, the collection reference and the document ID refer to a distinct document: 
+
+コレクションの参照先とドキュメントのIDを合わせて、1つの異なるドキュメントを参照します。
+
+no two documents in a database can share the same reference.
+
+データベース内の2つの文書が同じ参照を共有することはできません。
+
+Together
+
+【副-1】ともに、一緒に、一堂に集まって、連れ立って
+【副-2】全体的に、総合して
+【副-3】同時に、続けて
+【副-4】きちんと
 
 データベース内の2つのドキュメントが同じリファレンスを共有することはありません。
 
@@ -1045,6 +1080,11 @@ Ref(Collection("users"), "12345")
 ```
 
 When creating a document, if you do not specify a document ID (by using the [`Ref`](https://docs.fauna.com/fauna/current/api/fql/functions/ref) function), a synthetic document ID is generated. Synthetic document ID generation is based on the [Snowflake ID algorithm](https://en.wikipedia.org/wiki/Snowflake_ID).
+
+specify
+
+【変化】《動》specifies | specifying | specified
+【他動】～を明確［明細］に述べる、指定する、明白に記す、明記する、指示する、特定する、～の仕様を定める、～に記入する
 
 synthetic
 合成の、人工の、模造の
