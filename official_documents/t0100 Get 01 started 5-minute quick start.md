@@ -370,15 +370,9 @@ Click **GraphQL** in the left sidebar to access the GraphQL Playground.
 
 左サイドバーの**GraphQL**をクリックすると、GraphQL Playground にアクセスできます。
 
-![The Fauna Dashboard GraphQL](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-playground-initial.png)
-
-![The Fauna Dashboard GraphQL](https://docs.fauna.com/fauna/current/start//_images/screen-dashboard-playground-initial.png)
-
 Next, copy/paste the following query into the left panel of the editor, then click the "play" button in the middle.
 
 次に、以下のクエリをエディタの左パネルにコピー＆ペーストし、中央の「play」ボタンをクリックします。
-
-graphql
 
 ```graphql
 query {
@@ -394,6 +388,13 @@ This query fetches a single document based on its Reference ID, just like the FQ
 
 このクエリは、[Step #4](#step4)の FQL の例と同じように、Reference ID に基づいて 1 つのドキュメントを取得します。
 
+
+---
+
+Step #4はこれ
+
+Get(Ref(Collection("products"),"202"))
+
 ```json
 {
   "data": {
@@ -406,9 +407,19 @@ This query fetches a single document based on its Reference ID, just like the FQ
 }
 ```
 
+---
+
+
+
+
+
 Each GraphQL query is translated into a single FQL query, which means that the GraphQL API has completely solved the [n+1](https://medium.com/the-marcy-lab-school/what-is-the-n-1-problem-in-graphql-dd4921cb3c1a) problem behind the scenes for you.
 
 それぞれの GraphQL クエリは、1 つの FQL クエリに変換されます。つまり、GraphQL API は、舞台裏で[n+1](https://medium.com/the-marcy-lab-school/what-is-the-n-1-problem-in-graphql-dd4921cb3c1a)問題を完全に解決してくれたことになります。
+
+
+
+
 
 ## How Fauna solved n+1, or why FQL + GraphQL = ![Emoji: heart rocket](https://docs.fauna.com/fauna/current/start//_images/icon-heart_rocket.png)
 
@@ -429,6 +440,10 @@ GraphQL は、従来の REST API のオーバーフェッチやアンダーフ�
 In other words, any given query you send to the GraphQL API always incurs only one single request to the database, and does so efficiently. For a more in-depth explanation, with examples, see [our blog post](https://fauna.com/blog/no-more-n-1-problems-with-faunadbs-graphql-api).
 
 言い換えれば、GraphQL API に送信されたクエリは、常にデータベースへの 1 回のリクエストしか発生せず、しかもそれが効率的に行われるということです。例を挙げての詳しい説明は、[ブログ記事](https://fauna.com/blog/no-more-n-1-problems-with-faunadbs-graphql-api)をご覧ください。
+
+
+
+
 
 ## Practice more GraphQL queries and their FQL equivalents
 
