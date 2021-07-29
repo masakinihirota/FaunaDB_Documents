@@ -1007,13 +1007,17 @@ The Query type denotes a query expression object, and represents any valid FQL q
 
 クエリタイプはクエリ式オブジェクトを示し、有効なFQLクエリ式を表します。
 
+
+
+
+
 ### [](#ref)Reference
 
 参照
 
 The Reference type (or simply Ref) denotes a resource reference for a document in a particular database.
 
-参照 type（または単にRef）は、特定のデータベース内のドキュメントのリソース参照を示します。
+Referenceタイプ（または単にRef）は、特定のデータベース内のドキュメントのリソース参照を表します。
 
 Each Reference is a compound value, composed of:
 
@@ -1047,9 +1051,13 @@ synthetic
 
 ドキュメントを作成する際に、ドキュメントIDを指定しない場合（[`Ref`](https://docs.fauna.com/fauna/current/api/fql/functions/ref)関数を使用する場合）、合成ドキュメントIDが生成されます。合成文書IDの生成は、[Snowflake ID algorithm](https://en.wikipedia.org/wiki/Snowflake_ID)に基づいています。
 
+
+
 References may be extracted from documents, or constructed using the [`Collection`](https://docs.fauna.com/fauna/current/api/fql/functions/collection), [`Database`](https://docs.fauna.com/fauna/current/api/fql/functions/database), [`Function`](https://docs.fauna.com/fauna/current/api/fql/functions/function), [`Index`](https://docs.fauna.com/fauna/current/api/fql/functions/iindex), or [`Role`](https://docs.fauna.com/fauna/current/api/fql/functions/role) functions, or the general-purpose [`Ref`](https://docs.fauna.com/fauna/current/api/fql/functions/ref) function.
 
 リファレンスは、ドキュメントから抽出したり、[`Collection`](https://docs.fauna.com/fauna/current/api/fql/functions/collection)、[`Database`](https://docs.fauna.com/fauna/current/api/fql/functions/database)、[`Function`](https://docs.fauna.com/fauna/current/api/fql/functions/function)、[`Index`](https://docs.fauna.com/fauna/current/api/fql/functions/iindex)、[`Role`](https://docs.fauna.com/fauna/current/api/fql/functions/role)の各関数や、汎用の[`Ref`](https://docs.fauna.com/fauna/current/api/fql/functions/ref)の各関数を使って構築することができます。
+
+
 
 ```javascript
 client.query(

@@ -202,9 +202,29 @@ Get(Ref(Collection("products"),"202"))
 
 **RUN QUERY**をクリックします。
 
-This query simply gets a document identified by its [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref). A document [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref) contains a reference to the document’s collection (in this case, "products") and a unique ID for the document in that collection (in this case, "202"). Fauna’s auto-generated Reference IDs are 18-digits long — you can set your own during document creation, as we have done with the pre-populated demo data to ease copy/pasting.
+This query simply gets a document identified by its [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref). 
 
-このクエリは単に[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)で特定されるドキュメントを取得するものです。ドキュメントの[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)には、そのドキュメントのコレクション(この場合は「products」)への参照と、そのコレクション内のドキュメントのユニークな ID(この場合は「202」)が含まれています。Fauna の自動生成された参照 ID は 18 桁の長さですが、コピー/ペーストを容易にするために、事前に入力されたデモデータと同様に、ドキュメント作成時に独自に設定することができます。
+identified
+
+identify
+【変化】《動》identifies | identifying | identified
+【自動】同じ心境になる、意気投合する
+【他動-1】～（が本物［本人］であること）を確認する、（正体）を確認する、識別する、特定する、～の身元確認する
+・Police worked quickly to identify the body.：警視庁は死体の身元確認を急いだ。
+・Almost 1.5 million different organisms have been identified by biologists.：ほとんど150万の異なる生物が生物学者によって確認されている。
+・I tried to identify my coat among all the others.自分のコートをたくさんのコートの中から捜そうとした。
+【他動-2】～を同一に扱う、同一視する
+
+gets a document identified
+
+識別されたドキュメントの取得
+
+このクエリは単に[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)で特定されるドキュメントを取得するものです。
+
+
+A document [Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref) contains a reference to the document’s collection (in this case, "products") and a unique ID for the document in that collection (in this case, "202"). Fauna’s auto-generated Reference IDs are 18-digits long — you can set your own during document creation, as we have done with the pre-populated demo data to ease copy/pasting.
+
+ドキュメントの[Reference](https://docs.fauna.com/fauna/current/api/fql/types#ref)には、そのドキュメントのコレクション(この場合は「products」)への参照と、そのコレクション内のドキュメントのユニークな ID(この場合は「202」)が含まれています。Fauna の自動生成された参照 ID は 18 桁の長さですが、コピー/ペーストを容易にするために、事前に入力されたデモデータと同様に、ドキュメント作成時に独自に設定することができます。
 
 The upper panel contains the result of the query:
 
